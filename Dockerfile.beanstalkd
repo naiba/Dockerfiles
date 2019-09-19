@@ -7,5 +7,6 @@ ENV Version=1.11-r0
 RUN apk add --no-cache beanstalkd=${Version}
 
 WORK /data
+
 EXPOSE 11300
 ENTRYPOINT ["/usr/bin/beanstalkd","-b","/data"]
