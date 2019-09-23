@@ -3,4 +3,4 @@
 
 Some useful docker images.
 
-- Beanstalkd: `Dockerfile.beanstalkd` last version base alpine.
+- Beanstalkd: `docker.pkg.github.com/naiba/dockerfiles/beanstalkd:latest`.
