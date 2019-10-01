@@ -3,4 +3,4 @@
 
 Some useful docker images.
 
-- Beanstalkd: `docker.pkg.github.com/naiba/dockerfiles/beanstalkd:latest`.
+- Beanstalkd ![Build Status](https://github.com/naiba/Dockerfiles/workflows/beanstalkd/badge.svg)
