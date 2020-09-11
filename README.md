@@ -2,7 +2,7 @@
 
 Some useful docker images I made.
 
-- NoCD ![构建状态](https://github.com/naiba/nocd/workflows/Build%20Docker%20Image/badge.svg) 一个为小微团队打造的轻量级的的持续交付系统。
-- Solitudes ![构建状态](https://github.com/naiba/solitudes/workflows/Build%20Docker%20Image/badge.svg) 为写书而生的博客引擎。
-- CloudSSH ![构建状态](https://github.com/naiba/cloudssh/workflows/goreleaser/badge.svg) SSH密钥管理工具，云同步，端到端加密。
-- Beanstalkd ![构建状态](https://github.com/naiba/Dockerfiles/workflows/beanstalkd/badge.svg) 一个 PHP 常用的轻量级消息队列。
+- NoCD ![Build Status](https://github.com/naiba/nocd/workflows/Build%20Docker%20Image/badge.svg) A lightweight continuous delivery system for small and micro teams.
+- Solitudes ![Build Status](https://github.com/naiba/solitudes/workflows/Build%20Docker%20Image/badge.svg) A blog engine born for writing books.
+- CloudSSH ![Build Status](https://github.com/naiba/cloudssh/workflows/goreleaser/badge.svg) SSH key management tool, cloud synchronization, end-to-end encryption.
+- Beanstalkd ![Build Status](https://github.com/naiba/Dockerfiles/workflows/beanstalkd/badge.svg) A lightweight message queue commonly used in PHP.
