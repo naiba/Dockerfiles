@@ -14,6 +14,6 @@ jobs:
         env:
           DockerPassword: ${{ secrets.PACKAGE_TOKEN }}
         run: |
-          docker build -t docker.pkg.github.com/naiba/dockerfiles/php-ioncube -f Dockerfile.php-ioncube .
           docker login -u naiba -p $DockerPassword docker.pkg.github.com
+          docker build -t docker.pkg.github.com/naiba/dockerfiles/php-ioncube -f Dockerfile.php-ioncube .
           docker push docker.pkg.github.com/naiba/dockerfiles/php-ioncube
