@@ -1,0 +1,19 @@
+name: php-ioncube
+
+on:
+  push:
+    paths:
+      - "Dockerfile.php-ioncube"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: docker push
+        env:
+          DockerPassword: ${{ secrets.PACKAGE_TOKEN }}
+        run: |
+          docker build -t docker.pkg.github.com/naiba/dockerfiles/php-ioncube -f Dockerfile.php-ioncube .
+          docker login -u naiba -p $DockerPassword docker.pkg.github.com
+          docker push docker.pkg.github.com/naiba/dockerfiles/php-ioncube
