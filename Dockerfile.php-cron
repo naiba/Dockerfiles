@@ -1,4 +1,4 @@
-FROM bitnami/php-fpm:7.4-prod
+FROM docker.pkg.github.com/naiba/dockerfiles/php-ioncube
 LABEL maintainer="奶爸 <hi@nai.ba>"
 
 RUN install_packages cron
