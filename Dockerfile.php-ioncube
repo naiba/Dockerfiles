@@ -5,9 +5,6 @@ ENV PHP_VERSION=7.4
 
 RUN cd /tmp && curl -o ioncube.tar.gz http://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz && \
     tar -xzvf ioncube.tar.gz && \
-    mkdir -p /usr/lib/php/ioncube && \
-    cp /tmp/ioncube/ioncube_loader_lin_$PHP_VERSION.so /usr/lib/php/ioncube/. && \
-    echo "zend_extension = /usr/lib/php/ioncube/ioncube_loader_lin_${PHP_VERSION}.so" \
-    > /etc/php/${PHP_VERSION}/fpm/conf.d/00-ioncube.ini && \
-    cp /etc/php/${PHP_VERSION}/fpm/conf.d/00-ioncube.ini /etc/php/${PHP_VERSION}/cli/conf.d/. && \
+    cp /tmp/ioncube/ioncube_loader_lin_$PHP_VERSION.so /opt/bitnami/php/lib/php/extensions/ && \
+    sed -i 's/;ffi\.preload=/zend_extension = \/opt\/bitnami\/php\/lib\/php\/extensions\/ioncube_loader_lin_7.4.so/g' /opt/bitnami/php/etc/php.ini && \
     rm -rf /tmp/*
