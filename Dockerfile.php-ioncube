@@ -7,5 +7,4 @@ RUN cd /tmp && curl -o ioncube.tar.gz http://downloads.ioncube.com/loader_downlo
     tar -xzvf ioncube.tar.gz && \
     cp /tmp/ioncube/ioncube_loader_lin_$PHP_VERSION.so /opt/bitnami/php/lib/php/extensions/ && \
     sed -i 's/;ffi\.preload=/zend_extension = \/opt\/bitnami\/php\/lib\/php\/extensions\/ioncube_loader_lin_7.4.so/g' /opt/bitnami/php/etc/php.ini && \
-    sed -i 's/;session\.save_path/session\.save_path/g' /opt/bitnami/php/etc/php.ini && \
     rm -rf /tmp/*
