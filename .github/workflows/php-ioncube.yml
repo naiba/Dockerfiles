@@ -10,10 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
       - name: docker push
-        env:
-          DockerPassword: ${{ secrets.PACKAGE_TOKEN }}
         run: |
-          docker login -u naiba -p $DockerPassword docker.pkg.github.com
-          docker build -t docker.pkg.github.com/naiba/dockerfiles/php-ioncube -f Dockerfile.php-ioncube .
-          docker push docker.pkg.github.com/naiba/dockerfiles/php-ioncube
+          docker build -t docker.pkg.github.com/${{ github.repository }}/php-ioncube -f Dockerfile.php-ioncube .
+          docker push docker.pkg.github.com/${{ github.repository }}/php-ioncube

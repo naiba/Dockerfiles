@@ -1,19 +1,20 @@
 name: beanstalkd
 
-on: 
+on:
   push:
     paths:
-      - 'Dockerfile.beanstalkd'
+      - "Dockerfile.beanstalkd"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
       - name: docker push
-        env:
-          DockerPassword: ${{ secrets.PACKAGE_TOKEN }}
         run: |
-          docker login -u naiba -p $DockerPassword docker.pkg.github.com
-          docker build -t docker.pkg.github.com/naiba/dockerfiles/beanstalkd -f Dockerfile.beanstalkd .
-          docker push docker.pkg.github.com/naiba/dockerfiles/beanstalkd
+          docker build -t docker.pkg.github.com/${{ github.repository }}/beanstalkd -f Dockerfile.beanstalkd .
+          docker push docker.pkg.github.com/${{ github.repository }}/beanstalkd
