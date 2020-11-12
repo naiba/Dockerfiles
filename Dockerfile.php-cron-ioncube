@@ -1,4 +1,4 @@
-FROM docker.pkg.github.com/naiba/dockerfiles/php-ioncube:latest
+FROM ghcr.io/naiba/php-fpm-ioncube:latest
 LABEL maintainer="奶爸 <hi@nai.ba>"
 
 RUN install_packages cron
