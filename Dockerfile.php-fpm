@@ -15,4 +15,5 @@ RUN install_packages cron && \
 
 CMD chmod 0755 /etc/cron.d/crontab-config && \
     crontab /etc/cron.d/crontab-config && cron f && \
-    sleep infinity
+    php-fpm -F --pid /opt/bitnami/php/tmp/php-fpm.pid -y /opt/bitnami/php/etc/php-fpm.conf
+    
