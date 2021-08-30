@@ -26,6 +26,6 @@ RUN install_packages build-essential libmagickwand-dev && \
     ls -al /opt/bitnami/php/etc/
 
 CMD chmod 0755 /etc/cron.d/crontab-config && \
-    crontab /etc/cron.d/crontab-config && cron f && \
+    crontab /etc/cron.d/crontab-config && \
+    cron -f & \
     php-fpm -F --pid /opt/bitnami/php/tmp/php-fpm.pid -y /opt/bitnami/php/etc/php-fpm.conf
-    
