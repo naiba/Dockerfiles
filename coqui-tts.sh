@@ -7,6 +7,6 @@ git clone https://github.com/synesthesiam/coqui-docker.git && \
     cd coqui-docker && \
     git checkout $DOCKER_BUILDER_COMMIT_HASH && \
     cd coqui-tts && \
-    sed -i 's/docker.io/ghcr.io/' Makefile && \
-    sed -i 's/synesthesiam/naiba/' Makefile && \
-    make cpu
+    DOCKER_BUILDKIT=1 docker build -t ghcr.io/$OWNER/coqui-tts --build-arg TTS_VERSION=$TTS_VERSION --build-arg TARGETARCH=$TARGETARCH --build-arg TARGETVARIANT=$TARGETVARIANT  . && \
+    docker push ghcr.io/$OWNER/coqui-tts
+
