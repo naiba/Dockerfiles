@@ -16,4 +16,4 @@ jobs:
 
       - name: build and push docker image
         run: |
-          bash coqui-tts.sh
+          OWNER=${{ github.repository_owner }} bash coqui-tts.sh
