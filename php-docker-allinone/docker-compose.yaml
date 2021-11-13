@@ -22,8 +22,8 @@ services:
     image: filebrowser/filebrowser
     volumes:
       - ./www-data:/srv
-      = ./filebrowser-data/filebrowser.db:/filebrowser.db
-      = ./filebrowser-data/filebrowser.json:/.filebrowser.json
+      - ./filebrowser-data/filebrowser.db:/filebrowser.db
+      - ./filebrowser-data/filebrowser.json:/.filebrowser.json
     ports:
       - 8081:80
     networks:

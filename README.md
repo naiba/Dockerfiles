@@ -2,4 +2,18 @@
 
 - Beanstalkd ![Build Status](https://github.com/naiba/Dockerfiles/workflows/beanstalkd/badge.svg) is a lightweight message queue commonly used in PHP.
 - PHP-FPM ![Build Status](https://github.com/naiba/Dockerfiles/workflows/php-fpm/badge.svg) is a PHP-FPM image with integrated ioncube.
-- coqui-tts ![Build Status](https://github.com/naiba/Dockerfiles/workflows/coqui-tts/badge.svg) is an all-in-one TTS solution, see https://github.com/synesthesiam/coqui-docker/tree/master/coqui-tts for usage.
+- coqui-tts ![Build Status](https://github.com/naiba/Dockerfiles/workflows/coqui-tts/badge.svg) is an all-in-one TTS solution, see <https://github.com/synesthesiam/coqui-docker/tree/master/coqui-tts> for usage.
+
+## PHP Docker all-in-one
+
+```shell
+wget https://github.com/naiba/Dockerfiles/archive/refs/heads/master.zip
+unzip master.zip
+mv Dockerfiles-master/php-docker-allinone/ ./your-app
+rm -rf Dockerfiles-master/ master.zip
+cd ./your-app
+# edit port/nginx config
+nano ./www-data/nginx/virtual-host.conf
+nano docker-compose.yaml
+docker-compose up -d
+```
