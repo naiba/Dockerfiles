@@ -1,0 +1,54 @@
+version: "3.3"
+
+services:
+  nginx:
+    image: "bitnami/nginx:latest"
+    depends_on:
+      - phpfpm
+    networks:
+      - no-internet
+    ports:
+      - 80:80
+    volumes:
+      - ./www-data/nginx/virtual-host.conf:/opt/bitnami/nginx/conf/server_blocks/yourapp.conf
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - no-internet
+  filebrowser:
+    image: filebrowser/filebrowser
+    volumes:
+      - ./www-data:/srv
+      = ./filebrowser-data/filebrowser.db:/filebrowser.db
+      = ./filebrowser-data/filebrowser.json:/.filebrowser.json
+    ports:
+      - 8081:80
+    networks:
+      - no-internet
+  phpfpm:
+    image: bitnami/php-fpm:latest
+    networks:
+      - internet
+      - no-internet
+    volumes:
+      - ./www-data/sites:/app
+  mysql:
+    image: mysql:8
+    restart: always
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "mysqrootpass"
+      MYSQL_ROOT_HOST: "%"
+    networks:
+      - no-internet
+
+networks:
+  no-internet:
+    driver: bridge
+    internal: true
+  internet:
+    driver: bridge
