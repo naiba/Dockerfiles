@@ -11,6 +11,7 @@ services:
       - 80:80
     volumes:
       - ./www-data/nginx/virtual-host.conf:/opt/bitnami/nginx/conf/server_blocks/yourapp.conf
+      - ./www-data/sites:/app
   adminer:
     image: adminer
     restart: always
