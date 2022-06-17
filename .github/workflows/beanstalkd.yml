@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "Dockerfile.beanstalkd"
+      - ".github/workflows/beanstalkd.yml"
 
 jobs:
   deploy:

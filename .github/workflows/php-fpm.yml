@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "Dockerfile.php-fpm"
+      - ".github/workflows/php-fpm.yml"
 
 jobs:
   deploy:

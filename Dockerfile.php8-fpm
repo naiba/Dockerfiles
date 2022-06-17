@@ -1,7 +1,7 @@
-FROM bitnami/php-fpm:7.4-prod
+FROM bitnami/php-fpm:8.1-prod
 LABEL maintainer="奶爸 <hi@nai.ba>"
 
-ENV PHP_VERSION=7.4
+ENV PHP_VERSION=8.1
 
 # Please bind crontab file to /etc/cron.d/crontab-config
 
@@ -10,18 +10,18 @@ RUN install_packages cron && \
     cd /tmp && curl -o ioncube.tar.gz http://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz && \
     tar -xzvf ioncube.tar.gz && \
     cp /tmp/ioncube/ioncube_loader_lin_$PHP_VERSION.so /opt/bitnami/php/lib/php/extensions/ && \
-    sed -i 's/;ffi\.preload=/zend_extension = \/opt\/bitnami\/php\/lib\/php\/extensions\/ioncube_loader_lin_7.4.so/g' /opt/bitnami/php/etc/php.ini && \
+    sed -i 's/;ffi\.preload=/zend_extension = \/opt\/bitnami\/php\/lib\/php\/extensions\/ioncube_loader_lin_8.1.so/g' /opt/bitnami/php/etc/php.ini && \
     rm -rf /tmp/*
 
 RUN install_packages build-essential libmagickwand-dev && \
     cd /tmp && \
-    wget https://pecl.php.net/get/imagick-3.4.4.tgz && \
-    tar xvzf imagick-3.4.4.tgz && \
-    cd imagick-3.4.4 && \
+    wget https://pecl.php.net/get/imagick-3.7.0.tgz && \
+    tar xvzf imagick-3.7.0.tgz && \
+    cd imagick-3.7.0 && \
     phpize && \
     ./configure && \
     make install && \
-    rm -rf /tmp/imagick-3.4.4* && \
+    rm -rf /tmp/imagick-3.7.0* && \
     echo extension=imagick.so >> /opt/bitnami/php/etc/php.ini && \
     ls -al /opt/bitnami/php/etc/
 
