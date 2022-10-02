@@ -2,15 +2,16 @@ version: "3.3"
 
 services:
   nginx:
-    image: "bitnami/nginx:latest"
+    image: "nginx:latest"
     depends_on:
       - phpfpm
     networks:
       - no-internet
+      - internet
     ports:
       - 80:80
     volumes:
-      - ./www-data/nginx/virtual-host.conf:/opt/bitnami/nginx/conf/server_blocks/yourapp.conf
+      - ./www-data/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./www-data/sites:/app
   adminer:
     image: adminer
@@ -30,7 +31,8 @@ services:
     networks:
       - no-internet
   phpfpm:
-    image: bitnami/php-fpm:latest
+    build: 
+      dockerfile: ./www-data/Dockerfile.php-fpm
     networks:
       - internet
       - no-internet
