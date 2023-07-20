@@ -3,7 +3,7 @@ FROM python:3.11-slim-bullseye
 LABEL maintainer="奶爸 <hi@nai.ba>"
 
 # Get version on https://github.com/akfamily/akshare
-ENV AK_VERSION=1.10.59
+ENV AK_VERSION=1.10.63
 ENV APP_HOME=/usr/local/lib/python3.11/site-packages/aktools
 
 # 升级 pip 到最新版
