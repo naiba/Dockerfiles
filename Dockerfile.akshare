@@ -12,7 +12,7 @@ RUN pip install --upgrade pip && \
     pip install --no-cache-dir aktools -i https://pypi.org/simple --
 
 RUN if [ "$(uname -m)" = "aarch64" ]; then \
-        pip install https://github.com/nezhahq/nssm-backup/releases/download/pyminiracer-0.6.0/py_mini_racer-0.6.0-py3-none-linux_aarch64.whl; \
+        pip install --upgrade --force-reinstall https://github.com/nezhahq/nssm-backup/releases/download/pyminiracer-0.6.0/py_mini_racer-0.6.0-py3-none-linux_aarch64.whl; \
     fi
 
 WORKDIR $APP_HOME
