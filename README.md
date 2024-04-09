@@ -4,18 +4,5 @@
 
 - [beanstalkd](https://github.com/users/naiba/packages/container/package/beanstalkd) ![Build Status](https://github.com/naiba/Dockerfiles/workflows/beanstalkd/badge.svg) is a lightweight message queue commonly used in PHP.
 - [PHP-FPM](https://github.com/users/naiba/packages/container/package/php-fpm) ![Build Status](https://github.com/naiba/Dockerfiles/workflows/php7-fpm/badge.svg) ![Build Status](https://github.com/naiba/Dockerfiles/workflows/php8-fpm/badge.svg) is a PHP-FPM image with integrated ioncube.
-- [akshare](https://github.com/users/naiba/packages/container/package/akshare) ![Build Status](https://github.com/naiba/Dockerfiles/workflows/akshare/badge.svg) AKShare 镜像.
-
-## PHP Docker all-in-one
-
-```shell
-wget https://github.com/naiba/Dockerfiles/archive/refs/heads/master.zip
-unzip master.zip
-mv Dockerfiles-master/php-docker-allinone/ ./your-app
-rm -rf Dockerfiles-master/ master.zip
-cd ./your-app
-# edit port/nginx config
-nano ./www-data/nginx/virtual-host.conf
-nano docker-compose.yaml
-docker-compose up -d
-```
+- [akshare](https://github.com/users/naiba/packages/container/package/akshare) ![Build Status](https://github.com/naiba/Dockerfiles/workflows/akshare/badge.svg) AKShare docker image.
+- [PHP docker all-in-one](php-docker-allinone) is a PHP development environment with Nginx, MySQL, Adminer, File Manager.

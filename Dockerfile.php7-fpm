@@ -13,17 +13,8 @@ RUN install_packages cron && \
     sed -i 's/;ffi\.preload=/zend_extension = \/opt\/bitnami\/php\/lib\/php\/extensions\/ioncube_loader_lin_7.4.so/g' /opt/bitnami/php/etc/php.ini && \
     rm -rf /tmp/*
 
-RUN install_packages build-essential libmagickwand-dev && \
-    cd /tmp && \
-    wget https://pecl.php.net/get/imagick-3.4.4.tgz && \
-    tar xvzf imagick-3.4.4.tgz && \
-    cd imagick-3.4.4 && \
-    phpize && \
-    ./configure && \
-    make install && \
-    rm -rf /tmp/imagick-3.4.4* && \
-    echo extension=imagick.so >> /opt/bitnami/php/etc/php.ini && \
-    ls -al /opt/bitnami/php/etc/
+RUN echo extension=imagick.so >> /opt/bitnami/php/etc/php.ini  && \
+    ls -al /opt/bitnami/php/lib/php/extensions/
 
 CMD chmod 0755 /etc/cron.d/crontab-config && \
     crontab /etc/cron.d/crontab-config && \
