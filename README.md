@@ -4,7 +4,8 @@
 
 - [Beanstalkd](https://github.com/users/naiba/packages/container/package/php-fpm) ![Build Status](https://github.com/naiba/Dockerfiles/workflows/beanstalkd/badge.svg) is a lightweight message queue commonly used in PHP.
 - [PHP-FPM](https://github.com/users/naiba/packages/container/package/beanstalkd) ![Build Status](https://github.com/naiba/Dockerfiles/workflows/php-fpm/badge.svg) is a PHP-FPM image with integrated ioncube.
-- [akshare](https://github.com/users/naiba/packages/container/package/akshare) ![Build Status](https://github.com/naiba/Dockerfiles/workflows/akshare/badge.svg) AKShare 镜像.
+- [akshare](https://github.com/users/naiba/packages/container/package/akshare) ![Build Status](https://github.com/naiba/Dockerfiles/workflows/akshare/badge.svg) AKShare docker.
+- [wireproxy](https://github.com/users/naiba/packages/container/package/wireproxy) ![Build Status](https://github.com/naiba/Dockerfiles/workflows/wireproxy/badge.svg) wireproxy docker.
 
 ## PHP Docker all-in-one
 
