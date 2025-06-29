@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - ".github/workflows/wireproxy.yml"
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
   deploy:
