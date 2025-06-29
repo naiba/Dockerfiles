@@ -1,0 +1,4 @@
+/php-docker-allinone/www-data/sites/*
+/php-docker-allinone/mysql-data/*
+/php-docker-allinone/filebrowser-data/filebrowser.db
+!/php-docker-allinone/www-data/sites/.gitkeep
