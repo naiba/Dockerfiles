@@ -6,4 +6,3 @@
 - [PHP-FPM](https://github.com/users/naiba/packages/container/package/php-fpm) ![Build Status](https://github.com/naiba/Dockerfiles/workflows/php7-fpm/badge.svg) ![Build Status](https://github.com/naiba/Dockerfiles/workflows/php8-fpm/badge.svg) is a PHP-FPM docker with integrated ioncube.
 - [akshare](https://github.com/users/naiba/packages/container/package/akshare) ![Build Status](https://github.com/naiba/Dockerfiles/workflows/akshare/badge.svg) AKShare docker.
 - [PHP docker all-in-one](php-docker-allinone) is a PHP development environment with Nginx, MySQL, Adminer, File Manager.
-- [wireproxy](https://github.com/users/naiba/packages/container/package/wireproxy) ![Build Status](https://github.com/naiba/Dockerfiles/workflows/wireproxy/badge.svg) wireproxy docker.
