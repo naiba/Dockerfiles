@@ -49,8 +49,10 @@ RUN go mod download
 # 注意：CLIProxyAPIPlus 需要在代码中嵌入 management.html
 # 根据 README，从 v6.0.19 开始 WebUI 已经内置，可能不需要额外复制
 # 但为了确保使用最新 WebUI，我们还是替换它
-COPY --from=webui-builder /build/webui/dist/index.html ./cmd/server/static/management.html 2>/dev/null || \
-    echo "Note: CLIProxyAPIPlus may already have embedded WebUI"
+RUN --mount=from=webui-builder,source=/build/webui/dist/index.html,target=/tmp/management.html \
+    mkdir -p ./cmd/server/static && \
+    (cp /tmp/management.html ./cmd/server/static/management.html 2>/dev/null || \
+     echo "Note: CLIProxyAPIPlus may already have embedded WebUI")
 
 # 获取构建信息
 ARG VERSION=dev
