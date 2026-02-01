@@ -2,6 +2,8 @@ name: beanstalkd
 
 on:
   push:
+    branches:
+      - master
     paths:
       - "Dockerfile.beanstalkd"
       - ".github/workflows/beanstalkd.yml"

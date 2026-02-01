@@ -2,6 +2,8 @@ name: akshare
 
 on:
   push:
+    branches:
+      - master
     paths:
       - "Dockerfile.akshare"
       - ".github/workflows/akshare.yml"

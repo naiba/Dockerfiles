@@ -2,9 +2,11 @@ name: php7-fpm
 
 on:
   push:
+    branches:
+      - master
     paths:
       - "Dockerfile.php7-fpm"
-      - ".github/workflows/php-fpm.yml"
+      - ".github/workflows/php7-fpm.yml"
 
 jobs:
   deploy:

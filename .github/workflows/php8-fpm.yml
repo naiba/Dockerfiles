@@ -2,9 +2,11 @@ name: php8-fpm
 
 on:
   push:
+    branches:
+      - master
     paths:
       - "Dockerfile.php8-fpm"
-      - ".github/workflows/php-fpm.yml"
+      - ".github/workflows/php8-fpm.yml"
 
 jobs:
   deploy:
