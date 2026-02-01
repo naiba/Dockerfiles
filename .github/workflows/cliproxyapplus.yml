@@ -1,0 +1,142 @@
+name: cliproxyapplus
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'cliproxyapplus/**'
+      - '.github/workflows/cliproxyapplus.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'cliproxyapplus/**'
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository_owner }}/cliproxyapplus
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    outputs:
+      VERSION: ${{ steps.upstream.outputs.VERSION }}
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - linux/amd64
+          - linux/arm64
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log into registry ${{ env.REGISTRY }}
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get upstream commit info
+        id: upstream
+        run: |
+          PLUS_COMMIT=$(git ls-remote https://github.com/router-for-me/CLIProxyAPIPlus.git HEAD | cut -f1 | cut -c1-7)
+          UPSTREAM_COMMIT=$(git ls-remote https://github.com/router-for-me/CLIProxyAPI.git HEAD | cut -f1 | cut -c1-7)
+          echo "plus_commit=${PLUS_COMMIT}" >> $GITHUB_OUTPUT
+          echo "upstream_commit=${UPSTREAM_COMMIT}" >> $GITHUB_OUTPUT
+          echo "VERSION=$(date +%Y%m%d)-${PLUS_COMMIT}" >> $GITHUB_OUTPUT
+          echo "Plus: ${PLUS_COMMIT}, Upstream: ${UPSTREAM_COMMIT}"
+
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=${{ steps.upstream.outputs.VERSION }}
+            type=schedule,pattern={{date 'YYYYMMDD'}}
+            type=sha,prefix=,suffix=,format=short
+
+      - name: Build and push Docker image
+        id: build-and-push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./cliproxyapplus
+          platforms: ${{ matrix.platform }}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha,scope=cliproxyapplus-${{ matrix.platform }}
+          cache-to: type=gha,mode=max,scope=cliproxyapplus-${{ matrix.platform }}
+          build-args: |
+            VERSION=${{ steps.upstream.outputs.VERSION }}
+            BUILD_DATE=${{ github.event.head_commit.timestamp || github.event.repository.updated_at }}
+            COMMIT_SHA=${{ steps.upstream.outputs.plus_commit }}
+
+      - name: Export digest
+        if: github.event_name != 'pull_request'
+        run: |
+          mkdir -p /tmp/digests
+          digest="${{ steps.build-and-push.outputs.digest }}"
+          touch "/tmp/digests/${digest#sha256:}"
+
+      - name: Upload digest
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: digests-${{ matrix.platform == 'linux/amd64' && 'amd64' || 'arm64' }}
+          path: /tmp/digests/*
+          if-no-files-found: error
+          retention-days: 1
+
+  merge-manifests:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    needs:
+      - build-and-push
+    steps:
+      - name: Download digests
+        uses: actions/download-artifact@v4
+        with:
+          path: /tmp/digests
+          pattern: digests-*
+          merge-multiple: true
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log into registry ${{ env.REGISTRY }}
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create manifest list and push
+        working-directory: /tmp/digests
+        run: |
+          VERSION=${{ needs.build-and-push.outputs.VERSION }}
+          docker buildx imagetools create \
+            -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
+            -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${VERSION} \
+            $(printf '${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@sha256:%s ' *)
+
+      - name: Inspect image
+        run: |
+          docker buildx imagetools inspect ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest

@@ -1,0 +1,59 @@
+# Server host/interface to bind to. Default is empty ("") to bind all interfaces (IPv4 + IPv6).
+host: ""
+
+# Server port
+port: 8317
+
+# Management API settings
+remote-management:
+  # Whether to allow remote (non-localhost) management access.
+  allow-remote: false
+
+  # Management key. If a plaintext value is provided here, it will be hashed on startup.
+  secret-key: "your-management-key-here"
+
+  # Disable the bundled management control panel asset download and HTTP route when true.
+  disable-control-panel: false
+
+# Authentication directory (supports ~ for home directory)
+auth-dir: "~/.cli-proxy-api"
+
+# API keys for authentication
+api-keys:
+  - "your-api-key-1"
+
+# Enable debug logging
+debug: false
+
+# When true, write application logs to rotating files instead of stdout
+logging-to-file: false
+
+# Proxy URL. Supports socks5/http/https protocols. Example: socks5://user:pass@192.168.1.1:1080/
+proxy-url: ""
+
+# Number of times to retry a request.
+request-retry: 3
+
+# Gemini API keys
+# gemini-api-key:
+#   - api-key: "AIzaSy..."
+
+# Codex API keys  
+# codex-api-key:
+#   - api-key: "sk-..."
+
+# Claude API keys
+# claude-api-key:
+#   - api-key: "sk-..."
+
+# Kiro (AWS CodeWhisperer) configuration
+# kiro:
+#   - access-token: "aoaAAAAA..."
+#     refresh-token: "aorAAAAA..."
+
+# OpenAI compatibility providers
+# openai-compatibility:
+#   - name: "openrouter"
+#     base-url: "https://openrouter.ai/api/v1"
+#     api-key-entries:
+#       - api-key: "sk-or-v1-..."
