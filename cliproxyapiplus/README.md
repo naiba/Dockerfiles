@@ -1,10 +1,10 @@
 # CLIProxyAPIPlus + WebUI Docker 构建
 
-![Build Status](https://github.com/naiba/Dockerfiles/workflows/cliproxyapplus/badge.svg)
+![Build Status](https://github.com/naiba/Dockerfiles/workflows/cliproxyapiplus/badge.svg)
 
 每次从源码编译 CLIProxyAPIPlus，自动合并上游 CLIProxyAPI 更新，并整合最新 WebUI。
 
-- 镜像地址: `ghcr.io/naiba/cliproxyapplus:latest`
+- 镜像地址: `ghcr.io/naiba/cliproxyapiplus:latest`
 - 支持架构: `linux/amd64`, `linux/arm64`
 
 ## 项目结构
@@ -40,7 +40,7 @@ docker run -d \
   -v $(pwd)/config.yaml:/app/config.yaml:ro \
   -v $(pwd)/auths:/root/.cli-proxy-api \
   -v $(pwd)/logs:/app/logs \
-  ghcr.io/naiba/cliproxyapplus:latest
+  ghcr.io/naiba/cliproxyapiplus:latest
 ```
 
 ### 方式二：Docker Compose（使用预构建镜像）
@@ -48,7 +48,7 @@ docker run -d \
 ```yaml
 services:
   cli-proxy-api-plus:
-    image: ghcr.io/naiba/cliproxyapplus:latest
+    image: ghcr.io/naiba/cliproxyapiplus:latest
     container_name: cli-proxy-api-plus
     ports:
       - "8317:8317"
@@ -64,7 +64,7 @@ services:
 ```bash
 ./build.sh
 # 或
-docker build -t cliproxyapplus:latest .
+docker build -t cliproxyapiplus:latest .
 ```
 
 ## 配置文件
@@ -125,9 +125,9 @@ GitHub Actions 工作流自动执行以下操作：
 
 ## 镜像标签
 
-- `ghcr.io/naiba/cliproxyapplus:latest` - 最新构建
-- `ghcr.io/naiba/cliproxyapplus:YYYYMMDD-COMMIT` - 带日期和 commit 的版本
-- `ghcr.io/naiba/cliproxyapplus:SHA` - 基于 commit SHA 的版本
+- `ghcr.io/naiba/cliproxyapiplus:latest` - 最新构建
+- `ghcr.io/naiba/cliproxyapiplus:YYYYMMDD-COMMIT` - 带日期和 commit 的版本
+- `ghcr.io/naiba/cliproxyapiplus:SHA` - 基于 commit SHA 的版本
 
 ## 注意事项
 

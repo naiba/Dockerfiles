@@ -1,0 +1,115 @@
+name: cliproxyapiplus
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'cliproxyapiplus/**'
+      - '.github/workflows/cliproxyapiplus.yml'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'cliproxyapiplus/**'
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux/amd64
+            runner: ubuntu-latest
+            arch: amd64
+          - platform: linux/arm64
+            runner: ubuntu-24.04-arm
+            arch: arm64
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to the GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Get upstream commit info
+        id: upstream
+        run: |
+          PLUS_COMMIT=$(git ls-remote https://github.com/router-for-me/CLIProxyAPIPlus.git HEAD | cut -f1 | cut -c1-7)
+          echo "VERSION=$(date +%Y%m%d)-${PLUS_COMMIT}" >> $GITHUB_OUTPUT
+          echo "Plus: ${PLUS_COMMIT}"
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository_owner }}/cliproxyapiplus
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=${{ steps.upstream.outputs.VERSION }}
+          flavor: |
+            suffix=-${{ matrix.arch }},onlatest=true
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./cliproxyapiplus
+          platforms: ${{ matrix.platform }}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            VERSION=${{ steps.upstream.outputs.VERSION }}
+          provenance: false
+
+  merge:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name != 'pull_request'
+    steps:
+      - name: Log in to the GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get upstream commit info
+        id: upstream
+        run: |
+          PLUS_COMMIT=$(git ls-remote https://github.com/router-for-me/CLIProxyAPIPlus.git HEAD | cut -f1 | cut -c1-7)
+          echo "VERSION=$(date +%Y%m%d)-${PLUS_COMMIT}" >> $GITHUB_OUTPUT
+          echo "Plus: ${PLUS_COMMIT}"
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository_owner }}/cliproxyapiplus
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=${{ steps.upstream.outputs.VERSION }}
+
+      - name: Create and push multi-arch manifest
+        run: |
+          echo "${{ steps.meta.outputs.tags }}" | while IFS= read -r tag; do
+            [ -z "$tag" ] && continue
+            echo "Creating manifest for: ${tag}"
+            docker buildx imagetools create -t ${tag} \
+              ${tag}-amd64 \
+              ${tag}-arm64 || exit 1
+          done
+
+      - name: Inspect image
+        run: |
+          docker buildx imagetools inspect ghcr.io/${{ github.repository_owner }}/cliproxyapiplus:latest || true

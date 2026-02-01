@@ -37,16 +37,16 @@ docker build \
     --build-arg VERSION="$VERSION" \
     --build-arg BUILD_DATE="$BUILD_DATE" \
     --build-arg COMMIT_SHA="$COMMIT_SHA" \
-    -t cliproxyapplus:latest \
-    -t cliproxyapplus:$VERSION \
+    -t cliproxyapiplus:latest \
+    -t cliproxyapiplus:$VERSION \
     .
 
 if [ $? -eq 0 ]; then
     echo -e "${GREEN}构建成功!${NC}"
     echo ""
     echo "镜像标签:"
-    echo "  - cliproxyapplus:latest"
-    echo "  - cliproxyapplus:$VERSION"
+    echo "  - cliproxyapiplus:latest"
+    echo "  - cliproxyapiplus:$VERSION"
     echo ""
     echo "运行方式:"
     echo "  docker-compose up -d"
