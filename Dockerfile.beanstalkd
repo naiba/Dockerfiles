@@ -1,10 +1,7 @@
 FROM alpine
 LABEL maintainer="奶爸 <hi@nai.ba>"
 
-# Get version on https://pkgs.alpinelinux.org/package/edge/community/x86/beanstalkd
-ENV Version=1.13-r0
-
-RUN apk add --no-cache beanstalkd=${Version}
+RUN apk add --no-cache beanstalkd
 
 VOLUME ["/data"]
 

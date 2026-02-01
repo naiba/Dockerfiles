@@ -8,6 +8,10 @@ on:
       - "Dockerfile.php8-fpm"
       - ".github/workflows/php8-fpm.yml"
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest

@@ -8,6 +8,10 @@ on:
       - "Dockerfile.akshare"
       - ".github/workflows/akshare.yml"
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest

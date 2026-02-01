@@ -1,22 +1,37 @@
-FROM bitnami/php-fpm:8.2
+FROM bitnami/php-fpm:latest
 LABEL maintainer="奶爸 <hi@nai.ba>"
-
-ENV PHP_VERSION=8.2
 
 # Please bind crontab file to /etc/cron.d/crontab-config
 
-RUN install_packages cron && \
-    # Install ioncube
-    cd /tmp && curl -o ioncube.tar.gz http://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz && \
-    tar -xzvf ioncube.tar.gz && \
-    cp /tmp/ioncube/ioncube_loader_lin_$PHP_VERSION.so /opt/bitnami/php/lib/php/extensions/ && \
-    sed -i "s/;ffi\.preload=/zend_extension = \/opt\/bitnami\/php\/lib\/php\/extensions\/ioncube_loader_lin_$PHP_VERSION.so/g" /opt/bitnami/php/etc/php.ini && \
+# Install cronie (Photon OS uses tdnf, package name is 'cronie')
+# Install build deps for imagick, then clean up
+RUN install_packages cronie ImageMagick-devel gcc glibc-devel binutils linux-api-headers make autoconf pkg-config && \
+    PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;") && \
+    echo "Detected PHP version: $PHP_VERSION" && \
+    # Install imagick via pecl
+    CPP=$(which cpp) pecl install imagick && \
+    echo "extension=imagick.so" >> /opt/bitnami/php/etc/php.ini && \
+    # Install ioncube loader
+    ARCH=$(uname -m) && \
+    cd /tmp && \
+    if [ "$ARCH" = "x86_64" ]; then \
+        curl -fsSL -o ioncube.tar.gz http://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz; \
+    elif [ "$ARCH" = "aarch64" ]; then \
+        curl -fsSL -o ioncube.tar.gz http://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_aarch64.tar.gz; \
+    fi && \
+    if [ -f /tmp/ioncube.tar.gz ]; then \
+        tar -xzf ioncube.tar.gz && \
+        if [ -f "/tmp/ioncube/ioncube_loader_lin_${PHP_VERSION}.so" ]; then \
+            cp "/tmp/ioncube/ioncube_loader_lin_${PHP_VERSION}.so" /opt/bitnami/php/lib/php/extensions/ && \
+            sed -i "s/;ffi\.preload=/zend_extension = \/opt\/bitnami\/php\/lib\/php\/extensions\/ioncube_loader_lin_${PHP_VERSION}.so/g" /opt/bitnami/php/etc/php.ini && \
+            echo "ionCube loader installed for PHP $PHP_VERSION ($ARCH)"; \
+        else \
+            echo "ionCube loader for PHP $PHP_VERSION not found, skipping"; \
+        fi; \
+    fi && \
     rm -rf /tmp/*
-
-RUN echo extension=imagick.so >> /opt/bitnami/php/etc/php.ini && \
-    ls -al /opt/bitnami/php/lib/php/extensions/
 
 CMD chmod 0755 /etc/cron.d/crontab-config && \
     crontab /etc/cron.d/crontab-config && \
-    cron -f & \
+    crond && \
     php-fpm -F --pid /opt/bitnami/php/tmp/php-fpm.pid -y /opt/bitnami/php/etc/php-fpm.conf
