@@ -22,7 +22,7 @@ RUN npm install && \
 # ===========================
 # Stage 2: 合并上游 + 编译 CLIProxyAPIPlus
 # ===========================
-FROM golang:1.24-alpine AS api-builder
+FROM golang:1.26-alpine AS api-builder
 
 WORKDIR /build
 
