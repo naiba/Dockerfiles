@@ -1,6 +1,7 @@
 # syntax=docker/dockerfile:1
 # CLIProxyAPIPlus + WebUI 整合构建 Dockerfile
-# 每次构建都会合并上游 CLIProxyAPI 更新，然后从源码编译
+# Workflow 已完成 clone CLIProxyAPIPlus + merge upstream CLIProxyAPI
+# 此 Dockerfile 直接从已合并的源码编译
 
 # ===========================
 # Stage 1: WebUI 构建
@@ -20,35 +21,20 @@ RUN npm install && \
 # 构建产物: /build/webui/dist/index.html
 
 # ===========================
-# Stage 2: 合并上游 + 编译 CLIProxyAPIPlus
+# Stage 2: 编译 CLIProxyAPIPlus（源码已由 workflow 合并好）
 # ===========================
 FROM golang:1.26-alpine AS api-builder
 
 WORKDIR /build
 
-# 安装 git 和必要的工具
-RUN apk add --no-cache git
-
-# 克隆 CLIProxyAPIPlus
-RUN git clone --depth 1 https://github.com/router-for-me/CLIProxyAPIPlus.git .
-
-# 添加上游 remote 并拉取更新
-# 使用 merge --no-edit 自动合并没有冲突的更改
-RUN git remote add upstream https://github.com/router-for-me/CLIProxyAPI.git && \
-    git fetch upstream main && \
-    git config user.email "docker@build.local" && \
-    git config user.name "Docker Builder" && \
-    git merge --no-edit upstream/main || \
-    (echo "Merge completed with possible conflicts, continuing with local version" && \
-     git merge --abort 2>/dev/null || true)
+# 复制已合并的源码（context 就是合并后的 CLIProxyAPIPlus 目录）
+COPY . .
 
 # 下载 Go 依赖
 RUN go mod download
 
 # 从 webui-builder 复制构建好的 WebUI 到 static 目录
-# 注意：CLIProxyAPIPlus 需要在代码中嵌入 management.html
-# 根据 README，从 v6.0.19 开始 WebUI 已经内置，可能不需要额外复制
-# 但为了确保使用最新 WebUI，我们还是替换它
+# 从 v6.0.19 开始 WebUI 已经内置，但为确保使用最新版本仍进行替换
 RUN --mount=from=webui-builder,source=/build/webui/dist/index.html,target=/tmp/management.html \
     mkdir -p ./cmd/server/static && \
     (cp /tmp/management.html ./cmd/server/static/management.html 2>/dev/null || \
@@ -60,7 +46,6 @@ ARG BUILD_DATE
 ARG COMMIT_SHA
 
 # 编译二进制文件
-# 注意：CLIProxyAPIPlus 使用相同的模块名 github.com/router-for-me/CLIProxyAPI/v6
 RUN CGO_ENABLED=0 GOOS=linux go build \
     -ldflags="-s -w \
     -X 'main.Version=${VERSION}-plus' \
