@@ -38,6 +38,15 @@ git merge --no-edit upstream/main || \
     (echo -e "${YELLOW}合并冲突，保留 Plus 版本${NC}" && \
      git merge --abort 2>/dev/null || true)
 
+# 构建 WebUI 并放入源码 static 目录
+echo -e "${YELLOW}构建 WebUI ...${NC}"
+git clone --depth 1 https://github.com/router-for-me/Cli-Proxy-API-Management-Center.git webui-build
+cd webui-build
+npm install && npm run build
+mkdir -p ../cmd/server/static
+cp dist/index.html ../cmd/server/static/management.html
+cd "$BUILD_DIR/plus-build"
+
 # 复制 Dockerfile 到构建目录
 cp "$SCRIPT_DIR/Dockerfile" "$BUILD_DIR/plus-build/"
 

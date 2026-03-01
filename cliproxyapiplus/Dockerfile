@@ -1,44 +1,20 @@
 # syntax=docker/dockerfile:1
-# CLIProxyAPIPlus + WebUI 整合构建 Dockerfile
-# 构建前需准备好已合并 upstream 的源码作为 context
-# （workflow 或 build.sh 负责 clone + merge）
+# CLIProxyAPIPlus Dockerfile
+# 构建前需准备好已合并 upstream 的源码及 WebUI 产物作为 context
+# （workflow 或 build.sh 负责 clone + merge + WebUI 构建）
 
 # ===========================
-# Stage 1: WebUI 构建
-# ===========================
-FROM node:22-alpine AS webui-builder
-
-WORKDIR /build/webui
-
-# 克隆 WebUI 仓库
-RUN apk add --no-cache git && \
-    git clone --depth 1 https://github.com/router-for-me/Cli-Proxy-API-Management-Center.git .
-
-# 安装依赖并构建
-RUN npm install && \
-    npm run build
-
-# 构建产物: /build/webui/dist/index.html
-
-# ===========================
-# Stage 2: 编译 CLIProxyAPIPlus（源码已由外部合并好）
+# Stage 1: 编译 CLIProxyAPIPlus
 # ===========================
 FROM golang:1.26-alpine AS api-builder
 
 WORKDIR /build
 
-# 复制已合并的源码
+# 复制已合并的源码（含 WebUI 产物）
 COPY . .
 
 # 下载 Go 依赖
 RUN go mod download
-
-# 从 webui-builder 复制构建好的 WebUI 到 static 目录
-# 从 v6.0.19 开始 WebUI 已经内置，但为确保使用最新版本仍进行替换
-RUN --mount=from=webui-builder,source=/build/webui/dist/index.html,target=/tmp/management.html \
-    mkdir -p ./cmd/server/static && \
-    (cp /tmp/management.html ./cmd/server/static/management.html 2>/dev/null || \
-     echo "Note: CLIProxyAPIPlus may already have embedded WebUI")
 
 # 获取构建信息
 ARG VERSION=dev
@@ -58,7 +34,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build \
 RUN ls -la /build/CLIProxyAPIPlus && /build/CLIProxyAPIPlus --help 2>/dev/null || true
 
 # ===========================
-# Stage 3: 最终 Runner 镜像
+# Stage 2: 最终 Runner 镜像
 # ===========================
 FROM alpine:3.22.0 AS runner
 

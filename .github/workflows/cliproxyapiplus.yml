@@ -17,8 +17,57 @@ on:
   workflow_dispatch:
 
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.info.outputs.VERSION }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Clone CLIProxyAPIPlus，设 CLIProxyAPI 为 upstream 并合并最新代码
+      - name: Clone CLIProxyAPIPlus and merge upstream
+        run: |
+          git clone https://github.com/router-for-me/CLIProxyAPIPlus.git plus-build
+          cd plus-build
+          git remote add upstream https://github.com/router-for-me/CLIProxyAPI.git
+          git fetch upstream main
+          git config user.email "docker@build.local"
+          git config user.name "Docker Builder"
+          git merge --no-edit upstream/main || \
+            (echo "Merge conflict, keeping Plus version" && \
+             git merge --abort 2>/dev/null || true)
+          # 复制 Dockerfile 到构建目录
+          cp ../cliproxyapiplus/Dockerfile .
+
+      - name: Build WebUI
+        run: |
+          cd plus-build
+          git clone --depth 1 https://github.com/router-for-me/Cli-Proxy-API-Management-Center.git webui-build
+          cd webui-build
+          npm install && npm run build
+          # 将构建产物放到源码的 static 目录
+          mkdir -p ../cmd/server/static
+          cp dist/index.html ../cmd/server/static/management.html
+
+      - name: Get version info
+        id: info
+        run: |
+          PLUS_COMMIT=$(git -C plus-build rev-parse --short HEAD)
+          VERSION="$(date +%Y%m%d)-${PLUS_COMMIT}"
+          echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
+          echo "Version: ${VERSION}"
+
+      # 打包合并后的源码（含 WebUI 产物和 Dockerfile）供 build job 使用
+      - name: Upload source artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: plus-source
+          path: plus-build/
+          retention-days: 1
+
   build:
     runs-on: ${{ matrix.runner }}
+    needs: prepare
     strategy:
       fail-fast: false
       matrix:
@@ -30,24 +79,11 @@ jobs:
             runner: ubuntu-24.04-arm
             arch: arm64
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Clone CLIProxyAPIPlus and merge upstream
-        run: |
-          # Clone CLIProxyAPIPlus 到 plus-build 目录
-          git clone https://github.com/router-for-me/CLIProxyAPIPlus.git plus-build
-          cd plus-build
-          # 设置 CLIProxyAPI 为 upstream 并拉取最新代码
-          git remote add upstream https://github.com/router-for-me/CLIProxyAPI.git
-          git fetch upstream main
-          # 合并 upstream 最新代码到 Plus
-          git config user.email "docker@build.local"
-          git config user.name "Docker Builder"
-          git merge --no-edit upstream/main || \
-            (echo "Merge conflict, keeping Plus version" && \
-             git merge --abort 2>/dev/null || true)
-          # 复制 Dockerfile 到构建目录
-          cp ../cliproxyapiplus/Dockerfile .
+      - name: Download source artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: plus-source
+          path: plus-build
 
       - name: Log in to the GHCR
         uses: docker/login-action@v3
@@ -59,15 +95,6 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Get upstream commit info
-        id: upstream
-        run: |
-          PLUS_COMMIT=$(git -C plus-build rev-parse --short HEAD)
-          VERSION="$(date +%Y%m%d)-${PLUS_COMMIT}"
-          echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
-          echo "Plus: ${PLUS_COMMIT}"
-          echo "${VERSION}" > plus-build/VERSION
-
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
@@ -75,7 +102,7 @@ jobs:
           images: ghcr.io/${{ github.repository_owner }}/cliproxyapiplus
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
-            type=raw,value=${{ steps.upstream.outputs.VERSION }}
+            type=raw,value=${{ needs.prepare.outputs.version }}
           flavor: |
             suffix=-${{ matrix.arch }},onlatest=true
 
@@ -88,21 +115,12 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            VERSION=${{ steps.upstream.outputs.VERSION }}
+            VERSION=${{ needs.prepare.outputs.version }}
           provenance: false
-
-      # 上传 VERSION 供 merge job 使用，避免重复 clone 导致不一致
-      - name: Upload VERSION artifact
-        if: matrix.arch == 'amd64'
-        uses: actions/upload-artifact@v4
-        with:
-          name: version-info
-          path: plus-build/VERSION
-          retention-days: 1
 
   merge:
     runs-on: ubuntu-latest
-    needs: build
+    needs: [prepare, build]
     if: github.event_name != 'pull_request'
     steps:
       - name: Log in to the GHCR
@@ -112,18 +130,6 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Download VERSION artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: version-info
-
-      - name: Read VERSION
-        id: upstream
-        run: |
-          VERSION=$(cat VERSION)
-          echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
-          echo "Version: ${VERSION}"
-
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
@@ -131,7 +137,7 @@ jobs:
           images: ghcr.io/${{ github.repository_owner }}/cliproxyapiplus
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
-            type=raw,value=${{ steps.upstream.outputs.VERSION }}
+            type=raw,value=${{ needs.prepare.outputs.version }}
 
       - name: Create and push multi-arch manifest
         run: |
