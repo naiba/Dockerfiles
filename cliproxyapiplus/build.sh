@@ -1,6 +1,6 @@
 #!/bin/bash
-# build.sh - CLIProxyAPIPlus + WebUI 构建脚本
-# 每次构建都会合并上游 CLIProxyAPI 更新
+# build.sh - CLIProxyAPIPlus + WebUI 本地构建脚本
+# 先 clone CLIProxyAPIPlus 并合并上游 CLIProxyAPI，再构建 Docker 镜像
 
 set -e
 
@@ -10,19 +10,12 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+BUILD_DIR=$(mktemp -d)
+# 脚本退出时清理临时目录
+trap "rm -rf $BUILD_DIR" EXIT
+
 echo -e "${GREEN}=== CLIProxyAPIPlus + WebUI 构建脚本 ===${NC}"
-
-# 获取构建信息
-VERSION=$(date +%Y%m%d-%H%M%S)
-BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-COMMIT_SHA=$(git ls-remote https://github.com/router-for-me/CLIProxyAPIPlus.git HEAD | cut -f1 | cut -c1-7)
-UPSTREAM_COMMIT=$(git ls-remote https://github.com/router-for-me/CLIProxyAPI.git HEAD | cut -f1 | cut -c1-7)
-
-echo -e "${YELLOW}构建信息:${NC}"
-echo "  版本: $VERSION"
-echo "  构建日期: $BUILD_DATE"
-echo "  CLIProxyAPIPlus Commit: $COMMIT_SHA"
-echo "  上游 CLIProxyAPI Commit: $UPSTREAM_COMMIT"
 
 # 检查 Docker
 echo -e "${YELLOW}检查 Docker 环境...${NC}"
@@ -31,15 +24,42 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
+# Clone CLIProxyAPIPlus 并合并上游
+echo -e "${YELLOW}克隆 CLIProxyAPIPlus ...${NC}"
+git clone https://github.com/router-for-me/CLIProxyAPIPlus.git "$BUILD_DIR/plus-build"
+cd "$BUILD_DIR/plus-build"
+
+echo -e "${YELLOW}设置上游并合并 CLIProxyAPI ...${NC}"
+git remote add upstream https://github.com/router-for-me/CLIProxyAPI.git
+git fetch upstream main
+git config user.email "docker@build.local"
+git config user.name "Docker Builder"
+git merge --no-edit upstream/main || \
+    (echo -e "${YELLOW}合并冲突，保留 Plus 版本${NC}" && \
+     git merge --abort 2>/dev/null || true)
+
+# 复制 Dockerfile 到构建目录
+cp "$SCRIPT_DIR/Dockerfile" "$BUILD_DIR/plus-build/"
+
+# 获取构建信息
+PLUS_COMMIT=$(git rev-parse --short HEAD)
+VERSION="$(date +%Y%m%d)-${PLUS_COMMIT}"
+BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+echo -e "${YELLOW}构建信息:${NC}"
+echo "  版本: $VERSION"
+echo "  构建日期: $BUILD_DATE"
+echo "  合并后 Commit: $PLUS_COMMIT"
+
 # 构建镜像
 echo -e "${YELLOW}开始构建 Docker 镜像...${NC}"
 docker build \
     --build-arg VERSION="$VERSION" \
     --build-arg BUILD_DATE="$BUILD_DATE" \
-    --build-arg COMMIT_SHA="$COMMIT_SHA" \
+    --build-arg COMMIT_SHA="$PLUS_COMMIT" \
     -t cliproxyapiplus:latest \
     -t cliproxyapiplus:$VERSION \
-    .
+    "$BUILD_DIR/plus-build"
 
 if [ $? -eq 0 ]; then
     echo -e "${GREEN}构建成功!${NC}"

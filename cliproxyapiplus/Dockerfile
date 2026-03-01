@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 # CLIProxyAPIPlus + WebUI 整合构建 Dockerfile
-# Workflow 已完成 clone CLIProxyAPIPlus + merge upstream CLIProxyAPI
-# 此 Dockerfile 直接从已合并的源码编译
+# 构建前需准备好已合并 upstream 的源码作为 context
+# （workflow 或 build.sh 负责 clone + merge）
 
 # ===========================
 # Stage 1: WebUI 构建
@@ -21,13 +21,13 @@ RUN npm install && \
 # 构建产物: /build/webui/dist/index.html
 
 # ===========================
-# Stage 2: 编译 CLIProxyAPIPlus（源码已由 workflow 合并好）
+# Stage 2: 编译 CLIProxyAPIPlus（源码已由外部合并好）
 # ===========================
 FROM golang:1.26-alpine AS api-builder
 
 WORKDIR /build
 
-# 复制已合并的源码（context 就是合并后的 CLIProxyAPIPlus 目录）
+# 复制已合并的源码
 COPY . .
 
 # 下载 Go 依赖
