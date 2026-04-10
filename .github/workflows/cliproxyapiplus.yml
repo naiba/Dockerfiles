@@ -33,17 +33,20 @@ jobs:
           git fetch upstream main
           git config user.email "docker@build.local"
           git config user.name "Docker Builder"
-          git merge --no-edit upstream/main || \
-            (echo "Merge conflict, keeping Plus version" && \
-             git merge --abort 2>/dev/null || true)
+          git merge --no-edit upstream/main || { echo "Merge conflict, aborting build"; exit 1; }
           # 复制 Dockerfile 到构建目录
           cp ../cliproxyapiplus/Dockerfile .
 
       - name: Build WebUI
         run: |
           cd plus-build
-          git clone --depth 1 https://github.com/router-for-me/Cli-Proxy-API-Management-Center.git webui-build
+          git clone https://github.com/naiba-forks/Cli-Proxy-API-Management-Center.git webui-build
           cd webui-build
+          git remote add upstream https://github.com/router-for-me/Cli-Proxy-API-Management-Center.git
+          git fetch upstream main
+          git config user.email "docker@build.local"
+          git config user.name "Docker Builder"
+          git merge --no-edit upstream/main || { echo "Merge conflict, aborting build"; exit 1; }
           npm install && npm run build
           # 将构建产物放到源码的 static 目录
           mkdir -p ../cmd/server/static

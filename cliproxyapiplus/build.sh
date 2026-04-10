@@ -34,14 +34,18 @@ git remote add upstream https://github.com/router-for-me/CLIProxyAPI.git
 git fetch upstream main
 git config user.email "docker@build.local"
 git config user.name "Docker Builder"
-git merge --no-edit upstream/main || \
-    (echo -e "${YELLOW}合并冲突，保留 Plus 版本${NC}" && \
-     git merge --abort 2>/dev/null || true)
+git merge --no-edit upstream/main || { echo -e "${RED}合并 CLIProxyAPI 冲突，构建中断${NC}"; exit 1; }
 
 # 构建 WebUI 并放入源码 static 目录
 echo -e "${YELLOW}构建 WebUI ...${NC}"
-git clone --depth 1 https://github.com/router-for-me/Cli-Proxy-API-Management-Center.git webui-build
+git clone https://github.com/naiba-forks/Cli-Proxy-API-Management-Center.git webui-build
 cd webui-build
+git remote add upstream https://github.com/router-for-me/Cli-Proxy-API-Management-Center.git
+git fetch upstream main
+git config user.email "docker@build.local"
+git config user.name "Docker Builder"
+git merge --no-edit upstream/main || { echo -e "${RED}合并 Management UI 冲突，构建中断${NC}"; exit 1; }
+
 npm install && npm run build
 mkdir -p ../cmd/server/static
 cp dist/index.html ../cmd/server/static/management.html
