@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 # CLIProxyAPIPlus Dockerfile
-# 构建前需准备好已合并 upstream 的源码及 WebUI 产物作为 context
-# （workflow 或 build.sh 负责 clone + merge + WebUI 构建）
+# 构建前需准备好已合并 upstream 的源码作为 context
+# （workflow 负责 clone + merge）
 
 # ===========================
 # Stage 1: 编译 CLIProxyAPIPlus
@@ -10,7 +10,7 @@ FROM golang:1.26-alpine AS api-builder
 
 WORKDIR /build
 
-# 复制已合并的源码（含 WebUI 产物）
+# 复制已合并的源码
 COPY . .
 
 # 下载 Go 依赖

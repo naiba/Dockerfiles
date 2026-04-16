@@ -37,21 +37,6 @@ jobs:
           # 复制 Dockerfile 到构建目录
           cp ../cliproxyapiplus/Dockerfile .
 
-      - name: Build WebUI
-        run: |
-          cd plus-build
-          git clone https://github.com/naiba-forks/Cli-Proxy-API-Management-Center.git webui-build
-          cd webui-build
-          git remote add upstream https://github.com/router-for-me/Cli-Proxy-API-Management-Center.git
-          git fetch upstream main
-          git config user.email "docker@build.local"
-          git config user.name "Docker Builder"
-          git merge --no-edit upstream/main || { echo "Merge conflict, aborting build"; exit 1; }
-          npm install && npm run build
-          # 将构建产物放到源码的 static 目录
-          mkdir -p ../cmd/server/static
-          cp dist/index.html ../cmd/server/static/management.html
-
       - name: Get version info
         id: info
         run: |
@@ -60,7 +45,7 @@ jobs:
           echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
           echo "Version: ${VERSION}"
 
-      # 打包合并后的源码（含 WebUI 产物和 Dockerfile）供 build job 使用
+      # 打包合并后的源码（含 Dockerfile）供 build job 使用
       - name: Upload source artifact
         uses: actions/upload-artifact@v4
         with:
