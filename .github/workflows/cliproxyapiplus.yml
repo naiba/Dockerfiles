@@ -27,13 +27,16 @@ jobs:
       # Clone CLIProxyAPIPlus，设 CLIProxyAPI 为 upstream 并合并最新代码
       - name: Clone CLIProxyAPIPlus and merge upstream
         run: |
-          git clone https://github.com/router-for-me/CLIProxyAPIPlus.git plus-build
-          cd plus-build
-          git remote add upstream https://github.com/router-for-me/CLIProxyAPI.git
-          git fetch upstream main
-          git config user.email "docker@build.local"
-          git config user.name "Docker Builder"
-          git merge --no-edit upstream/main || { echo "Merge conflict, aborting build"; exit 1; }
+          # git clone https://github.com/router-for-me/CLIProxyAPIPlus.git plus-build
+          # cd plus-build
+          # git remote add upstream https://github.com/router-for-me/CLIProxyAPI.git
+          # git fetch upstream main
+          # git config user.email "docker@build.local"
+          # git config user.name "Docker Builder"
+          # git merge --no-edit upstream/main || { echo "Merge conflict, aborting build"; exit 1; }
+
+          git clone https://github.com/router-for-me/CLIProxyAPI.git plus-build
+
           # 复制 Dockerfile 到构建目录
           cp ../cliproxyapiplus/Dockerfile .
 
