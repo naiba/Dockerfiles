@@ -29,11 +29,6 @@ jobs:
         run: |
           git clone https://github.com/kaitranntt/CLIProxyAPIPlus.git plus-build
           cd plus-build
-          git remote add upstream https://github.com/router-for-me/CLIProxyAPI.git
-          git fetch upstream main
-          git config user.email "docker@build.local"
-          git config user.name "Docker Builder"
-          git merge --no-edit upstream/main || { echo "Merge conflict, aborting build"; exit 1; }
           # 复制 Dockerfile 到构建目录
           cp ../cliproxyapiplus/Dockerfile .
 
