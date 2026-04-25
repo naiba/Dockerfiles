@@ -4,7 +4,7 @@
 
 每天自动从源码编译 CLIProxyAPIPlus，并合并上游 CLIProxyAPI 更新。管理面板运行时自动下载，无需构建时集成。
 
-- 镜像地址: `ghcr.io/naiba/cliproxyapiplus:latest`
+- 镜像地址: `ghcr.io/naiba/cliproxyapiplus:ce`
 - 支持架构: `linux/amd64`, `linux/arm64`
 
 ## 项目结构
@@ -27,7 +27,7 @@ docker run -d \
   -v $(pwd)/config.yaml:/app/config.yaml:ro \
   -v $(pwd)/auths:/root/.cli-proxy-api \
   -v $(pwd)/logs:/app/logs \
-  ghcr.io/naiba/cliproxyapiplus:latest
+  ghcr.io/naiba/cliproxyapiplus:ce
 ```
 
 ### 方式二：Docker Compose
@@ -35,7 +35,7 @@ docker run -d \
 ```yaml
 services:
   cli-proxy-api-plus:
-    image: ghcr.io/naiba/cliproxyapiplus:latest
+    image: ghcr.io/naiba/cliproxyapiplus:ce
     container_name: cli-proxy-api-plus
     ports:
       - "8317:8317"
@@ -77,8 +77,7 @@ server:
 
 ## 镜像标签
 
-- `ghcr.io/naiba/cliproxyapiplus:latest` - 最新构建
-- `ghcr.io/naiba/cliproxyapiplus:YYYYMMDD-COMMIT` - 带日期和 commit 的版本
+- `ghcr.io/naiba/cliproxyapiplus:ce` - CLIProxyAPIPlus CE 最新构建（唯一推送标签）
 
 ## 注意事项
 
