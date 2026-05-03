@@ -27,7 +27,7 @@ jobs:
       # candidate 2: https://github.com/HsnSaboor/CLIProxyAPIPlus
       - name: Clone CLIProxyAPIPlus and merge upstream
         run: |
-          git clone https://github.com/kaitranntt/CLIProxyAPIPlus.git plus-build
+          git clone https://github.com/HsnSaboor/CLIProxyAPIPlus.git plus-build
           cd plus-build
           # 复制 Dockerfile 到构建目录
           cp ../cliproxyapiplus/Dockerfile .
