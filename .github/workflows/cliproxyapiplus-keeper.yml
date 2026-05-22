@@ -1,29 +1,28 @@
-name: cliproxyapiplus
+name: cliproxyapiplus-keeper
 
 on:
   push:
     branches:
       - master
     paths:
-      - 'cliproxyapiplus/Dockerfile'
-      - 'cliproxyapiplus/config.example.yaml'
-      - 'cliproxyapiplus/docker-compose.yml'
-      - 'cliproxyapiplus/README.md'
-      - '.github/workflows/cliproxyapiplus.yml'
+      - 'cliproxyapiplus/Dockerfile.keeper'
+      - '.github/workflows/cliproxyapiplus-keeper.yml'
   pull_request:
     branches:
       - master
     paths:
-      - 'cliproxyapiplus/Dockerfile'
-      - 'cliproxyapiplus/config.example.yaml'
-      - 'cliproxyapiplus/docker-compose.yml'
-      - 'cliproxyapiplus/README.md'
-      - '.github/workflows/cliproxyapiplus.yml'
+      - 'cliproxyapiplus/Dockerfile.keeper'
+      - '.github/workflows/cliproxyapiplus-keeper.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
   packages: write
+
+env:
+  USAGE_KEEPER_REPOSITORY: https://github.com/Willxup/cpa-usage-keeper.git
+  USAGE_KEEPER_TAG: v1.8.2
+  USAGE_KEEPER_COMMIT: 465a82e0c40d8e2bb604e5e85701ac94eb7f924c
 
 jobs:
   prepare:
@@ -33,30 +32,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Clone CLIProxyAPIPlus，设 CLIProxyAPI 为 upstream 并合并最新代码
-      # candidate 1: https://github.com/kaitranntt/CLIProxyAPIPlus
-      # candidate 2: https://github.com/HsnSaboor/CLIProxyAPIPlus
-      - name: Clone CLIProxyAPIPlus and merge upstream
+      - name: Clone CPA Usage Keeper at pinned tag
         run: |
-          git clone https://github.com/HsnSaboor/CLIProxyAPIPlus.git plus-build
-          cd plus-build
-          # 复制 Dockerfile 到构建目录
-          cp ../cliproxyapiplus/Dockerfile .
+          git init keeper-build
+          git -C keeper-build remote add origin "${USAGE_KEEPER_REPOSITORY}"
+          git -C keeper-build fetch --depth=1 origin "+refs/tags/${USAGE_KEEPER_TAG}:refs/tags/${USAGE_KEEPER_TAG}"
+          TAG_COMMIT=$(git -C keeper-build rev-parse "refs/tags/${USAGE_KEEPER_TAG}^{commit}")
+          test "${TAG_COMMIT}" = "${USAGE_KEEPER_COMMIT}"
+          git -C keeper-build checkout --detach "${TAG_COMMIT}"
+          test "$(git -C keeper-build rev-parse HEAD)" = "${TAG_COMMIT}"
+          cp cliproxyapiplus/Dockerfile.keeper keeper-build/Dockerfile
 
-      - name: Get version info
+      - name: Get Usage Keeper version info
         id: info
         run: |
-          PLUS_COMMIT=$(git -C plus-build rev-parse --short HEAD)
-          VERSION="$(date +%Y%m%d)-${PLUS_COMMIT}"
+          KEEPER_COMMIT=$(git -C keeper-build rev-parse --short HEAD)
+          VERSION="${USAGE_KEEPER_TAG}-${KEEPER_COMMIT}"
           echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
           echo "Version: ${VERSION}"
 
-      # 打包合并后的源码（含 Dockerfile）供 build job 使用
-      - name: Upload source artifact
+      - name: Upload Usage Keeper source artifact
         uses: actions/upload-artifact@v4
         with:
-          name: plus-source
-          path: plus-build/
+          name: keeper-source
+          path: keeper-build/
           retention-days: 1
 
   build:
@@ -73,11 +72,11 @@ jobs:
             runner: ubuntu-24.04-arm
             arch: arm64
     steps:
-      - name: Download source artifact
+      - name: Download Usage Keeper source artifact
         uses: actions/download-artifact@v4
         with:
-          name: plus-source
-          path: plus-build
+          name: keeper-source
+          path: keeper-build
 
       - name: Log in to the GHCR
         uses: docker/login-action@v3
@@ -95,14 +94,14 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository_owner }}/cliproxyapiplus
           tags: |
-            type=raw,value=ce,enable={{is_default_branch}}
+            type=raw,value=keeper,enable={{is_default_branch}}
           flavor: |
             suffix=-${{ matrix.arch }},onlatest=true
 
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./plus-build
+          context: ./keeper-build
           platforms: ${{ matrix.platform }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
@@ -129,7 +128,7 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository_owner }}/cliproxyapiplus
           tags: |
-            type=raw,value=ce,enable={{is_default_branch}}
+            type=raw,value=keeper,enable={{is_default_branch}}
 
       - name: Create and push multi-arch manifest
         run: |
@@ -143,4 +142,4 @@ jobs:
 
       - name: Inspect image
         run: |
-          docker buildx imagetools inspect ghcr.io/${{ github.repository_owner }}/cliproxyapiplus:ce || true
+          docker buildx imagetools inspect ghcr.io/${{ github.repository_owner }}/cliproxyapiplus:keeper || true
