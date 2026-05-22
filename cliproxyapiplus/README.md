@@ -2,15 +2,17 @@
 
 ![Build Status](https://github.com/naiba/Dockerfiles/workflows/cliproxyapiplus/badge.svg)
 
-每天自动从源码编译 CLIProxyAPIPlus，并合并上游 CLIProxyAPI 更新。管理面板运行时自动下载，无需构建时集成。
+从源码编译 CLIProxyAPIPlus，并合并上游 CLIProxyAPI 更新。管理面板运行时自动下载，无需构建时集成。另构建固定 tag 的 CPA Usage Keeper 镜像用于用量统计。
 
-- 镜像地址: `ghcr.io/naiba/cliproxyapiplus:ce`
+- CLIProxyAPIPlus 镜像: `ghcr.io/naiba/cliproxyapiplus:ce`
+- CPA Usage Keeper 镜像: `ghcr.io/naiba/cliproxyapiplus:keeper`
 - 支持架构: `linux/amd64`, `linux/arm64`
 
 ## 项目结构
 
 - **CLIProxyAPIPlus**: https://github.com/router-for-me/CLIProxyAPIPlus (Plus 增强版)
 - **CLIProxyAPI** (上游): https://github.com/router-for-me/CLIProxyAPI
+- **CPA Usage Keeper**: https://github.com/Willxup/cpa-usage-keeper (固定构建 tag: `v1.8.2`)
 
 ## 快速开始
 
@@ -62,22 +64,55 @@ server:
 - API 服务: http://localhost:8317
 - 管理面板: http://localhost:8317/management.html（运行时自动下载）
 
+## CPA Usage Keeper
+
+`ghcr.io/naiba/cliproxyapiplus:keeper` 从 `Willxup/cpa-usage-keeper` 的固定 tag `v1.8.2` 构建，用于独立保存和展示 CLIProxyAPI 用量统计。运行前需要在 CLIProxyAPIPlus 的 `config.yaml` 中启用用量队列：
+
+> 安全提示：`remote-management.allow-remote: true` 会开放管理接口能力。请仅在可信 Docker 网络、内网或防火墙保护下使用，使用高强度且唯一的 `secret-key`、`CPA_MANAGEMENT_KEY` 和 `LOGIN_PASSWORD`，不要提交这些密钥。Keeper 暴露到公网时必须保持 `AUTH_ENABLED=true`，并通过反向代理 HTTPS 或 Keeper TLS 配置提供加密访问。
+
+```yaml
+remote-management:
+  allow-remote: true
+  secret-key: "your-management-key-here"
+usage-statistics-enabled: true
+redis-usage-queue-retention-seconds: 3600
+```
+
+Docker 运行示例：
+
+```bash
+docker run -d \
+  --name cpa-usage-keeper \
+  --add-host=host.docker.internal:host-gateway \
+  -p 8080:8080 \
+  -v $(pwd)/keeper:/data \
+  -e CPA_BASE_URL=http://host.docker.internal:8317 \
+  -e CPA_MANAGEMENT_KEY=your-management-key \
+  -e REDIS_QUEUE_ADDR=host.docker.internal:8317 \
+  -e AUTH_ENABLED=true \
+  -e LOGIN_PASSWORD=your-login-password \
+  ghcr.io/naiba/cliproxyapiplus:keeper
+```
+
+同一个 CLIProxyAPIPlus 实例只应运行一个 Usage Keeper 消费用量队列。
+
 ## 自动构建（GitHub Actions）
 
-- **定时触发**: 每天凌晨 2 点 (UTC)
-- **代码推送**: 推送 Dockerfile 修改时自动构建
-- **手动触发**: 支持 workflow_dispatch
+- **CE workflow**: `.github/workflows/cliproxyapiplus.yml` 构建 `ce` 标签
+- **Keeper workflow**: `.github/workflows/cliproxyapiplus-keeper.yml` 独立构建 `keeper` 标签
+- **手动触发**: 两个 workflow 都支持 workflow_dispatch
 - **多架构**: `linux/amd64` + `linux/arm64`
 
 构建流程：
-1. Clone CLIProxyAPIPlus
-2. 合并上游 CLIProxyAPI 最新代码
-3. 编译并注入版本信息
+1. Clone CLIProxyAPIPlus 构建 `ce` 标签
+2. Clone CPA Usage Keeper 固定 tag `v1.8.2` 并校验 commit 后构建 `keeper` 标签
+3. 分别编译并注入版本信息
 4. 推送到 GitHub Container Registry
 
 ## 镜像标签
 
-- `ghcr.io/naiba/cliproxyapiplus:ce` - CLIProxyAPIPlus CE 最新构建（唯一推送标签）
+- `ghcr.io/naiba/cliproxyapiplus:ce` - CLIProxyAPIPlus CE 最新构建
+- `ghcr.io/naiba/cliproxyapiplus:keeper` - CPA Usage Keeper，固定从 `Willxup/cpa-usage-keeper` 的 `v1.8.2` tag 构建
 
 ## 注意事项
 

@@ -28,6 +28,10 @@ debug: false
 # When true, write application logs to rotating files instead of stdout
 logging-to-file: false
 
+# Enable usage queue publishing for external collectors such as CPA Usage Keeper.
+usage-statistics-enabled: false
+redis-usage-queue-retention-seconds: 3600
+
 # Proxy URL. Supports socks5/http/https protocols. Example: socks5://user:pass@192.168.1.1:1080/
 proxy-url: ""
 
