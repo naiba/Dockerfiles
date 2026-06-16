@@ -12,7 +12,7 @@
 
 - **CLIProxyAPIPlus**: https://github.com/router-for-me/CLIProxyAPIPlus (Plus 增强版)
 - **CLIProxyAPI** (上游): https://github.com/router-for-me/CLIProxyAPI
-- **CPA Usage Keeper**: https://github.com/Willxup/cpa-usage-keeper (固定构建 tag: `v1.10.0`)
+- **CPA Usage Keeper**: https://github.com/Willxup/cpa-usage-keeper (固定构建 tag: `v1.10.8`)
 
 ## 快速开始
 
@@ -66,7 +66,7 @@ server:
 
 ## CPA Usage Keeper
 
-`ghcr.io/naiba/cliproxyapiplus:keeper` 从 `Willxup/cpa-usage-keeper` 的固定 tag `v1.10.0` 构建，用于独立保存和展示 CLIProxyAPI 用量统计。运行前需要在 CLIProxyAPIPlus 的 `config.yaml` 中启用用量队列。`CPA_BASE_URL` 是 Keeper 访问 CPA 的服务端地址，`CPA_PUBLIC_URL` 是浏览器端“返回 CPA”的回跳地址；当浏览器实际使用的是其他域名、端口或路径时，请把它设为对应的公网可访问 URL。
+`ghcr.io/naiba/cliproxyapiplus:keeper` 从 `Willxup/cpa-usage-keeper` 的固定 tag `v1.10.8` 构建，用于独立保存和展示 CLIProxyAPI 用量统计。运行前需要在 CLIProxyAPIPlus 的 `config.yaml` 中启用用量队列。`CPA_BASE_URL` 是 Keeper 访问 CPA 的服务端地址，`CPA_PUBLIC_URL` 是浏览器端“返回 CPA”的回跳地址；当浏览器实际使用的是其他域名、端口或路径时，请把它设为对应的公网可访问 URL。
 
 > 安全提示：`remote-management.allow-remote: true` 会开放管理接口能力。请仅在可信 Docker 网络、内网或防火墙保护下使用，使用高强度且唯一的 `secret-key`、`CPA_MANAGEMENT_KEY` 和 `LOGIN_PASSWORD`，不要提交这些密钥。Keeper 暴露到公网时必须保持 `AUTH_ENABLED=true`，并通过反向代理 HTTPS 或 Keeper TLS 配置提供加密访问。
 
@@ -106,14 +106,14 @@ docker run -d \
 
 构建流程：
 1. Clone CLIProxyAPIPlus 构建 `ce` 标签
-2. Clone CPA Usage Keeper 固定 tag `v1.10.0` 并校验 commit 后构建 `keeper` 标签
+2. Clone CPA Usage Keeper 固定 tag `v1.10.8` 并校验 commit 后构建 `keeper` 标签
 3. 分别编译并注入版本信息
 4. 推送到 GitHub Container Registry
 
 ## 镜像标签
 
 - `ghcr.io/naiba/cliproxyapiplus:ce` - CLIProxyAPIPlus CE 最新构建
-- `ghcr.io/naiba/cliproxyapiplus:keeper` - CPA Usage Keeper，固定从 `Willxup/cpa-usage-keeper` 的 `v1.10.0` tag 构建
+- `ghcr.io/naiba/cliproxyapiplus:keeper` - CPA Usage Keeper，固定从 `Willxup/cpa-usage-keeper` 的 `v1.10.8` tag 构建
 
 ## 注意事项
 
