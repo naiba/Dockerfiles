@@ -21,8 +21,7 @@ permissions:
 
 env:
   USAGE_KEEPER_REPOSITORY: https://github.com/Willxup/cpa-usage-keeper.git
-  USAGE_KEEPER_TAG: v1.13.0
-  USAGE_KEEPER_COMMIT: 262eb1877688b1d86edffe6feb9a431ca22f678b
+  USAGE_KEEPER_COMMIT: d82426114d0a2e4517dbfb6822f42dff9f155965
 
 jobs:
   prepare:
@@ -32,22 +31,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Clone CPA Usage Keeper at pinned tag
+      - name: Fetch pinned CPA Usage Keeper commit
         run: |
           git init keeper-build
           git -C keeper-build remote add origin "${USAGE_KEEPER_REPOSITORY}"
-          git -C keeper-build fetch --depth=1 origin "+refs/tags/${USAGE_KEEPER_TAG}:refs/tags/${USAGE_KEEPER_TAG}"
-          TAG_COMMIT=$(git -C keeper-build rev-parse "refs/tags/${USAGE_KEEPER_TAG}^{commit}")
-          test "${TAG_COMMIT}" = "${USAGE_KEEPER_COMMIT}"
-          git -C keeper-build checkout --detach "${TAG_COMMIT}"
-          test "$(git -C keeper-build rev-parse HEAD)" = "${TAG_COMMIT}"
+          git -C keeper-build fetch --no-tags --depth=1 origin "${USAGE_KEEPER_COMMIT}"
+          git -C keeper-build checkout --detach FETCH_HEAD
+          test "$(git -C keeper-build rev-parse HEAD)" = "${USAGE_KEEPER_COMMIT}"
           cp cliproxyapiplus/Dockerfile.keeper keeper-build/Dockerfile
 
       - name: Get Usage Keeper version info
         id: info
         run: |
           KEEPER_COMMIT=$(git -C keeper-build rev-parse --short HEAD)
-          VERSION="${USAGE_KEEPER_TAG}-${KEEPER_COMMIT}"
+          VERSION="commit-${KEEPER_COMMIT}"
           echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
           echo "Version: ${VERSION}"
 
