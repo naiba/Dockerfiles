@@ -5,13 +5,14 @@ on:
     branches:
       - master
     paths:
-      - 'cliproxyapiplus/**'
+      - 'cliproxyapi/Dockerfile'
       - '.github/workflows/cliproxyapi.yml'
   pull_request:
     branches:
       - master
     paths:
-      - 'cliproxyapiplus/**'
+      - 'cliproxyapi/Dockerfile'
+      - '.github/workflows/cliproxyapi.yml'
   workflow_dispatch:
 
 jobs:
@@ -34,7 +35,7 @@ jobs:
           git checkout --detach FETCH_HEAD
           test "$(git rev-parse HEAD)" = "${CLIPROXYAPI_COMMIT}"
           # 复制 Dockerfile 到构建目录
-          cp ../cliproxyapiplus/Dockerfile .
+          cp ../cliproxyapi/Dockerfile .
 
       - name: Get version info
         id: info
