@@ -17,23 +17,22 @@ on:
 jobs:
   prepare:
     runs-on: ubuntu-latest
+    env:
+      CLIPROXYAPI_REPOSITORY: https://github.com/router-for-me/CLIProxyAPI.git
+      CLIPROXYAPI_COMMIT: 9418054a3b2184cc6fa618f1bbef51ffca17c32d
     outputs:
       version: ${{ steps.info.outputs.VERSION }}
     steps:
       - uses: actions/checkout@v4
 
-      # Clone CLIProxyAPIPlus，设 CLIProxyAPI 为 upstream 并合并最新代码
-      # git clone https://github.com/router-for-me/CLIProxyAPIPlus.git plus-build
-      # cd plus-build
-      # git remote add upstream https://github.com/router-for-me/CLIProxyAPI.git
-      # git fetch upstream main
-      # git config user.email "docker@build.local"
-      # git config user.name "Docker Builder"
-      # git merge --no-edit upstream/main || { echo "Merge conflict, aborting build"; exit 1; }
-      - name: Clone CLIProxyAPIPlus and merge upstream
+      - name: Fetch pinned CLIProxyAPI source
         run: |
-          git clone https://github.com/router-for-me/CLIProxyAPI.git plus-build
+          git init plus-build
           cd plus-build
+          git remote add origin "${CLIPROXYAPI_REPOSITORY}"
+          git fetch --depth=1 origin "${CLIPROXYAPI_COMMIT}"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "${CLIPROXYAPI_COMMIT}"
           # 复制 Dockerfile 到构建目录
           cp ../cliproxyapiplus/Dockerfile .
 
