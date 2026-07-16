@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CLIPROXYAPI_REPOSITORY: https://github.com/router-for-me/CLIProxyAPI.git
-      CLIPROXYAPI_COMMIT: c8803713c972af0076f55933fdeed4db81d72d24
+      CLIPROXYAPI_COMMIT: 09da52ad509e2c18e7b9540db3b98c2214c280aa
     outputs:
       version: ${{ steps.info.outputs.VERSION }}
     steps:
