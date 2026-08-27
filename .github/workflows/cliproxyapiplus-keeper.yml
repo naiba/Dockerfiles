@@ -21,8 +21,8 @@ permissions:
 
 env:
   USAGE_KEEPER_REPOSITORY: https://github.com/Willxup/cpa-usage-keeper.git
-  USAGE_KEEPER_TAG: v1.14.8
-  USAGE_KEEPER_COMMIT: c0129050def1f3e980ed68492014326d35710917
+  USAGE_KEEPER_TAG: v1.14.9
+  USAGE_KEEPER_COMMIT: 9afc324b927752a7309fe3381f58a19bb85f060c
 
 jobs:
   prepare:
