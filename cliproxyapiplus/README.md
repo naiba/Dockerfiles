@@ -12,7 +12,7 @@
 
 - **CLIProxyAPIPlus**: https://github.com/HsnSaboor/CLIProxyAPIPlus (Plus 增强版，构建 `ce`)
 - **CLIProxyAPI** (上游): https://github.com/router-for-me/CLIProxyAPI
-- **CPA Usage Keeper**: https://github.com/Willxup/cpa-usage-keeper（固定构建 `v1.15.9`，提交 `3f1b29aa5b0b5284b75ec53573b5146cd50fea1b`）
+- **CPA Usage Keeper**: https://github.com/Willxup/cpa-usage-keeper（固定构建 `v1.15.10`，提交 `b3592bff1e342c246d1324bcd99ba9b77232f315`）
 
 ## 快速开始
 
@@ -66,7 +66,9 @@ server:
 
 ## CPA Usage Keeper
 
-`ghcr.io/naiba/cliproxyapiplus:keeper` 从 `Willxup/cpa-usage-keeper` 的 `v1.15.9` 构建，并校验该 tag 指向审计后的完整提交 `3f1b29aa5b0b5284b75ec53573b5146cd50fea1b`，用于独立保存和展示 CLIProxyAPI 用量统计。运行前需要在 CLIProxyAPIPlus 的 `config.yaml` 中启用用量队列。`CPA_BASE_URL` 是 Keeper 访问 CPA 的服务端地址，`CPA_PUBLIC_URL` 是浏览器端“返回 CPA”的回跳地址；当浏览器实际使用的是其他域名、端口或路径时，请把它设为对应的公网可访问 URL。
+本次固定版本的增量静态审查范围和代码依据见 [上游版本审查记录](upstream-release-review.md)。Keeper 运行阶段基础镜像跟随上游使用 `alpine:3.24`；Go 和前端构建阶段保持不变。
+
+`ghcr.io/naiba/cliproxyapiplus:keeper` 从 `Willxup/cpa-usage-keeper` 的 `v1.15.10` 构建，并校验该 tag 指向审计后的完整提交 `b3592bff1e342c246d1324bcd99ba9b77232f315`，用于独立保存和展示 CLIProxyAPI 用量统计。运行前需要在 CLIProxyAPIPlus 的 `config.yaml` 中启用用量队列。`CPA_BASE_URL` 是 Keeper 访问 CPA 的服务端地址，`CPA_PUBLIC_URL` 是浏览器端“返回 CPA”的回跳地址；当浏览器实际使用的是其他域名、端口或路径时，请把它设为对应的公网可访问 URL。
 
 > 安全提示：`remote-management.allow-remote: true` 会开放管理接口能力。请仅在可信 Docker 网络、内网或防火墙保护下使用，使用高强度且唯一的 `secret-key`、`CPA_MANAGEMENT_KEY` 和 `LOGIN_PASSWORD`，不要提交这些密钥。Keeper 暴露到公网时必须保持 `AUTH_ENABLED=true`，并通过反向代理 HTTPS 或 Keeper TLS 配置提供加密访问。
 
@@ -101,27 +103,27 @@ docker run -d \
 
 - **CLIProxyAPIPlus CE workflow**: `.github/workflows/cliproxyapiplus.yml` 构建 `HsnSaboor/CLIProxyAPIPlus`，推送 `ce` 标签
 - **CLIProxyAPI workflow**: `.github/workflows/cliproxyapi.yml` 从 `router-for-me/CLIProxyAPI` 的固定完整提交构建，推送 `latest` 和日期加短 SHA 标签
-- **Keeper workflow**: `.github/workflows/cliproxyapiplus-keeper.yml` 校验 `cpa-usage-keeper` 的 `v1.15.9` tag 与审计提交一致后构建，推送 `keeper` 标签
+- **Keeper workflow**: `.github/workflows/cliproxyapiplus-keeper.yml` 校验 `cpa-usage-keeper` 的 `v1.15.10` tag 与审计提交一致后构建，推送 `keeper` 标签
 - **手动触发**: 三个 workflow 都支持 `workflow_dispatch`
 - **多架构**: `linux/amd64` + `linux/arm64`
 
 构建流程：
 1. CLIProxyAPIPlus CE workflow 直接构建 `HsnSaboor/CLIProxyAPIPlus`，生成 `ce`
 2. CLIProxyAPI workflow 以固定完整 SHA detached checkout `router-for-me/CLIProxyAPI`，生成 `latest` 和日期加短 SHA 标签
-3. Keeper workflow 解析 `v1.15.9` tag，校验其完整 SHA 后 detached checkout，再生成 `keeper`
+3. Keeper workflow 解析 `v1.15.10` tag，校验其完整 SHA 后 detached checkout，再生成 `keeper`
 4. 分别编译并注入版本信息，推送到 GitHub Container Registry
 
 ### 来源与不可变校验
 
-- CLIProxyAPI workflow 直接获取并校验正式版本 `v8.0.13` 对应的完整提交 `d7914afdedca7af95ee974a42453dc49fc1388ce`，然后以 detached HEAD 构建；workflow 实际以完整 SHA 为准。
-- Keeper workflow 获取 `Willxup/cpa-usage-keeper` 的 `v1.15.9` tag，校验其解析到审计提交 `3f1b29aa5b0b5284b75ec53573b5146cd50fea1b`，然后以 detached HEAD 构建。
+- CLIProxyAPI workflow 直接获取并校验正式版本 `v8.0.20` 对应的完整提交 `0f96f568e4dbf6f84ad7399a74b78344c5eac7e6`，然后以 detached HEAD 构建；workflow 实际以完整 SHA 为准。
+- Keeper workflow 获取 `Willxup/cpa-usage-keeper` 的 `v1.15.10` tag，校验其解析到审计提交 `b3592bff1e342c246d1324bcd99ba9b77232f315`，然后以 detached HEAD 构建。
 
 ## 镜像标签
 
 - `ghcr.io/naiba/cliproxyapiplus:ce` - CLIProxyAPIPlus CE 最新构建
 - `ghcr.io/naiba/cliproxyapiplus:latest` - CLIProxyAPI 最新构建
 - `ghcr.io/naiba/cliproxyapiplus:YYYYMMDD-<短 SHA>` - CLIProxyAPI 对应日期和源码短 SHA 的构建
-- `ghcr.io/naiba/cliproxyapiplus:keeper` - CPA Usage Keeper，固定从 `Willxup/cpa-usage-keeper` 的 `v1.15.9` 审计提交构建
+- `ghcr.io/naiba/cliproxyapiplus:keeper` - CPA Usage Keeper，固定从 `Willxup/cpa-usage-keeper` 的 `v1.15.10` 审计提交构建
 
 ## 注意事项
 
