@@ -115,7 +115,7 @@ docker run -d \
 
 ### 来源与不可变校验
 
-- CLIProxyAPI workflow 直接获取并校验正式版本 `v8.0.20` 对应的完整提交 `0f96f568e4dbf6f84ad7399a74b78344c5eac7e6`，然后以 detached HEAD 构建；workflow 实际以完整 SHA 为准。
+- CLIProxyAPI workflow 直接获取并校验正式版本 `v8.0.21` 对应的完整提交 `54946fa3dfa29c6ca7312ac141a92cdd5e413771`，然后以 detached HEAD 构建；workflow 实际以完整 SHA 为准。
 - Keeper workflow 获取 `Willxup/cpa-usage-keeper` 的 `v1.15.10` tag，校验其解析到审计提交 `b3592bff1e342c246d1324bcd99ba9b77232f315`，然后以 detached HEAD 构建。
 
 ## 镜像标签

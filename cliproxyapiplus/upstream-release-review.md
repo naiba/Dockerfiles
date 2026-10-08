@@ -1,6 +1,22 @@
 # 上游固定版本增量审查
 
-## 结论与范围
+## CLIProxyAPI v8.0.21 增量审查
+
+结论：**通过**。Keeper 最新正式版仍为 v1.15.10，tag SHA 与现有固定值一致，结论为 **无新版**。
+
+- 基线：`0f96f568e4dbf6f84ad7399a74b78344c5eac7e6`（v8.0.20）；候选：`54946fa3dfa29c6ca7312ac141a92cdd5e413771`（v8.0.21）。官方 tag ref 直接指向该 commit。
+- [完整比较](https://github.com/router-for-me/CLIProxyAPI/compare/0f96f568e4dbf6f84ad7399a74b78344c5eac7e6...54946fa3dfa29c6ca7312ac141a92cdd5e413771) 包含 5 个提交、19 个文件，已逐个读取全部差异，包括测试。两端未截断 git tree 的 blob 差异清单与 diff 完全一致，各 hunk 行数完整。
+- `go.mod`、`go.sum` 两端 blob SHA 相同，无依赖、安装脚本、基础镜像变化，无二进制、LFS 或子模块差异。
+- [Vertex Interactions](https://github.com/router-for-me/CLIProxyAPI/blob/54946fa3dfa29c6ca7312ac141a92cdd5e413771/internal/runtime/executor/gemini_vertex_executor.go#L1318)：仅 Interactions 请求且账户显式启用时进入新路径；默认目标为 `https://aiplatform.googleapis.com` 的 `/v1beta1/.../interactions`，自定义 base URL 来自账户配置。认证使用现有 API key 或服务账号 token 交换；未新增第二接收方或凭据采集路径。已补查同文件的 `vertexCreds`、`vertexAPICreds`、`vertexAccessToken` 上下文。
+- [共享 Interactions 辅助函数](https://github.com/router-for-me/CLIProxyAPI/blob/54946fa3dfa29c6ca7312ac141a92cdd5e413771/internal/runtime/executor/helps/gemini_interactions.go)：由原 Gemini 代码提取，操作请求 JSON、版本头及 SSE 字节，无下载执行或文件操作。
+- [Meta reasoning 处理](https://github.com/router-for-me/CLIProxyAPI/blob/54946fa3dfa29c6ca7312ac141a92cdd5e413771/internal/runtime/executor/openai_responses_signature.go)：新增保留请求中未知格式加密 reasoning 的选项，仅转换请求内容，不解密执行或改变发送目的地。
+- [配置规范化](https://github.com/router-for-me/CLIProxyAPI/blob/54946fa3dfa29c6ca7312ac141a92cdd5e413771/internal/config/config_yaml.go)：调整 YAML 节点显示风格，经既有管理保存入口调用，不改变配置写入目标或管理认证。
+- [批量模型注册](https://github.com/router-for-me/CLIProxyAPI/blob/54946fa3dfa29c6ca7312ac141a92cdd5e413771/sdk/cliproxy/service_plugins.go)：比较账户 generation 并复用现有注册流程更新调度状态；新增测试钩子默认为 nil，无外部执行入口、额外下载或持久化后门。
+- 测试变更使用模拟凭据、本地 HTTP 服务和临时配置文件；批量注册的空执行器仅为接口替身，实际测试断言检查模型排除和账户选择。未执行测试或上游代码；审查不作功能正确性保证。
+
+本次仅更新 CLIProxyAPI workflow 的 pin 和对应文档；下面保留前次审查记录。
+
+## v8.0.20 / Keeper v1.15.10 审查结论与范围
 
 两个组件均为 **通过**：在以下固定提交区间的完整差异和相关上下文中，未发现有代码证据支持的恶意外传、后门、隐藏下载执行、恶意删除或恶意依赖行为。该结论不是漏洞审计，也不保证未来动态下载的管理页面、插件或模型目录内容安全。
 
