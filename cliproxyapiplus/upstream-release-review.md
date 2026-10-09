@@ -1,5 +1,20 @@
 # 上游固定版本增量审查
 
+## CLIProxyAPI v8.0.22 增量审查
+
+结论：**通过**。Keeper 仍为 v1.15.10，tag SHA 未变，结论为 **无新版**。
+
+- 基线：`54946fa3dfa29c6ca7312ac141a92cdd5e413771`（v8.0.21）；候选：`67465884ca179a8f9098328d03a361b50003fdd7`（v8.0.22）。官方 tag ref 为直接 commit 引用。
+- [完整比较](https://github.com/router-for-me/CLIProxyAPI/compare/54946fa3dfa29c6ca7312ac141a92cdd5e413771...67465884ca179a8f9098328d03a361b50003fdd7) 共 6 个提交、20 个文件（13 个生产文件、7 个测试文件），已逐个完整阅读。官方 diff 与两端未截断 git tree 的 blob 差异一致，全部 hunk 行数完整。
+- `go.mod`、`go.sum` 两端 blob SHA 相同；没有依赖、安装脚本、基础镜像、二进制、LFS 或子模块变化。未运行上游代码、测试或漏洞扫描。
+- [Responses interrupt](https://github.com/router-for-me/CLIProxyAPI/blob/67465884ca179a8f9098328d03a361b50003fdd7/sdk/api/handlers/openai/openai_responses_websocket_input.go)：控制帧由当前客户端连接触发，校验 response ID 并检查账户启用状态；会话 ID 由服务端为当前连接生成。[上游发送](https://github.com/router-for-me/CLIProxyAPI/blob/67465884ca179a8f9098328d03a361b50003fdd7/internal/runtime/executor/codex_websockets_executor.go) 仅复用当前活动 socket，不重新选凭据、不拨号或重放。HTTP 分支取消当前请求并向当前客户端返回 incomplete 事件，不新增外传目的地。
+- [Claude compaction](https://github.com/router-for-me/CLIProxyAPI/blob/67465884ca179a8f9098328d03a361b50003fdd7/internal/runtime/executor/claude_executor_compaction.go)：显式 compact 请求或 compaction_trigger 触发摘要生成，复用同一 Claude 执行器和账户；摘要包装及重放仅操作内存 JSON。补查 [compaction helper](https://github.com/router-for-me/CLIProxyAPI/blob/67465884ca179a8f9098328d03a361b50003fdd7/internal/runtime/executor/helps/antigravity_compaction.go) 的完整实现：现有 AES-GCM/Base64 包装只产生摘要数据，没有解码执行、额外文件读取或上传。工具历史仅保留为结构化内容或文本，不在代理内执行工具；用户 payload 规则仍可覆盖默认 tool_choice。
+- [插件取消选用](https://github.com/router-for-me/CLIProxyAPI/blob/67465884ca179a8f9098328d03a361b50003fdd7/internal/pluginhost/host.go)：配置禁用或取消选择的插件走既有卸载流程，移除运行时状态、关闭该插件 HTTP 资源并调用 shutdown。已读取 detachPlugin 完整函数，没有新增插件下载、隐蔽加载或文件删除路径。
+- 其余生产变更为 Claude 限额时间计算、模型输出上限和 Antigravity token 统计；只处理头部、注册表或请求响应数据，未增加秘密采集或执行入口。
+- 测试使用本地 HTTP/WebSocket 服务、模拟凭据和插件替身；已静态检查全部测试变更及断言，未将测试结果或发布说明作为安全证据。
+
+本次仅更新 CLIProxyAPI pin 与对应文档。以上结论限定固定 SHA 的增量恶意行为审查，不代表功能正确性或未来动态内容的安全保证。
+
 ## CLIProxyAPI v8.0.21 增量审查
 
 结论：**通过**。Keeper 最新正式版仍为 v1.15.10，tag SHA 与现有固定值一致，结论为 **无新版**。
