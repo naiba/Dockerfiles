@@ -1,5 +1,20 @@
 # 上游固定版本增量审查
 
+## CLIProxyAPI v8.0.23 增量审查
+
+结论：**通过**。Keeper 仍为 v1.15.10，tag SHA 未变，结论为 **无新版**。
+
+- 基线：`67465884ca179a8f9098328d03a361b50003fdd7`（v8.0.22）；候选：`d318bcc3afb9ea8782862f5e8cdb541afdc9dfa5`（v8.0.23）。官方 tag ref 直接指向该完整 commit。
+- [完整比较](https://github.com/router-for-me/CLIProxyAPI/compare/67465884ca179a8f9098328d03a361b50003fdd7...d318bcc3afb9ea8782862f5e8cdb541afdc9dfa5) 包含 10 个提交、26 个文件（15 个生产文件、11 个测试文件），已逐个完整读取。两端未截断 git tree 的差异与完整 diff 文件集合一致，全部 hunk 行数完整。
+- `go.mod`、`go.sum` 的两端 blob SHA 相同；无新增或变更的依赖、安装脚本、基础镜像，无二进制、LFS 或子模块差异。未运行上游代码、测试或漏洞扫描。
+- [工具调用 ID](https://github.com/router-for-me/CLIProxyAPI/blob/d318bcc3afb9ea8782862f5e8cdb541afdc9dfa5/internal/runtime/executor/helps/tool_call_ids.go)：新增可逆 Base64 编码和字段级别替换，只处理调用 ID，不执行工具、解码后的字符串或命令；Devin 发送前还原 ID，Claude 仅规范化 tool_use/tool_result 的 ID 字段。
+- [WebSocket interrupt](https://github.com/router-for-me/CLIProxyAPI/blob/d318bcc3afb9ea8782862f5e8cdb541afdc9dfa5/internal/runtime/executor/codex_websockets_executor.go)：终态响应 ID 与当前 socket 绑定，迟到的 interrupt 返回无操作；活动请求仍检查账户启用状态后写入原 socket。没有新增连接、凭据来源或远端地址。[诊断记录](https://github.com/router-for-me/CLIProxyAPI/blob/d318bcc3afb9ea8782862f5e8cdb541afdc9dfa5/sdk/api/handlers/openai/openai_responses_websocket_input.go) 仅保存类型、ID 摘要和固定 outcome，不复制任意扩展字段、原始 ID 或 transport 错误到新增 timeline 记录。
+- [Home 调度](https://github.com/router-for-me/CLIProxyAPI/blob/d318bcc3afb9ea8782862f5e8cdb541afdc9dfa5/sdk/cliproxy/auth/conductor_home_execution.go)：仅对已经由现有 Home dispatch 选出的凭据跳过本地可用性过滤。已补查选择、执行会话绑定与流式路径上下文；普通本地选择仍执行 filterExecutionModels，未新增公共认证绕过入口、Home 目的地或凭据上传。
+- [首 token 计时](https://github.com/router-for-me/CLIProxyAPI/blob/d318bcc3afb9ea8782862f5e8cdb541afdc9dfa5/internal/runtime/executor/openai_compat_executor.go)：改用既有 round-trip 包装与有效 token 观察函数。补查 usage_helpers.go、chat_ttft_helpers.go，确认沿用原 transport，只更改计时和模型观察，不新增采集终点。
+- 其他变更为图片请求中的上游模型名称、Claude 系统消息插入位置、流式 usage 输出时机及 xAI socket 状态复位，操作范围为既有请求响应和内存会话。测试包含本地 HTTP/WebSocket 服务、模拟 transport、虚拟时钟和具体断言；全部静态阅读，没有通过执行测试来判断安全。
+
+本次只更新 CLIProxyAPI pin 和文档。结论限定上述固定提交间的增量恶意行为审查，不保证功能正确性或未来动态内容安全。
+
 ## CLIProxyAPI v8.0.22 增量审查
 
 结论：**通过**。Keeper 仍为 v1.15.10，tag SHA 未变，结论为 **无新版**。
