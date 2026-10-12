@@ -1,5 +1,20 @@
 # 上游固定版本增量审查
 
+## CLIProxyAPI v8.0.26 增量审查
+
+结论：**通过**。Keeper 最新正式版仍为 v1.15.10，tag SHA `b3592bff1e342c246d1324bcd99ba9b77232f315` 未变，结论为 **无新版**。
+
+- 基线：`091ff27f31285ec4fd1dd5823b44f7f51fb8f48b`（v8.0.24）；候选：`a27799ec2b0cc5a60e49970d5467829ceaab8131`（v8.0.26）。官方 tag ref 直接指向该完整 commit。
+- [完整比较](https://github.com/router-for-me/CLIProxyAPI/compare/091ff27f31285ec4fd1dd5823b44f7f51fb8f48b...a27799ec2b0cc5a60e49970d5467829ceaab8131) 包含 14 个提交、113 个变更文件。分四组逐文件静态审阅（1、39、36、37 个文件），其中大型模型 JSON 单独覆盖全部 11 个差异块；另补查候选完整源码及跨组敏感调用链。两端未截断 recursive git tree 的变更集合与官方完整 diff 一致，全部 hunk 行数完整。
+- `go.mod`、`go.sum` blob SHA 均未变化；无新增或变更依赖、安装脚本、基础镜像、二进制、LFS 指针、子模块及特殊文件模式。审查未安装、构建、执行上游代码或产物，未运行测试或漏洞扫描；通过后的授权 CI 构建不作为审查证据。
+- [SIWC 授权](https://github.com/router-for-me/CLIProxyAPI/blob/a27799ec2b0cc5a60e49970d5467829ceaab8131/internal/auth/codex/siwc_auth.go) 与 [绑定入口](https://github.com/router-for-me/CLIProxyAPI/blob/a27799ec2b0cc5a60e49970d5467829ceaab8131/internal/cmd/siwc_bind.go)：由显式 `-siwc-bind` 命令触发，使用随机 state/nonce、PKCE 与回调 state 检查；令牌兑换和刷新默认发送到 `auth.openai.com`，API 默认到 `api.openai.com/v1`，未新增隐藏接收方。绑定目标解析真实路径并限定既有 auth-dir 中的 Codex 文件。后台刷新需要已有 SIWC refresh token/client ID，不会偷偷创建新授权；测试端点替换仅在测试中出现。
+- [凭据写入](https://github.com/router-for-me/CLIProxyAPI/blob/a27799ec2b0cc5a60e49970d5467829ceaab8131/internal/auth/codex/token.go) 与 [公共持久化](https://github.com/router-for-me/CLIProxyAPI/blob/a27799ec2b0cc5a60e49970d5467829ceaab8131/sdk/cliproxy/auth/codex_persist.go)：以凭据对象对应路径、文件名或 auth-dir 定位文件，对 outer/SIWC 分区按 token 版本合并，使用同目录临时文件、0600 权限、重命名和进程间锁。Windows 新增系统 DLL 调用限于 LockFileEx/UnlockFileEx。删除限于自身临时文件；没有新增无关文件销毁、下载执行或存储上传目的地。
+- [插件保存解析](https://github.com/router-for-me/CLIProxyAPI/blob/a27799ec2b0cc5a60e49970d5467829ceaab8131/internal/pluginhost/auth_callbacks.go)：凭据原始 JSON 会进入 ParseAuths，不能描述成不传递秘密。补查 [auth_provider.go](https://github.com/router-for-me/CLIProxyAPI/blob/a27799ec2b0cc5a60e49970d5467829ceaab8131/internal/pluginhost/auth_provider.go)（两端 blob 未变）：有 provider 时选对应已注册能力，无 provider 时在活动且未熔断的 AuthProvider 中尝试。未发现新增秘密插件或收集端点；既有插件仍属于高信任边界，不为外部插件二进制背书。
+- [模型目录 JSON](https://github.com/router-for-me/CLIProxyAPI/blob/a27799ec2b0cc5a60e49970d5467829ceaab8131/internal/registry/models/codex_client_models.json)：包含模型容量、实验上下文、升级目标及 browser/Wallet 确认策略变化。补查嵌入加载、缓存与模板生成，确认相关提示词确实可能下发给客户端，不视为无效文本。新增策略承认连接器已取得的匹配批准，没有发现伪造批准、指定攻击者收款方、无批准支付或秘密数据披露指令；本结论不认证外部客户端及 Wallet 的实际授权执行。模型抓取仍使用既有 ChatGPT Codex endpoint，无新增下载执行链。
+- 其余变化为请求体大小限制与 413 错误传播、凭据刷新调度、会话亲和性和配额目录、WebSocket 会话复用与按凭据清理。补查全局中间件及连接配置选择：未新增正文外传，既有连接沿用建立时配置，新连接使用当前配置，无隐蔽代理替换。测试变更使用内存对象、本地 HTTP/WebSocket 服务及临时目录，未发现恶意执行或真实凭据收集证据。
+
+结论限定上述固定提交的增量恶意代码/依赖审查，不是功能或漏洞认证。通过后按约定直接 commit、push 并跟踪 CI，不部署或重启服务。
+
 ## CLIProxyAPI v8.0.24 增量审查
 
 结论：**通过**。Keeper 最新正式版仍为 v1.15.10，tag 对应的完整 SHA 未变，结论为 **无新版**。
