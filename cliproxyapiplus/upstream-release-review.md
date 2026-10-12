@@ -1,5 +1,20 @@
 # 上游固定版本增量审查
 
+## CLIProxyAPI v8.0.24 增量审查
+
+结论：**通过**。Keeper 最新正式版仍为 v1.15.10，tag 对应的完整 SHA 未变，结论为 **无新版**。
+
+- 基线：`d318bcc3afb9ea8782862f5e8cdb541afdc9dfa5`（v8.0.23）；候选：`091ff27f31285ec4fd1dd5823b44f7f51fb8f48b`（v8.0.24）。官方 tag ref 直接指向该 commit。
+- [完整比较](https://github.com/router-for-me/CLIProxyAPI/compare/d318bcc3afb9ea8782862f5e8cdb541afdc9dfa5...091ff27f31285ec4fd1dd5823b44f7f51fb8f48b) 含 31 个提交、97 个变更文件。完整文本差异分为四组逐文件审查（22、25、25、25 项，包含两个图片条目）；对用量信息、持久化与工具搜索再补查候选 SHA 的完整源码。两端未截断 recursive git tree 的变更集合与官方完整 diff 一致，全部文本 hunk 行数完整。
+- `go.mod`、`go.sum` blob SHA 均未变化，无依赖新增、升级或来源变更；无构建、安装脚本或基础镜像变更，无 LFS 指针、子模块或特殊文件模式变更。未安装、构建、运行上游代码、产物、测试或漏洞扫描。
+- [工具搜索转换](https://github.com/router-for-me/CLIProxyAPI/blob/091ff27f31285ec4fd1dd5823b44f7f51fb8f48b/internal/translator/claude/openai/responses/claude_openai-responses_tool_search.go)：新增显式配置与请求上下文开关、工具能力声明、调用/结果及命名空间转换，不支持时剥离相关字段。已补查 Claude 执行与 token 计数入口：转换处理客户端提供的工具和模型输出，不在服务端执行 shell 或工具，不新增请求目的地。测试中的 exec_command、命令字符串和 golden 均作为协议数据处理。
+- [用量记录](https://github.com/router-for-me/CLIProxyAPI/blob/091ff27f31285ec4fd1dd5823b44f7f51fb8f48b/sdk/cliproxy/usage/manager.go)：新增认证来源/native 标记，并在记录缺失时从请求上下文补入客户端 API key。这确实扩大了明文客户端 key 的传播覆盖，不能称为脱敏。已追踪原生认证 principal、pluginhost adapter 与 [queue.go](https://github.com/router-for-me/CLIProxyAPI/blob/091ff27f31285ec4fd1dd5823b44f7f51fb8f48b/internal/redisqueue/queue.go)：记录交给现有注册插件，统计队列为进程内 buffer/channel，并非新增 Redis 外连；未发现新增隐藏收集地址。既有插件属于高信任执行边界，本结论不为用户加载的插件二进制或队列下游消费者背书。
+- [Antigravity 能力缓存](https://github.com/router-for-me/CLIProxyAPI/blob/091ff27f31285ec4fd1dd5823b44f7f51fb8f48b/sdk/cliproxy/antigravity_models.go) 与 [元数据持久化](https://github.com/router-for-me/CLIProxyAPI/blob/091ff27f31285ec4fd1dd5823b44f7f51fb8f48b/sdk/cliproxy/auth/conductor_persistence.go)：保存模型 ID、项目、endpoint 等能力提示；保存路径会携带完整认证对象并覆盖 skip-persist 标记。补查后台队列、取消/版本边界及 Git/S3/PostgreSQL 完整存储实现，仍写入用户配置的既有后端，没有另建凭据外传目标。探测默认访问既有 Google endpoint，显式配置的 base URL 仍属于原有信任边界。
+- 存储变化将 context 传到 Git 网络操作，并让对象/数据库存储在本地文件未变时继续完成远端保存；新增操作回调在可见测试中用于替身。既有 Git 恢复、历史重写和镜像清理有实际文件副作用，但本次未发现针对无关数据的新破坏路径。WebSocket 错误处理只调整连接关闭与内存断连通知顺序；其余请求转换、缓存控制、调用 ID 摘要、模型目录和冷却结果变化未发现恶意执行或外传证据。
+- 二进制单独核验：`assets/aiberm.png` 仅删除；[新增 modelflare.png](https://github.com/router-for-me/CLIProxyAPI/blob/091ff27f31285ec4fd1dd5823b44f7f51fb8f48b/assets/modelflare.png) 原始字节的 Git blob SHA 为 `91bd54198dbc69656947135700ccad4cadf7f700`，与官方 tree 一致。PNG 为 2370×1200、8-bit RGBA；全部 chunk CRC 正确，仅含 IHDR/pHYs/sRGB/gAMA/tEXt/IDAT/IEND，文本为 `Software=Figma`，IEND 后无尾随数据；IDAT 解压长度与扫描行匹配，filter 字节有效，无额外压缩流。README 只以本地图片及显式赞助链接引用，没有下载执行链。此核验不声称排除像素隐写或认证任意图片解码器。
+
+本结论限定固定提交间新增恶意行为及变更依赖审查，不是功能、漏洞或全量基础设施认证。通过后直接更新 pin、文档并创建本地 commit；不自动 push 或部署。
+
 ## CLIProxyAPI v8.0.23 增量审查
 
 结论：**通过**。Keeper 仍为 v1.15.10，tag SHA 未变，结论为 **无新版**。
