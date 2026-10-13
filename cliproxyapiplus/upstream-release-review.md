@@ -1,5 +1,19 @@
 # 上游固定版本增量审查
 
+## CLIProxyAPI v8.0.27 增量审查
+
+结论：**通过**。Keeper 最新正式版仍为 v1.15.10，tag SHA `b3592bff1e342c246d1324bcd99ba9b77232f315` 未变，结论为 **无新版**。
+
+- 基线：`a27799ec2b0cc5a60e49970d5467829ceaab8131`（v8.0.26）；候选：`bf9341629ef2300ac9d846a2e80fe2756f63a671`（v8.0.27）。官方 tag ref 直接指向该完整 commit。
+- [完整比较](https://github.com/router-for-me/CLIProxyAPI/compare/a27799ec2b0cc5a60e49970d5467829ceaab8131...bf9341629ef2300ac9d846a2e80fe2756f63a671) 包含 3 个提交、20 个变更文件。逐文件审阅全部变更行；两端未截断 recursive git tree 的变更集合与官方完整 diff 一致，全部 hunk 行数完整。
+- `go.mod`、`go.sum` blob SHA 均未变化；无新增或变更依赖、安装脚本、基础镜像、二进制、LFS 指针、子模块及特殊文件模式。未安装、构建、运行上游代码或产物，未运行测试或漏洞扫描；审查通过后的授权 CI 构建不作为审查证据。
+- [配置和定时器](https://github.com/router-for-me/CLIProxyAPI/blob/bf9341629ef2300ac9d846a2e80fe2756f63a671/sdk/api/handlers/handlers.go)：新增默认关闭的 `send-keepalive-before-ft`，同时需要正数 keepalive 间隔才生效。定时器工厂及测试替换入口没有新增远程调用入口、载荷下载或执行行为。
+- [启动包装器](https://github.com/router-for-me/CLIProxyAPI/blob/bf9341629ef2300ac9d846a2e80fe2756f63a671/sdk/api/handlers/stream_forwarder.go) 与 Claude、Gemini、Interactions、OpenAI Chat/Completions、Responses、Images 处理器：仍向既有 auth manager 传递原请求参数；启用后在等待启动或首 token 时向当前响应连接写入固定 `: keep-alive` SSE 注释，取消时传递取消信号并等待启动返回。未新增数据收集、网络目的地、认证绕过或隐蔽计算任务。
+- 补查候选 [Responses 完整源码](https://github.com/router-for-me/CLIProxyAPI/blob/bf9341629ef2300ac9d846a2e80fe2756f63a671/sdk/api/handlers/openai/openai_responses_handlers.go) 中 `sanitizeResponsesInitialErrorMessage`、`sanitizeResponsesStreamErrorMessage`、`responsesStreamErrorText`、`logResponsesStreamError` 和 `forwardResponsesStream`：心跳提交后改走既有流式错误净化与当前客户端 SSE 输出；净化分支清除原始 Body 和 DirectResponse，使用既有错误文本处理与日志入口，没有新增秘密接收方。结论不递归认证未变化的执行器、日志及取消实现，也不作功能或漏洞判定。
+- 七个测试文件的全部差异均已静态审阅，内容为内存模拟执行器、channel 定时协调、请求/响应断言及配置克隆样例；未发现恶意载荷。三种语言 README 仅增加 sub2api 展示链接，没有把外链项目变为构建依赖、下载或安装步骤；本次不为外链仓库背书。
+
+结论限定上述固定提交的增量恶意代码/依赖审查。通过后按约定直接 commit、push 并跟踪 CI，不部署或重启服务。
+
 ## CLIProxyAPI v8.0.26 增量审查
 
 结论：**通过**。Keeper 最新正式版仍为 v1.15.10，tag SHA `b3592bff1e342c246d1324bcd99ba9b77232f315` 未变，结论为 **无新版**。
