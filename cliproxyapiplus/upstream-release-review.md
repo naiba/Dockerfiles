@@ -1,5 +1,32 @@
 # 上游固定版本增量审查
 
+## CLIProxyAPI v8.0.28 / Keeper v1.15.11 增量审查
+
+两个组件结论均为 **通过**。在以下固定 SHA 区间的完整差异及直接敏感上下文中，未发现有代码证据支持的恶意外传、后门、隐藏下载执行、恶意破坏或恶意依赖行为。
+
+### 范围与完整性
+
+- CLIProxyAPI：`bf9341629ef2300ac9d846a2e80fe2756f63a671`（v8.0.27）→ `0d18d3b365be000eeaee7de4615f9da596b2059d`（v8.0.28）；[官方完整比较](https://github.com/router-for-me/CLIProxyAPI/compare/bf9341629ef2300ac9d846a2e80fe2756f63a671...0d18d3b365be000eeaee7de4615f9da596b2059d)，28 个提交、85 个文件，按大小分三组（28、29、28 个文件）逐文件阅读全部变更。
+- Keeper：`b3592bff1e342c246d1324bcd99ba9b77232f315`（v1.15.10）→ `71a41cc2d1cce8d75b42473adf31f2616ad8085e`（v1.15.11）；[官方完整比较](https://github.com/Willxup/cpa-usage-keeper/compare/b3592bff1e342c246d1324bcd99ba9b77232f315...71a41cc2d1cce8d75b42473adf31f2616ad8085e)，16 个提交、48 个文件，按大小分两组（23、25 个文件）逐文件阅读全部变更。
+- 两个官方 tag ref 均直接指向上述完整 commit。两端未截断 recursive git tree 的变更集合与完整 diff 一致，全部 hunk 行数核对通过；没有二进制、LFS 指针、子模块或特殊文件模式变化。
+- 两项目的依赖清单及锁文件 blob SHA 均未变化；没有依赖升级或来源变更、安装脚本或基础镜像变化。Keeper 新增 Fluent UI 图标为已完整审阅的内联静态 SVG path 与许可证文本，不引入包、远程加载或执行脚本。
+
+### CLIProxyAPI 敏感路径
+
+- [传输包装器](https://github.com/router-for-me/CLIProxyAPI/blob/0d18d3b365be000eeaee7de4615f9da596b2059d/sdk/httptransport/decorator.go)：通过 context 显式注入 Decorator，并在代理、uTLS、Devin、Antigravity 客户端选定 transport 后包装。无回调时返回原客户端；Antigravity 抑制中间包装并在完成 transport 配置后应用。该回调可以访问认证头、请求与响应正文，也可以改变传输行为；“只观察、必须委托”的注释不是强制约束。新增注册示例位于测试，生产改动提供注入、继承与应用接口，没有内置收集回调或新增目的地；外部 SDK 调用者提供的回调仍属于高信任代码，不在本次认证范围。
+- [配置与宿主快照](https://github.com/router-for-me/CLIProxyAPI/blob/0d18d3b365be000eeaee7de4615f9da596b2059d/sdk/api/handlers/handlers.go)：配置、路由宿主和拦截器改用同步读取。补查 `Server.getConfig`、`CurrentConfig`、`ModelRouterHostSnapshot` 和 [CloneForRuntime](https://github.com/router-for-me/CLIProxyAPI/blob/0d18d3b365be000eeaee7de4615f9da596b2059d/internal/config/clone.go)，为加锁读取及内存克隆，没有替换秘密、放开管理认证或引入远端配置源。OAuth 回调仍调用既有 pending-session 文件写入入口。
+- [插件模型注册](https://github.com/router-for-me/CLIProxyAPI/blob/0d18d3b365be000eeaee7de4615f9da596b2059d/sdk/cliproxy/service_executors.go)：补查 `tryRegisterPluginModelsForAuthWithConfig`，沿用既有 ModelsForAuth、认证更新及模型注册路径，将配置快照用于排除规则、别名和前缀。没有新增插件加载来源；既有插件可以接触凭据，不为外部插件背书。
+- [Codex SSE 扫描器](https://github.com/router-for-me/CLIProxyAPI/blob/0d18d3b365be000eeaee7de4615f9da596b2059d/internal/runtime/executor/helps/codex_sse_scanner.go)：新增流事件解析、缓冲和诊断，接入既有响应记录回调，未新增上传或执行路径。工具搜索、Schema 规范化、Claude 工具名称还原和 Interactions ID 变化处理请求响应中的数据，不在代理内执行 Bash、MCP 工具或补丁。模型目录和 README 变化未新增执行载荷。
+
+### Keeper 敏感路径
+
+- [追踪元数据迁移](https://github.com/Willxup/cpa-usage-keeper/blob/71a41cc2d1cce8d75b42473adf31f2616ad8085e/internal/repository/migration/20261008_usage_event_trace_metadata.go)：为已有事件表与归档表幂等新增 execution_id、trace_id、node_kind、is_fork、is_compaction。Redis 解码将这些字段写入既有实体，归档复制列表同步扩展；没有新增删表、历史数据扫描上传或外部接收方。
+- [剪贴板](https://github.com/Willxup/cpa-usage-keeper/blob/71a41cc2d1cce8d75b42473adf31f2616ad8085e/web/src/utils/clipboard.ts)：日志与 User-Agent 的复制由界面交互触发，使用 clipboard.writeText，失败后通过临时 textarea 和浏览器 execCommand('copy') 回退并清理节点；不是 shell 执行，不读取剪贴板或发送日志到网络。
+- xAI 配额明细、缓存刷新状态、请求元数据浮层、图表和本地化为现有数据处理及界面交互变化；未发现隐藏外传、恶意指令或新增远程执行。Responses total-only 修改限定于数值归一化。
+- 补查 [用量测试数据库](https://github.com/Willxup/cpa-usage-keeper/blob/71a41cc2d1cce8d75b42473adf31f2616ad8085e/internal/service/test/usage_fixtures_test.go)、迁移与配额测试辅助函数，数据库目标为 t.TempDir 下 SQLite。新增迁移测试的删除限定于隔离库的迁移记录；补查 `ProcessRedisUsageInbox` 及直接处理函数，沿用已落库消息解码、事务写入和既有统计通知，不因测试 BaseURL 新增请求。
+
+未安装、构建或执行上游代码或发布产物，未运行测试或漏洞扫描。测试文件仅作恶意代码静态阅读；通过后的授权 CI 构建不作为审查证据。结论仅覆盖上述固定提交的增量，不保证功能正确性、外部插件或未来动态内容安全。按约定更新 pin、文档并直接 commit、push，跟踪两项 CI，不部署或重启服务。
+
 ## CLIProxyAPI v8.0.27 增量审查
 
 结论：**通过**。Keeper 最新正式版仍为 v1.15.10，tag SHA `b3592bff1e342c246d1324bcd99ba9b77232f315` 未变，结论为 **无新版**。
