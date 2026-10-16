@@ -1,5 +1,26 @@
 # 上游固定版本增量审查
 
+## CLIProxyAPI v8.0.31 增量审查
+
+结论：**通过**。Keeper 最新正式版仍为 v1.15.11，tag SHA `71a41cc2d1cce8d75b42473adf31f2616ad8085e` 未变，结论为 **无新版**。
+
+### 范围与完整性
+
+- 基线：`0d18d3b365be000eeaee7de4615f9da596b2059d`（v8.0.28）；候选：`355fd10e76b82e03ba6625acc583b900286e4bf2`（v8.0.31）。官方 tag ref 直接指向该完整 commit。
+- [官方完整比较](https://github.com/router-for-me/CLIProxyAPI/compare/0d18d3b365be000eeaee7de4615f9da596b2059d...355fd10e76b82e03ba6625acc583b900286e4bf2) 包含 28 个提交、127 个变更文件；按大小分为四组（31、32、32、32 个文件）逐文件静态阅读全部差异，并补查跨组敏感调用及候选完整源码。两端未截断 recursive git tree 的变更集合与完整 diff 一致，全部 hunk 行数完整；报告逐文件覆盖集合核对通过，补取源码的 Git blob SHA 与官方 tree 一致。
+- 根 `go.mod`、`go.sum` 未变。唯一新增模块清单 `internal/pluginhost/testdata/loader_unix_reload_plugin/go.mod` 只有模块名和 Go 1.26 声明，没有第三方依赖、replace 或安装脚本。没有依赖升级或来源变更、基础镜像、二进制、LFS、子模块或特殊文件模式变化。
+
+### 敏感路径与证据
+
+- [插件影子副本](https://github.com/router-for-me/CLIProxyAPI/blob/355fd10e76b82e03ba6625acc583b900286e4bf2/internal/pluginhost/shadow.go)：从既有配置插件目录选出的本地动态库复制到系统临时目录下 `cliproxy-pluginhost/pid-<PID>`，按内容摘要命名。补查 `platform.go`、`config.go` 和宿主加载入口：文件 ID 经过字符规则校验，插件需配置启用，没有新增下载来源。清理会实际删除当前目录中的匹配副本，以及确认进程不存在的旧 PID 目录；Unix 用信号 0 探测，Windows 用进程等待状态探测，Windows 删除失败可安排重启时删除。不是无文件副作用，但未发现无关目录清除或杀进程载荷。
+- [Unix 加载器](https://github.com/router-for-me/CLIProxyAPI/blob/355fd10e76b82e03ba6625acc583b900286e4bf2/internal/pluginhost/loader_unix.go) 与 Windows 加载器改为保留已映射动态库及回调上下文到进程结束，包括初始化失败后的部分路径。逻辑关闭仍调用插件 shutdown，清空调用入口并删除宿主回调登记；补查 Windows 回调入口，未登记 ID 返回失败。**逻辑卸载不等于移除驻留插件代码或停止任意插件线程**。未发现内置恶意插件或隐蔽载荷，不为外部插件二进制背书，也不将映射保留声称为无资源影响。
+- [配置上传预处理](https://github.com/router-for-me/CLIProxyAPI/blob/355fd10e76b82e03ba6625acc583b900286e4bf2/internal/config/config_load.go)：种子配置上传到既有 Git/S3/PostgreSQL 后端前，在本地将有效管理密钥转为 bcrypt，并检查清理后是否仍保留明文标量。失败时 Git 启动入口删除刚复制的种子配置；没有新增远端接收方或无关文件删除。ETag、来源哈希、配置修改锁与重载顺序变化沿用当前配置路径；管理认证未被此次变化放开。
+- [单文件认证快照](https://github.com/router-for-me/CLIProxyAPI/blob/355fd10e76b82e03ba6625acc583b900286e4bf2/internal/watcher/auth_file_snapshot.go)：整文件删除事件处理前重新检查既有认证来源路径，调用现有合成器和已配置插件解析器。补查 `SynthesizeAuthFile`、`ParseAuths`、`callParseAuths`：原始凭据 JSON 会交给既有活动 AuthProvider，不能称为不传递秘密；本次未增加隐藏接收方。认证与模型发布的 registration/generation/epoch 条件检查仅控制既有内存状态更新及回调，没有新增特殊账号或授权后门。
+- [翻译错误处理](https://github.com/router-for-me/CLIProxyAPI/blob/355fd10e76b82e03ba6625acc583b900286e4bf2/internal/runtime/executor/helps/apply_patch.go)：提取 Claude 错误 JSON，向当前响应及既有用量记录路径传播。补查失败报告和缓冲用量函数，未增加上传目标；文件名中的 apply_patch 不代表在代理内执行补丁。SIWC configuration_update、Schema、工具 ID 与模型目录变更均处理协议数据；Claude beta、请求 ID 与诊断开关作用于既有请求，没有新收集端点。TLS 变化为握手超时及错误分类，生产构造未注入测试根证书或新目的地。
+- 测试文件及新增 C/Go 插件源码均已静态审阅。插件测试包含显式 `go build -buildmode=c-shared` 与加载测试产物，测试插件仅返回标记及关闭计数；没有执行本次测试。补查 Vertex 模拟凭据和 transport：密钥为测试生成，目标重写为传入的本地测试服务。目录删除、权限修改和测试子进程关闭限于所示测试资源，未发现恶意执行或真实凭据收集。
+
+未安装、构建或执行上游代码或发布产物，未运行测试或漏洞扫描；通过后的授权 CI 构建不作为审查证据。结论仅覆盖上述固定提交的增量恶意代码/依赖审查，不是功能、漏洞或外部插件认证。按约定更新 pin、文档并直接 commit、push，跟踪触发的 CI，不部署或重启服务。
+
 ## CLIProxyAPI v8.0.28 / Keeper v1.15.11 增量审查
 
 两个组件结论均为 **通过**。在以下固定 SHA 区间的完整差异及直接敏感上下文中，未发现有代码证据支持的恶意外传、后门、隐藏下载执行、恶意破坏或恶意依赖行为。
