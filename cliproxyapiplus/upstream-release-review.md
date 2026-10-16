@@ -1,5 +1,26 @@
 # 上游固定版本增量审查
 
+## CLIProxyAPI v8.0.32 增量审查
+
+结论：**通过**。Keeper 最新正式版仍为 v1.15.11，tag SHA `71a41cc2d1cce8d75b42473adf31f2616ad8085e` 未变，结论为 **无新版**。
+
+### 范围与完整性
+
+- 基线：`355fd10e76b82e03ba6625acc583b900286e4bf2`（v8.0.31）；候选：`911f49cbd49f4fe2516979754a7488a3fd14fe64`（v8.0.32）。官方 tag ref 直接指向该完整 commit。
+- [官方完整比较](https://github.com/router-for-me/CLIProxyAPI/compare/355fd10e76b82e03ba6625acc583b900286e4bf2...911f49cbd49f4fe2516979754a7488a3fd14fe64) 包含 6 个提交、42 个变更文件；分为生产及文档 29 项、测试源码 13 项，逐文件阅读全部差异，另补查敏感调用链。两端未截断 recursive git tree 的变更集合与 compare、完整 diff 一致，全部 hunk 行数完整；两组报告逐文件覆盖全部 42 项，补取源码的 Git blob SHA 与候选 tree 一致。
+- `go.mod`、`go.sum` 未变，没有新增、升级或来源变更的依赖、安装脚本或基础镜像变化，无 LFS、子模块或特殊文件模式变化。唯一二进制变化为下述静态图片。
+
+### 敏感路径与证据
+
+- [Devin 配额刷新](https://github.com/router-for-me/CLIProxyAPI/blob/911f49cbd49f4fe2516979754a7488a3fd14fe64/sdk/cliproxy/auth/conductor_refresh.go)：日／周额度耗尽增加凭据级冷却及定时复查，刷新观测用于解除相应冷却，保留独立模型限制。补查执行器 `Refresh` 及未变化的 [FetchUserStatus](https://github.com/router-for-me/CLIProxyAPI/blob/911f49cbd49f4fe2516979754a7488a3fd14fe64/internal/auth/devin/user_status.go)：仍向默认 `https://server.codeium.com` 或凭据显式配置的 `base_url` 请求固定 GetUserStatus 路径。会话令牌进入 Basic 头和 protobuf，并携带既有客户端信息、系统类型及设备指纹；不是不发送凭据，但未新增秘密接收方或聊天内容上传。
+- [冷却持久化](https://github.com/router-for-me/CLIProxyAPI/blob/911f49cbd49f4fe2516979754a7488a3fd14fe64/sdk/cliproxy/auth/conductor_cooldown.go)：新增独立模型状态副本及传播标志，通过已有 `CooldownStateStore.Save` 保存。接收方仍为配置注入的 store，没有自建远端地址。记录包含凭据标识、模型、期限及错误，错误文本可能包含已有敏感数据；不声称存储仅在本地或记录不含敏感信息。
+- [Claude 请求处理](https://github.com/router-for-me/CLIProxyAPI/blob/911f49cbd49f4fe2516979754a7488a3fd14fe64/internal/runtime/executor/claude_executor_request.go)：thinking binding 在模型、显式 thinking 模式及已签名历史等条件满足时补入 `drop_block`，保留调用方已有设置；beta header 沿用既有处理与配置覆盖。没有新增认证绕过、签名伪造或网络目的地。会话日期保留配置、默认值及 diagnostics map 清理处理进程内日期状态；没有新增文件删除、下载或执行载荷。
+- [工具参数清理](https://github.com/router-for-me/CLIProxyAPI/blob/911f49cbd49f4fe2516979754a7488a3fd14fe64/internal/util/translator.go)：名称消歧、无参数对象、占位字段、组合 schema 与参数片段处理均为 JSON 数据转换。补查未变化的 `gemini_schema.go`，只展开本地 `#/` 引用，未解析或外部引用转为描述并清除，不下载远程 schema，也不执行工具。Meta 终止事件变化沿用既有响应及用量路径，没有新增接收方。
+- [赞助图片](https://github.com/router-for-me/CLIProxyAPI/blob/911f49cbd49f4fe2516979754a7488a3fd14fe64/assets/kedaya.jpg)：50,663 字节，Git blob `72b8ec2667b065f7f8751c74d42d5461c927a76c` 与候选 tree 一致。静态解析 JPEG 标记及段边界，648×648、8-bit、三通道 baseline JPEG，仅 JFIF APP0 元数据，无注释或其他 APP 段、无 EOI 后尾随数据；显示内容为卡通头像。README 中为显式注册链接和本地图片引用，无脚本或凭据拼接。本次不认证外链站点、像素隐写或解码器安全。
+- 13 个测试文件全部差异已作恶意代码静态阅读。新增请求捕获与断连测试使用本机 httptest、固定模拟 key，配置写入使用 t.TempDir；签名及命令字符串作为协议样例，不作为程序执行。冷却恢复测试使用内存状态及序列化；未发现真实凭据收集、隐藏下载执行或无关文件破坏。
+
+未安装、构建或执行上游代码或发布产物，未运行测试或漏洞扫描；通过后的授权 CI 构建不作为审查证据。结论仅覆盖上述固定提交的增量恶意代码/依赖审查，不递归认证未变化的基础设施、外部插件或未来动态内容，也不作功能或漏洞判定。按约定更新 pin、文档并直接 commit、push，跟踪触发的 CI，不部署或重启服务。
+
 ## CLIProxyAPI v8.0.31 增量审查
 
 结论：**通过**。Keeper 最新正式版仍为 v1.15.11，tag SHA `71a41cc2d1cce8d75b42473adf31f2616ad8085e` 未变，结论为 **无新版**。
