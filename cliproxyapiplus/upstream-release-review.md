@@ -1,5 +1,27 @@
 # 上游固定版本增量审查
 
+## CLIProxyAPI v8.0.33 增量审查
+
+结论：**通过**。Keeper 最新正式版仍为 v1.15.11，tag SHA `71a41cc2d1cce8d75b42473adf31f2616ad8085e` 未变，结论为 **无新版**。
+
+### 范围与完整性
+
+- 基线：`911f49cbd49f4fe2516979754a7488a3fd14fe64`（v8.0.32）；候选：`2422c6b0f5fe16495320fa29456493874c1977a0`（v8.0.33）。官方 tag ref 直接指向该完整 commit。
+- [官方完整比较](https://github.com/router-for-me/CLIProxyAPI/compare/911f49cbd49f4fe2516979754a7488a3fd14fe64...2422c6b0f5fe16495320fa29456493874c1977a0) 包含 25 个提交、90 个变更文件，分三组（28、33、29 项）逐文件阅读全部差异，并补查敏感上下文。两端未截断 recursive git tree 的变更集合与 compare、完整 diff 一致，全部 hunk 行数完整；三组报告覆盖全部文件，补取源码的 Git blob SHA 与候选 tree 一致。
+- `go.mod`、`go.sum` 未变，没有依赖新增、升级或来源变更，没有安装脚本、基础镜像、二进制、LFS、子模块或特殊文件模式变化。
+
+### 敏感路径与证据
+
+- [mDNS 发现实现](https://github.com/router-for-me/CLIProxyAPI/blob/2422c6b0f5fe16495320fa29456493874c1977a0/internal/discovery/zeroconf.go)：替换服务公告和主机响应实现，新增 UDP 5353 监听、冲突探测、重命名及 goodbye。组播发往 `224.0.0.251:5353`、`[ff02::fb]:5353`，单播回复报文源 IP/端口，不能声称所有接收方都经过严格同网段校验。传播主机名、接口地址、实例、端口及 TXT 元数据；补查 `BuildServiceSpec`、`BuildTXTRecords`，标准路径只构造路由、认证方式标记及实例信息，没有采集 API key。调用方自供 TXT 不等于经过秘密过滤。探测每候选三次、最多八个候选，公告重复两次；未发现命令分发、下载执行或独立恶意资源任务。
+- [Antigravity SDK 入口](https://github.com/router-for-me/CLIProxyAPI/blob/2422c6b0f5fe16495320fa29456493874c1977a0/sdk/auth/antigravity.go)：新增包装函数显式启动既有版本刷新。补查两端 blob 未变的 [antigravity_version.go](https://github.com/router-for-me/CLIProxyAPI/blob/2422c6b0f5fe16495320fa29456493874c1977a0/internal/misc/antigravity_version.go)，由 sync.Once 启动，立即查询后每三小时刷新，context 取消退出。GET 固定 `https://antigravity-hub-auto-updater-974169037036.us-central1.run.app/manifest/latest-arm64-mac.yml`，空正文及固定 UA，无凭据或聊天内容；标准客户端仍可按既有规则重定向。最多读取 4096 字节，仅取 YAML version 并验证三段数字，写入内存缓存、日志及 UA，无程序下载、落盘安装或执行。
+- [认证快照](https://github.com/router-for-me/CLIProxyAPI/blob/2422c6b0f5fe16495320fa29456493874c1977a0/sdk/cliproxy/auth/types.go)：绑定源文件路径及规范化 JSON 的 SHA-256，提交前通过 os.ReadFile 比较；路径及摘要字段不参与 JSON 序列化，没有新增文件破坏或外传。管理上传／字段更新增加 excluded_models 类型校验，更新进入既有凭据保存路径；排除规则、快照 fence 与配置摘要变化处理模型发布状态，没有新增认证绕过。
+- [插件与模型发布](https://github.com/router-for-me/CLIProxyAPI/blob/2422c6b0f5fe16495320fa29456493874c1977a0/sdk/cliproxy/service_executors.go)：原始凭据仍可交给既有插件，插件返回的认证更新进入 Manager；发布被替代后最多再次注册一次，并可能再次进入既有探测路径，不声称没有秘密传播。日志新增认证 ID、provider、模型数量及错误；未新增秘密接收方或插件下载来源。目录归属、路径 ID 规范化和 DisableType 元数据变化没有新增执行权限。
+- [流式错误处理](https://github.com/router-for-me/CLIProxyAPI/blob/2422c6b0f5fe16495320fa29456493874c1977a0/internal/runtime/executor/claude_executor_stream.go)：完整上游错误 JSON 可进入既有日志、错误包装和 usage/plugin 链，其他执行器新增截断失败记录；不保证错误文本不含敏感信息。没有新增目的地址或认证数据采集。Meta 订阅事件及客户端转发过滤不代表原始日志也被清除。thinking、rate-limit 和 schema 改动为请求参数及响应数据转换，不在代理内执行工具或解码下载载荷。
+- 所有测试差异均静态审阅：多数使用本地 httptest、内存 transport、合成凭据及 t.TempDir；mDNS 测试确有真实局域网组播／单播及接口地址传播，不能称为全部离线。测试删除限于所建临时认证文件，未发现真实凭据收集或无关目录破坏。本次没有执行测试。
+- 三种语言 README 新增 Hermes 插件仓库、目录链接及显式安装命令，不是构建依赖或自动安装步骤；不认证外链插件及其未来内容。
+
+未安装、构建或执行上游代码或发布产物，未运行测试或漏洞扫描；通过后的授权 CI 构建不作为审查证据。结论仅覆盖上述固定提交的增量恶意代码/依赖审查，不递归认证未变化的基础设施或外部插件，不作功能或漏洞判定。按约定直接更新、commit、push 并跟踪触发的 CI，不部署或重启服务。
+
 ## CLIProxyAPI v8.0.32 增量审查
 
 结论：**通过**。Keeper 最新正式版仍为 v1.15.11，tag SHA `71a41cc2d1cce8d75b42473adf31f2616ad8085e` 未变，结论为 **无新版**。
