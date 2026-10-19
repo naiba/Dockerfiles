@@ -1,5 +1,27 @@
 # 上游固定版本增量审查
 
+## CLIProxyAPI v8.0.34 增量审查
+
+结论：**通过**。Keeper 最新正式版仍为 v2.0.0，tag SHA `fc8cbde97fe6baa35189e51115716865ce377ec2` 未变，结论为 **无新版**。
+
+### 范围与完整性
+
+- 基线：`2422c6b0f5fe16495320fa29456493874c1977a0`（v8.0.33）；候选：`e7d4c7316fca3fe0e852866f4e611cb4f2fa0764`（v8.0.34）。官方 tag 直接指向该完整 commit，更新前再次核对一致。
+- [官方比较](https://github.com/router-for-me/CLIProxyAPI/compare/2422c6b0f5fe16495320fa29456493874c1977a0...e7d4c7316fca3fe0e852866f4e611cb4f2fa0764)：28 个提交、127 个变更文件；完整 diff 14,522 行、629,935 字节。两端未截断递归树、compare 文件集合及 diff 节一致，全部 hunk 行数完整。分 46、33、48 文件三组逐文件静态审阅，并补查直接敏感调用链；下载上下文均按候选 tree 验证 Git blob。
+- `go.mod`、`go.sum` 未变，无依赖新增、升级或来源变化；无发布脚本、基础镜像、二进制、LFS、子模块或特殊模式变化。
+
+### 敏感路径与证据
+
+- [Vertex 执行器](https://github.com/router-for-me/CLIProxyAPI/blob/e7d4c7316fca3fe0e852866f4e611cb4f2fa0764/internal/runtime/executor/gemini_vertex_executor.go)及 [URL 构造](https://github.com/router-for-me/CLIProxyAPI/blob/e7d4c7316fca3fe0e852866f4e611cb4f2fa0764/internal/runtime/executor/helps/vertex_openapi.go)：新增 OpenAPI 模型路由，服务账户经既有 Google OAuth 库取得 access token，再以 Bearer 交给兼容执行器的 `/chat/completions`。默认 Google 全局或区域端点，显式 base_url 可改变接收方；API key 路径不交换 token。补查 NormalizeServiceAccountMap 只规范化私钥并保留 token_uri 等字段，不是秘密脱敏，也不把 token 接收方限定为 Google。没有新增隐藏目标或私钥直接拼入模型请求。
+- [搜索结果缓存](https://github.com/router-for-me/CLIProxyAPI/blob/e7d4c7316fca3fe0e852866f4e611cb4f2fa0764/internal/cache/claude_web_search_result_cache.go)及 [读写辅助](https://github.com/router-for-me/CLIProxyAPI/blob/e7d4c7316fca3fe0e852866f4e611cb4f2fa0764/internal/runtime/executor/helps/claude_web_search_results.go)：默认关闭，启用且 Responses 来源时缓存 Claude 返回的原始搜索结果 content。进程内 map/LRU，默认 24 小时、1024 条，读取续期；条目数限制不等于总字节上限。会话及 tool-use ID 派生索引，非 execution scope 结合调用方 key 摘要；补查内部 execution metadata 赋值和发送路径。仅恢复 assistant 缺失内容后参与正常上游请求/计数，不抓取结果 URL、不写远端缓存。原生 Claude SSE 直通分支并非均执行缓存写入。
+- [Antigravity 额度刷新](https://github.com/router-for-me/CLIProxyAPI/blob/e7d4c7316fca3fe0e852866f4e611cb4f2fa0764/internal/runtime/executor/antigravity_executor_credits.go)：调整过期提示和刷新调度，沿既有配置 base_url 或 `https://cloudcode-pa.googleapis.com/v1internal:loadCodeAssist` POST，Bearer 携带 access token，正文 metadata.ideType=ANTIGRAVITY。Home KV 存额度/锁/冷却状态而非该 token；trace 包装原 transport，仅记录主机、操作及连接信息，不另发请求。不将既有启用 credits 的请求描述成永不消费额度。
+- [图片 handler](https://github.com/router-for-me/CLIProxyAPI/blob/e7d4c7316fca3fe0e852866f4e611cb4f2fa0764/sdk/api/handlers/openai/openai_images_handlers.go)：模型别名/前缀用于选择既有 manager/provider；补查图片专用入口、xAI Execute 分支、xaiImageEndpointPath、xaiChatBaseURL 和 executeImages。xAI POST 路径为 `/images/generations` 或 `/images/edits`，Bearer 发往配置地址，默认 API 模式 `https://api.x.ai/v1`、OAuth 模式 `https://cli-chat-proxy.grok.com/v1`。没有模型名派生的隐藏接收者；插件路线仍为既有高信任执行边界，普通客户端保留既有重定向行为。
+- [请求日志](https://github.com/router-for-me/CLIProxyAPI/blob/e7d4c7316fca3fe0e852866f4e611cb4f2fa0764/internal/runtime/executor/helps/logging_helpers.go)：沿既有日志路径处理 URL、headers、body、身份及响应。关闭 RequestLog 仍可能保存延迟日志闭包及最多 32 MiB body；URL、body、label、非 API key AuthValue 和错误并非统一脱敏。自定义 header 可覆盖认证头和 Host，不修改 req.URL；这些既有边界不因新路由消失，也未发现额外日志接收方。
+- 签名/路由后缀及 schema 改动只进行 JSON、Base64、字符串和本地引用转换，未执行解码载荷或远程 schema。Codex 历史搜索工具声明交给上游，不是在代理内执行网页工具。watcher 变动保留不完整认证文件对应的内存状态；管理 Modify 沿既有持久化/钩子，未新增文件破坏或秘密接收者。插件锁调整未新增插件来源。
+- 全部测试差异静态审阅，临时凭据文件截断/删除指向测试目录；工具名 exec/bash 与命令字符串是协议夹具，不构成命令执行。补查 Home 客户端仅连接回环模拟 RESP 服务，Vertex 私钥当场随机生成、token URI 指向测试服务，专用 transport 将 Google 请求改投本地。未以 mock 空实现、断言或测试结果代替生产发送链证据，未运行测试。
+
+未安装、构建或执行上游代码及发布产物，未运行测试或扫描。结论仅覆盖固定增量的恶意行为，不作漏洞、功能或性能判定，不递归认证未变化依赖及基础设施。通过后的授权 CI 构建不是审查证据；直接更新并发布镜像，不部署或重启。
+
 ## CPA Usage Keeper v2.0.0 增量审查
 
 结论：**通过**。用户在了解 `version.txt` 自动请求的地址、数据边界和不执行行为后，明确接受并授权升级。CLIProxyAPI 保持 v8.0.33，本轮不修改其 pin。
