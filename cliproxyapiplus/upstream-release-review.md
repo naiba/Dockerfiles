@@ -1,5 +1,28 @@
 # 上游固定版本增量审查
 
+## CPA Usage Keeper v2.0.0 增量审查
+
+结论：**通过**。用户在了解 `version.txt` 自动请求的地址、数据边界和不执行行为后，明确接受并授权升级。CLIProxyAPI 保持 v8.0.33，本轮不修改其 pin。
+
+### 范围与完整性
+
+- 基线：`71a41cc2d1cce8d75b42473adf31f2616ad8085e`（v1.15.11）；候选：`fc8cbde97fe6baa35189e51115716865ce377ec2`（v2.0.0）。更新前重新核对官方 tag，直接指向该完整 commit。
+- [官方比较](https://github.com/Willxup/cpa-usage-keeper/compare/71a41cc2d1cce8d75b42473adf31f2616ad8085e...fc8cbde97fe6baa35189e51115716865ce377ec2)：166 个提交，完整 diff 为 85,781 行、3,984,638 字节。compare JSON 达到 300 文件上限，未将它视为完整清单；两棵未截断递归树核对出 646 个变化路径，644 个 diff 节包含两处重命名，覆盖全部路径并校验全部 hunk 行数。
+- 八个分区逐文件静态检查全部差异，随后补查存储、网络、接口发布链及目录解析上下文，并按候选 tree 校验所下载源码的 Git blob。跨区调用证据已合并；没有将测试断言或 CI 当作实现证据。
+- `go.mod` 仅将既有 `golang.org/x/text v0.20.0` 改为 indirect；`go.sum`、前端清单和锁文件无变更。无新增或升级模块。发布策略复用既有 `actions/checkout@v6`；不递归认证未变化的 Actions、依赖或外部 Homebrew tap。唯一二进制差异为删除旧 `avatar-catalog.webp`，无新增/修改二进制、LFS、子模块或特殊模式变化。
+
+### 敏感路径与证据
+
+- [版本附件客户端](https://github.com/Willxup/cpa-usage-keeper/blob/fc8cbde97fe6baa35189e51115716865ce377ec2/internal/releasecheck/client.go)、[持久化重试](https://github.com/Willxup/cpa-usage-keeper/blob/fc8cbde97fe6baa35189e51115716865ce377ec2/internal/releasecheck/runner.go)、[启动装配](https://github.com/Willxup/cpa-usage-keeper/blob/fc8cbde97fe6baa35189e51115716865ce377ec2/internal/app/app.go)：就绪后后台 GET `https://github.com/Willxup/cpa-usage-keeper/releases/download/<version>/version.txt`。仅匹配正式 v2.x.y；空请求体、无应用鉴权或业务字段，默认客户端无 Cookie Jar，可标准重定向。最多读 1025 字节，要求不超过 1024 字节且文本等于当前版本，然后丢弃；不落盘、安装或执行。失败间隔六小时、每版本最多五次，状态保存本地。接收方可观察出口 IP、版本及时间，不把它描述为查询最新版本。用户已明确接受该行为，不据此认定恶意。
+- [CPA 客户端](https://github.com/Willxup/cpa-usage-keeper/blob/fc8cbde97fe6baa35189e51115716865ce377ec2/internal/cpa/client.go)：管理 Key 仍发往配置 CPA；v8 凭据/供应商配置调用读取或写回完整凭据列表，不声称数据已全部脱敏。Redis 对配置或 CPA 推导地址 AUTH，订阅 usage/errors 或 LPOP usage/queue，后者真实消费队列消息。未发现额外秘密收集端点、任意 Redis 命令或下载执行链。
+- [价格目录](https://github.com/Willxup/cpa-usage-keeper/blob/fc8cbde97fe6baa35189e51115716865ce377ec2/internal/pricingmetadata/client.go)：显式管理员拉取后 GET `https://models.dev/api.json` 或 `https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json`，仅加 Accept JSON、不上传本地模型/凭据；普通客户端允许重定向。响应作为 JSON 价格数据解析，定价编译为固定条件和数值计算，不执行脚本。
+- [路由权限](https://github.com/Willxup/cpa-usage-keeper/blob/fc8cbde97fe6baa35189e51115716865ce377ec2/internal/api/router.go)、[重算服务](https://github.com/Willxup/cpa-usage-keeper/blob/fc8cbde97fe6baa35189e51115716865ce377ec2/internal/service/pricing_recalculation.go)：价格保存/删除、同步应用、重算及凭证操作挂管理员组，认证关闭时按配置放行。重算由明确请求受理，固定热事件 ID 上限和时间范围，暂停相关消费/读取后分批更新费用及汇总；已提交批次不承诺整体回滚。前端关闭不取消已受理任务。额度查询仍经 CPA 代理到供应商，消费 reset 权益与普通刷新分开，通过确认后的管理操作触发。
+- [备份](https://github.com/Willxup/cpa-usage-keeper/blob/fc8cbde97fe6baa35189e51115716865ce377ec2/internal/backup/backup.go)、[旧库保护](https://github.com/Willxup/cpa-usage-keeper/blob/fc8cbde97fe6baa35189e51115716865ce377ec2/internal/repository/pricing_legacy_protection.go)、[迁移](https://github.com/Willxup/cpa-usage-keeper/blob/fc8cbde97fe6baa35189e51115716865ce377ec2/internal/repository/migration/migration.go)：整库备份含既有凭据与原始数据，写配置 BackupDir 的日期目录，不上传；保留期清理会 RemoveAll 过期日期目录的全部内容，不只是数据库文件。首次旧库流程先备份和哈希绑定再迁移。固定迁移包含废弃排名表/列/设置删除、Overview 清空重建及既有历史表重整；不是无破坏性升级，也不承诺自动恢复。失败路径输出人工恢复说明，不自动覆盖数据库。
+- [前端 API](https://github.com/Willxup/cpa-usage-keeper/blob/fc8cbde97fe6baa35189e51115716865ce377ec2/web/src/lib/api.ts)：所示请求指向部署 BasePath 下的 Keeper API，携带会话；嵌入就绪通知仅发送固定 type，不带密钥。管理员 Key 设置接口可返回完整 Key，日志下载和用量导出返回请求方，不能宣称所有输出已脱敏。可选上游响应记录可能包含账号信息，日志默认 stderr 或配置本地文件，保留已有 hook 边界。
+- [发布工作流](https://github.com/Willxup/cpa-usage-keeper/blob/fc8cbde97fe6baa35189e51115716865ce377ec2/.github/workflows/binary-release.yml)：正式制品到当前仓库 Release，容器到对应 GHCR；Homebrew token 仅用于指定 tap，修改选定 formula 版本、官方 URL 和校验值。打包未加入实际 .env、数据库或用户凭据。基准工具可显式启动指定程序/systemd 单元并删除自身数据库副本，测试含临时库删表、子测试强杀及真实启动调用，不描述为全部无副作用；均未执行。
+
+未安装、构建或执行上游代码及发布产物，未运行测试或扫描。审查仅覆盖固定提交的增量恶意行为，不作功能、漏洞或性能结论。通过后更新 pin 并由授权 CI 构建发布；CI 不是静态审查证据，不部署或重启服务。
+
 ## CLIProxyAPI v8.0.33 增量审查
 
 结论：**通过**。Keeper 最新正式版仍为 v1.15.11，tag SHA `71a41cc2d1cce8d75b42473adf31f2616ad8085e` 未变，结论为 **无新版**。
