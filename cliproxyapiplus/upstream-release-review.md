@@ -1,5 +1,26 @@
 # 上游固定版本增量审查
 
+## CLIProxyAPI v8.0.35 增量审查
+
+结论：**通过**。Keeper v2.0.0 无新版，固定 SHA `fc8cbde97fe6baa35189e51115716865ce377ec2` 不变。
+
+### 范围与完整性
+
+- 基线 `e7d4c7316fca3fe0e852866f4e611cb4f2fa0764`（v8.0.34），候选 `ae3ee3be303fb07fb8173279923413005bf32177`（v8.0.35），官方 tag 再次解析一致。
+- [完整比较](https://github.com/router-for-me/CLIProxyAPI/compare/e7d4c7316fca3fe0e852866f4e611cb4f2fa0764...ae3ee3be303fb07fb8173279923413005bf32177)：6 个提交、32 个变更文件，diff 3,965 行、161,981 字节。两端未截断递归树、compare 文件集合和 diff 节一致，hunk 行数已校验。全部生产、文档及测试差异分段静态阅读，敏感上下文按候选 tree 校验 Git blob。
+- go.mod/go.sum 未变；没有依赖新增、升级或来源变更，无构建脚本、二进制、LFS、子模块或特殊文件模式变化。
+
+### 敏感路径与证据
+
+- [SIWC 管理流程](https://github.com/router-for-me/CLIProxyAPI/blob/ae3ee3be303fb07fb8173279923413005bf32177/internal/api/handlers/management/oauth_siwc.go)、[路由](https://github.com/router-for-me/CLIProxyAPI/blob/ae3ee3be303fb07fb8173279923413005bf32177/internal/api/server_management_v8.go)：发起绑定要求既有管理鉴权，Home 模式禁用；只能选择服务器管理的本地 Codex OAuth 文件。回调仅挂可用性中间件，依赖随机 state、服务端 PKCE 和会话目标，不要求管理 Key；不应描述为所有回调都经管理鉴权。回调 URL 仅解析、不抓取，也不启动监听；目标、redirect、设备 ID 和 PKCE 不能由回调重定向。
+- [OAuth 交换](https://github.com/router-for-me/CLIProxyAPI/blob/ae3ee3be303fb07fb8173279923413005bf32177/internal/auth/codex/siwc_auth.go)：授权 URL 为 `https://auth.openai.com/api/accounts/authorize`，code、issued client ID、PKCE verifier、固定 redirect/resource POST 到 `https://auth.openai.com/api/accounts/oauth/token`。沿已有配置代理及标准 HTTP 客户端，不保证禁止重定向；没有向额外隐藏地址发送外层凭据。错误响应对管理端使用固定消息，不回传上游正文/token。
+- [凭据提交](https://github.com/router-for-me/CLIProxyAPI/blob/ae3ee3be303fb07fb8173279923413005bf32177/sdk/cliproxy/auth/codex_siwc_bind.go)、[原子写入](https://github.com/router-for-me/CLIProxyAPI/blob/ae3ee3be303fb07fb8173279923413005bf32177/internal/auth/codex/token.go)：重验 auth-dir 归属、常规文件、注册 epoch 和外层账号，读取最新文件，仅替换 siwc 分区及 use_siwc；同目录临时文件显式 0600 后 rename，失败清理自身临时文件。v8 上传/删除和取消协调提交，不增加无关删除。成功后沿既有 manager/运行时模型注册 hook 发布；插件仍属高信任边界，不声称凭据完全不会进入既有 hook。
+- [搜索结果缓存](https://github.com/router-for-me/CLIProxyAPI/blob/ae3ee3be303fb07fb8173279923413005bf32177/internal/cache/claude_web_search_result_cache.go)：已有可选缓存在 Home 模式改用配置 Home KV，原始搜索结果 content 通过 SET 发送，索引为会话和 tool-use ID 的 SHA256，不是内容脱敏。GET 后 EXPIRE 滑动续期，默认24小时；Home 分支不应用本地 LRU 条数上限，也不回退到本地。补查 Home commandClient/地址构造，连接配置 host/port，TLS 依配置；没有新增硬编码隐藏接收方。非 Home 仍是本地缓存，不抓取搜索结果 URL。
+- [压缩共享实现](https://github.com/router-for-me/CLIProxyAPI/blob/ae3ee3be303fb07fb8173279923413005bf32177/internal/runtime/executor/helps/antigravity_compaction.go)：Kimi/Meta 显式 compaction_trigger 生成摘要请求，沿当前凭据和既有 provider URL；默认分别为 api.kimi.com 或 api.kimi.ai 的 coding/v1/responses、api.meta.ai/v1/responses，也可使用配置 base_url。摘要 capsule 沿既有固定密钥 AES-GCM 封装并返回请求方，重放转换为 developer 文本；不把固定密钥封装当保密保证，不执行其文本。无独立下载执行或额外后台资源任务。
+- Gin 日志移除 v8 OAuth 查询串，不代表其他日志/正文全面脱敏；Gemini schema 仅移除 readOnly/writeOnly 注解。全部测试差异为静态审阅：本地 httptest、合成 token、临时文件/符号链接及模拟 KV；未执行测试，未用 mock、断言或 CI 结果替代生产敏感链证据。
+
+未安装、构建或执行上游代码/制品，未运行测试或扫描。结论仅覆盖本次增量恶意行为，不作漏洞、功能或性能判定；通过后的授权 CI 构建不作为审查证据，不部署或重启。
+
 ## CLIProxyAPI v8.0.34 增量审查
 
 结论：**通过**。Keeper 最新正式版仍为 v2.0.0，tag SHA `fc8cbde97fe6baa35189e51115716865ce377ec2` 未变，结论为 **无新版**。
