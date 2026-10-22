@@ -1,5 +1,32 @@
 # 上游固定版本增量审查
 
+## CLIProxyAPI v8.0.38 增量审查
+
+结论：**通过**。Keeper 最新正式版仍为 v2.0.0，tag 解析为 `fc8cbde97fe6baa35189e51115716865ce377ec2`，结论 **无新版**，不改其 pin。
+
+### 范围与完整性
+
+- 基线 `ae3ee3be303fb07fb8173279923413005bf32177`（v8.0.35），候选 `0db19025571684b198a2ef508f99b41c717337e8`（v8.0.38）。官方 tag ref 直接指向该 commit；未批准过的 v8.0.36/v8.0.37 不作为审查基线。
+- [完整比较](https://github.com/router-for-me/CLIProxyAPI/compare/ae3ee3be303fb07fb8173279923413005bf32177...0db19025571684b198a2ef508f99b41c717337e8)：46 个提交、185 个变更文件、866,067 字节、510 个完整差异块。两端未截断 recursive tree 的变更集合与 compare/diff 一致，逐块校验增删行数。
+- 重新独立分六组审阅全部差异（15、26、14、37、43、50 个文件），包括测试源码；合并逐文件清单确认 185/185、无重复/遗漏、字节数匹配且没有未解决项。未沿用此前截断输出及失效覆盖声明。必要敏感上下文从官方不可变 raw URL 获取，逐份核对候选 tree 的 Git blob SHA1；删除图片按基线树核验。
+- 无依赖清单/锁文件变化，无新增或升级依赖、来源变更、安装脚本、基础镜像、LFS、子模块或特殊文件模式变化。二进制资源单独核验如下。
+
+### 敏感路径与证据
+
+以下链接均固定于候选完整 SHA：
+
+- [Home 重平衡](https://github.com/router-for-me/CLIProxyAPI/blob/0db19025571684b198a2ef508f99b41c717337e8/internal/home/cluster_balance.go#L40-L196)及 [连接](https://github.com/router-for-me/CLIProxyAPI/blob/0db19025571684b198a2ef508f99b41c717337e8/internal/home/client.go#L542-L724)：目标来自配置节点及其控制面发现/消息，须稳定成员、源节点 CLAIM 确认及目标探测；迁移先栅栏调度、等待在途请求再取消收尾。释放只发所属节点的凭据 ID、模型和序号。TLS/客户端证书依配置，不能声称所有部署均 mTLS/密码认证。插件状态仍发送当前 Home，含平台、版本、路径和错误等运维信息，没有新增隐藏收集端。插件收尾删除受代次、有效 ID、配置插件目录/文件类型及卸载条件约束。
+- [SIWC 状态路由](https://github.com/router-for-me/CLIProxyAPI/blob/0db19025571684b198a2ef508f99b41c717337e8/internal/api/server_management_v8.go#L17-L55)继承管理鉴权，仅读本地状态，不触发上游刷新。[绑定提交](https://github.com/router-for-me/CLIProxyAPI/blob/0db19025571684b198a2ef508f99b41c717337e8/sdk/cliproxy/auth/codex_siwc_bind.go#L21-L111)重新检查目录归属、常规文件、epoch、账号身份及文件字节；锁内原子替换 siwc/use_siwc，文件 0600。回调并非管理密钥鉴权，而由随机 state、限时会话、PKCE 和固定目标约束。授权/令牌交换仍向 auth.openai.com，未新增隐藏接收方。
+- [执行结果](https://github.com/router-for-me/CLIProxyAPI/blob/0db19025571684b198a2ef508f99b41c717337e8/sdk/cliproxy/auth/conductor_execution.go#L633)新增 Result.AccessToken，明文令牌确实可进入进程内 Hook/Policy；默认 Hook 空实现，Policy 由 SDK 调用者提供。错误事件显式投影不含此令牌，拒绝令牌字段不参与 JSON。不能将进程内传播称为全面脱敏；未发现内置秘密收集回调。插件模型回调向已加载插件返回凭据标识、提供方和模型列表，不新增 token/API key 输出。
+- [Claude 缓存隔离](https://github.com/router-for-me/CLIProxyAPI/blob/0db19025571684b198a2ef508f99b41c717337e8/internal/runtime/executor/claude_executor.go#L194-L231)新增凭据身份哈希范围，需配置启用及会话键；缓存为内存或配置 Home KV，**原始搜索结果仍会进入 Home KV，键哈希不是内容脱敏**。Home TTL 与连接状态检查沿用既有链，不抓取结果 URL。设备识别及显式 never 分支只影响协议资料透传，选定凭据仍生成认证头；消息目标是 Anthropic 或配置网关。
+- [Codex 请求](https://github.com/router-for-me/CLIProxyAPI/blob/0db19025571684b198a2ef508f99b41c717337e8/internal/runtime/executor/codex_executor_request.go)：原始 OAuth 搜索分支限定 HTTPS、精确 chatgpt.com 和 /backend-api/codex/alpha/search，缺 token 返回未授权；其他路径仍按 SIWC 分区处理。显式自定义头仍可覆盖，未将配置覆盖视为不可越过的限制。
+- [Antigravity 授权](https://github.com/router-for-me/CLIProxyAPI/blob/0db19025571684b198a2ef508f99b41c717337e8/internal/auth/antigravity/auth.go#L249-L349)将项目发现请求的 Bearer 发往 Google daily-cloudcode-pa.googleapis.com；余额/模型请求可使用显式 base_url。版本查询仅解析清单 version，不获取或执行其中制品。重放缓存按调用方/会话及历史、参数匹配，终态提交并受 TTL/容量限制，去向为内存或配置 Home KV。
+- [Vertex 路由](https://github.com/router-for-me/CLIProxyAPI/blob/0db19025571684b198a2ef508f99b41c717337e8/internal/runtime/executor/helps/vertex_openapi.go)：模型、别名、区域及 OpenAPI 规则来自配置/凭据；请求携带对应 token/API key，去 Google Vertex 或配置兼容网关。OpenAI/xAI User-Agent 变化沿用配置目的地及代理；xAI 默认 api.x.ai / cli-chat-proxy.grok.com，未新增秘密接收端。
+- [转换器](https://github.com/router-for-me/CLIProxyAPI/blob/0db19025571684b198a2ef508f99b41c717337e8/internal/util/translator.go#L253-L322)与请求回显、工具映射、cache_control、thinking 签名及终态变化只处理协议数据；apply_patch、shell、URL 等字符串不在代理内执行或下载。usage 仍进入既有插件链。全部测试差异仅静态审阅，含本地 HTTP/Redis 模拟、内存 transport、假令牌和临时文件；未发现真实凭据采集或恶意载荷，没有运行测试。
+- [新增 chenju.png](https://github.com/router-for-me/CLIProxyAPI/blob/0db19025571684b198a2ef508f99b41c717337e8/assets/chenju.png)：115,826 字节、1020×336 RGBA，仅 IHDR/pHYs/IDAT/IEND；CRC、完整解压和扫描行解码通过，无尾随数据。删除 fluxa PNG 也按基线验证完整容器；其 68 字节 EXIF 为色彩/尺寸信息。新增 xcode.gif 为 1,379,150 字节、320×320、120 帧，全部容器/子块及 LZW 图像已静态解码，仅标准循环/图形控制扩展，无尾随载荷；与重新验证的 v8.0.36 blob `494b26d69495893a8ad228d956dfa01b6d3c7cf3` 逐字节相同。README 仅显式赞助链接/相对图片，不认证外链或声称排除像素隐写。
+
+未 clone、安装、构建或执行上游代码/制品，未运行测试或扫描。结论仅覆盖固定 SHA 的增量恶意行为与变更依赖，不是漏洞/功能认证，不为外部插件、控制中心、配置网关或未来动态内容背书。审查通过后更新 pin、commit、push 并跟踪全部触发 CI；CI 不作为审查证据，不部署或重启。
+
 ## CLIProxyAPI v8.0.35 增量审查
 
 结论：**通过**。Keeper v2.0.0 无新版，固定 SHA `fc8cbde97fe6baa35189e51115716865ce377ec2` 不变。
