@@ -1,5 +1,27 @@
 # 上游固定版本增量审查
 
+## CPA Usage Keeper v2.0.1 增量审查
+
+结论：**通过**。本轮官方正式版核对中，CLIProxyAPI v8.0.40（`d946c4fba6fc9a5cfbca1f3d85184d62ad2fb683`）和 Watchtower v1.23.2（`cd5946be205ea0a60dd31235a11f04ac9851ebf6`，tag 已剥离）均为 **无新版**，不修改其 pin。
+
+### 固定范围与完整性
+
+- 基线为已批准 v2.0.0 `fc8cbde97fe6baa35189e51115716865ce377ec2`；v2.0.1 官方 tag 解析并再次核对为唯一完整 commit `5604768d352a1a85dd5c087b4e85bd657a159a02`。
+- [官方比较](https://github.com/Willxup/cpa-usage-keeper/compare/fc8cbde97fe6baa35189e51115716865ce377ec2...5604768d352a1a85dd5c087b4e85bd657a159a02) 含56个提交，compare 文件列表截断于300项。改用两端未截断完整Git树枚举362个变更路径（288修改、57新增、17删除），650份两端源码逐一匹配Git blob；无二进制、LFS、子模块或特殊文件模式缺口。
+- 完整差异为1,432,609字节、29,196行，已从固定两端源码重新生成并逐字节匹配。全部345个候选文件及17个删除文件全文阅读，另核对全部修改文件的旧版删除/替换行；测试、文档及上游workflow均覆盖。阅读记录按文件哈希与范围保存，截断输出不计覆盖；没有执行上游代码、安装、构建、测试或扫描。
+- 保持中央原构建与运行边界：中央 `Dockerfile.keeper` 覆盖上游Dockerfile；`node:22-alpine` 执行原 npm ci/build，`golang:1.26-alpine` 下载模块并CGO构建 `cmd/server/main.go`，`alpine:3.24` 运行入口脚本、嵌入前端及 `/data`。复用已批准且blob未变的基线；不递归上游CI/dev action实现、未调用的依赖示例/工具/子包及整套工具链。上述是原批准范围的明确排除项，不代表核验了这些实现。
+
+### 敏感行为与依赖证据
+
+- [路由](https://github.com/Willxup/cpa-usage-keeper/blob/5604768d352a1a85dd5c087b4e85bd657a159a02/internal/api/router.go) 的凭据管理、优先级、状态、删除及额度操作仍在管理员保护组内；Auth Files → Credentials 为术语/路径迁移。服务层解析有效目标后调用配置的CPA管理端点，未新增隐藏接收方。
+- [OIDC实现](https://github.com/Willxup/cpa-usage-keeper/tree/5604768d352a1a85dd5c087b4e85bd657a159a02/internal/oidc) 仅在显式启用后进行Discovery、授权码/PKCE交换与用户信息读取；client secret/code/verifier/access token 送往配置IdP及其Discovery声明的端点。允许Discovery声明不同host是文档明确的功能边界。客户端禁止重定向，校验ID token签名、issuer/audience/expiry、nonce及授权身份；事务仅在内存，日志不直接输出token响应。没有将预期认证传输误判为隐藏外传。
+- [额度周期删除](https://github.com/Willxup/cpa-usage-keeper/blob/5604768d352a1a85dd5c087b4e85bd657a159a02/internal/repository/quota_cycle_delete.go) 按周期ID、provider、auth_index和quota_key在事务中核对后删除关联子段及父行；[统计重置](https://github.com/Willxup/cpa-usage-keeper/blob/5604768d352a1a85dd5c087b4e85bd657a159a02/internal/repository/usage_identity_stats_reset.go) 只更新目标ID统计基线。归档按截止时间、候选ID和聚合追平条件维护；CPA [配置写回](https://github.com/Willxup/cpa-usage-keeper/blob/5604768d352a1a85dd5c087b4e85bd657a159a02/internal/cpa/provider_key_config.go) 保留非目标字段并返回原管理路径。这些必要跨文件上下文与批准基线blob相同。
+- Kimi元数据只选择固定官方站点，凭据下载不进入响应collector；collector仅记录显式api-call响应及method/URL，不记录请求Header。前端API均通过Keeper base path，密码/API Key只送对应登录端点；删除、重置与日志下载由明确用户操作触发。未变 `version.txt` 请求沿用用户已批准的数据边界，不下载执行更新。
+- 仅新增三个Go依赖：`github.com/coreos/go-oidc/v3 v3.21.0` → [`c914bd380327a5a3a81403774d1a5d5b73772ce7`](https://github.com/coreos/go-oidc/commit/c914bd380327a5a3a81403774d1a5d5b73772ce7)，`golang.org/x/oauth2 v0.37.0` → [`c624b89dadc3221560b7345c090bbe69e90808ee`](https://github.com/golang/oauth2/commit/c624b89dadc3221560b7345c090bbe69e90808ee)，`github.com/go-jose/go-jose/v4 v4.1.4` → [`0e59876635f3dbf46d7b5e97b52bb75a3f96e7d9`](https://github.com/go-jose/go-jose/commit/0e59876635f3dbf46d7b5e97b52bb75a3f96e7d9)。registry info/mod/zip、sumdb、候选go.sum和223个官方blob一致。补查OIDC/JWKS、OAuth token请求及JOSE解析/验签敏感实现：无隐藏请求或验签旁路，x5u只解析不下载，密码学验证调用标准crypto函数；中央模块下载/构建不调用安装脚本或go generate。
+- oauth2的`compute/metadata v0.3.0`仅补核模块图元数据：官方 [`b952f41fc832fbe5ed74f47ae0e6d6f2e93448e0`](https://github.com/googleapis/google-cloud-go/commit/b952f41fc832fbe5ed74f47ae0e6d6f2e93448e0) 的go.mod与sumdb及oauth2/go.sum匹配；其导入仅在未使用的oauth2/google子包，不扩审未运行实现。Go最低版本变为1.26.10，两平台官方toolchain registry元数据已核对，继续沿原官方构建工具链边界；前端package.json/package-lock未变。
+
+在以上原中央边界内未发现恶意行为证据，无未解决材料缺口。证据保存于 `/root/upstream-release-review/keeper-v2.0.1`：`review-result.json/md`、`coverage-integrity.json`、完整文件/删除行阅读范围、两端源码hash、依赖官方来源及敏感调用链记录。仅更新Keeper workflow tag/SHA与对应文档；静态批准后由中央CI构建发布，CI不是审查依据，不部署或重启服务。发布终态、公开GHCR索引/架构及来源核验另存 `publication-result.json`。
+
 ## CLIProxyAPI v8.0.38 增量审查
 
 结论：**通过**。Keeper 最新正式版仍为 v2.0.0，tag 解析为 `fc8cbde97fe6baa35189e51115716865ce377ec2`，结论 **无新版**，不改其 pin。
