@@ -1,45 +1,24 @@
-# CLIProxyAPI v8.0.40 增量源码审查
+# CLIProxyAPI v8.0.41 增量源码审查
 
-结论：**通过**。在下述固定范围及静态证据中，未发现新增恶意行为或恶意依赖证据。本结论不是漏洞、正确性或整个上游生态的认证。
+结论：**通过**。在当前中央构建/运行范围内，未发现本次增量引入恶意行为或恶意依赖的证据。仅检查恶意外传、隐蔽执行/下载、后门、破坏及未授权资源使用，不评价漏洞、Bug 或测试质量。
 
-## 正式版本与范围
-
-| 项目 | 官方正式版 | 解析后的完整提交 | 结论 |
+| 项目 | 官方正式版 | 完整提交 SHA | 结论 |
 | --- | --- | --- | --- |
-| CLIProxyAPI | v8.0.40 | `d946c4fba6fc9a5cfbca1f3d85184d62ad2fb683` | 通过 |
-| CPA Usage Keeper | v2.0.0 | `fc8cbde97fe6baa35189e51115716865ce377ec2` | 无新版 |
+| CLIProxyAPI | v8.0.41 | `8289ec4c71ad914d0612c2776352b76ba3d355a6` | 通过 |
+| CPA Usage Keeper | v2.0.1 | `5604768d352a1a85dd5c087b4e85bd657a159a02` | 无新版 |
 | Watchtower | v1.23.2 | `cd5946be205ea0a60dd31235a11f04ac9851ebf6` | 无新版 |
 
-CLIProxyAPI 从已批准的 v8.0.38 `0db19025571684b198a2ef508f99b41c717337e8` 审查到 v8.0.40，包括 v8.0.39 `ceb045a129d43f805e93a5e4aef3a59b108f34f7`。Watchtower 的 annotated tag 对象 `c75ea87a9af863b253cff70e03333f966567663e` 已 peel 至表中 commit；另外两项正式 tag 直接指向 commit。官方 release/ref、完整 tree、raw blob 与依赖注册表证据均保存在本轮证据目录。
+审查范围为已批准 v8.0.40 `d946c4fba6fc9a5cfbca1f3d85184d62ad2fb683` → v8.0.41。官方 release 均非 draft/prerelease，tag 已解析为完整 commit；Watchtower annotated tag 已 peel。完整两端 Git 树逐目录重算 tree SHA，85 个两端源码 blob 重算 Git blob SHA-1 与 SHA-256。完整树差集为 **47 文件**，全部完整增量差异已读，包括新增文件与测试；不以 compare 文件数作为完整性依据。
 
-先锁定中央提交 `de135b48c55a0beea6de09ceac53a8018900efd1` 的 Dockerfile/workflow，以及上一版六份已批准报告的校验值。实际交付为中央 Dockerfile 的 `go mod download`、`CGO_ENABLED=0 go build ./cmd/server`，最终镜像仅复制服务二进制及示例配置；不执行上游开发工作流、生成器或测试。
+中央基线为 `d4ca9aa89029e67ff1f18341104c4a8be9c32463`；Dockerfile/workflow 与上次批准发布一致。交付仍为 Go 服务二进制与示例配置。未变行和依赖复用批准基线，不声称重读整个仓库。没有依赖清单、checksum、来源或构建/安装配置变化。逐文件旧/新 blob、全部 hunk 范围、未变基线范围、模块结论和共享上下文见 [机器可读记录](review-result.json)。
 
-## 实际覆盖
+## 敏感路径
 
-完整两端 tree 与 compare 的变更集合一致，共 **120 文件**，逐文件读完完整增量差异，按配置、依赖、API、插件/用量、执行、转换、鉴权/watcher 七组共享上下文。两端 230 个实际存在的 blob 均按 Git blob SHA-1 核验，同时保存 SHA-256。未变行复用已批准基线，并非声称重新逐行阅读全部文件全文。
+- [Home 延迟上报与探测](https://github.com/router-for-me/CLIProxyAPI/blob/8289ec4c71ad914d0612c2776352b76ba3d355a6/internal/home/cluster_latency.go#L209)：向现有 Home 连接发送实例 ID 和节点 RTT 元数据；探测仅限已知集群节点，使用既有 TLS 配置、PING、超时和退避。已补读节点发现、证书加载、命令池和 capability 门控，无新增第三方接收方或凭据导出。
+- [RESP 读取](https://github.com/router-for-me/CLIProxyAPI/blob/8289ec4c71ad914d0612c2776352b76ba3d355a6/internal/api/redis_queue_protocol.go#L436)：输入长度预算与连接回收；管理鉴权上下文未变。
+- [Gemini 执行器](https://github.com/router-for-me/CLIProxyAPI/blob/8289ec4c71ad914d0612c2776352b76ba3d355a6/internal/runtime/executor/gemini_executor.go#L243)：拒绝/截断响应沿现有错误与用量路径处理；转换器、模型目录、thoughtSignature 和用量合并仅调整协议数据。
+- [本地 Schema 引用](https://github.com/router-for-me/CLIProxyAPI/blob/8289ec4c71ad914d0612c2776352b76ba3d355a6/internal/util/gemini_schema.go#L1131)：本地约束合并与参数清理，没有远程引用抓取或代码执行。
 
-中间版有 8 个 blob 同时不同于两端，已单独下载、核验并读完其中间版至候选版差异；没有仅在中间版存在的路径。完整文件清单、每个 diff hunk 的不可变 URL/行号、blob/hash、依赖覆盖方式见 [机器可读记录](review-result.json)。
+审查期间未 clone、安装、构建或运行上游代码、测试或发布产物，也未扫描漏洞。未递归审查不参与中央交付的开发工具链。批准后的 CI 构建和公开 GHCR 验证单独记录；当前 workflow 的 `provenance: false` 不提供构建证明，本轮只核对 CI 固定源码链与 OCI source/revision 元数据。
 
-## 敏感路径依据
-
-- [插件鉴权与解码请求体](https://github.com/router-for-me/CLIProxyAPI/blob/d946c4fba6fc9a5cfbca1f3d85184d62ad2fb683/internal/pluginhost/adapters_auth.go#L193)：向既有、身份仍有效的已加载鉴权插件提供 raw/decoded body；解码受大小、窗口、并发限制，没有新外传目标。
-- [WebSocket 每轮鉴权](https://github.com/router-for-me/CLIProxyAPI/blob/d946c4fba6fc9a5cfbca1f3d85184d62ad2fb683/sdk/api/handlers/openai/openai_responses_websocket.go#L266)：继续经过前端 access manager；共享 provider 链的拒绝路径已核对。
-- [Codex 凭据选择](https://github.com/router-for-me/CLIProxyAPI/blob/d946c4fba6fc9a5cfbca1f3d85184d62ad2fb683/internal/runtime/executor/codex_executor_auth.go#L486)：客户端 UA 决定同一 credential 的 outer/SIWC 分区，仍使用配置或既有 OpenAI/Codex 目标；没有新增凭据接收站点。
-- [用量队列](https://github.com/router-for-me/CLIProxyAPI/blob/d946c4fba6fc9a5cfbca1f3d85184d62ad2fb683/internal/redisqueue/plugin.go#L146)：新增 tier/speed 字段沿现有启用条件和 Redis 队列/插件路径传递。
-- [Vertex 目标](https://github.com/router-for-me/CLIProxyAPI/blob/d946c4fba6fc9a5cfbca1f3d85184d62ad2fb683/internal/runtime/executor/helps/vertex_openapi.go#L377)：新增 us/eu regional endpoint 仍为 `googleapis.com`，由显式 location 选择。
-- [认证文件快照](https://github.com/router-for-me/CLIProxyAPI/blob/d946c4fba6fc9a5cfbca1f3d85184d62ad2fb683/sdk/cliproxy/auth/conductor_lifecycle.go#L381)：重读、持久化与 runtime 状态保留的调用上下文已核对，没有额外持久化或破坏目标。
-
-## 本次依赖变化
-
-根 `go.mod`/`go.sum` 确有变化：go-billy/v6 → alpha.2、go-git/v6 → alpha.5、go-toml/v2 → `v2.4.3-0.20260624044523-35f78d5908f1`，以及 x/crypto .57、x/net .60、x/sync .23、x/sys .48、x/text .42、x/term .46。Go directive 为 1.26.10。共 11 个新增版本的 Go proxy `.info/.mod`、sum.golang.org 记录与项目 checksum 对照；其中 crypto .56、text .41 仅为中间 checksum。所有来源解析至完整 commit；伪版本采用官方 registry Origin.Hash 与官方 commit tree/raw go.mod 互证。
-
-依赖按中央交付相关的恶意行为边界审查：官方来源/清单、完整 tree 差集、变更文件导入/全局初始化/调用导航，以及必要敏感函数源码。每个文件分别记录完整 diff 阅读、语法导航与共享上下文、删除基线复用、Unicode 字面量结构核验等方式；**不声称逐行读完所有依赖 diff 或认证整个依赖树**。
-
-- go-git 的 HTTP/stream v2 协商继续使用调用方会话、配置 endpoint 和已有 authorizer；[FetchV2](https://github.com/go-git/go-git/blob/fc18716c90bcd8e8c935742431e26e260ab7ef60/internal/transport/v2.go#L152)、[pack 文件来源](https://github.com/go-git/go-git/blob/fc18716c90bcd8e8c935742431e26e260ab7ef60/storage/filesystem/dotgit/dotgit.go#L530)、共享 FD 生命周期及删除路径均已补读。新增 receive hooks 是调用方传入的内存函数，无自动发现或执行仓库脚本。
-- go-toml 变更文件的导入、初始化与调用清单没有网络、进程、环境或任意文件访问；[bridge init](https://github.com/pelletier/go-toml/blob/35f78d5908f1ccf0b5b3fd7927b3aeb538c352af/unstable/bridge.go#L9) 仅连接解析器。读写、MarshalText/UnmarshalTOML 等回调的完整函数上下文已读，来源为调用方 Reader/Writer/目标值。
-- x/net 所有仍存在的纳入文件完整 diff 已读；[UDP 地址选择](https://github.com/golang/net/blob/18ece0ce30bc35fa81fe72028bf309bb3ff3f4a5/quic/udp.go#L33) 仅针对会话 peer 查询本地地址，没有额外 payload/接收方。HTTP/2、QUIC 更改沿现有连接。移除的 HTTP/3 文件按完整 tree 确认并复用旧基线。
-- go-billy、x/crypto、x/sync、x/sys、x/term 纳入范围的完整源码差异已读。x/text 代码差异已读，Unicode 大表只对纯字面量结构及其消费者作静态核对，不宣称语义测试。
-
-依赖测试、生成器、开发工作流、非 amd64/arm64 源码、独立 x509roots/fallback 子模块不在中央构建范围；本轮不重新审查整套编译器和无关开发依赖。没有 clone、安装、构建或执行上游代码/发布产物，没有运行测试或漏洞扫描。批准后的中央 CI 构建独立记录，不作为源码审查依据。
-
-本轮证据目录：`/root/upstream-release-review/cliproxyapi-v8.0.40`。发布结果另存 `publication-result.json`；仅更新批准的 pin 与文档，Keeper/Watchtower pin 保持原值，不部署或重启服务。
+证据目录：`/root/upstream-release-review/cliproxyapi-v8.0.41`；发布终态另存 `publication-result.json`。Keeper/Watchtower pin 和项目文件保持不变，不部署或重启服务。
