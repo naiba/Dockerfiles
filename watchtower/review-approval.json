@@ -1,9 +1,15 @@
 {
   "conclusion": "通过",
-  "upstream_commit": "520f95dea6e3c99b3e0e656e4a2950af11d6397b",
-  "scope": "Fixed central build and scratch runtime; static malicious-behavior review only",
+  "upstream_commit": "cd5946be205ea0a60dd31235a11f04ac9851ebf6",
+  "upstream_version": "v1.23.2",
+  "scope": "Baseline-approved central source whitelist and scratch runtime only; static malicious-behavior review",
+  "whole_upstream_release_approved": false,
   "build_files_sha256": {
-    "watchtower/Dockerfile": "2596940c69ef2fbf594baa9cae984c96a8a77981495cba4621a976af1e12b3e7",
-    ".github/workflows/watchtower.yml": "69a0eddd2b125987a695b245119aa8d3a9950743d5aee89bccff3cc994efad9d"
+    "watchtower/Dockerfile": "162d41dcf5bd90cdc09e1c95763a55e4b64c309f331f15931e4fc757b23cd58f",
+    ".github/workflows/watchtower.yml": "7b4f67ec48b8b0ebf7110694aaf1c87c8cf207e2a7718af4beab17ba76d103dd"
+  },
+  "incremental_evidence": {
+    "path": "watchtower/incremental-review-evidence.json",
+    "sha256": "6135b22c50f2db727e6a9544841c8e0d9304bfddf9b1174deef932b075d5dca0"
   }
 }

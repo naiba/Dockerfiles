@@ -1,0 +1,655 @@
+{
+  "schema_version": 1,
+  "repository": "nicholas-fedor/watchtower",
+  "baseline_commit": "520f95dea6e3c99b3e0e656e4a2950af11d6397b",
+  "candidate_commit": "cd5946be205ea0a60dd31235a11f04ac9851ebf6",
+  "candidate_version": "v1.23.2",
+  "candidate_tag_object": "c75ea87a9af863b253cff70e03333f966567663e",
+  "conclusion": "通过",
+  "scope": "Baseline-approved central source whitelist and scratch runtime only; static malicious-behavior review",
+  "whole_upstream_release_approved": false,
+  "whole_upstream_release_conclusion": "暂缓",
+  "review_provenance": "Reuses completed incremental semantic review and final reconciliation; application step reverified exact snapshots, source blob hashes and evidence bindings; no claim of a new full semantic reread.",
+  "coverage": {
+    "manifest_entries": 1501,
+    "completed_batches": 286,
+    "aggregated_entries": 1501,
+    "project_paths": 474,
+    "dependency_paths": 954,
+    "direct_diff_bytes": 10657010,
+    "context_entries": 606,
+    "context_requests": 1381,
+    "findings": 0,
+    "binary_notices": 0,
+    "all_ids_intervals_input_hashes_verified": true,
+    "verified_again_in_final_adjudication": true,
+    "upgrade_module_count": 23,
+    "verification": {
+      "artifact": "/root/upstream-release-review/watchtower-v1.23.2/actual-reading-evidence/final-adjudication/direct-input-coverage-verification.json",
+      "sha256": "5036ad3dbb34955f754ff1c682e594c2b53a70869ae52d5a57375abefc7d9f79",
+      "bytes": 139025
+    }
+  },
+  "context_requests": {
+    "total": 1381,
+    "closed": 1287,
+    "baseline_excluded_unverified": 94,
+    "central_material_blockers": 0,
+    "central_unadjudicated": 0
+  },
+  "source_provenance": {
+    "compiler_index_sha256": "f20d83a83e18dbd2a4714b8ffd4b30b287b6243962dd75608e86abcc63ba4efc",
+    "compiler_platform_digest": "sha256:8aa2821993207ae840ce09e4223217efcd14e01f71525db734faf4232bd59999",
+    "compiler_config_digest": "sha256:8f320504681311625326bbcea73247b25857f43e74098ddcb4a589192c024e5d",
+    "compiler_manifest_chain_valid": true,
+    "source_blob_count_verified": 688,
+    "missing_source_files": [],
+    "special_modes": [],
+    "toolchain_semantic_proof_claimed": false,
+    "source_origins": {
+      "approved_unchanged_baseline": 305,
+      "candidate_increment": 383
+    },
+    "increment_after_directory_is_complete_checkout": false,
+    "candidate_source_catalog": "actual-reading-evidence/final-reconciliation/complete-candidate-source-catalog.json"
+  },
+  "source_hashes": [
+    {
+      "path": "go.mod",
+      "blob": "726d30dc691f8911570d05ffe773eba3235aedd5",
+      "sha256": "beedb8c47f77f5d250f238c1b7dccfecd325480aa0941c92451d922dc53a5402",
+      "origin": "candidate_increment"
+    },
+    {
+      "path": "go.sum",
+      "blob": "098dd93b42ea5c5f792158590dfa3c8964c63742",
+      "sha256": "c576e7475efa4dda39404277912b004f4ffd794519f1b2777b8fd27da273862f",
+      "origin": "candidate_increment"
+    },
+    {
+      "path": "main.go",
+      "blob": "35c7e04df4f1fc9ec27ee2e063666961bf56c3b0",
+      "sha256": "dbef119f72a760cbf530944d99dbc75948b008efb4d6477acbef896ac5bf9c59",
+      "origin": "candidate_increment"
+    }
+  ],
+  "source_catalog_binding": {
+    "artifact": "actual-reading-evidence/final-reconciliation/complete-candidate-source-catalog.json",
+    "sha256": "2bcd253544fff307b288eafd6dd753afda3556f291fe8e65cc18ea17d901a792",
+    "bytes": 223609
+  },
+  "build_files_sha256": {
+    "watchtower/Dockerfile": "162d41dcf5bd90cdc09e1c95763a55e4b64c309f331f15931e4fc757b23cd58f",
+    ".github/workflows/watchtower.yml": "7b4f67ec48b8b0ebf7110694aaf1c87c8cf207e2a7718af4beab17ba76d103dd"
+  },
+  "central_boundary": {
+    "baseline_preserved": true,
+    "compiler_platform_digest": "sha256:8aa2821993207ae840ce09e4223217efcd14e01f71525db734faf4232bd59999",
+    "required_source_pin": "cd5946be205ea0a60dd31235a11f04ac9851ebf6",
+    "required_version_ldflags": "v1.23.2",
+    "source_context": "完整候选688blob，383来自after增量，305逐blob复用已批准基线；after目录本身不是完整构建上下文。",
+    "copy_whitelist": [
+      "go.mod",
+      "go.sum",
+      "main.go",
+      "cmd/",
+      "internal/",
+      "pkg/"
+    ],
+    "runtime": [
+      "scratch",
+      "/watchtower",
+      "同一固定builder的ca-certificates.crt",
+      "固定Go SDK内嵌timetzdata"
+    ],
+    "constraints": [
+      "native linux/amd64 builder",
+      "TARGETARCH amd64/arm64",
+      "CGO_ENABLED=0",
+      "GOTOOLCHAIN=local",
+      "GOENV=off",
+      "GOWORK=off",
+      "GOVCS=*:off",
+      "GOPROXY=https://proxy.golang.org",
+      "GOSUMDB=sum.golang.org",
+      "-mod=readonly",
+      "-tags=timetzdata",
+      "无secret/SSH挂载"
+    ],
+    "scope_exclusions_are_not_approvals": true,
+    "exact_proof": {
+      "artifact": "/root/upstream-release-review/watchtower-v1.23.2/actual-reading-evidence/final-adjudication/baseline-consistent-delivery-boundary.json",
+      "sha256": "3281375b45bf08a17a8c9f42e0cb619207925240b588b83766b0ca63e6fc76cd",
+      "bytes": 8168
+    }
+  },
+  "exclusions_are_not_approvals": true,
+  "excluded_requests": [
+    {
+      "request_id": "2de3548f5ba6a67ca463:1",
+      "path": ".devcontainer/Dockerfile",
+      "disposition": "开发容器Dockerfile及其Alpine/临时APK不是中央builder；不执行devcontainer构建。"
+    },
+    {
+      "request_id": "3904021682d307306bae:1",
+      "path": ".github/workflows/build.yaml",
+      "disposition": "项目.github工作流不在COPY白名单且中央工作流不调用它；harden-runner或文档CPython只由该上游workflow触发。"
+    },
+    {
+      "request_id": "87d76a38e256b0591ec2:1",
+      "path": ".github/workflows/clean-cache.yaml",
+      "disposition": "项目.github工作流不在COPY白名单且中央工作流不调用它；harden-runner或文档CPython只由该上游workflow触发。"
+    },
+    {
+      "request_id": "da49317f22dfb990b556:1",
+      "path": ".github/workflows/lint-gh.yaml",
+      "disposition": "项目.github工作流不在COPY白名单且中央工作流不调用它；harden-runner或文档CPython只由该上游workflow触发。"
+    },
+    {
+      "request_id": "673f45f59c71772c53f9:1",
+      "path": ".github/workflows/lint-go.yaml",
+      "disposition": "项目.github工作流不在COPY白名单且中央工作流不调用它；harden-runner或文档CPython只由该上游workflow触发。"
+    },
+    {
+      "request_id": "e16ec0361f3e526c50b7:1",
+      "path": ".github/workflows/publish-docs.yaml",
+      "disposition": "项目.github工作流不在COPY白名单且中央工作流不调用它；harden-runner或文档CPython只由该上游workflow触发。"
+    },
+    {
+      "request_id": "e16ec0361f3e526c50b7:2",
+      "path": ".github/workflows/publish-docs.yaml",
+      "disposition": "项目.github工作流不在COPY白名单且中央工作流不调用它；harden-runner或文档CPython只由该上游workflow触发。"
+    },
+    {
+      "request_id": "0fdd59da0cc2f371f7c8:1",
+      "path": ".github/workflows/scorecard.yml",
+      "disposition": "项目.github工作流不在COPY白名单且中央工作流不调用它；harden-runner或文档CPython只由该上游workflow触发。"
+    },
+    {
+      "request_id": "9da54e846569a6146905:1",
+      "path": ".github/workflows/security.yaml",
+      "disposition": "项目.github工作流不在COPY白名单且中央工作流不调用它；harden-runner或文档CPython只由该上游workflow触发。"
+    },
+    {
+      "request_id": "137f3e7c5d381f3c0a80:1",
+      "path": ".github/workflows/test.yaml",
+      "disposition": "项目.github工作流不在COPY白名单且中央工作流不调用它；harden-runner或文档CPython只由该上游workflow触发。"
+    },
+    {
+      "request_id": "871d3e154badad6d7861:1",
+      "path": ".github/workflows/update-changelog.yaml",
+      "disposition": "项目.github工作流不在COPY白名单且中央工作流不调用它；harden-runner或文档CPython只由该上游workflow触发。"
+    },
+    {
+      "request_id": "6f867e42b56f6f92f536:1",
+      "path": ".github/workflows/update-go-docs.yaml",
+      "disposition": "项目.github工作流不在COPY白名单且中央工作流不调用它；harden-runner或文档CPython只由该上游workflow触发。"
+    },
+    {
+      "request_id": "98ff39ef4c2923fc27e8:1",
+      "path": "build/docker/Dockerfile",
+      "disposition": "上游三种Dockerfile未被中央使用；中央独立Dockerfile固定Debian Go builder并FROM scratch，不采用请求中的Alpine运行层/自构建安装链。"
+    },
+    {
+      "request_id": "700529d5c712f4764ce1:1",
+      "path": "build/docker/Dockerfile.self-github",
+      "disposition": "上游三种Dockerfile未被中央使用；中央独立Dockerfile固定Debian Go builder并FROM scratch，不采用请求中的Alpine运行层/自构建安装链。"
+    },
+    {
+      "request_id": "bbc7f85bcaa601338e4c:1",
+      "path": "build/docker/Dockerfile.self-local",
+      "disposition": "上游三种Dockerfile未被中央使用；中央独立Dockerfile固定Debian Go builder并FROM scratch，不采用请求中的Alpine运行层/自构建安装链。"
+    },
+    {
+      "request_id": "948b0526d29fcb37e9f6:6",
+      "path": "cmd/root.go",
+      "disposition": "复合请求的23个实际模块、初始化和运行时调用已由模块矩阵及全量差异闭合；剩余仅Shoutrrr上游CI的非公开agent，导入模块不会执行该workflow。"
+    },
+    {
+      "request_id": "a572ae8ca62ba03b637e:1",
+      "path": "go.mod",
+      "disposition": "复合请求的23个实际模块、初始化和运行时调用已由模块矩阵及全量差异闭合；剩余仅Shoutrrr上游CI的非公开agent，导入模块不会执行该workflow。"
+    },
+    {
+      "request_id": "796992bdaf13ff2bd122:1",
+      "path": "go.sum",
+      "disposition": "复合请求的23个实际模块、初始化和运行时调用已由模块矩阵及全量差异闭合；剩余仅Shoutrrr上游CI的非公开agent，导入模块不会执行该workflow。"
+    },
+    {
+      "request_id": "0856c5dd9560146a1213:2",
+      "path": "Dockerfile",
+      "disposition": "Docker CLI自身镜像/开发/静态检查/vendor构建不运行；中央只编译所选Go包，不COPY或执行这些Dockerfile下载的xx、Buildx、Compose制品及系统层。"
+    },
+    {
+      "request_id": "0856c5dd9560146a1213:4",
+      "path": "Dockerfile",
+      "disposition": "Docker CLI自身镜像/开发/静态检查/vendor构建不运行；中央只编译所选Go包，不COPY或执行这些Dockerfile下载的xx、Buildx、Compose制品及系统层。"
+    },
+    {
+      "request_id": "4e887b6468650651e034:2",
+      "path": "dockerfiles/Dockerfile.dev",
+      "disposition": "Docker CLI自身镜像/开发/静态检查/vendor构建不运行；中央只编译所选Go包，不COPY或执行这些Dockerfile下载的xx、Buildx、Compose制品及系统层。"
+    },
+    {
+      "request_id": "c4a9bf1c24d3d2af026a:2",
+      "path": "dockerfiles/Dockerfile.lint",
+      "disposition": "Docker CLI自身镜像/开发/静态检查/vendor构建不运行；中央只编译所选Go包，不COPY或执行这些Dockerfile下载的xx、Buildx、Compose制品及系统层。"
+    },
+    {
+      "request_id": "a07a7a59278ae0a9f45a:2",
+      "path": "dockerfiles/Dockerfile.vendor",
+      "disposition": "Docker CLI自身镜像/开发/静态检查/vendor构建不运行；中央只编译所选Go包，不COPY或执行这些Dockerfile下载的xx、Buildx、Compose制品及系统层。"
+    },
+    {
+      "request_id": "006cd1f770919e9bfe95:2",
+      "path": ".github/workflows/lint.yml",
+      "disposition": "Fiber工作流及Makefile的lint/release-drafter/spellcheck/Node路径不是Go包初始化或中央构建步骤。"
+    },
+    {
+      "request_id": "65b5f49de06b5a167e65:1",
+      "path": ".github/workflows/release-drafter.yml",
+      "disposition": "Fiber工作流及Makefile的lint/release-drafter/spellcheck/Node路径不是Go包初始化或中央构建步骤。"
+    },
+    {
+      "request_id": "65b5f49de06b5a167e65:3",
+      "path": ".github/workflows/release-drafter.yml",
+      "disposition": "Fiber工作流及Makefile的lint/release-drafter/spellcheck/Node路径不是Go包初始化或中央构建步骤。"
+    },
+    {
+      "request_id": "67d8149373bb66fa9b6e:1",
+      "path": ".github/workflows/spell-check.yml",
+      "disposition": "Fiber工作流及Makefile的lint/release-drafter/spellcheck/Node路径不是Go包初始化或中央构建步骤。"
+    },
+    {
+      "request_id": "67d8149373bb66fa9b6e:3",
+      "path": ".github/workflows/spell-check.yml",
+      "disposition": "Fiber工作流及Makefile的lint/release-drafter/spellcheck/Node路径不是Go包初始化或中央构建步骤。"
+    },
+    {
+      "request_id": "7d799183bf630e5c6b37:1",
+      "path": "Makefile",
+      "disposition": "Fiber工作流及Makefile的lint/release-drafter/spellcheck/Node路径不是Go包初始化或中央构建步骤。"
+    },
+    {
+      "request_id": "d7e3365cd307519ba928:1",
+      "path": "go.mod",
+      "disposition": "utils实际升级源码及初始化已核验；残余是utils自身release-drafter action，根模块编译不执行依赖仓库workflow。"
+    },
+    {
+      "request_id": "209e0e92c5b25e67fb01:4",
+      "path": "go.sum",
+      "disposition": "utils实际升级源码及初始化已核验；残余是utils自身release-drafter action，根模块编译不执行依赖仓库workflow。"
+    },
+    {
+      "request_id": "45b683695f41a2224ea2:2",
+      "path": ".claude/skills/sim-compare/scripts/compare.py",
+      "disposition": "Otter .claude模拟比较脚本和benchmark独立模块没有被中央go build .调用；其独立依赖图不构成Watchtower新增运行时模块。"
+    },
+    {
+      "request_id": "ec0eaa0f33ac14da4861:2",
+      "path": ".github/workflows/docs.yml",
+      "disposition": "Otter文档/lincheck/lint/test/工作流校验的Actions、Python、golangci、容器与go run工具是显式CI入口；中央只编译缓存包。"
+    },
+    {
+      "request_id": "f06b2a25db7a237453dc:1",
+      "path": ".github/workflows/lincheck.yml",
+      "disposition": "Otter文档/lincheck/lint/test/工作流校验的Actions、Python、golangci、容器与go run工具是显式CI入口；中央只编译缓存包。"
+    },
+    {
+      "request_id": "fa59c630bb5a4f15d792:1",
+      "path": ".github/workflows/lint.yml",
+      "disposition": "Otter文档/lincheck/lint/test/工作流校验的Actions、Python、golangci、容器与go run工具是显式CI入口；中央只编译缓存包。"
+    },
+    {
+      "request_id": "fa59c630bb5a4f15d792:2",
+      "path": ".github/workflows/lint.yml",
+      "disposition": "Otter文档/lincheck/lint/test/工作流校验的Actions、Python、golangci、容器与go run工具是显式CI入口；中央只编译缓存包。"
+    },
+    {
+      "request_id": "d98c3a96eb5ec009177b:1",
+      "path": ".github/workflows/scripts/deps.sh",
+      "disposition": "Otter文档/lincheck/lint/test/工作流校验的Actions、Python、golangci、容器与go run工具是显式CI入口；中央只编译缓存包。"
+    },
+    {
+      "request_id": "d98c3a96eb5ec009177b:2",
+      "path": ".github/workflows/scripts/deps.sh",
+      "disposition": "Otter文档/lincheck/lint/test/工作流校验的Actions、Python、golangci、容器与go run工具是显式CI入口；中央只编译缓存包。"
+    },
+    {
+      "request_id": "7e49048b12259768e295:1",
+      "path": ".github/workflows/test-32-bit.yml",
+      "disposition": "Otter文档/lincheck/lint/test/工作流校验的Actions、Python、golangci、容器与go run工具是显式CI入口；中央只编译缓存包。"
+    },
+    {
+      "request_id": "d8d2da1f5b354e2356de:1",
+      "path": ".github/workflows/test.yml",
+      "disposition": "Otter文档/lincheck/lint/test/工作流校验的Actions、Python、golangci、容器与go run工具是显式CI入口；中央只编译缓存包。"
+    },
+    {
+      "request_id": "39cf70369dc0443d2307:3",
+      "path": ".github/workflows/workflows.yml",
+      "disposition": "Otter文档/lincheck/lint/test/工作流校验的Actions、Python、golangci、容器与go run工具是显式CI入口；中央只编译缓存包。"
+    },
+    {
+      "request_id": "39cf70369dc0443d2307:4",
+      "path": ".github/workflows/workflows.yml",
+      "disposition": "Otter文档/lincheck/lint/test/工作流校验的Actions、Python、golangci、容器与go run工具是显式CI入口；中央只编译缓存包。"
+    },
+    {
+      "request_id": "82eef509f80b0fb96bbe:1",
+      "path": ".github/workflows/build.yaml",
+      "disposition": "Shoutrrr上游CI/文档workflow不由模块导入或中央workflow调用；保留agent及Python执行体的真实未核验边界。"
+    },
+    {
+      "request_id": "3dec507bc53d895338b8:1",
+      "path": ".github/workflows/clean-cache.yaml",
+      "disposition": "Shoutrrr上游CI/文档workflow不由模块导入或中央workflow调用；保留agent及Python执行体的真实未核验边界。"
+    },
+    {
+      "request_id": "7357ab14c28008324a6f:1",
+      "path": ".github/workflows/lint-gh.yaml",
+      "disposition": "Shoutrrr上游CI/文档workflow不由模块导入或中央workflow调用；保留agent及Python执行体的真实未核验边界。"
+    },
+    {
+      "request_id": "108c4c823d4d19828b7f:1",
+      "path": ".github/workflows/lint-go.yaml",
+      "disposition": "Shoutrrr上游CI/文档workflow不由模块导入或中央workflow调用；保留agent及Python执行体的真实未核验边界。"
+    },
+    {
+      "request_id": "d73c7277a6a40281911d:1",
+      "path": ".github/workflows/lint-goreleaser.yaml",
+      "disposition": "Shoutrrr上游CI/文档workflow不由模块导入或中央workflow调用；保留agent及Python执行体的真实未核验边界。"
+    },
+    {
+      "request_id": "f635cf0a7c37ddfc8170:1",
+      "path": ".github/workflows/publish-docs.yaml",
+      "disposition": "Shoutrrr上游CI/文档workflow不由模块导入或中央workflow调用；保留agent及Python执行体的真实未核验边界。"
+    },
+    {
+      "request_id": "f635cf0a7c37ddfc8170:3",
+      "path": ".github/workflows/publish-docs.yaml",
+      "disposition": "Shoutrrr上游CI/文档workflow不由模块导入或中央workflow调用；保留agent及Python执行体的真实未核验边界。"
+    },
+    {
+      "request_id": "d6a1a235884794f1790d:1",
+      "path": ".github/workflows/scorecard.yml",
+      "disposition": "Shoutrrr上游CI/文档workflow不由模块导入或中央workflow调用；保留agent及Python执行体的真实未核验边界。"
+    },
+    {
+      "request_id": "2203a122c9134fe0b462:1",
+      "path": ".github/workflows/security.yaml",
+      "disposition": "Shoutrrr上游CI/文档workflow不由模块导入或中央workflow调用；保留agent及Python执行体的真实未核验边界。"
+    },
+    {
+      "request_id": "5f01bea4245c7576748f:1",
+      "path": ".github/workflows/test.yaml",
+      "disposition": "Shoutrrr上游CI/文档workflow不由模块导入或中央workflow调用；保留agent及Python执行体的真实未核验边界。"
+    },
+    {
+      "request_id": "f9d1f9066e2f3e6d315f:1",
+      "path": ".github/workflows/update-changelog.yaml",
+      "disposition": "Shoutrrr上游CI/文档workflow不由模块导入或中央workflow调用；保留agent及Python执行体的真实未核验边界。"
+    },
+    {
+      "request_id": "dfdfa7566928c9bb63c0:1",
+      "path": ".github/workflows/update-go-docs.yaml",
+      "disposition": "Shoutrrr上游CI/文档workflow不由模块导入或中央workflow调用；保留agent及Python执行体的真实未核验边界。"
+    },
+    {
+      "request_id": "d4e393631fc539c75f1e:1",
+      "path": "CHANGELOG.md",
+      "disposition": "Shoutrrr CHANGELOG所述工具、Taskfile文档生成及docs-requirements的Python包仅供文档/开发；中央不运行Taskfile或pip，因此verspec缺失源码提交映射仍保留为外部来源残余。"
+    },
+    {
+      "request_id": "ea691cb2767557f221ba:5",
+      "path": "Taskfile.yml",
+      "disposition": "Shoutrrr CHANGELOG所述工具、Taskfile文档生成及docs-requirements的Python包仅供文档/开发；中央不运行Taskfile或pip，因此verspec缺失源码提交映射仍保留为外部来源残余。"
+    },
+    {
+      "request_id": "8f55d454b0f375916c5b:1",
+      "path": "build/mkdocs/docs-requirements.txt",
+      "disposition": "Shoutrrr CHANGELOG所述工具、Taskfile文档生成及docs-requirements的Python包仅供文档/开发；中央不运行Taskfile或pip，因此verspec缺失源码提交映射仍保留为外部来源残余。"
+    },
+    {
+      "request_id": "8f55d454b0f375916c5b:2",
+      "path": "build/mkdocs/docs-requirements.txt",
+      "disposition": "Shoutrrr CHANGELOG所述工具、Taskfile文档生成及docs-requirements的Python包仅供文档/开发；中央不运行Taskfile或pip，因此verspec缺失源码提交映射仍保留为外部来源残余。"
+    },
+    {
+      "request_id": "42724ab2bf7cf6ead346:2",
+      "path": "testing/e2e/homeassistant/docker-compose.yaml",
+      "disposition": "Shoutrrr testing/e2e的Home Assistant/Matrix/EMQX/ntfy服务容器只由测试编排启动；中央不执行这些测试或复制其镜像层。"
+    },
+    {
+      "request_id": "3949a084a57e62b8fa87:2",
+      "path": "testing/e2e/matrix/docker-compose.yaml",
+      "disposition": "Shoutrrr testing/e2e的Home Assistant/Matrix/EMQX/ntfy服务容器只由测试编排启动；中央不执行这些测试或复制其镜像层。"
+    },
+    {
+      "request_id": "f8815cfd73be7210efc6:1",
+      "path": "testing/e2e/mqtt/docker-compose.yaml",
+      "disposition": "Shoutrrr testing/e2e的Home Assistant/Matrix/EMQX/ntfy服务容器只由测试编排启动；中央不执行这些测试或复制其镜像层。"
+    },
+    {
+      "request_id": "abbf08ba38d1dfa73fde:1",
+      "path": "testing/e2e/ntfy/docker-compose.yaml",
+      "disposition": "Shoutrrr testing/e2e的Home Assistant/Matrix/EMQX/ntfy服务容器只由测试编排启动；中央不执行这些测试或复制其镜像层。"
+    },
+    {
+      "request_id": "cda47e0ee8b1cf26b3d9:3",
+      "path": ".github/workflows/lint.yml",
+      "disposition": "fasthttp lint workflow的golangci执行归档不是fasthttp库或中央Go编译输入。"
+    },
+    {
+      "request_id": "6f5384e23fdb9770f37e:1",
+      "path": ".devcontainer/devcontainer.json",
+      "disposition": "containerd devcontainer/CI/发布镜像/test/fuzz/runc测试安装/VM provision是独立开发与发布入口。中央编译所选Go包，不启动containerd daemon、runc或这些安装脚本；其多平台SDK不能借中央amd64工具链批准获得批准。"
+    },
+    {
+      "request_id": "6f5384e23fdb9770f37e:2",
+      "path": ".devcontainer/devcontainer.json",
+      "disposition": "containerd devcontainer/CI/发布镜像/test/fuzz/runc测试安装/VM provision是独立开发与发布入口。中央编译所选Go包，不启动containerd daemon、runc或这些安装脚本；其多平台SDK不能借中央amd64工具链批准获得批准。"
+    },
+    {
+      "request_id": "14d97cfb48df642922f8:2",
+      "path": ".github/actions/install-go/action.yml",
+      "disposition": "containerd devcontainer/CI/发布镜像/test/fuzz/runc测试安装/VM provision是独立开发与发布入口。中央编译所选Go包，不启动containerd daemon、runc或这些安装脚本；其多平台SDK不能借中央amd64工具链批准获得批准。"
+    },
+    {
+      "request_id": "e4edf72037a0cea84445:2",
+      "path": ".github/workflows/ci.yml",
+      "disposition": "containerd devcontainer/CI/发布镜像/test/fuzz/runc测试安装/VM provision是独立开发与发布入口。中央编译所选Go包，不启动containerd daemon、runc或这些安装脚本；其多平台SDK不能借中央amd64工具链批准获得批准。"
+    },
+    {
+      "request_id": "e4edf72037a0cea84445:4",
+      "path": ".github/workflows/ci.yml",
+      "disposition": "containerd devcontainer/CI/发布镜像/test/fuzz/runc测试安装/VM provision是独立开发与发布入口。中央编译所选Go包，不启动containerd daemon、runc或这些安装脚本；其多平台SDK不能借中央amd64工具链批准获得批准。"
+    },
+    {
+      "request_id": "61a8b78acbfaf419b235:2",
+      "path": ".github/workflows/release/Dockerfile",
+      "disposition": "containerd devcontainer/CI/发布镜像/test/fuzz/runc测试安装/VM provision是独立开发与发布入口。中央编译所选Go包，不启动containerd daemon、runc或这些安装脚本；其多平台SDK不能借中央amd64工具链批准获得批准。"
+    },
+    {
+      "request_id": "61a8b78acbfaf419b235:3",
+      "path": ".github/workflows/release/Dockerfile",
+      "disposition": "containerd devcontainer/CI/发布镜像/test/fuzz/runc测试安装/VM provision是独立开发与发布入口。中央编译所选Go包，不启动containerd daemon、runc或这些安装脚本；其多平台SDK不能借中央amd64工具链批准获得批准。"
+    },
+    {
+      "request_id": "478b623ba3663130dc31:2",
+      "path": "contrib/Dockerfile.test",
+      "disposition": "containerd devcontainer/CI/发布镜像/test/fuzz/runc测试安装/VM provision是独立开发与发布入口。中央编译所选Go包，不启动containerd daemon、runc或这些安装脚本；其多平台SDK不能借中央amd64工具链批准获得批准。"
+    },
+    {
+      "request_id": "4439efae0b2328591a04:1",
+      "path": "contrib/fuzz/oss_fuzz_build.sh",
+      "disposition": "containerd devcontainer/CI/发布镜像/test/fuzz/runc测试安装/VM provision是独立开发与发布入口。中央编译所选Go包，不启动containerd daemon、runc或这些安装脚本；其多平台SDK不能借中央amd64工具链批准获得批准。"
+    },
+    {
+      "request_id": "3e22a038e02ced22ff09:2",
+      "path": "script/setup/runc-version",
+      "disposition": "containerd devcontainer/CI/发布镜像/test/fuzz/runc测试安装/VM provision是独立开发与发布入口。中央编译所选Go包，不启动containerd daemon、runc或这些安装脚本；其多平台SDK不能借中央amd64工具链批准获得批准。"
+    },
+    {
+      "request_id": "d410f5a547e7f548153e:2",
+      "path": "script/vm/provision.sh",
+      "disposition": "containerd devcontainer/CI/发布镜像/test/fuzz/runc测试安装/VM provision是独立开发与发布入口。中央编译所选Go包，不启动containerd daemon、runc或这些安装脚本；其多平台SDK不能借中央amd64工具链批准获得批准。"
+    },
+    {
+      "request_id": "3c3a59ea4cd99027371f:1",
+      "path": ".github/workflows/build.yml",
+      "disposition": "credential-helpers的bake CI及镜像/DEB构建不执行；中央没有这些helper可执行制品。Go client按操作者配置调用外部helper的源码已核验，该运行时输入不是默认随镜像交付的程序。"
+    },
+    {
+      "request_id": "267f34fe8ccf95b43c1f:2",
+      "path": "Dockerfile",
+      "disposition": "credential-helpers的bake CI及镜像/DEB构建不执行；中央没有这些helper可执行制品。Go client按操作者配置调用外部helper的源码已核验，该运行时输入不是默认随镜像交付的程序。"
+    },
+    {
+      "request_id": "459603a9e4ef9fc2daf7:2",
+      "path": "deb/Dockerfile",
+      "disposition": "credential-helpers的bake CI及镜像/DEB构建不执行；中央没有这些helper可执行制品。Go client按操作者配置调用外部helper的源码已核验，该运行时输入不是默认随镜像交付的程序。"
+    },
+    {
+      "request_id": "9de52c5270b50dd148d7:3",
+      "path": ".github/workflows/lint.yml",
+      "disposition": "schema自身lint/release-drafter/Makefile工具不随decoder包编译或初始化执行。"
+    },
+    {
+      "request_id": "6411f31ff32c5e3a7a99:1",
+      "path": ".github/workflows/release-drafter.yml",
+      "disposition": "schema自身lint/release-drafter/Makefile工具不随decoder包编译或初始化执行。"
+    },
+    {
+      "request_id": "ff29707faa3206e4ded4:1",
+      "path": "Makefile",
+      "disposition": "schema自身lint/release-drafter/Makefile工具不随decoder包编译或初始化执行。"
+    },
+    {
+      "request_id": "6ea454c802d55c417038:1",
+      "path": ".bazelversion",
+      "disposition": "grpc-gateway的Bazel、CI、GoReleaser、独立示例浏览器npm/Bazel模块规则不被根模块go build .触发；使用已有生成Go源码，不执行依赖仓库代码生成或安装链。"
+    },
+    {
+      "request_id": "6ea454c802d55c417038:2",
+      "path": ".bazelversion",
+      "disposition": "grpc-gateway的Bazel、CI、GoReleaser、独立示例浏览器npm/Bazel模块规则不被根模块go build .触发；使用已有生成Go源码，不执行依赖仓库代码生成或安装链。"
+    },
+    {
+      "request_id": "75ce819e5fa47da26c63:2",
+      "path": ".github/Dockerfile",
+      "disposition": "grpc-gateway的Bazel、CI、GoReleaser、独立示例浏览器npm/Bazel模块规则不被根模块go build .触发；使用已有生成Go源码，不执行依赖仓库代码生成或安装链。"
+    },
+    {
+      "request_id": "5a472cfd6c67d0057dee:1",
+      "path": ".github/workflows/ci.yml",
+      "disposition": "grpc-gateway的Bazel、CI、GoReleaser、独立示例浏览器npm/Bazel模块规则不被根模块go build .触发；使用已有生成Go源码，不执行依赖仓库代码生成或安装链。"
+    },
+    {
+      "request_id": "d5e42db8cf7d75f27485:1",
+      "path": ".github/workflows/release.yml",
+      "disposition": "grpc-gateway的Bazel、CI、GoReleaser、独立示例浏览器npm/Bazel模块规则不被根模块go build .触发；使用已有生成Go源码，不执行依赖仓库代码生成或安装链。"
+    },
+    {
+      "request_id": "eb53e4416badf0d425e2:1",
+      "path": "MODULE.bazel",
+      "disposition": "grpc-gateway的Bazel、CI、GoReleaser、独立示例浏览器npm/Bazel模块规则不被根模块go build .触发；使用已有生成Go源码，不执行依赖仓库代码生成或安装链。"
+    },
+    {
+      "request_id": "eb53e4416badf0d425e2:2",
+      "path": "MODULE.bazel",
+      "disposition": "grpc-gateway的Bazel、CI、GoReleaser、独立示例浏览器npm/Bazel模块规则不被根模块go build .触发；使用已有生成Go源码，不执行依赖仓库代码生成或安装链。"
+    },
+    {
+      "request_id": "28d11e71e66d6ffafcc4:1",
+      "path": "MODULE.bazel.lock",
+      "disposition": "grpc-gateway的Bazel、CI、GoReleaser、独立示例浏览器npm/Bazel模块规则不被根模块go build .触发；使用已有生成Go源码，不执行依赖仓库代码生成或安装链。"
+    },
+    {
+      "request_id": "9f34f0f5e571e709df5a:1",
+      "path": "WORKSPACE",
+      "disposition": "grpc-gateway的Bazel、CI、GoReleaser、独立示例浏览器npm/Bazel模块规则不被根模块go build .触发；使用已有生成Go源码，不执行依赖仓库代码生成或安装链。"
+    },
+    {
+      "request_id": "9f34f0f5e571e709df5a:2",
+      "path": "WORKSPACE",
+      "disposition": "grpc-gateway的Bazel、CI、GoReleaser、独立示例浏览器npm/Bazel模块规则不被根模块go build .触发；使用已有生成Go源码，不执行依赖仓库代码生成或安装链。"
+    },
+    {
+      "request_id": "7a9b33e3881cf75952ed:1",
+      "path": "examples/internal/browser/package-lock.json",
+      "disposition": "grpc-gateway的Bazel、CI、GoReleaser、独立示例浏览器npm/Bazel模块规则不被根模块go build .触发；使用已有生成Go源码，不执行依赖仓库代码生成或安装链。"
+    },
+    {
+      "request_id": "88527533ec8ca8660637:1",
+      "path": "go.mod",
+      "disposition": "已逐项核对根模块选择和实际导入：真正变化的x/exp、genproto api/rpc在23模块集合内；未变化的根版本及未导入独立examples/tools不产生新增运行时源码。残余要求是gateway独立构建的其他版本图，中央未执行。"
+    },
+    {
+      "request_id": "8a23364df4ac3f413d4c:1",
+      "path": "go.sum",
+      "disposition": "已逐项核对根模块选择和实际导入：真正变化的x/exp、genproto api/rpc在23模块集合内；未变化的根版本及未导入独立examples/tools不产生新增运行时源码。残余要求是gateway独立构建的其他版本图，中央未执行。"
+    },
+    {
+      "request_id": "aab74938cb35ba2c30ca:2",
+      "path": "repositories.bzl",
+      "disposition": "grpc-gateway的Bazel、CI、GoReleaser、独立示例浏览器npm/Bazel模块规则不被根模块go build .触发；使用已有生成Go源码，不执行依赖仓库代码生成或安装链。"
+    }
+  ],
+  "other_exclusions": [
+    "Unrestricted upstream CI/dev/docs/test/release and installers",
+    "Unverified harden-runner native agent, CPython/tool caches, mutable latest/master, verspec mapping and test OCI layers",
+    "Eight historical additional presentation gaps retained; excluded content not relabeled as read",
+    "Operator-provided hooks, Docker CLI, credential helpers, daemon/images and Git/Compose projects",
+    "Compiler/OS layers are baseline-trusted official digest-pinned inputs, not a bytewise semantic review"
+  ],
+  "evidence_root": "/root/upstream-release-review/watchtower-v1.23.2",
+  "evidence_bindings": {
+    "coverage": {
+      "artifact": "actual-reading-evidence/final-adjudication/direct-input-coverage-verification.json",
+      "sha256": "5036ad3dbb34955f754ff1c682e594c2b53a70869ae52d5a57375abefc7d9f79",
+      "bytes": 139025
+    },
+    "request_ledger": {
+      "artifact": "actual-reading-evidence/final-adjudication/complete-1381-request-ledger.json",
+      "sha256": "067bcfc1363ddf02501fecc3693485383b4bbf04a333179e48f282fddff9003d",
+      "bytes": 15223583
+    },
+    "request_adjudications": {
+      "artifact": "actual-reading-evidence/final-adjudication/all-96-open-request-adjudications.json",
+      "sha256": "cb6261a676bf6f3188f959ce1ea5ce1534d4d81468b2e9e3bbb1b18d223e6526",
+      "bytes": 709707
+    },
+    "delivery_boundary": {
+      "artifact": "actual-reading-evidence/final-adjudication/baseline-consistent-delivery-boundary.json",
+      "sha256": "3281375b45bf08a17a8c9f42e0cb619207925240b588b83766b0ca63e6fc76cd",
+      "bytes": 8168
+    },
+    "evidence_verification": {
+      "artifact": "actual-reading-evidence/final-adjudication/evidence-reference-verification.json",
+      "sha256": "ca6ff61509c5f9d8fbda34ad7e476e1b5589386eb71490cca3d2302c459282c8",
+      "bytes": 9908381
+    },
+    "incremental-final-reconciliation.json": {
+      "artifact": "incremental-final-reconciliation.json",
+      "sha256": "5b2aa18a2b1616c328949abfdad59dfa66f8136ca0e5966407eb0e0dfc1eea4c",
+      "bytes": 723806
+    },
+    "incremental-final-reconciliation.md": {
+      "artifact": "incremental-final-reconciliation.md",
+      "sha256": "b9ee085362cded9dd3cb0284370c3e3c06b940f491347e1bcf9f9eec282b2fd1",
+      "bytes": 35192
+    },
+    "candidate_source_catalog": {
+      "artifact": "actual-reading-evidence/final-reconciliation/complete-candidate-source-catalog.json",
+      "sha256": "2bcd253544fff307b288eafd6dd753afda3556f291fe8e65cc18ea17d901a792",
+      "bytes": 223609
+    }
+  },
+  "baseline_evidence_sha256": "63011a43e4ff9a232de9743e07ef0dba139d55c6cebf66df3cf371e9356d8626",
+  "execution": {
+    "local_upstream_builds_tests_scans": false,
+    "central_publication_authorized_by_user": true,
+    "server_deployment_authorized": false
+  }
+}

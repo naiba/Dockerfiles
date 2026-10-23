@@ -21,10 +21,10 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  WATCHTOWER_TAG: v1.23.1
-  WATCHTOWER_COMMIT: 520f95dea6e3c99b3e0e656e4a2950af11d6397b
+  WATCHTOWER_TAG: v1.23.2
+  WATCHTOWER_COMMIT: cd5946be205ea0a60dd31235a11f04ac9851ebf6
   WATCHTOWER_IMAGE: ghcr.io/naiba-forks/watchtower
-  WATCHTOWER_IMAGE_VERSION: v1.23.1-520f95d
+  WATCHTOWER_IMAGE_VERSION: v1.23.2-cd5946b
 
 jobs:
   build:
