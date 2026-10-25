@@ -1,927 +1,232 @@
 {
   "conclusion": "通过",
-  "reviewed_at": "2026-10-24T17:28:33Z",
-  "purpose": "Incremental malicious-behavior and changed-dependency review only; no bug, vulnerability, correctness, test quality or performance assessment.",
+  "reviewed_at": "2026-10-25T17:03:29.325560+00:00",
+  "purpose": "仅增量静态恶意行为与恶意依赖审查",
   "source_range": {
     "repository": "router-for-me/CLIProxyAPI",
-    "base_release": "v8.0.41",
-    "base_commit": "8289ec4c71ad914d0612c2776352b76ba3d355a6",
-    "candidate_release": "v8.0.42",
-    "candidate_commit": "bc0643405a1d0adf77dd0f109972ac3313d66397"
+    "base_tag": "v8.0.42",
+    "base_sha": "bc0643405a1d0adf77dd0f109972ac3313d66397",
+    "base_tree": "30ecada3ca6c185f319f97532bbe6599e2480aff",
+    "candidate_tag": "v8.0.43",
+    "candidate_sha": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+    "candidate_tree": "e4fda3f924481d4722746a5ca626d22eacbfa491"
   },
   "projects": [
     {
       "project": "CLIProxyAPI",
       "repository": "router-for-me/CLIProxyAPI",
-      "release": "v8.0.42",
-      "commit": "bc0643405a1d0adf77dd0f109972ac3313d66397",
-      "conclusion": "通过",
-      "pin_changed": true
+      "latest": "v8.0.43",
+      "published_at": "2026-10-25T15:37:22Z",
+      "draft": false,
+      "prerelease": false,
+      "current_pin": "bc0643405a1d0adf77dd0f109972ac3313d66397",
+      "resolved_sha": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+      "tag_chain": [
+        {
+          "sha": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+          "type": "commit",
+          "url": "https://api.github.com/repos/router-for-me/CLIProxyAPI/git/commits/307803510bce87f986fcf7b1a84190f105c7b4aa"
+        }
+      ],
+      "conclusion": "通过"
     },
     {
       "project": "Keeper",
       "repository": "Willxup/cpa-usage-keeper",
-      "release": "v2.0.1",
-      "commit": "5604768d352a1a85dd5c087b4e85bd657a159a02",
-      "conclusion": "无新版",
-      "pin_changed": false
+      "latest": "v2.0.1",
+      "published_at": "2026-10-23T03:34:18Z",
+      "draft": false,
+      "prerelease": false,
+      "current_pin": "5604768d352a1a85dd5c087b4e85bd657a159a02",
+      "resolved_sha": "5604768d352a1a85dd5c087b4e85bd657a159a02",
+      "tag_chain": [
+        {
+          "sha": "5604768d352a1a85dd5c087b4e85bd657a159a02",
+          "type": "commit",
+          "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/commits/5604768d352a1a85dd5c087b4e85bd657a159a02"
+        }
+      ],
+      "conclusion": "无新版"
     },
     {
       "project": "Watchtower",
       "repository": "nicholas-fedor/watchtower",
-      "release": "v1.23.2",
-      "commit": "cd5946be205ea0a60dd31235a11f04ac9851ebf6",
-      "conclusion": "无新版",
-      "pin_changed": false
+      "latest": "v1.23.2",
+      "published_at": "2026-10-22T03:49:09Z",
+      "draft": false,
+      "prerelease": false,
+      "current_pin": "cd5946be205ea0a60dd31235a11f04ac9851ebf6",
+      "resolved_sha": "cd5946be205ea0a60dd31235a11f04ac9851ebf6",
+      "tag_chain": [
+        {
+          "sha": "c75ea87a9af863b253cff70e03333f966567663e",
+          "type": "tag",
+          "url": "https://api.github.com/repos/nicholas-fedor/watchtower/git/tags/c75ea87a9af863b253cff70e03333f966567663e"
+        },
+        {
+          "sha": "cd5946be205ea0a60dd31235a11f04ac9851ebf6",
+          "type": "commit",
+          "url": "https://api.github.com/repos/nicholas-fedor/watchtower/git/commits/cd5946be205ea0a60dd31235a11f04ac9851ebf6"
+        }
+      ],
+      "conclusion": "无新版"
     }
   ],
   "scope": {
-    "central_commit": "6efa8da6fc311b61cc42d6e07f07c8256624ef57",
-    "baseline": "/root/upstream-release-review/cliproxyapi-v8.0.41/review-result.json",
-    "baseline_sha256": "8dd5624143aeffa48e72c7e4983a7d075124dce127baea7bb2415978e30bb71d",
-    "build": "Unchanged central golang:1.26-alpine; go mod download; CGO_ENABLED=0 GOOS=linux go build ./cmd/server; CI binary --help",
-    "runtime": "Unchanged alpine:3.22.0; tzdata and ca-certificates; /app/CLIProxyAPIPlus and config.example.yaml; port 8317; configured provider/Home/plugin/management behavior",
-    "method": "Every changed file full unified diff read, including all added files and all tests. Identical portions reuse approved baseline; necessary sensitive context separately read. No upstream clone/install/build/test/scan/execution during review.",
-    "locked_boundary": "locked-review-boundary.json"
+    "locked_at": "2026-10-25T16:36:14.055317+00:00",
+    "central_commit": "96b54362f44a3eb061e92c9431ffb352f366a5db",
+    "baseline": "/root/upstream-release-review/cliproxyapi-v8.0.42/review-result.json",
+    "baseline_sha256": "761df2d4d1788802213781f32471de196772b8d7330bff57af4022d61baafccf",
+    "scope": {
+      "central_commit": "6efa8da6fc311b61cc42d6e07f07c8256624ef57",
+      "baseline": "/root/upstream-release-review/cliproxyapi-v8.0.41/review-result.json",
+      "baseline_sha256": "8dd5624143aeffa48e72c7e4983a7d075124dce127baea7bb2415978e30bb71d",
+      "build": "Unchanged central golang:1.26-alpine; go mod download; CGO_ENABLED=0 GOOS=linux go build ./cmd/server; CI binary --help",
+      "runtime": "Unchanged alpine:3.22.0; tzdata and ca-certificates; /app/CLIProxyAPIPlus and config.example.yaml; port 8317; configured provider/Home/plugin/management behavior",
+      "method": "Every changed file full unified diff read, including all added files and all tests. Identical portions reuse approved baseline; necessary sensitive context separately read. No upstream clone/install/build/test/scan/execution during review.",
+      "locked_boundary": "locked-review-boundary.json"
+    },
+    "files": {
+      ".github/workflows/cliproxyapi.yml": "7a40b9d2ef196b1209cab3b2e1499441de552269c26e416a184c6ec76f82515d",
+      "cliproxyapi/Dockerfile": "86e8d7795d5f70d046543bbb6e3bdde0eb0d50dbfa3e7e9b5615739792a5e853"
+    }
   },
   "integrity": {
-    "trees": {
-      "base": {
-        "root": "013c7ebfd1321ffde6e0b3205a03bffb9f8155f7",
-        "entries": 2357,
-        "verified_subtrees": 277,
-        "truncated": false
-      },
-      "candidate": {
-        "root": "30ecada3ca6c185f319f97532bbe6599e2480aff",
-        "entries": 2361,
-        "verified_subtrees": 277,
-        "truncated": false
-      }
-    },
-    "source_files": 73,
-    "changed_files": 35,
-    "coverage": {
-      "diff": {
-        "blocks": 130,
-        "bytes": 135170,
-        "all_read": true
-      },
-      "context": {
-        "blocks": 18,
-        "bytes": 13241,
-        "all_read": true
-      }
-    },
-    "dependencies": {
-      "added": [],
-      "upgraded": [],
-      "source_changed": [],
-      "changed_manifests": [],
-      "unchanged_manifests": {
-        "examples/plugin/auth/go/go.mod": "f084d0a60a1c3519d8c1955977fc3297169fbf7e",
-        "examples/plugin/auth/rust/Cargo.lock": "2fcbda318b256b906dafc5964682d2c3211402fc",
-        "examples/plugin/auth/rust/Cargo.toml": "4ca835bcfa16d860f3ee9ee24f438b310ad6f98d",
-        "examples/plugin/claude-web-search-router/go/go.mod": "659a184f2d10a17b50ee426c70c5a38f80431b2a",
-        "examples/plugin/claude-web-search-router/go/go.sum": "08317b1acaea7e8bcaa967797bd14162b6943fd7",
-        "examples/plugin/cli/go/go.mod": "d5061d1f68db67c6bcd5b3927ae0c52a36eeed21",
-        "examples/plugin/cli/rust/Cargo.lock": "66405150964f3aec1c856dfeec54ced7f6c32fda",
-        "examples/plugin/cli/rust/Cargo.toml": "d628e854dee03e9766856524e66cfd7b6f9f8c0d",
-        "examples/plugin/codex-service-tier/go/go.mod": "28422bc1a46d9cef87cc29c8cad094f42d5cbac5",
-        "examples/plugin/codex-service-tier/go/go.sum": "9186dfd80295f37441c34b5c4120ebbbf43e4323",
-        "examples/plugin/executor/go/go.mod": "d0c0ce178053358debcad39197b0c4080aa004dc",
-        "examples/plugin/executor/rust/Cargo.lock": "a722d5baddf25ab781db876215b7fc3cf2dc9365",
-        "examples/plugin/executor/rust/Cargo.toml": "b34bd907fc5b908b3c04ec78b5b82c360f9b2a72",
-        "examples/plugin/frontend-auth-exclusive/go/go.mod": "95c25967ce91dfb3fee5967c4fc04fe41e491c37",
-        "examples/plugin/frontend-auth/go/go.mod": "62bbf528ad12e5968bb82f89daafdd2a0e9e5f8c",
-        "examples/plugin/frontend-auth/rust/Cargo.lock": "934e900ea568dbde9bc87826d42efed545aa99f1",
-        "examples/plugin/frontend-auth/rust/Cargo.toml": "d5f9359ca57060062a0d3dcd9a600e5e0a00fb15",
-        "examples/plugin/host-callback-auth-files/go/go.mod": "6b449ddd9547f8aab5ba1c79f8d63507629bc0e6",
-        "examples/plugin/host-callback/go/go.mod": "73c4e0abdcfb2ecb4a6bec71ed32169622cf8954",
-        "examples/plugin/host-callback/rust/Cargo.lock": "9714e2dba47ba8d1734d0bbe9ddb33e884ce5521",
-        "examples/plugin/host-callback/rust/Cargo.toml": "26c2995ad1e42f2f874887ac9c67b829072f1952",
-        "examples/plugin/host-model-callback/go/go.mod": "52e799aa6dbeee8d0fe1b0acb77d4752e65402d4",
-        "examples/plugin/management-api/go/go.mod": "51f802bf93e55e13be2082957739e2927f0d70a2",
-        "examples/plugin/management-api/rust/Cargo.lock": "4dbc81dab139a5f233ce863da31b83010ef7c63b",
-        "examples/plugin/management-api/rust/Cargo.toml": "1e41c3031ecaf849f37bf8c67f3865d6b1e1602b",
-        "examples/plugin/model/go/go.mod": "fb459720e5bd40d9947bdf072971535f996be181",
-        "examples/plugin/model/rust/Cargo.lock": "93f85bc316562978793cfeb11bdee9d17e17dbb9",
-        "examples/plugin/model/rust/Cargo.toml": "f34ad11e389f79210234693bb8cec2b2224387e9",
-        "examples/plugin/protocol-format/go/go.mod": "da2a1db32857a42dc69b1c9f793f583febc0a058",
-        "examples/plugin/protocol-format/rust/Cargo.lock": "ea7ed52da8e28466d19482958f7ad454fdd33510",
-        "examples/plugin/protocol-format/rust/Cargo.toml": "a50dc2bb04b9aa47a51787b9df9e27737a1c1206",
-        "examples/plugin/request-lifecycle/go/go.mod": "fc152e93db9a2bc342aedb7741bf8bb00aab1f0c",
-        "examples/plugin/request-lifecycle/go/go.sum": "a62c313c5b0c799f83215509f742b13aebbe38e4",
-        "examples/plugin/request-normalizer/go/go.mod": "8ccec12186f7aaadeab73c8417802e2b0a9a2a6d",
-        "examples/plugin/request-normalizer/rust/Cargo.lock": "bb5e2bcb6a13a1bc08e375028976b0cc04888ed9",
-        "examples/plugin/request-normalizer/rust/Cargo.toml": "6649a3f0115bd41174801e0a45d0823855b8fd6e",
-        "examples/plugin/request-translator/go/go.mod": "186b756cf0bdaabe65610c50a881c86f3202e8ff",
-        "examples/plugin/request-translator/rust/Cargo.lock": "fb3095e18f79872c509806886aa4eee014a75ec5",
-        "examples/plugin/request-translator/rust/Cargo.toml": "d258c2cd83dff0a46476834c857595bb4306f829",
-        "examples/plugin/response-normalizer/go/go.mod": "cd2602166801e08c2ab9116756b1f3fb5ef0312c",
-        "examples/plugin/response-normalizer/rust/Cargo.lock": "f0ab39a437f3e1f5f930cb6868de1607338d328e",
-        "examples/plugin/response-normalizer/rust/Cargo.toml": "b5663cc450f5fe2b15aac85bc9377602e2a7d49e",
-        "examples/plugin/response-translator/go/go.mod": "5f53fd124375d32cb9511147e92818dd1b3998c6",
-        "examples/plugin/response-translator/rust/Cargo.lock": "67f68a91d2623ead063bdd56e62c8de7f6e8561e",
-        "examples/plugin/response-translator/rust/Cargo.toml": "528f5a160bc9e57a1c7671a49cb32ffb5dcafcba",
-        "examples/plugin/scheduler/go/go.mod": "34f7afc2da2a99152783fd2630042913dcdc8d6b",
-        "examples/plugin/scheduler/go/go.sum": "a62c313c5b0c799f83215509f742b13aebbe38e4",
-        "examples/plugin/simple/go/go.mod": "bcb1dc416c225a13155f4af9b27fa6cb8b7d4f8a",
-        "examples/plugin/simple/rust/Cargo.lock": "79c7ed8e04b4345613163fe2117a963f882038d7",
-        "examples/plugin/simple/rust/Cargo.toml": "ead9d1d791d355c91e772c0bb7ae70e213e7175e",
-        "examples/plugin/thinking/go/go.mod": "940ed3e1825c0ec7f5c3865cbdbf87d947bc705d",
-        "examples/plugin/thinking/rust/Cargo.lock": "0b30df7bb7e37fdaf9d13931dfc093afa0f515a6",
-        "examples/plugin/thinking/rust/Cargo.toml": "0eacb546a6220d3a39f55cb862c0ff3af12451b8",
-        "examples/plugin/usage/go/go.mod": "fb86bf69070d6e25e69dd19ff5d041bffc95552b",
-        "examples/plugin/usage/rust/Cargo.lock": "96ca6d8ace9cc881ccafc9e412a9daf86621fa8b",
-        "examples/plugin/usage/rust/Cargo.toml": "76c1605a58cf6dbe1ef72b5d9426491532fe1e8c",
-        "examples/realtime-openai-go/go.mod": "6de15fc0c39f9575b7c7449be17ed7a9f2239b0d",
-        "examples/realtime-openai-go/go.sum": "8df405b419a1d9608fb19b59c13ab64e89be285e",
-        "go.mod": "7a680aadd4fb7d5b866411ae68bd50234a16ae4f",
-        "go.sum": "50767c7dc1c025f1bac782206bf54ed427cc91ca",
-        "internal/auth/codex/filelock_unix.go": "d9ccce8b29e696ca1e3ede363dd4b4c16cabd7e1",
-        "internal/auth/codex/filelock_windows.go": "bd9ed8f860db94431a6c666ab5f3c02ee363ef19",
-        "internal/pluginhost/testdata/loader_unix_reload_plugin/go.mod": "5c1caeee8b7ac5b7a2589e62369f7b25594f3319",
-        "sdk/cliproxy/auth/conductor_quota_clock_test.go": "2c91318e328262ce48ddf38c8b3766e68f1710e5"
-      },
-      "go_mod_sha256": "999888b1ba360604b68e4eebd8f6c14ebd740eed2172a315c149aebe381ff934",
-      "go_sum_sha256": "f6703ae6ffe59571c5beaed93165308ba1b50f67492a5e85487ef27f9241c570",
-      "added_external_imports_already_pinned": [
-        "github.com/gin-gonic/gin v1.10.1",
-        "github.com/tidwall/gjson v1.18.0"
-      ]
-    }
+    "full_tree_comparison": true,
+    "changed_files": 76,
+    "all_full_diffs_actually_read": true,
+    "immutable_blob_hashes_verified": true,
+    "diff_bytes": 292236,
+    "changed_binary_lfs_submodule": false,
+    "approved_baseline_tree_exact_match": true
   },
   "coverage": [
     {
-      "path": "README.md",
-      "base_blob": "c173da58d9dcb352f3e182e9691f261ac6458ef1",
-      "candidate_blob": "c3852edc5d00eb82b862c840192d660671586825",
-      "candidate_lines": 345,
-      "complete_diff_read": true,
-      "diff_lines_read": [
+      "path": "cmd/fetch_devin_models/main.go",
+      "conclusion": "通过",
+      "base_blob": "b6d11401c7050c5f658c611e996d8f42bbd6746f",
+      "candidate_blob": "d0f2793a66ee072a89456ebe982ae9b96348a50a",
+      "diff_sha256": "342922a9fac02c6fc8a847fda21850d55719e7191e12260cfcdfce48a86ae074",
+      "diff_bytes": 2162,
+      "diff_lines": [
         1,
-        17
+        48
       ],
-      "hunks": [
+      "source_hunks": [
         {
-          "base_start": 209,
-          "base_count": 14,
-          "candidate_start": 209,
-          "candidate_count": 6
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          208
-        ],
-        [
-          215,
-          345
-        ]
-      ],
-      "diff_sha256": "bd0691f5cc6835990d33d4e0c394b289597845d7982fd69dacc16613787f209f"
-    },
-    {
-      "path": "README_CN.md",
-      "base_blob": "db799bf19395aaf34f07443687160b1939ed94a4",
-      "candidate_blob": "aaac3ff030372af67fb9e9a7ff348e16a07b52f2",
-      "candidate_lines": 345,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        17
-      ],
-      "hunks": [
-        {
-          "base_start": 204,
-          "base_count": 14,
-          "candidate_start": 204,
-          "candidate_count": 6
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          203
-        ],
-        [
-          210,
-          345
-        ]
-      ],
-      "diff_sha256": "3b1cb0ad03162b4d409eaec72475e798cc7a41223a5b4a2e5cbd8d2f235a94e0"
-    },
-    {
-      "path": "README_JA.md",
-      "base_blob": "dcf4760810b0c28de349616d4ac0add53274495c",
-      "candidate_blob": "7360773df6cb00c0d0b8804a3973a44c0c7ab7f8",
-      "candidate_lines": 336,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        17
-      ],
-      "hunks": [
-        {
-          "base_start": 203,
-          "base_count": 14,
-          "candidate_start": 203,
-          "candidate_count": 6
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          202
-        ],
-        [
-          209,
-          336
-        ]
-      ],
-      "diff_sha256": "803927ec8d8fb093aa05342fa65853c6d3020330ae30fc8a297e99a8bbf0d55c"
-    },
-    {
-      "path": "internal/home/client.go",
-      "base_blob": "93c076eb67e40cdd1a56b0382658103d3c0c91ef",
-      "candidate_blob": "30b7c5e58d1f93d9380f28f4d748a3a36188af1f",
-      "candidate_lines": 2288,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        63
-      ],
-      "hunks": [
-        {
-          "base_start": 1764,
-          "base_count": 20,
-          "candidate_start": 1764,
-          "candidate_count": 34
-        },
-        {
-          "base_start": 1817,
-          "base_count": 7,
-          "candidate_start": 1831,
-          "candidate_count": 14
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          1763
-        ],
-        [
-          1798,
-          1830
-        ],
-        [
-          1845,
-          2288
-        ]
-      ],
-      "diff_sha256": "ff52a7dba7726c8ff2cc6581c6cc4626fbca570031e13984ccba69fa3bfe1a69"
-    },
-    {
-      "path": "internal/home/cluster_balance.go",
-      "base_blob": "ae10c1fddc58bbeaab39fe6cbe5efe870f5a0dc9",
-      "candidate_blob": "cac3ab2d9913146d2cc8c14270b89b8f24f3184e",
-      "candidate_lines": 267,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        22
-      ],
-      "hunks": [
-        {
-          "base_start": 59,
-          "base_count": 7,
-          "candidate_start": 59,
-          "candidate_count": 18
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          58
-        ],
-        [
-          77,
-          267
-        ]
-      ],
-      "diff_sha256": "c63f33b665d5173257090ae06aa1f3df706f6ff463ebeb69944797414a087223"
-    },
-    {
-      "path": "internal/home/cluster_balance_regression_test.go",
-      "base_blob": "aed91b67aca55ff10d9a3dacab7750e1b6c14e36",
-      "candidate_blob": "2bec31bfa5ffc1f58e619f488b75e8ab23cf2be7",
-      "candidate_lines": 322,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        92
-      ],
-      "hunks": [
-        {
-          "base_start": 6,
+          "base_start": 429,
           "base_count": 6,
-          "candidate_start": 6,
-          "candidate_count": 7
+          "candidate_start": 429,
+          "candidate_count": 15
         },
         {
-          "base_start": 241,
-          "base_count": 3,
-          "candidate_start": 242,
-          "candidate_count": 81
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          5
-        ],
-        [
-          13,
-          241
-        ]
-      ],
-      "diff_sha256": "df757efb3b3e88e23a381006af48b857e8bf3fa6ff520029fdcfa0bb50f87dc2"
-    },
-    {
-      "path": "internal/home/cluster_latency.go",
-      "base_blob": "ca5f54fe812caed8c7953e5952e2c7b854a0a678",
-      "candidate_blob": "46c2b97401c04c370218ddad243ea056cac7fb0d",
-      "candidate_lines": 317,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        30
-      ],
-      "hunks": [
-        {
-          "base_start": 5,
-          "base_count": 6,
-          "candidate_start": 5,
-          "candidate_count": 7
-        },
-        {
-          "base_start": 284,
-          "base_count": 7,
-          "candidate_start": 285,
-          "candidate_count": 18
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          4
-        ],
-        [
-          12,
-          284
-        ],
-        [
-          303,
-          317
-        ]
-      ],
-      "diff_sha256": "1b0f9200e2768dd6db1c02001131c2730f4a7ce5bab9b104bceb6a2120d61abe"
-    },
-    {
-      "path": "internal/logging/request_logger_traversal_test.go",
-      "base_blob": null,
-      "candidate_blob": "9ae21ab1c31f47e1345dd4d6a21ebc8670fc614f",
-      "candidate_lines": 142,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        145
-      ],
-      "hunks": [
-        {
-          "base_start": 0,
-          "base_count": 0,
-          "candidate_start": 1,
-          "candidate_count": 142
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [],
-      "diff_sha256": "f47cc6e44af2f10aeadb951d53e1cdf9e9dd7dfddddc900e708fbe6fd61b462d"
-    },
-    {
-      "path": "internal/logging/request_logger_writer.go",
-      "base_blob": "cb15d5d55c10093969b3ec050ace5f72dba58aa6",
-      "candidate_blob": "b2bb16ddfb5e0ac304a1ed3b63818409b08947b7",
-      "candidate_lines": 462,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        55
-      ],
-      "hunks": [
-        {
-          "base_start": 306,
+          "base_start": 571,
           "base_count": 12,
-          "candidate_start": 306,
-          "candidate_count": 18
+          "candidate_start": 580,
+          "candidate_count": 19
         },
         {
-          "base_start": 353,
-          "base_count": 8,
-          "candidate_start": 359,
+          "base_start": 595,
+          "base_count": 7,
+          "candidate_start": 611,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "cmd/fetch_devin_models/main_test.go",
+      "conclusion": "通过",
+      "base_blob": "31c0058e8f097769c91b479cf834086543fb9c77",
+      "candidate_blob": "d142ba50ab9aa4cd07dd0bb1183e8dd9373f7383",
+      "diff_sha256": "5d7ed5807ee16f4bee0d2774e54bf89df323bf0e18b1dce79b1c5330b9d904d7",
+      "diff_bytes": 489,
+      "diff_lines": [
+        1,
+        12
+      ],
+      "source_hunks": [
+        {
+          "base_start": 24,
+          "base_count": 6,
+          "candidate_start": 24,
+          "candidate_count": 9
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/api/handlers/management/auth_files.go",
+      "conclusion": "通过",
+      "base_blob": "98a7ca9bdac10395cfd1add9dbc9b09b382989a3",
+      "candidate_blob": "4ebda82bcee3b220e0034ea9b8f6759814cbcd88",
+      "diff_sha256": "f003370dc3f45f70190adb90f56c70d305b1d4e9c7df0b3a150ba920352091dd",
+      "diff_bytes": 1870,
+      "diff_lines": [
+        1,
+        34
+      ],
+      "source_hunks": [
+        {
+          "base_start": 13,
+          "base_count": 6,
+          "candidate_start": 13,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 38,
+          "base_count": 14,
+          "candidate_start": 39,
+          "candidate_count": 15
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/api/handlers/management/auth_files_devin_oauth.go",
+      "conclusion": "通过",
+      "base_blob": "2913dd8b014f037bdc765a9289fcab7b782cfcdb",
+      "candidate_blob": "79aab8c8b6930ee8aa98b0380a5add5af5fc29df",
+      "diff_sha256": "00bd73da0275da78f6c85cb76ebd097927a2058735304968cce48aa7107a3b0e",
+      "diff_bytes": 2525,
+      "diff_lines": [
+        1,
+        58
+      ],
+      "source_hunks": [
+        {
+          "base_start": 35,
+          "base_count": 10,
+          "candidate_start": 35,
           "candidate_count": 11
         },
         {
-          "base_start": 363,
-          "base_count": 12,
-          "candidate_start": 372,
-          "candidate_count": 17
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          305
-        ],
-        [
-          324,
-          358
-        ],
-        [
-          370,
-          371
-        ],
-        [
-          389,
-          462
-        ]
-      ],
-      "diff_sha256": "947020aaf5fa2dcff2f00891a02bdfcc235deab2e418017629ae0a0022778b1f"
-    },
-    {
-      "path": "internal/pluginhost/adapters_executors.go",
-      "base_blob": "552b2600f8cf4d88582abd9609c3880f0ac4b9f4",
-      "candidate_blob": "46b719d0a26c4be3da94b0c03299b33a97e7c726",
-      "candidate_lines": 1267,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        174
-      ],
-      "hunks": [
-        {
-          "base_start": 8,
-          "base_count": 6,
-          "candidate_start": 8,
-          "candidate_count": 7
-        },
-        {
-          "base_start": 18,
-          "base_count": 6,
-          "candidate_start": 19,
-          "candidate_count": 7
-        },
-        {
-          "base_start": 421,
-          "base_count": 12,
-          "candidate_start": 423,
+          "base_start": 59,
+          "base_count": 17,
+          "candidate_start": 60,
           "candidate_count": 23
         },
         {
-          "base_start": 434,
-          "base_count": 6,
-          "candidate_start": 447,
-          "candidate_count": 53
-        },
-        {
-          "base_start": 447,
-          "base_count": 6,
-          "candidate_start": 507,
-          "candidate_count": 24
-        },
-        {
-          "base_start": 1001,
+          "base_start": 121,
           "base_count": 11,
-          "candidate_start": 1079,
-          "candidate_count": 50
+          "candidate_start": 128,
+          "candidate_count": 12
         }
       ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          7
-        ],
-        [
-          15,
-          18
-        ],
-        [
-          26,
-          422
-        ],
-        [
-          446,
-          446
-        ],
-        [
-          500,
-          506
-        ],
-        [
-          531,
-          1078
-        ],
-        [
-          1129,
-          1267
-        ]
-      ],
-      "diff_sha256": "21f3b40725377ea691c347255828bf687614fa28f64dd7d7035fda4eba34249d"
+      "actual_read_record": "actual-diff-read-coverage.json"
     },
     {
-      "path": "internal/pluginhost/adapters_executors_count_tokens_test.go",
-      "base_blob": null,
-      "candidate_blob": "c6ef86a7050c435ba66d4f2d37e52a41b33e9e0f",
-      "candidate_lines": 291,
-      "complete_diff_read": true,
-      "diff_lines_read": [
+      "path": "internal/api/handlers/management/auth_files_oauth_callback.go",
+      "conclusion": "通过",
+      "base_blob": "f33f82e16c71bae88594417c0ed9d48522b2b9f4",
+      "candidate_blob": "0efdb35fbed13470bf9c3140bad73ab3ece0830b",
+      "diff_sha256": "c8707b59ba6e7f0c2024da7d8070d3d63c7d3584de52f77d324d9438743edd1f",
+      "diff_bytes": 2832,
+      "diff_lines": [
         1,
-        294
+        81
       ],
-      "hunks": [
-        {
-          "base_start": 0,
-          "base_count": 0,
-          "candidate_start": 1,
-          "candidate_count": 291
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [],
-      "diff_sha256": "f05c5f9c05d9ed9581b238f6d20f6a81b9796f71f48e1476685ebfe9c4c172fb"
-    },
-    {
-      "path": "internal/pluginhost/adapters_executors_payload_rules_test.go",
-      "base_blob": null,
-      "candidate_blob": "b1db3d8ffe16208bd71a3897d2cd51119b00b55e",
-      "candidate_lines": 353,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        356
-      ],
-      "hunks": [
-        {
-          "base_start": 0,
-          "base_count": 0,
-          "candidate_start": 1,
-          "candidate_count": 353
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [],
-      "diff_sha256": "2608b71792db6a97b2261a4951780f6010c6d790861119c4ee404e3bdaca32c4"
-    },
-    {
-      "path": "internal/pluginhost/adapters_executors_thinking_test.go",
-      "base_blob": null,
-      "candidate_blob": "714a4b0b276149140355e7947eff6a6c9159b67a",
-      "candidate_lines": 504,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        507
-      ],
-      "hunks": [
-        {
-          "base_start": 0,
-          "base_count": 0,
-          "candidate_start": 1,
-          "candidate_count": 504
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [],
-      "diff_sha256": "e3580692a2e3978f7f43d8df4487b9f9df6621c65196d34ae7a84f1b8fba7fd2"
-    },
-    {
-      "path": "internal/pluginhost/host_callbacks.go",
-      "base_blob": "dd2001bd9c26d7ae8c706b95aa68fb49136abf3b",
-      "candidate_blob": "ef13ead6c5702c822eef616fcf10aa098f4c17ee",
-      "candidate_lines": 541,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        22
-      ],
-      "hunks": [
-        {
-          "base_start": 388,
-          "base_count": 9,
-          "candidate_start": 388,
-          "candidate_count": 7
-        },
-        {
-          "base_start": 402,
-          "base_count": 7,
-          "candidate_start": 400,
-          "candidate_count": 7
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          387
-        ],
-        [
-          395,
-          399
-        ],
-        [
-          407,
-          541
-        ]
-      ],
-      "diff_sha256": "bd9da291dfebcf8590b3ef6737d0da2fc7b71d6cf859060df4342f87c993d54d"
-    },
-    {
-      "path": "internal/pluginhost/http_bridge.go",
-      "base_blob": "40b15ef488560dbbc48effdf87c61bdd6a99cd83",
-      "candidate_blob": "1a23fa2302ef19787d506f44afa7969dce8641bd",
-      "candidate_lines": 845,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        114
-      ],
-      "hunks": [
-        {
-          "base_start": 221,
-          "base_count": 6,
-          "candidate_start": 221,
-          "candidate_count": 7
-        },
-        {
-          "base_start": 514,
-          "base_count": 14,
-          "candidate_start": 515,
-          "candidate_count": 99
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          220
-        ],
-        [
-          228,
-          514
-        ],
-        [
-          614,
-          845
-        ]
-      ],
-      "diff_sha256": "3abad1a22ae56eba28a9ef2160e83124f544d3879871803d39309e9aff469a8e"
-    },
-    {
-      "path": "internal/pluginhost/http_bridge_test.go",
-      "base_blob": "32b68efc22fd9803c1e22536d31b4c556b24bf86",
-      "candidate_blob": "391f9858f54ee8551cbabdfbebd8cf72471fcebe",
-      "candidate_lines": 1703,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        269
-      ],
-      "hunks": [
-        {
-          "base_start": 1438,
-          "base_count": 3,
-          "candidate_start": 1438,
-          "candidate_count": 266
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          1437
-        ]
-      ],
-      "diff_sha256": "7dfafdd4f51485ba366f8e3165cb0f7ca58748299a0c3746323270882c646ee7"
-    },
-    {
-      "path": "internal/pluginhost/rpc_client.go",
-      "base_blob": "96e3785d25963a40c676f3b4ae20c08339c09090",
-      "candidate_blob": "9b859ab1ec9f9152e8e8f0d241b63a0ec354f472",
-      "candidate_lines": 709,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        68
-      ],
-      "hunks": [
-        {
-          "base_start": 7,
-          "base_count": 7,
-          "candidate_start": 7,
-          "candidate_count": 9
-        },
-        {
-          "base_start": 44,
-          "base_count": 9,
-          "candidate_start": 46,
-          "candidate_count": 10
-        },
-        {
-          "base_start": 55,
-          "base_count": 6,
-          "candidate_start": 58,
-          "candidate_count": 27
-        },
-        {
-          "base_start": 366,
-          "base_count": 9,
-          "candidate_start": 390,
-          "candidate_count": 10
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          6
-        ],
-        [
-          16,
-          45
-        ],
-        [
-          56,
-          57
-        ],
-        [
-          85,
-          389
-        ],
-        [
-          400,
-          709
-        ]
-      ],
-      "diff_sha256": "0d97cb5f99a3ff9d6edc11d3b6d4243633cc94ade80f3eb536a02cf3d42e985a"
-    },
-    {
-      "path": "internal/pluginhost/rpc_client_error_test.go",
-      "base_blob": "5f383d227fb619a92660dc954077c08f696e4b3e",
-      "candidate_blob": "bc965ad0e0c9ddabfaf997c9aaf62582ba07dc71",
-      "candidate_lines": 400,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        198
-      ],
-      "hunks": [
-        {
-          "base_start": 3,
-          "base_count": 15,
-          "candidate_start": 3,
-          "candidate_count": 133
-        },
-        {
-          "base_start": 223,
-          "base_count": 3,
-          "candidate_start": 341,
-          "candidate_count": 60
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          2
-        ],
-        [
-          136,
-          340
-        ]
-      ],
-      "diff_sha256": "1124b4bd375d64fd26d3338dfd3c9d17e9f640e017fcb2b35acce91583b5592e"
-    },
-    {
-      "path": "internal/pluginhost/stream_bridge.go",
-      "base_blob": "33a7a459645be901675b3bcbea936267a8f875c7",
-      "candidate_blob": "8466823f68d46343cf2477c3bf5f2b053cca139c",
-      "candidate_lines": 284,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        116
-      ],
-      "hunks": [
-        {
-          "base_start": 5,
-          "base_count": 9,
-          "candidate_start": 5,
-          "candidate_count": 11
-        },
-        {
-          "base_start": 39,
-          "base_count": 19,
-          "candidate_start": 41,
-          "candidate_count": 50
-        },
-        {
-          "base_start": 97,
-          "base_count": 8,
-          "candidate_start": 130,
-          "candidate_count": 8
-        },
-        {
-          "base_start": 162,
-          "base_count": 12,
-          "candidate_start": 195,
-          "candidate_count": 16
-        },
-        {
-          "base_start": 229,
-          "base_count": 6,
-          "candidate_start": 266,
-          "candidate_count": 10
-        },
-        {
-          "base_start": 239,
-          "base_count": 5,
-          "candidate_start": 280,
-          "candidate_count": 5
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          4
-        ],
-        [
-          16,
-          40
-        ],
-        [
-          91,
-          129
-        ],
-        [
-          138,
-          194
-        ],
-        [
-          211,
-          265
-        ],
-        [
-          276,
-          279
-        ]
-      ],
-      "diff_sha256": "ffdad15418b84d0fdbb317ba266af3cbf9949db9d25722bf896eb1bd1cbaecb1"
-    },
-    {
-      "path": "internal/runtime/executor/antigravity_executor_request.go",
-      "base_blob": "9faf97da3ddf792a2cab742e743a288d6fb80a36",
-      "candidate_blob": "0774070d6a03490fd794b02741a460ca6caedf8a",
-      "candidate_lines": 731,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        11
-      ],
-      "hunks": [
-        {
-          "base_start": 646,
-          "base_count": 7,
-          "candidate_start": 646,
-          "candidate_count": 7
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          645
-        ],
-        [
-          653,
-          731
-        ]
-      ],
-      "diff_sha256": "d78943ba26480815b8af75dd8e17afc176680b6c2e824ddd1db6d6f7a8af82a0"
-    },
-    {
-      "path": "internal/runtime/executor/antigravity_issue6825_test.go",
-      "base_blob": "798376256751c339f3d72415a18b8dea2884d962",
-      "candidate_blob": "f6cb186e3c103139faff981e0e4528653f022b34",
-      "candidate_lines": 416,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        154
-      ],
-      "hunks": [
+      "source_hunks": [
         {
           "base_start": 11,
           "base_count": 6,
@@ -929,791 +234,2599 @@
           "candidate_count": 7
         },
         {
-          "base_start": 102,
-          "base_count": 15,
-          "candidate_start": 103,
-          "candidate_count": 18
+          "base_start": 26,
+          "base_count": 8,
+          "candidate_start": 27,
+          "candidate_count": 15
         },
         {
-          "base_start": 120,
-          "base_count": 7,
-          "candidate_start": 124,
-          "candidate_count": 7
-        },
-        {
-          "base_start": 155,
-          "base_count": 6,
-          "candidate_start": 159,
-          "candidate_count": 10
-        },
-        {
-          "base_start": 222,
-          "base_count": 18,
-          "candidate_start": 230,
-          "candidate_count": 49
-        },
-        {
-          "base_start": 313,
-          "base_count": 6,
-          "candidate_start": 352,
-          "candidate_count": 7
-        },
-        {
-          "base_start": 322,
-          "base_count": 6,
-          "candidate_start": 362,
-          "candidate_count": 7
-        },
-        {
-          "base_start": 347,
-          "base_count": 13,
-          "candidate_start": 388,
-          "candidate_count": 26
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          10
-        ],
-        [
-          18,
-          102
-        ],
-        [
-          121,
-          123
-        ],
-        [
-          131,
-          158
-        ],
-        [
-          169,
-          229
-        ],
-        [
-          279,
-          351
-        ],
-        [
-          359,
-          361
-        ],
-        [
-          369,
-          387
-        ],
-        [
-          414,
-          416
-        ]
-      ],
-      "diff_sha256": "32350f450bbe7bdbbcbebc48d6b71b6d5e5f63933b35e91ce831bc980c5cdc3e"
-    },
-    {
-      "path": "internal/runtime/executor/antigravity_reasoning_replay.go",
-      "base_blob": "c6af829d8f27c065fe0631505b3b8cf83d068a88",
-      "candidate_blob": "ad8d3a63801086e681baa33424c4c903d50811cb",
-      "candidate_lines": 2848,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        79
-      ],
-      "hunks": [
-        {
-          "base_start": 117,
-          "base_count": 6,
-          "candidate_start": 117,
-          "candidate_count": 9
-        },
-        {
-          "base_start": 2484,
+          "base_start": 172,
           "base_count": 11,
-          "candidate_start": 2487,
-          "candidate_count": 42
-        },
-        {
-          "base_start": 2520,
-          "base_count": 6,
-          "candidate_start": 2554,
-          "candidate_count": 9
-        },
-        {
-          "base_start": 2775,
-          "base_count": 7,
-          "candidate_start": 2812,
-          "candidate_count": 13
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          116
-        ],
-        [
-          126,
-          2486
-        ],
-        [
-          2529,
-          2553
-        ],
-        [
-          2563,
-          2811
-        ],
-        [
-          2825,
-          2848
-        ]
-      ],
-      "diff_sha256": "5eeba5e7d10def9427424963c36114fd8254457faf62b360ff39feb28b45a188"
-    },
-    {
-      "path": "internal/runtime/executor/helps/model_capabilities.go",
-      "base_blob": "df2d06a6884b64483f27c737b27116271c89b86f",
-      "candidate_blob": "d1785d6f8ec583e660bdd025c419ca28ef091061",
-      "candidate_lines": 40,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        31
-      ],
-      "hunks": [
-        {
-          "base_start": 1,
-          "base_count": 6,
-          "candidate_start": 1,
-          "candidate_count": 7
-        },
-        {
-          "base_start": 16,
-          "base_count": 6,
-          "candidate_start": 17,
-          "candidate_count": 13
-        },
-        {
-          "base_start": 28,
-          "base_count": 5,
-          "candidate_start": 36,
-          "candidate_count": 5
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          8,
-          16
-        ],
-        [
-          30,
-          35
-        ]
-      ],
-      "diff_sha256": "91d4cf7d72191f42da82ad9b2cf5d65b61de02e268937756b722d912469731af"
-    },
-    {
-      "path": "internal/runtime/executor/kimi_thinking_replay.go",
-      "base_blob": "770231fbbddec5c3756c0e28c64ade632a16223f",
-      "candidate_blob": "c67084c2eb8835f4eda7ffb25c79c66a79353b8f",
-      "candidate_lines": 486,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        11
-      ],
-      "hunks": [
-        {
-          "base_start": 37,
-          "base_count": 6,
-          "candidate_start": 37,
-          "candidate_count": 8
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          36
-        ],
-        [
-          45,
-          486
-        ]
-      ],
-      "diff_sha256": "65181edd5d8928d1a3fb420b85660b3996f833537ab144aa286b0041656a351b"
-    },
-    {
-      "path": "internal/runtime/executor/kimi_thinking_replay_test.go",
-      "base_blob": "5e6295ee58642b53e3111a2bee3fdbd94a0ac6db",
-      "candidate_blob": "94914438b34b2dca45bf05d612335a9ca90e9f31",
-      "candidate_lines": 462,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        59
-      ],
-      "hunks": [
-        {
-          "base_start": 30,
-          "base_count": 6,
-          "candidate_start": 30,
-          "candidate_count": 11
-        },
-        {
-          "base_start": 121,
-          "base_count": 6,
-          "candidate_start": 126,
-          "candidate_count": 44
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          29
-        ],
-        [
-          41,
-          125
-        ],
-        [
-          170,
-          462
-        ]
-      ],
-      "diff_sha256": "ab97a82a88c309e5f3de6b23a11ec8972c5e3302232432c912a2f2ca0fc56c1f"
-    },
-    {
-      "path": "internal/store/gitstore.go",
-      "base_blob": "3c1f0fbe1d0ad7bce19c02e2acdbeaf4298553ba",
-      "candidate_blob": "c3c044bee5648ccb58523df7dd55634b3c92d136",
-      "candidate_lines": 2100,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        16
-      ],
-      "hunks": [
-        {
-          "base_start": 1552,
-          "base_count": 7,
-          "candidate_start": 1552,
-          "candidate_count": 12
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          1551
-        ],
-        [
-          1564,
-          2100
-        ]
-      ],
-      "diff_sha256": "357311c9344e25104a09cd93ab8da695b31da22f5d7ac9160e3d54418fbf1735"
-    },
-    {
-      "path": "internal/store/gitstore_test.go",
-      "base_blob": "d7123c0dc368a212fbf284fd70ec96d1cdf5b090",
-      "candidate_blob": "8eff815e0d99a80e556b592d52da677cddd87db5",
-      "candidate_lines": 2292,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        45
-      ],
-      "hunks": [
-        {
-          "base_start": 1798,
-          "base_count": 13,
-          "candidate_start": 1798,
+          "candidate_start": 180,
           "candidate_count": 21
         },
         {
-          "base_start": 1830,
-          "base_count": 7,
-          "candidate_start": 1838,
-          "candidate_count": 16
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          1797
-        ],
-        [
-          1819,
-          1837
-        ],
-        [
-          1854,
-          2292
-        ]
-      ],
-      "diff_sha256": "291b88d5e53fce7ecc73f1bd99a011122dd1d902febfc64930f5e7342f6d1131"
-    },
-    {
-      "path": "internal/thinking/apply.go",
-      "base_blob": "ac21527c57417a3978eaf1042cc60500c3bfbb91",
-      "candidate_blob": "3f11d9d5bc638bf67fc173e416884cb9bee41ebf",
-      "candidate_lines": 1035,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        118
-      ],
-      "hunks": [
-        {
-          "base_start": 51,
-          "base_count": 6,
-          "candidate_start": 51,
-          "candidate_count": 26
+          "base_start": 190,
+          "base_count": 12,
+          "candidate_start": 208,
+          "candidate_count": 22
         },
         {
-          "base_start": 184,
+          "base_start": 210,
+          "base_count": 7,
+          "candidate_start": 238,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/api/handlers/management/auth_files_provider_oauth.go",
+      "conclusion": "通过",
+      "base_blob": "94cc8c582033355f85d052e65813e4c5805b6632",
+      "candidate_blob": "dffe87337b68f3d5ee9fe7a504492a070566d493",
+      "diff_sha256": "2b789754b6bcaf8b3c36e45dc7dc0114c968d7b937e446e90f8c95401a589c2f",
+      "diff_bytes": 18917,
+      "diff_lines": [
+        1,
+        485
+      ],
+      "source_hunks": [
+        {
+          "base_start": 34,
           "base_count": 6,
-          "candidate_start": 204,
+          "candidate_start": 34,
           "candidate_count": 13
         },
         {
-          "base_start": 226,
-          "base_count": 7,
-          "candidate_start": 253,
-          "candidate_count": 9
+          "base_start": 56,
+          "base_count": 9,
+          "candidate_start": 63,
+          "candidate_count": 10
         },
         {
-          "base_start": 249,
+          "base_start": 68,
           "base_count": 7,
-          "candidate_start": 278,
+          "candidate_start": 76,
           "candidate_count": 7
         },
         {
-          "base_start": 287,
+          "base_start": 147,
+          "base_count": 7,
+          "candidate_start": 155,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 175,
+          "base_count": 13,
+          "candidate_start": 183,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 218,
+          "base_count": 7,
+          "candidate_start": 227,
+          "candidate_count": 8
+        },
+        {
+          "base_start": 230,
+          "base_count": 7,
+          "candidate_start": 240,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 295,
+          "base_count": 8,
+          "candidate_start": 305,
+          "candidate_count": 8
+        },
+        {
+          "base_start": 338,
           "base_count": 12,
-          "candidate_start": 316,
-          "candidate_count": 12
+          "candidate_start": 348,
+          "candidate_count": 13
         },
         {
-          "base_start": 318,
-          "base_count": 6,
-          "candidate_start": 347,
+          "base_start": 364,
+          "base_count": 8,
+          "candidate_start": 375,
           "candidate_count": 9
         },
         {
-          "base_start": 332,
-          "base_count": 6,
-          "candidate_start": 364,
-          "candidate_count": 9
-        },
-        {
-          "base_start": 563,
+          "base_start": 377,
           "base_count": 7,
-          "candidate_start": 598,
+          "candidate_start": 389,
           "candidate_count": 7
         },
         {
-          "base_start": 572,
+          "base_start": 440,
           "base_count": 7,
-          "candidate_start": 607,
-          "candidate_count": 9
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          50
-        ],
-        [
-          77,
-          203
-        ],
-        [
-          217,
-          252
-        ],
-        [
-          262,
-          277
-        ],
-        [
-          285,
-          315
-        ],
-        [
-          328,
-          346
-        ],
-        [
-          356,
-          363
-        ],
-        [
-          373,
-          597
-        ],
-        [
-          605,
-          606
-        ],
-        [
-          616,
-          1035
-        ]
-      ],
-      "diff_sha256": "9d64c3c6cf59f45db62fd2340bbe72a15b57d11a8c77db96a9bcb78fadbe545e"
-    },
-    {
-      "path": "internal/thinking/validate.go",
-      "base_blob": "fe99eecafa4ab6ca95467190ce59caa8f843b635",
-      "candidate_blob": "e68a1d242463dc097a5a274903c515f4cadd98cf",
-      "candidate_lines": 459,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        27
-      ],
-      "hunks": [
-        {
-          "base_start": 67,
-          "base_count": 7,
-          "candidate_start": 67,
+          "candidate_start": 452,
           "candidate_count": 7
         },
         {
-          "base_start": 423,
-          "base_count": 6,
-          "candidate_start": 423,
-          "candidate_count": 15
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          66
-        ],
-        [
-          74,
-          422
-        ],
-        [
-          438,
-          459
-        ]
-      ],
-      "diff_sha256": "07c6d62e61b2246bf5c594c9d0b57eb778c7934936f50d820f6ff7c4b8193a27"
-    },
-    {
-      "path": "internal/translator/antigravity/openai/chat-completions/antigravity_openai_response.go",
-      "base_blob": "088241c6066135c2003745897b4c3b9e03cc1ecd",
-      "candidate_blob": "1b8c029eab11d0c6ca4d8756eadc5a47198088d0",
-      "candidate_lines": 367,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        15
-      ],
-      "hunks": [
-        {
-          "base_start": 184,
+          "base_start": 454,
           "base_count": 7,
-          "candidate_start": 184,
+          "candidate_start": 466,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 469,
+          "base_count": 6,
+          "candidate_start": 481,
           "candidate_count": 11
+        },
+        {
+          "base_start": 505,
+          "base_count": 13,
+          "candidate_start": 522,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 532,
+          "base_count": 12,
+          "candidate_start": 550,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 546,
+          "base_count": 7,
+          "candidate_start": 566,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 559,
+          "base_count": 8,
+          "candidate_start": 579,
+          "candidate_count": 8
+        },
+        {
+          "base_start": 612,
+          "base_count": 13,
+          "candidate_start": 632,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 645,
+          "base_count": 12,
+          "candidate_start": 666,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 659,
+          "base_count": 7,
+          "candidate_start": 682,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 672,
+          "base_count": 8,
+          "candidate_start": 695,
+          "candidate_count": 8
+        },
+        {
+          "base_start": 688,
+          "base_count": 13,
+          "candidate_start": 711,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 788,
+          "base_count": 6,
+          "candidate_start": 812,
+          "candidate_count": 8
+        },
+        {
+          "base_start": 816,
+          "base_count": 14,
+          "candidate_start": 842,
+          "candidate_count": 16
+        },
+        {
+          "base_start": 832,
+          "base_count": 7,
+          "candidate_start": 860,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 845,
+          "base_count": 8,
+          "candidate_start": 873,
+          "candidate_count": 8
+        },
+        {
+          "base_start": 890,
+          "base_count": 13,
+          "candidate_start": 918,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 963,
+          "base_count": 57,
+          "candidate_start": 992,
+          "candidate_count": 67
+        },
+        {
+          "base_start": 1027,
+          "base_count": 6,
+          "candidate_start": 1066,
+          "candidate_count": 44
         }
       ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          183
-        ],
-        [
-          195,
-          367
-        ]
-      ],
-      "diff_sha256": "53574cce9ac7b9be5ad996c329fd2ed6b536f5195d78c0e44ca46c621ade4b50"
+      "actual_read_record": "actual-diff-read-coverage.json"
     },
     {
-      "path": "internal/translator/gemini/openai/chat-completions/gemini_openai_response.go",
-      "base_blob": "1354fb832141a880af655d4c69deada66dacd4ab",
-      "candidate_blob": "eb93fe37496bdef24ee95f3bcc9cffdd94a3f399",
-      "candidate_lines": 549,
-      "complete_diff_read": true,
-      "diff_lines_read": [
+      "path": "internal/api/handlers/management/auth_files_v8.go",
+      "conclusion": "通过",
+      "base_blob": "7d8151a831106b1c0196e1746e35a451c8cf4df8",
+      "candidate_blob": "15096d7a2230171d4afcffb883e0dd17369e7beb",
+      "diff_sha256": "4a2ebde256de700c447adb5038d8305b939198eacfe9d3ae027e01d2e92c1d68",
+      "diff_bytes": 8199,
+      "diff_lines": [
         1,
-        37
+        260
       ],
-      "hunks": [
+      "source_hunks": [
         {
-          "base_start": 241,
+          "base_start": 1,
           "base_count": 15,
-          "candidate_start": 241,
-          "candidate_count": 17
+          "candidate_start": 1,
+          "candidate_count": 255
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/api/handlers/management/handler.go",
+      "conclusion": "通过",
+      "base_blob": "21747e589fde58b413b41b0d45a93c0d3b96355b",
+      "candidate_blob": "529c3a8ba82fd81d83bd5864d082a5f0457aa4a7",
+      "diff_sha256": "fe45ab7ea4e0ff9d355642824162ad86502cec5d41d39df0248194777287e648",
+      "diff_bytes": 1087,
+      "diff_lines": [
+        1,
+        32
+      ],
+      "source_hunks": [
+        {
+          "base_start": 147,
+          "base_count": 6,
+          "candidate_start": 147,
+          "candidate_count": 29
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/api/handlers/management/oauth_session_proxy_test.go",
+      "conclusion": "通过",
+      "base_blob": null,
+      "candidate_blob": "f73691a7efed639eb9d007c655d2d0908a5ff4bd",
+      "diff_sha256": "6dcf78fa26cdd0ae4cc0d63cff4fa12c95b681d9d536f901b59320c36b38a358",
+      "diff_bytes": 51876,
+      "diff_lines": [
+        1,
+        1339
+      ],
+      "source_hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 1336
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/api/handlers/management/oauth_sessions.go",
+      "conclusion": "通过",
+      "base_blob": "2b010efec9fd750f4d2e3a53e8edac367dac3c83",
+      "candidate_blob": "57563ab48ea65b84b13f771fa9a9cd2b0593339e",
+      "diff_sha256": "15becead61c03fb8ccab351db6901a15126925c78b2dece66f30255c24127e48",
+      "diff_bytes": 9354,
+      "diff_lines": [
+        1,
+        299
+      ],
+      "source_hunks": [
+        {
+          "base_start": 4,
+          "base_count": 12,
+          "candidate_start": 4,
+          "candidate_count": 14
         },
         {
-          "base_start": 437,
+          "base_start": 39,
+          "base_count": 8,
+          "candidate_start": 41,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 71,
           "base_count": 7,
-          "candidate_start": 439,
-          "candidate_count": 11
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          240
-        ],
-        [
-          258,
-          438
-        ],
-        [
-          450,
-          549
-        ]
-      ],
-      "diff_sha256": "e487370d75c02ec5016d425a68d063cea6b5fcbd10efc3f547fa61380a6c0330"
-    },
-    {
-      "path": "internal/translator/gemini/openai/chat-completions/gemini_openai_response_test.go",
-      "base_blob": "3513c8ef7ef212d3f577b5cd2832bfd5999e7a11",
-      "candidate_blob": "5759fa63b58250d43f1ed46919d788aa55d74eb8",
-      "candidate_lines": 359,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        33
-      ],
-      "hunks": [
+          "candidate_start": 75,
+          "candidate_count": 7
+        },
         {
-          "base_start": 320,
-          "base_count": 6,
-          "candidate_start": 320,
-          "candidate_count": 30
-        }
-      ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          319
-        ],
-        [
-          350,
-          359
-        ]
-      ],
-      "diff_sha256": "870ec8f7089e5ec7ff4da3941640efbe29e0379a80de5a60bd626f7be3f0e137"
-    },
-    {
-      "path": "sdk/cliproxy/auth/home_concurrency.go",
-      "base_blob": "17fc93227c299f520a65bd4b190534f2216a49d3",
-      "candidate_blob": "8a26fb9979c5e2def3adebd08aa7dc4babd09957",
-      "candidate_lines": 340,
-      "complete_diff_read": true,
-      "diff_lines_read": [
-        1,
-        15
-      ],
-      "hunks": [
+          "base_start": 81,
+          "base_count": 8,
+          "candidate_start": 85,
+          "candidate_count": 13
+        },
         {
-          "base_start": 309,
+          "base_start": 96,
+          "base_count": 14,
+          "candidate_start": 105,
+          "candidate_count": 20
+        },
+        {
+          "base_start": 123,
           "base_count": 6,
-          "candidate_start": 309,
+          "candidate_start": 138,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 146,
+          "base_count": 19,
+          "candidate_start": 162,
+          "candidate_count": 24
+        },
+        {
+          "base_start": 170,
+          "base_count": 8,
+          "candidate_start": 191,
+          "candidate_count": 68
+        },
+        {
+          "base_start": 192,
+          "base_count": 9,
+          "candidate_start": 273,
           "candidate_count": 12
+        },
+        {
+          "base_start": 239,
+          "base_count": 6,
+          "candidate_start": 323,
+          "candidate_count": 30
+        },
+        {
+          "base_start": 259,
+          "base_count": 7,
+          "candidate_start": 367,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 285,
+          "base_count": 11,
+          "candidate_start": 393,
+          "candidate_count": 49
+        },
+        {
+          "base_start": 327,
+          "base_count": 6,
+          "candidate_start": 473,
+          "candidate_count": 16
         }
       ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          308
-        ],
-        [
-          321,
-          340
-        ]
-      ],
-      "diff_sha256": "19c3ecd2e7b3d93ff36472e6188f3d7a5150ebbb510a68a56461ddfe4aca40bf"
+      "actual_read_record": "actual-diff-read-coverage.json"
     },
     {
-      "path": "sdk/pluginabi/types.go",
-      "base_blob": "9e50389da9481fd2bb9212fb7d96dd33b2c1e988",
-      "candidate_blob": "0f4e32f7d04092fee5517ba12292ad2a02d6b5a8",
-      "candidate_lines": 174,
-      "complete_diff_read": true,
-      "diff_lines_read": [
+      "path": "internal/api/server_management_v8.go",
+      "conclusion": "通过",
+      "base_blob": "a25b33f63e779f8d63376792112e535129311f9b",
+      "candidate_blob": "a0cb343695f99eec4f3b35ec0858abae4e5a943c",
+      "diff_sha256": "006237788f378de59ea8d24b4f0ea98d32291281eb6fee896775466829bccccd",
+      "diff_bytes": 553,
+      "diff_lines": [
         1,
-        15
+        10
       ],
-      "hunks": [
+      "source_hunks": [
+        {
+          "base_start": 50,
+          "base_count": 6,
+          "candidate_start": 50,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/api/server_management_v8_test.go",
+      "conclusion": "通过",
+      "base_blob": "09c20b18847dd383a7434d3fda409033675e2e56",
+      "candidate_blob": "f7fbb1173cfe187c42c9d944595e5a9162f13aa3",
+      "diff_sha256": "af19f05d433253d7e8d5b20b8d1401e51c4fc4384f2fd7a19056f6036b89219b",
+      "diff_bytes": 987,
+      "diff_lines": [
+        1,
+        11
+      ],
+      "source_hunks": [
+        {
+          "base_start": 89,
+          "base_count": 7,
+          "candidate_start": 89,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/cmd/vertex_import.go",
+      "conclusion": "通过",
+      "base_blob": "31946237147b8db1df37c0950d320ff6ba5d3ac6",
+      "candidate_blob": "6199beb7190bf8e3937b104314a2b8405a756e2e",
+      "diff_sha256": "064b55f29ff2be4961da29b273b938b451d90f61aec92fe86026ecf1df30d82b",
+      "diff_bytes": 502,
+      "diff_lines": [
+        1,
+        11
+      ],
+      "source_hunks": [
+        {
+          "base_start": 60,
+          "base_count": 7,
+          "candidate_start": 60,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/home/cluster_balance_regression_test.go",
+      "conclusion": "通过",
+      "base_blob": "2bec31bfa5ffc1f58e619f488b75e8ab23cf2be7",
+      "candidate_blob": "8640da477aaa48ebd45f14cae0164377ae7380a2",
+      "diff_sha256": "8c866e96c81dfe4d15eaa87fc72a672de83efc5b614154d74d07fba36d4957ac",
+      "diff_bytes": 353,
+      "diff_lines": [
+        1,
+        10
+      ],
+      "source_hunks": [
+        {
+          "base_start": 291,
+          "base_count": 6,
+          "candidate_start": 291,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/pluginhost/adapters_interceptors.go",
+      "conclusion": "通过",
+      "base_blob": "7ce294dc75ee3f1256c4a625d3e3fcb2b72e6231",
+      "candidate_blob": "9d21a35e8bacdf234270cba72d426acef5a8be6f",
+      "diff_sha256": "cc4156210e0ba04c43029f196d24c647b1be2181cf61eacd3dd593bc39eff235",
+      "diff_bytes": 853,
+      "diff_lines": [
+        1,
+        19
+      ],
+      "source_hunks": [
         {
           "base_start": 128,
           "base_count": 6,
           "candidate_start": 128,
+          "candidate_count": 16
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/pluginhost/auth_provider.go",
+      "conclusion": "通过",
+      "base_blob": "9a715c4b03b2352f798ae658e85a42dc97cf96a3",
+      "candidate_blob": "d316e05e182e769cb93b063303ff414e397d1d49",
+      "diff_sha256": "826dac35fc124f6d4aea8cd5510dcf34991dc0054365212e9f501dea5632f33d",
+      "diff_bytes": 2410,
+      "diff_lines": [
+        1,
+        69
+      ],
+      "source_hunks": [
+        {
+          "base_start": 278,
+          "base_count": 6,
+          "candidate_start": 278,
+          "candidate_count": 28
+        },
+        {
+          "base_start": 303,
+          "base_count": 11,
+          "candidate_start": 325,
+          "candidate_count": 16
+        },
+        {
+          "base_start": 342,
+          "base_count": 11,
+          "candidate_start": 369,
+          "candidate_count": 16
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/pluginhost/host_callbacks.go",
+      "conclusion": "通过",
+      "base_blob": "ef13ead6c5702c822eef616fcf10aa098f4c17ee",
+      "candidate_blob": "8ab005f3b87493430d8058740b2150ba5d0f06ac",
+      "diff_sha256": "220fb938c730adaf24a0be05e6c23e772119cef1954a928c1f62cd97a2bcb614",
+      "diff_bytes": 994,
+      "diff_lines": [
+        1,
+        28
+      ],
+      "source_hunks": [
+        {
+          "base_start": 207,
+          "base_count": 7,
+          "candidate_start": 207,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 240,
+          "base_count": 7,
+          "candidate_start": 240,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 448,
+          "base_count": 6,
+          "candidate_start": 448,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/pluginhost/host_callbacks_test.go",
+      "conclusion": "通过",
+      "base_blob": "dc06e85b028306ad29076b564d24a2b632b0f364",
+      "candidate_blob": "9ec8d6eaa14444e88b264a3c59c483da684747d2",
+      "diff_sha256": "deb34516267f74f53060f8259e8de17b7f539201826cbe461c65ec0581fff1fd",
+      "diff_bytes": 4083,
+      "diff_lines": [
+        1,
+        97
+      ],
+      "source_hunks": [
+        {
+          "base_start": 1004,
+          "base_count": 6,
+          "candidate_start": 1004,
+          "candidate_count": 94
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/pluginhost/stream_bridge.go",
+      "conclusion": "通过",
+      "base_blob": "8466823f68d46343cf2477c3bf5f2b053cca139c",
+      "candidate_blob": "6cd5b1639b1a84629f817ac1251e249dd46afb4f",
+      "diff_sha256": "9e2bfd9302a09b15afc1e497338cd3c5014a272fec07ab17d45bb6ef90c2cabc",
+      "diff_bytes": 416,
+      "diff_lines": [
+        1,
+        13
+      ],
+      "source_hunks": [
+        {
+          "base_start": 194,
+          "base_count": 10,
+          "candidate_start": 194,
+          "candidate_count": 6
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/registry/devin_models.go",
+      "conclusion": "通过",
+      "base_blob": "59af4aefcf7bfde12cc87d8f0dcd4f46378d1e1d",
+      "candidate_blob": "5e193655534bbf6730a6a16c19ab6b15eda051bd",
+      "diff_sha256": "c0f4d09e4af7b80fda6268c8bc109f53482ac229732b8e59f0b1b54d1d8f389b",
+      "diff_bytes": 1874,
+      "diff_lines": [
+        1,
+        41
+      ],
+      "source_hunks": [
+        {
+          "base_start": 215,
+          "base_count": 6,
+          "candidate_start": 215,
+          "candidate_count": 15
+        },
+        {
+          "base_start": 237,
+          "base_count": 7,
+          "candidate_start": 246,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 408,
+          "base_count": 6,
+          "candidate_start": 417,
+          "candidate_count": 13
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/registry/devin_models_test.go",
+      "conclusion": "通过",
+      "base_blob": "cda60dafacfcd9ebcf94e3d5df6836fe9ab86172",
+      "candidate_blob": "be73b1ae6f8b66b9c1684ef57b6d05fb893852b7",
+      "diff_sha256": "ad6e002f71e1ef6af393af239d78ef540b849945a88ca821fd62069bb42d19db",
+      "diff_bytes": 2427,
+      "diff_lines": [
+        1,
+        65
+      ],
+      "source_hunks": [
+        {
+          "base_start": 9,
+          "base_count": 6,
+          "candidate_start": 9,
+          "candidate_count": 37
+        },
+        {
+          "base_start": 127,
+          "base_count": 11,
+          "candidate_start": 158,
+          "candidate_count": 12
+        },
+        {
+          "base_start": 358,
+          "base_count": 7,
+          "candidate_start": 390,
+          "candidate_count": 9
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/registry/model_definitions_test.go",
+      "conclusion": "通过",
+      "base_blob": "667d61aac5fcf111d0c63d9f7bb4a4334183a2a1",
+      "candidate_blob": "ee12e616ba66e82596f6af136642540daba949b0",
+      "diff_sha256": "ce60666ac5c6716b7e909cc3d1115396bbb389aa9c937d5728e484fb9d5fc069",
+      "diff_bytes": 987,
+      "diff_lines": [
+        1,
+        24
+      ],
+      "source_hunks": [
+        {
+          "base_start": 328,
+          "base_count": 10,
+          "candidate_start": 328,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 351,
+          "base_count": 7,
+          "candidate_start": 351,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/registry/models/devin_models.json",
+      "conclusion": "通过",
+      "base_blob": "6f1e69ae1dc034e387b032c9e0516826c353933b",
+      "candidate_blob": "da5508962ce71cab7483b6fee3ff1518a006f6f9",
+      "diff_sha256": "8dd08d27b6268001b33f539c32391caf6af0d53e95e2861297b0abb6a84d19c1",
+      "diff_bytes": 20245,
+      "diff_lines": [
+        1,
+        924
+      ],
+      "source_hunks": [
+        {
+          "base_start": 1,
+          "base_count": 6,
+          "candidate_start": 1,
+          "candidate_count": 54
+        },
+        {
+          "base_start": 26,
+          "base_count": 36,
+          "candidate_start": 74,
+          "candidate_count": 177
+        },
+        {
+          "base_start": 99,
+          "base_count": 193,
+          "candidate_start": 288,
+          "candidate_count": 6
+        },
+        {
+          "base_start": 366,
+          "base_count": 6,
+          "candidate_start": 368,
+          "candidate_count": 56
+        },
+        {
+          "base_start": 535,
+          "base_count": 6,
+          "candidate_start": 587,
+          "candidate_count": 31
+        },
+        {
+          "base_start": 552,
+          "base_count": 29,
+          "candidate_start": 629,
+          "candidate_count": 6
+        },
+        {
+          "base_start": 627,
+          "base_count": 22,
+          "candidate_start": 681,
+          "candidate_count": 23
+        },
+        {
+          "base_start": 696,
+          "base_count": 7,
+          "candidate_start": 751,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 712,
+          "base_count": 6,
+          "candidate_start": 767,
+          "candidate_count": 8
+        },
+        {
+          "base_start": 739,
+          "base_count": 6,
+          "candidate_start": 796,
+          "candidate_count": 29
+        },
+        {
+          "base_start": 877,
+          "base_count": 204,
+          "candidate_start": 957,
+          "candidate_count": 6
+        },
+        {
+          "base_start": 1145,
+          "base_count": 52,
+          "candidate_start": 1027,
+          "candidate_count": 6
+        },
+        {
+          "base_start": 1212,
+          "base_count": 4,
+          "candidate_start": 1048,
+          "candidate_count": 4
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/aistudio_executor.go",
+      "conclusion": "通过",
+      "base_blob": "ad42c95d600b2c04a1eef5ff0631e66f6e78e921",
+      "candidate_blob": "fe5e0cc93941e198f1f1f4f16fe034877bb9e6fd",
+      "diff_sha256": "901e2daffab50f3d9bc113bdda75f5921bcd6ab5439b5c10fc1404b0cf7ef763",
+      "diff_bytes": 4621,
+      "diff_lines": [
+        1,
+        92
+      ],
+      "source_hunks": [
+        {
+          "base_start": 384,
+          "base_count": 25,
+          "candidate_start": 384,
+          "candidate_count": 29
+        },
+        {
+          "base_start": 642,
+          "base_count": 6,
+          "candidate_start": 646,
+          "candidate_count": 42
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/aistudio_multiframe_test.go",
+      "conclusion": "通过",
+      "base_blob": null,
+      "candidate_blob": "d33dac81e51a88554b90bed5395e16e6bfc544db",
+      "diff_sha256": "6634ef3034f2f24429e1760bda7ccef249d0dc8f2c7876dccda6235100e7038b",
+      "diff_bytes": 10267,
+      "diff_lines": [
+        1,
+        234
+      ],
+      "source_hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 231
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/antigravity_issue6825_test.go",
+      "conclusion": "通过",
+      "base_blob": "f6cb186e3c103139faff981e0e4528653f022b34",
+      "candidate_blob": "d86474d74f2c770a3b25a72b8878b74e02ea1b7b",
+      "diff_sha256": "cdac88bf0886a7d807f65102482acbb645680cefa2ef1601d79e1bb60adeab12",
+      "diff_bytes": 1157,
+      "diff_lines": [
+        1,
+        15
+      ],
+      "source_hunks": [
+        {
+          "base_start": 396,
+          "base_count": 10,
+          "candidate_start": 396,
+          "candidate_count": 10
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/claude_executor_execute.go",
+      "conclusion": "通过",
+      "base_blob": "e8b08d35a4a411017b94bd6f2efd105dcb39330c",
+      "candidate_blob": "3e59b42e8ae5e9ba4e7346b9217980f099770582",
+      "diff_sha256": "a38801466d2cd9e5735d6e409524aa1a0fc7ed7891a7c8fcef3cce62a3d619dd",
+      "diff_bytes": 613,
+      "diff_lines": [
+        1,
+        11
+      ],
+      "source_hunks": [
+        {
+          "base_start": 211,
+          "base_count": 7,
+          "candidate_start": 211,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/claude_executor_request.go",
+      "conclusion": "通过",
+      "base_blob": "e5cf769cbde4cc6615c5fdf83a9ed06d29755f06",
+      "candidate_blob": "7cc80885f121a67e65701e2f9f2ed515e3ce1459",
+      "diff_sha256": "b96468091422ee4ccd8b85297a9aedbd41080eed77d999baebbaddad45bc31e4",
+      "diff_bytes": 1715,
+      "diff_lines": [
+        1,
+        40
+      ],
+      "source_hunks": [
+        {
+          "base_start": 26,
+          "base_count": 6,
+          "candidate_start": 26,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 1844,
+          "base_count": 15,
+          "candidate_start": 1845,
+          "candidate_count": 27
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/claude_executor_stream.go",
+      "conclusion": "通过",
+      "base_blob": "dc6b2fd3972233116fd2bfceeaed9b0c16e60ddc",
+      "candidate_blob": "60dad300b8f5d4f1199ebc06bdeeaf05efe1e309",
+      "diff_sha256": "7ea9c5755faa0d4f70325256f86a8acea0e09cb5b1fad884d2f4e769ca3836ff",
+      "diff_bytes": 610,
+      "diff_lines": [
+        1,
+        11
+      ],
+      "source_hunks": [
+        {
+          "base_start": 206,
+          "base_count": 7,
+          "candidate_start": 206,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/claude_executor_test.go",
+      "conclusion": "通过",
+      "base_blob": "3abdd196b27358f4845134bacea818b1111fcff9",
+      "candidate_blob": "6d4477084a0c2395034649a5085dd3ceefb28e91",
+      "diff_sha256": "4ce50c114760488a5b1563cdd5a8d128a8a9c1f93d89216cef27435f7d380203",
+      "diff_bytes": 7043,
+      "diff_lines": [
+        1,
+        156
+      ],
+      "source_hunks": [
+        {
+          "base_start": 25,
+          "base_count": 6,
+          "candidate_start": 25,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 8172,
+          "base_count": 6,
+          "candidate_start": 8173,
+          "candidate_count": 145
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/claude_executor_tokens.go",
+      "conclusion": "通过",
+      "base_blob": "8d949940c647431d1f51f6ea5722aafc90bfc3f4",
+      "candidate_blob": "5eaafcf582547b2ab1e7536674bb71e55d0f1c6d",
+      "diff_sha256": "8aee0e3f51860715020fed0a0ac24c0f33304c0a3ff148dde8da5abb3e67e345",
+      "diff_bytes": 701,
+      "diff_lines": [
+        1,
+        11
+      ],
+      "source_hunks": [
+        {
+          "base_start": 217,
+          "base_count": 7,
+          "candidate_start": 217,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/codex_websockets_duplex.go",
+      "conclusion": "通过",
+      "base_blob": "7d80a497cb0025a841d6ca94caa2eb97acba6f85",
+      "candidate_blob": "de15c1b88bb64faa0b6fe671b80277c37f7d130c",
+      "diff_sha256": "7987a2738973f4af3297a7a2e142daaf2fc49b2742f50376c7a6c9925971ef64",
+      "diff_bytes": 1812,
+      "diff_lines": [
+        1,
+        43
+      ],
+      "source_hunks": [
+        {
+          "base_start": 136,
+          "base_count": 15,
+          "candidate_start": 136,
+          "candidate_count": 16
+        },
+        {
+          "base_start": 186,
+          "base_count": 14,
+          "candidate_start": 187,
+          "candidate_count": 14
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/gemini_vertex_executor.go",
+      "conclusion": "通过",
+      "base_blob": "b09f3026dcf5031e935a5b10c7c1f72a8e86088d",
+      "candidate_blob": "7a368046b67a99bb4e17949afa78fd6f843e0298",
+      "diff_sha256": "f595be330537065d2be727b78c330121acb1d88965bd96d56e6909e116eab6f3",
+      "diff_bytes": 948,
+      "diff_lines": [
+        1,
+        22
+      ],
+      "source_hunks": [
+        {
+          "base_start": 1384,
+          "base_count": 7,
+          "candidate_start": 1384,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 1471,
+          "base_count": 9,
+          "candidate_start": 1471,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/gemini_vertex_executor_test.go",
+      "conclusion": "通过",
+      "base_blob": "092ab3d3dbf9f8e549938b1516ea122a12d60627",
+      "candidate_blob": "1d89dce3a16fbdf52ed80f095ff7a4c8954fa2f6",
+      "diff_sha256": "ebb38b1971698cf949df4330874f1f1c6b5716f74e6cc5e4ac5608ec50aba0a0",
+      "diff_bytes": 596,
+      "diff_lines": [
+        1,
+        12
+      ],
+      "source_hunks": [
+        {
+          "base_start": 519,
+          "base_count": 7,
+          "candidate_start": 519,
+          "candidate_count": 8
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/helps/devin_models.go",
+      "conclusion": "通过",
+      "base_blob": "cdd41b9517f38173629c218dae9a73113bba1d66",
+      "candidate_blob": "b9701fc0b79862e49a7591a8ebc325f9faf8280b",
+      "diff_sha256": "01f3c67be4490d087533e1c3410f824fcc1cccb4a9c0cfd037dae6b9d226795a",
+      "diff_bytes": 1657,
+      "diff_lines": [
+        1,
+        47
+      ],
+      "source_hunks": [
+        {
+          "base_start": 33,
+          "base_count": 6,
+          "candidate_start": 33,
+          "candidate_count": 13
+        },
+        {
+          "base_start": 211,
+          "base_count": 12,
+          "candidate_start": 218,
+          "candidate_count": 28
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/helps/devin_models_test.go",
+      "conclusion": "通过",
+      "base_blob": "d73914a640d73ff9f053d989b33b6fb561a525e7",
+      "candidate_blob": "21c8a874f6dc161eda37d675082301bf396dccd1",
+      "diff_sha256": "a24a472626d23cf2f6c18f4789d442aee889e50bc1c0aaa04f2d7caa89d5041c",
+      "diff_bytes": 3533,
+      "diff_lines": [
+        1,
+        104
+      ],
+      "source_hunks": [
+        {
+          "base_start": 212,
+          "base_count": 10,
+          "candidate_start": 212,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 308,
+          "base_count": 10,
+          "candidate_start": 308,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 362,
+          "base_count": 10,
+          "candidate_start": 362,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 564,
+          "base_count": 6,
+          "candidate_start": 564,
+          "candidate_count": 60
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/helps/vertex_openapi.go",
+      "conclusion": "通过",
+      "base_blob": "d2b98e4ed5d482be9ccde689e8717da53a2f1faf",
+      "candidate_blob": "465025d60235f0be5d7e3d917fd88f21b078c231",
+      "diff_sha256": "1889d35c489e1f22753a334894f7effa65cb419ff4b5061fbacec832f3949348",
+      "diff_bytes": 1116,
+      "diff_lines": [
+        1,
+        31
+      ],
+      "source_hunks": [
+        {
+          "base_start": 449,
+          "base_count": 7,
+          "candidate_start": 449,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 488,
+          "base_count": 9,
+          "candidate_start": 488,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 504,
+          "base_count": 7,
+          "candidate_start": 502,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/helps/vertex_openapi_test.go",
+      "conclusion": "通过",
+      "base_blob": "82bc513dc63c74bbde90e200e97630f16d6ace90",
+      "candidate_blob": "40a159cf5bcac4845854144883da50d8af00ca4a",
+      "diff_sha256": "3ca54904e1afed9d4e68b0423877446d97ef0b30176899960a3741a320309f45",
+      "diff_bytes": 1186,
+      "diff_lines": [
+        1,
+        27
+      ],
+      "source_hunks": [
+        {
+          "base_start": 5,
+          "base_count": 6,
+          "candidate_start": 5,
+          "candidate_count": 24
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/websocket_session_target_test.go",
+      "conclusion": "通过",
+      "base_blob": "2422bb0e85a590585618e834a7cfb841969b519f",
+      "candidate_blob": "2141331174e0bdb4c65ba20c797a11ed0fd854d6",
+      "diff_sha256": "a6102d07d5326d3ceb328b4902978e6270f89a53fb2036fddbbc0baa05413f14",
+      "diff_bytes": 1054,
+      "diff_lines": [
+        1,
+        20
+      ],
+      "source_hunks": [
+        {
+          "base_start": 232,
+          "base_count": 12,
+          "candidate_start": 232,
+          "candidate_count": 16
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/xai_executor_request.go",
+      "conclusion": "通过",
+      "base_blob": "296379ebbe95bbd73ad50fb001fde26dd4d0a852",
+      "candidate_blob": "569b4b91572e5b76a403caeb1ab334d0c73058ea",
+      "diff_sha256": "c08ae52ec9ce1e3430435001726ab1632cb64bb039a2adfcb956459b9fe5de27",
+      "diff_bytes": 12574,
+      "diff_lines": [
+        1,
+        367
+      ],
+      "source_hunks": [
+        {
+          "base_start": 45,
+          "base_count": 6,
+          "candidate_start": 45,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 1132,
+          "base_count": 7,
+          "candidate_start": 1133,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 1140,
+          "base_count": 13,
+          "candidate_start": 1141,
+          "candidate_count": 35
+        },
+        {
+          "base_start": 1154,
+          "base_count": 13,
+          "candidate_start": 1177,
+          "candidate_count": 18
+        },
+        {
+          "base_start": 1174,
+          "base_count": 21,
+          "candidate_start": 1202,
+          "candidate_count": 69
+        },
+        {
+          "base_start": 1289,
+          "base_count": 13,
+          "candidate_start": 1365,
+          "candidate_count": 17
+        },
+        {
+          "base_start": 1396,
+          "base_count": 8,
+          "candidate_start": 1476,
+          "candidate_count": 22
+        },
+        {
+          "base_start": 1409,
+          "base_count": 14,
+          "candidate_start": 1503,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 1436,
+          "base_count": 13,
+          "candidate_start": 1530,
+          "candidate_count": 29
+        },
+        {
+          "base_start": 1455,
+          "base_count": 16,
+          "candidate_start": 1565,
+          "candidate_count": 32
+        },
+        {
+          "base_start": 1477,
+          "base_count": 7,
+          "candidate_start": 1603,
+          "candidate_count": 9
+        },
+        {
+          "base_start": 1489,
+          "base_count": 7,
+          "candidate_start": 1617,
+          "candidate_count": 9
+        },
+        {
+          "base_start": 1740,
+          "base_count": 12,
+          "candidate_start": 1870,
+          "candidate_count": 25
+        },
+        {
+          "base_start": 1753,
+          "base_count": 14,
+          "candidate_start": 1896,
+          "candidate_count": 40
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/xai_executor_response.go",
+      "conclusion": "通过",
+      "base_blob": "64c0b984bc3620202826c9403c00c80dfaa8f5c4",
+      "candidate_blob": "e98ce760614c6a86c8dd43abaafbdaf0dbf51c57",
+      "diff_sha256": "5a8396be2caa2c2a8c9ab450af55200a7729828b7a996aeed0762eeee55725be",
+      "diff_bytes": 843,
+      "diff_lines": [
+        1,
+        21
+      ],
+      "source_hunks": [
+        {
+          "base_start": 477,
+          "base_count": 9,
+          "candidate_start": 477,
+          "candidate_count": 15
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/xai_executor_test.go",
+      "conclusion": "通过",
+      "base_blob": "4a5c7b89c54265e53448410773f64f3f9dc2f7d3",
+      "candidate_blob": "2bc18148b037d2bf9b72df1b062f9b774cf9ccbc",
+      "diff_sha256": "eace04d8e16391be11817997a6074fd4deb216907b2295f9dc4f2b6a482377ab",
+      "diff_bytes": 14420,
+      "diff_lines": [
+        1,
+        265
+      ],
+      "source_hunks": [
+        {
+          "base_start": 4856,
+          "base_count": 6,
+          "candidate_start": 4856,
+          "candidate_count": 262
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/runtime/executor/xai_websockets_executor_test.go",
+      "conclusion": "通过",
+      "base_blob": "df6c0dd41b51c40e73720c1b5e0f68a43ce5f47e",
+      "candidate_blob": "0c503941e33491b8a17e8549dd9e243cac164277",
+      "diff_sha256": "19956a8795da750cd0787bd8520b3631d7a5e63e730f201ce29dc7a1d7de1094",
+      "diff_bytes": 4181,
+      "diff_lines": [
+        1,
+        124
+      ],
+      "source_hunks": [
+        {
+          "base_start": 9,
+          "base_count": 6,
+          "candidate_start": 9,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 2231,
+          "base_count": 10,
+          "candidate_start": 2232,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 2256,
+          "base_count": 11,
+          "candidate_start": 2261,
+          "candidate_count": 17
+        },
+        {
+          "base_start": 2278,
+          "base_count": 12,
+          "candidate_start": 2289,
+          "candidate_count": 21
+        },
+        {
+          "base_start": 2327,
+          "base_count": 10,
+          "candidate_start": 2347,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 2352,
+          "base_count": 11,
+          "candidate_start": 2376,
+          "candidate_count": 17
+        },
+        {
+          "base_start": 2374,
+          "base_count": 12,
+          "candidate_start": 2404,
+          "candidate_count": 21
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/translator/codex/gemini/codex_gemini_response.go",
+      "conclusion": "通过",
+      "base_blob": "a6a9049baa9d709cc4af586c749d218d7aac2fc3",
+      "candidate_blob": "3de5631d5a7d6752bb741c1318acb86b32ee286c",
+      "diff_sha256": "6ea9096df173abe8ed5668bbc54091bf5129e303bf736a98111fae7cf4cea3f1",
+      "diff_bytes": 654,
+      "diff_lines": [
+        1,
+        11
+      ],
+      "source_hunks": [
+        {
+          "base_start": 343,
+          "base_count": 6,
+          "candidate_start": 343,
+          "candidate_count": 8
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/translator/codex/gemini/codex_gemini_response_test.go",
+      "conclusion": "通过",
+      "base_blob": "ebded57460620380415635cf52c3baf4c3da9757",
+      "candidate_blob": "c8a1ed3a7d08e912cd2a9c96d80d0fdc3eb3517e",
+      "diff_sha256": "3919bba0097a5e126e494045d0d99189da32dbffcd05a712a9848271336ac65a",
+      "diff_bytes": 878,
+      "diff_lines": [
+        1,
+        15
+      ],
+      "source_hunks": [
+        {
+          "base_start": 344,
+          "base_count": 3,
+          "candidate_start": 344,
           "candidate_count": 12
         }
       ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          127
-        ],
-        [
-          140,
-          174
-        ]
-      ],
-      "diff_sha256": "35d0cfbfa3659110c42e2b75110a2057eaec8be4a451d9cf4e5c1c52a8920e84"
+      "actual_read_record": "actual-diff-read-coverage.json"
     },
     {
-      "path": "sdk/translator/registry.go",
-      "base_blob": "95af51341fb79a534d0e6a483ae71d1a2f10e839",
-      "candidate_blob": "145606bfad845919cedb44c05804aab48e20a93f",
-      "candidate_lines": 460,
-      "complete_diff_read": true,
-      "diff_lines_read": [
+      "path": "internal/translator/openai/gemini/openai_gemini_response.go",
+      "conclusion": "通过",
+      "base_blob": "2150b4d7cc9bf92662d40c5cd7fa62b32324f409",
+      "candidate_blob": "557c6334cda10075bd5b1aefca148d8b7918968f",
+      "diff_sha256": "836f939d1b428f5d8addf8ff262bcdab4a5df35bf416464eee25e00702d78c7f",
+      "diff_bytes": 549,
+      "diff_lines": [
+        1,
+        12
+      ],
+      "source_hunks": [
+        {
+          "base_start": 146,
+          "base_count": 7,
+          "candidate_start": 146,
+          "candidate_count": 8
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/translator/openai/gemini/openai_gemini_response_test.go",
+      "conclusion": "通过",
+      "base_blob": "7794a293fbbe86ae9728c01f08773462dd678bb1",
+      "candidate_blob": "2a1cb0607cd29ccc65421c8b455bed293dd51d5d",
+      "diff_sha256": "f8722d1f118439c67eb26d9c9ba56a9ef1cecf8483231972fc0bd380cb55b6f8",
+      "diff_bytes": 2052,
+      "diff_lines": [
+        1,
+        39
+      ],
+      "source_hunks": [
+        {
+          "base_start": 243,
+          "base_count": 3,
+          "candidate_start": 243,
+          "candidate_count": 36
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/util/gemini_schema.go",
+      "conclusion": "通过",
+      "base_blob": "c60f48cefce2667cbdb28e180ce478f66d6ea3f2",
+      "candidate_blob": "8bf0dea6dafa51848e203fb8187a083821da0773",
+      "diff_sha256": "2fd565025d97ea750ca1392eff683bd4b63b5f5f4954dc4a97cf18b9223b0b78",
+      "diff_bytes": 7907,
+      "diff_lines": [
+        1,
+        189
+      ],
+      "source_hunks": [
+        {
+          "base_start": 133,
+          "base_count": 9,
+          "candidate_start": 133,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 346,
+          "base_count": 8,
+          "candidate_start": 347,
+          "candidate_count": 8
+        },
+        {
+          "base_start": 371,
+          "base_count": 7,
+          "candidate_start": 372,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 389,
+          "base_count": 7,
+          "candidate_start": 390,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 484,
+          "base_count": 7,
+          "candidate_start": 485,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 510,
+          "base_count": 7,
+          "candidate_start": 511,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 541,
+          "base_count": 9,
+          "candidate_start": 542,
+          "candidate_count": 9
+        },
+        {
+          "base_start": 556,
+          "base_count": 33,
+          "candidate_start": 557,
+          "candidate_count": 15
+        },
+        {
+          "base_start": 593,
+          "base_count": 7,
+          "candidate_start": 576,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 601,
+          "base_count": 7,
+          "candidate_start": 584,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 610,
+          "base_count": 7,
+          "candidate_start": 593,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 623,
+          "base_count": 7,
+          "candidate_start": 606,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 637,
+          "base_count": 7,
+          "candidate_start": 620,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 660,
+          "base_count": 12,
+          "candidate_start": 643,
+          "candidate_count": 12
+        },
+        {
+          "base_start": 680,
+          "base_count": 7,
+          "candidate_start": 663,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 711,
+          "base_count": 7,
+          "candidate_start": 694,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/util/gemini_schema_test.go",
+      "conclusion": "通过",
+      "base_blob": "1ff4ea3acc34264cc8aa197ebcc927da29e8858c",
+      "candidate_blob": "088df3b40864143031c268632c2a7b7e10d3b4ac",
+      "diff_sha256": "adeefd9d7896128800e1893d568a66e19146bdf85e584b05334754d757673e4b",
+      "diff_bytes": 4359,
+      "diff_lines": [
+        1,
+        119
+      ],
+      "source_hunks": [
+        {
+          "base_start": 4410,
+          "base_count": 3,
+          "candidate_start": 4410,
+          "candidate_count": 116
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/watcher/clients.go",
+      "conclusion": "通过",
+      "base_blob": "130892f4dcb0cbc8187ba263a4bd6e33efbaee1a",
+      "candidate_blob": "98bf690dfded4bcb4ded66d98dbef2bdd0038516",
+      "diff_sha256": "ac6b268dec6be21dc7eff27657c2da01d945fe0b2356327efd8d4f71b3c7ebf0",
+      "diff_bytes": 648,
+      "diff_lines": [
+        1,
+        18
+      ],
+      "source_hunks": [
+        {
+          "base_start": 458,
+          "base_count": 6,
+          "candidate_start": 458,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 473,
+          "base_count": 6,
+          "candidate_start": 474,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/watcher/dispatcher.go",
+      "conclusion": "通过",
+      "base_blob": "ad92e182e547f75df95f66651b433c566231c4a2",
+      "candidate_blob": "1e165b452a040001344a6f919e777e7b8a9bb7cc",
+      "diff_sha256": "a88ed4181943ece8d7028a6fdee98099e7881cd2dbe31f9bf49b1d235161df40",
+      "diff_bytes": 2100,
+      "diff_lines": [
+        1,
+        63
+      ],
+      "source_hunks": [
+        {
+          "base_start": 59,
+          "base_count": 6,
+          "candidate_start": 59,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 67,
+          "base_count": 6,
+          "candidate_start": 68,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 109,
+          "base_count": 7,
+          "candidate_start": 111,
+          "candidate_count": 6
+        },
+        {
+          "base_start": 132,
+          "base_count": 6,
+          "candidate_start": 133,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 236,
+          "base_count": 6,
+          "candidate_start": 241,
+          "candidate_count": 15
+        },
+        {
+          "base_start": 300,
+          "base_count": 7,
+          "candidate_start": 314,
+          "candidate_count": 8
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/watcher/snapshot_traffic_test.go",
+      "conclusion": "通过",
+      "base_blob": "70480c89f81a884145e943ee4ae9390d2dc1b13d",
+      "candidate_blob": "e6aa9c01c46e6727874c6ef849787f10a8b1bb6e",
+      "diff_sha256": "96121aa0ddf1920f2f2cac82d16f7494187f30811dc412df999ded521772aee6",
+      "diff_bytes": 5007,
+      "diff_lines": [
+        1,
+        112
+      ],
+      "source_hunks": [
+        {
+          "base_start": 281,
+          "base_count": 45,
+          "candidate_start": 281,
+          "candidate_count": 67
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "internal/watcher/watcher.go",
+      "conclusion": "通过",
+      "base_blob": "c5017dc0afe97cdeceea469b4277e427ec85ca15",
+      "candidate_blob": "60a5f68f24243e0142da882cf756d356a5c3acaa",
+      "diff_sha256": "dbb2f135e7186614f748eb154ba2affb2d393c82cce0397e61dc888ec4db6ab4",
+      "diff_bytes": 753,
+      "diff_lines": [
+        1,
+        10
+      ],
+      "source_hunks": [
+        {
+          "base_start": 55,
+          "base_count": 6,
+          "candidate_start": 55,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/api/handlers/handlers.go",
+      "conclusion": "通过",
+      "base_blob": "5e8df3a7cbc49d5da88d0997c68e1d9efe8b77a2",
+      "candidate_blob": "be576f70631afdfcc02b203dad52b0c3e33fb5f0",
+      "diff_sha256": "928888e47a05a0a6837423105ee9cdc2adee9608c5589960639397f8168275ca",
+      "diff_bytes": 814,
+      "diff_lines": [
+        1,
+        31
+      ],
+      "source_hunks": [
+        {
+          "base_start": 354,
+          "base_count": 6,
+          "candidate_start": 354,
+          "candidate_count": 28
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/api/handlers/handlers_execution.go",
+      "conclusion": "通过",
+      "base_blob": "5e4c1962cc7ccc30c86fab15c640758c3fe5268d",
+      "candidate_blob": "0f821c3e410e20d09350e14107d7c6747143f6ca",
+      "diff_sha256": "96bc020111c364bc98d97cd4fdbafe33dc5fe331e62fac3ee97b58634f8de7af",
+      "diff_bytes": 1394,
+      "diff_lines": [
+        1,
+        26
+      ],
+      "source_hunks": [
+        {
+          "base_start": 65,
+          "base_count": 6,
+          "candidate_start": 65,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 137,
+          "base_count": 6,
+          "candidate_start": 138,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 280,
+          "base_count": 6,
+          "candidate_start": 282,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/api/handlers/handlers_interceptors.go",
+      "conclusion": "通过",
+      "base_blob": "b7aa2a5922a5b9e491f15bbb24be1ce995f2a203",
+      "candidate_blob": "330ab51329b0d5a37d4c720049fc5e945b3d6079",
+      "diff_sha256": "9cc30d6a1ba1ec7e0ec597fe2113cb8181673db7c955901a27275e9ec152afee",
+      "diff_bytes": 1215,
+      "diff_lines": [
+        1,
+        30
+      ],
+      "source_hunks": [
+        {
+          "base_start": 245,
+          "base_count": 6,
+          "candidate_start": 245,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 499,
+          "base_count": 6,
+          "candidate_start": 504,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 589,
+          "base_count": 6,
+          "candidate_start": 595,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/api/handlers/handlers_routing.go",
+      "conclusion": "通过",
+      "base_blob": "0ddd28a911aa3fb3dbc842eb91257df194df1970",
+      "candidate_blob": "e4e03f017fd8a07a9d66556a684a6b13689848f6",
+      "diff_sha256": "4f18ee913fe38b0c42eae2d3da7d815a4d88482ecfb0ed3eebb7bb24820c707b",
+      "diff_bytes": 495,
+      "diff_lines": [
+        1,
+        10
+      ],
+      "source_hunks": [
+        {
+          "base_start": 366,
+          "base_count": 6,
+          "candidate_start": 366,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/api/handlers/handlers_stream.go",
+      "conclusion": "通过",
+      "base_blob": "6f0bfbc931b28b49064cb3879702d0ccf7f96bee",
+      "candidate_blob": "fb79177dba2a9034d9335cc80a23e1bc3446aaa4",
+      "diff_sha256": "b8759493c99fb9e69da5523e0c00e680489217ddb0713ede6e12648c02d01bfe",
+      "diff_bytes": 561,
+      "diff_lines": [
+        1,
+        10
+      ],
+      "source_hunks": [
+        {
+          "base_start": 311,
+          "base_count": 6,
+          "candidate_start": 311,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/api/handlers/handlers_stream_delivery_test.go",
+      "conclusion": "通过",
+      "base_blob": "a3c63b65d847d7b3ca49712a85cba24430b8f39e",
+      "candidate_blob": "5486c39ea5de9622c9caaf12c4e44a7dbf33f305",
+      "diff_sha256": "342a1edc3b7b679501ae787653cab9f501ae689341e2fe91c8ee74e76ffc486a",
+      "diff_bytes": 1292,
+      "diff_lines": [
+        1,
+        26
+      ],
+      "source_hunks": [
+        {
+          "base_start": 160,
+          "base_count": 3,
+          "candidate_start": 160,
+          "candidate_count": 23
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/api/handlers/model_execution.go",
+      "conclusion": "通过",
+      "base_blob": "3a24476cca40b191afa6921155499ba0d05767e7",
+      "candidate_blob": "c98c26600cb2ef69475a6fde1bed359c0ecd7454",
+      "diff_sha256": "c6f3238acf6d4daf939a9c3efba4deff245e07d94b5e9182af22d24ee0a515c6",
+      "diff_bytes": 1258,
+      "diff_lines": [
         1,
         34
       ],
-      "hunks": [
+      "source_hunks": [
         {
-          "base_start": 247,
+          "base_start": 27,
           "base_count": 6,
-          "candidate_start": 247,
-          "candidate_count": 19
+          "candidate_start": 27,
+          "candidate_count": 7
         },
         {
-          "base_start": 422,
+          "base_start": 61,
           "base_count": 6,
-          "candidate_start": 435,
+          "candidate_start": 62,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 127,
+          "base_count": 6,
+          "candidate_start": 129,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 164,
+          "base_count": 6,
+          "candidate_start": 167,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/api/handlers/model_execution_test.go",
+      "conclusion": "通过",
+      "base_blob": "bf8dbe2dda6b811eed4202fc5606f5ca0224aad5",
+      "candidate_blob": "b52a98670783b0ad6b877bb78c4f3880cb46159a",
+      "diff_sha256": "d28041d79b9a2bc3c1e5e9f68cd301f6f07205ef07ce8874e4f13f0356922144",
+      "diff_bytes": 6126,
+      "diff_lines": [
+        1,
+        123
+      ],
+      "source_hunks": [
+        {
+          "base_start": 4,
+          "base_count": 12,
+          "candidate_start": 4,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 1251,
+          "base_count": 3,
+          "candidate_start": 1253,
+          "candidate_count": 105
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/api/handlers/openai/openai_responses_steering_auth_test.go",
+      "conclusion": "通过",
+      "base_blob": "a4ae5bdf210af85d3f6040062ae2ccdb979fbde7",
+      "candidate_blob": "ef3e42b65ad4d63867a6078719530387d778e1f5",
+      "diff_sha256": "7c463ea6d361ab8341aa472fb4c52688cc1715bf388e1cf941e5780eea94ed9a",
+      "diff_bytes": 8820,
+      "diff_lines": [
+        1,
+        219
+      ],
+      "source_hunks": [
+        {
+          "base_start": 17,
+          "base_count": 7,
+          "candidate_start": 17,
+          "candidate_count": 9
+        },
+        {
+          "base_start": 260,
+          "base_count": 4,
+          "candidate_start": 262,
+          "candidate_count": 205
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/api/handlers/openai/openai_responses_websocket.go",
+      "conclusion": "通过",
+      "base_blob": "92de91756d8858811b8b0cad8c1afe71de548644",
+      "candidate_blob": "e80a9d2f2ee9499202bd7e3deed3a4cbc07b2236",
+      "diff_sha256": "03c258a84ce707c193bf7d7b74f3d74d805006e396858838ed4258ef63951717",
+      "diff_bytes": 3541,
+      "diff_lines": [
+        1,
+        83
+      ],
+      "source_hunks": [
+        {
+          "base_start": 266,
+          "base_count": 16,
+          "candidate_start": 266,
+          "candidate_count": 16
+        },
+        {
+          "base_start": 304,
+          "base_count": 12,
+          "candidate_start": 304,
+          "candidate_count": 15
+        },
+        {
+          "base_start": 317,
+          "base_count": 14,
+          "candidate_start": 320,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 532,
+          "base_count": 7,
+          "candidate_start": 535,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 800,
+          "base_count": 8,
+          "candidate_start": 803,
+          "candidate_count": 15
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/api/handlers/openai/openai_responses_websocket_forward.go",
+      "conclusion": "通过",
+      "base_blob": "1333ebffdcd678bbda8c246e335f58976330a0e4",
+      "candidate_blob": "8878a73ca38a88a9856213133084b669f832f10b",
+      "diff_sha256": "15f7c7158780bf919f7889f5b4e28e469c6843b102a57f8a2be24b3ff1c028d6",
+      "diff_bytes": 4043,
+      "diff_lines": [
+        1,
+        89
+      ],
+      "source_hunks": [
+        {
+          "base_start": 77,
+          "base_count": 6,
+          "candidate_start": 77,
+          "candidate_count": 36
+        },
+        {
+          "base_start": 98,
+          "base_count": 36,
+          "candidate_start": 128,
+          "candidate_count": 21
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/api/handlers/openai/openai_responses_websocket_test.go",
+      "conclusion": "通过",
+      "base_blob": "a36b930f970f913abb984ec4d47c742611dafc59",
+      "candidate_blob": "02bf123dfc9d628fce66e201ebb88e191d579a66",
+      "diff_sha256": "6bdfe1029ff5006f4ce8502aa832eaab733f8df9adff6336ab006b785a6af650",
+      "diff_bytes": 3990,
+      "diff_lines": [
+        1,
+        95
+      ],
+      "source_hunks": [
+        {
+          "base_start": 7781,
+          "base_count": 6,
+          "candidate_start": 7781,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 7811,
+          "base_count": 7,
+          "candidate_start": 7812,
+          "candidate_count": 43
+        },
+        {
+          "base_start": 7976,
+          "base_count": 3,
+          "candidate_start": 8013,
+          "candidate_count": 39
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/cliproxy/auth/codex_siwc_bind.go",
+      "conclusion": "通过",
+      "base_blob": "1549558455d870eb9d5976b9712850fbf445b6f1",
+      "candidate_blob": "a2240c8c97857c92f1d01ce26f619341afc27df7",
+      "diff_sha256": "94bce5559744a7a1ce7b607a846b8e7bf85b3756fc3af37c1d858112ffa9019d",
+      "diff_bytes": 949,
+      "diff_lines": [
+        1,
+        15
+      ],
+      "source_hunks": [
+        {
+          "base_start": 129,
+          "base_count": 7,
+          "candidate_start": 129,
           "candidate_count": 11
         }
       ],
-      "unchanged_candidate_ranges_reusing_approved_baseline": [
-        [
-          1,
-          246
-        ],
-        [
-          266,
-          434
-        ],
-        [
-          446,
-          460
-        ]
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/cliproxy/auth/conductor_lifecycle.go",
+      "conclusion": "通过",
+      "base_blob": "ba48a5e148b9e4afb7d78aa0bbaf84d9e299f5cd",
+      "candidate_blob": "488eb3cd3604a0f3c94e039a834237b8d330b7e5",
+      "diff_sha256": "1f0b4d2826f678873ef1afeef8592d0b856234a810ab4005b2c5b242d1bcc32e",
+      "diff_bytes": 3538,
+      "diff_lines": [
+        1,
+        71
       ],
-      "diff_sha256": "44cbc785e2f4edb5d24d1992e3eeaeaf39a424b2571c20487e3110d104c72de5"
+      "source_hunks": [
+        {
+          "base_start": 380,
+          "base_count": 12,
+          "candidate_start": 380,
+          "candidate_count": 15
+        },
+        {
+          "base_start": 410,
+          "base_count": 7,
+          "candidate_start": 413,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 418,
+          "base_count": 8,
+          "candidate_start": 428,
+          "candidate_count": 12
+        },
+        {
+          "base_start": 430,
+          "base_count": 10,
+          "candidate_start": 444,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 447,
+          "base_count": 7,
+          "candidate_start": 461,
+          "candidate_count": 6
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/cliproxy/auth/conductor_refresh.go",
+      "conclusion": "通过",
+      "base_blob": "56a912b33d13dbc28e86b24ee5cde5325bd6237f",
+      "candidate_blob": "e21998ce51eba82bad833f94dde31a27b3f570c3",
+      "diff_sha256": "44fb8f76e3965282a24f16980c00bda80e066d698d13d50920197b6e6786d14b",
+      "diff_bytes": 1398,
+      "diff_lines": [
+        1,
+        25
+      ],
+      "source_hunks": [
+        {
+          "base_start": 771,
+          "base_count": 11,
+          "candidate_start": 771,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 784,
+          "base_count": 7,
+          "candidate_start": 784,
+          "candidate_count": 7
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/cliproxy/auth/conductor_unauthorized_refresh_test.go",
+      "conclusion": "通过",
+      "base_blob": "3ff1c129fa0676d991ac6c1c88f7298e7b980ca7",
+      "candidate_blob": "21fe3f9d6f19ae096de759fddd3859cd5a03423b",
+      "diff_sha256": "4c302ba5ee8fb09e7005e3e1f9ebe9bf27992216871384f8f4d733904a639bbb",
+      "diff_bytes": 4180,
+      "diff_lines": [
+        1,
+        94
+      ],
+      "source_hunks": [
+        {
+          "base_start": 4,
+          "base_count": 6,
+          "candidate_start": 4,
+          "candidate_count": 8
+        },
+        {
+          "base_start": 714,
+          "base_count": 3,
+          "candidate_start": 716,
+          "candidate_count": 82
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/cliproxy/service_executionregistry_test.go",
+      "conclusion": "通过",
+      "base_blob": "8be8724209e5ef0f87b60a8885df2a3a667f74fc",
+      "candidate_blob": "dbf92290776a6190c5b8c11412adb451f1b4ac6e",
+      "diff_sha256": "caf8aa9230245848770d486c6c6de8c823a3d4708580a70dcb78f407f984137c",
+      "diff_bytes": 2451,
+      "diff_lines": [
+        1,
+        62
+      ],
+      "source_hunks": [
+        {
+          "base_start": 1256,
+          "base_count": 8,
+          "candidate_start": 1256,
+          "candidate_count": 8
+        },
+        {
+          "base_start": 1342,
+          "base_count": 12,
+          "candidate_start": 1342,
+          "candidate_count": 12
+        },
+        {
+          "base_start": 1660,
+          "base_count": 8,
+          "candidate_start": 1660,
+          "candidate_count": 8
+        },
+        {
+          "base_start": 1725,
+          "base_count": 8,
+          "candidate_start": 1725,
+          "candidate_count": 8
+        },
+        {
+          "base_start": 1804,
+          "base_count": 8,
+          "candidate_start": 1804,
+          "candidate_count": 8
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/cliproxy/service_home.go",
+      "conclusion": "通过",
+      "base_blob": "ca9a23a1ec8bfe8cf1e3980c8d6a05d01509255a",
+      "candidate_blob": "bd777a4291a2516fef00f4e5010e30d2f62a061f",
+      "diff_sha256": "f7c80a52fe31b087d7baa1363bfd5d4abc5bb5dad0f21041a52f01733f62464a",
+      "diff_bytes": 2494,
+      "diff_lines": [
+        1,
+        76
+      ],
+      "source_hunks": [
+        {
+          "base_start": 4,
+          "base_count": 6,
+          "candidate_start": 4,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 27,
+          "base_count": 6,
+          "candidate_start": 28,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 490,
+          "base_count": 6,
+          "candidate_start": 492,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 511,
+          "base_count": 6,
+          "candidate_start": 514,
+          "candidate_count": 7
+        },
+        {
+          "base_start": 559,
+          "base_count": 6,
+          "candidate_start": 563,
+          "candidate_count": 8
+        },
+        {
+          "base_start": 610,
+          "base_count": 12,
+          "candidate_start": 616,
+          "candidate_count": 17
+        },
+        {
+          "base_start": 718,
+          "base_count": 6,
+          "candidate_start": 729,
+          "candidate_count": 10
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/cliproxy/service_home_retry.go",
+      "conclusion": "通过",
+      "base_blob": null,
+      "candidate_blob": "7825ca2e41dd7a8669a7c04fb051556ae8460f7e",
+      "diff_sha256": "1c00bb5d1dec5b19b32d3382c14180339c84a8ff6de4dc4720d5b7577c325e47",
+      "diff_bytes": 1112,
+      "diff_lines": [
+        1,
+        34
+      ],
+      "source_hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 31
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/cliproxy/service_home_retry_test.go",
+      "conclusion": "通过",
+      "base_blob": null,
+      "candidate_blob": "9d832180a01b2342448035b3000391a45d18fe9e",
+      "diff_sha256": "0538b3d06e531745e862f37a14258e2b9ccb77ea980f383e2380db65d93a2bf0",
+      "diff_bytes": 2683,
+      "diff_lines": [
+        1,
+        69
+      ],
+      "source_hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 66
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/cliproxy/service_snapshot_runtime_state_test.go",
+      "conclusion": "通过",
+      "base_blob": "e0f5aeda9b9a7e373ddb89f2d5b6317662c57774",
+      "candidate_blob": "1db042928a863ab5aa42d00f8acc13b379f49156",
+      "diff_sha256": "d8f2816a14cdcb3643df34c4d2451f786f9375ab27849be260fcca3c527193e9",
+      "diff_bytes": 5044,
+      "diff_lines": [
+        1,
+        130
+      ],
+      "source_hunks": [
+        {
+          "base_start": 11,
+          "base_count": 7,
+          "candidate_start": 11,
+          "candidate_count": 9
+        },
+        {
+          "base_start": 134,
+          "base_count": 3,
+          "candidate_start": 136,
+          "candidate_count": 117
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/pluginapi/types.go",
+      "conclusion": "通过",
+      "base_blob": "3abdaa59ef3cbfdbe74cd861937302515ca078a4",
+      "candidate_blob": "8f827c7b85d44dc44acb7020dc5ffeaeeb1a5d91",
+      "diff_sha256": "f9ed1baa6290926f827fa869d57681bd5591110bb620b89aed44fe1bd70289ca",
+      "diff_bytes": 1688,
+      "diff_lines": [
+        1,
+        33
+      ],
+      "source_hunks": [
+        {
+          "base_start": 710,
+          "base_count": 6,
+          "candidate_start": 710,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 1134,
+          "base_count": 6,
+          "candidate_start": 1138,
+          "candidate_count": 9
+        },
+        {
+          "base_start": 1186,
+          "base_count": 6,
+          "candidate_start": 1193,
+          "candidate_count": 9
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
+    },
+    {
+      "path": "sdk/pluginapi/types_test.go",
+      "conclusion": "通过",
+      "base_blob": "fe62d1e700c108cef0be941a2156e14778208e67",
+      "candidate_blob": "94ebebbed46db16eea111f4facb92824e1d03677",
+      "diff_sha256": "e2e1c7b847891792968dfe8c51ba03e55784dde215b2be61daa8d099d6c83b03",
+      "diff_bytes": 1601,
+      "diff_lines": [
+        1,
+        30
+      ],
+      "source_hunks": [
+        {
+          "base_start": 191,
+          "base_count": 13,
+          "candidate_start": 191,
+          "candidate_count": 15
+        },
+        {
+          "base_start": 216,
+          "base_count": 7,
+          "candidate_start": 218,
+          "candidate_count": 9
+        }
+      ],
+      "actual_read_record": "actual-diff-read-coverage.json"
     }
   ],
   "shared_context": [
     {
-      "path": "internal/runtime/executor/helps/usage_helpers.go",
-      "function": "APIKeyFromContext",
-      "lines": [
-        802,
-        823
-      ],
-      "commit": "bc0643405a1d0adf77dd0f109972ac3313d66397",
-      "url": "https://github.com/router-for-me/CLIProxyAPI/blob/bc0643405a1d0adf77dd0f109972ac3313d66397/internal/runtime/executor/helps/usage_helpers.go#L802"
+      "context_file": "context/internal/api/handlers/management/handler.go/Middleware.txt",
+      "path": "internal/api/handlers/management/handler.go",
+      "start_line": 323,
+      "end_line": 357,
+      "blob": "529c3a8ba82fd81d83bd5864d082a5f0457aa4a7",
+      "commit": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+      "source_sha256": "5ce28981f50680a1dfefe642888ef67cc34bf78e1e214e236a81752da9fcbdcd"
     },
     {
-      "path": "sdk/cliproxy/usage/manager.go",
-      "function": "APIKeyFromContext",
-      "lines": [
-        312,
-        338
-      ],
-      "commit": "bc0643405a1d0adf77dd0f109972ac3313d66397",
-      "url": "https://github.com/router-for-me/CLIProxyAPI/blob/bc0643405a1d0adf77dd0f109972ac3313d66397/sdk/cliproxy/usage/manager.go#L312"
+      "context_file": "context/internal/api/handlers/management/handler.go/AuthenticateManagementKey.txt",
+      "path": "internal/api/handlers/management/handler.go",
+      "start_line": 358,
+      "end_line": 460,
+      "blob": "529c3a8ba82fd81d83bd5864d082a5f0457aa4a7",
+      "commit": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+      "source_sha256": "5ce28981f50680a1dfefe642888ef67cc34bf78e1e214e236a81752da9fcbdcd"
     },
     {
+      "context_file": "context/internal/pluginhost/http_bridge.go/newHTTPClientWithProxy.txt",
+      "path": "internal/pluginhost/http_bridge.go",
+      "start_line": 41,
+      "end_line": 53,
+      "blob": "1a23fa2302ef19787d506f44afa7969dce8641bd",
+      "commit": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+      "source_sha256": "1fdcc543624398284c48d1600227452457046fe42f7b7830cf020d0c35946f3d"
+    },
+    {
+      "context_file": "context/internal/pluginhost/http_bridge.go/newHTTPClientForRequest.txt",
+      "path": "internal/pluginhost/http_bridge.go",
+      "start_line": 217,
+      "end_line": 524,
+      "blob": "1a23fa2302ef19787d506f44afa7969dce8641bd",
+      "commit": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+      "source_sha256": "1fdcc543624398284c48d1600227452457046fe42f7b7830cf020d0c35946f3d"
+    },
+    {
+      "context_file": "context/sdk/proxyutil/proxy.go/Parse.txt",
+      "path": "sdk/proxyutil/proxy.go",
+      "start_line": 42,
+      "end_line": 78,
+      "blob": "4119baa9507784380f65e9a11043eeda7ba412c1",
+      "commit": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+      "source_sha256": "cd9b515301de15b6132ccee88026a5b445ffdaa3875a8dcfcd5f632ac390ffc5"
+    },
+    {
+      "context_file": "context/sdk/proxyutil/proxy.go/ValidRequestProxy.txt",
+      "path": "sdk/proxyutil/proxy.go",
+      "start_line": 79,
+      "end_line": 94,
+      "blob": "4119baa9507784380f65e9a11043eeda7ba412c1",
+      "commit": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+      "source_sha256": "cd9b515301de15b6132ccee88026a5b445ffdaa3875a8dcfcd5f632ac390ffc5"
+    },
+    {
+      "context_file": "context/sdk/proxyutil/proxy.go/BuildHTTPTransport.txt",
+      "path": "sdk/proxyutil/proxy.go",
+      "start_line": 110,
+      "end_line": 153,
+      "blob": "4119baa9507784380f65e9a11043eeda7ba412c1",
+      "commit": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+      "source_sha256": "cd9b515301de15b6132ccee88026a5b445ffdaa3875a8dcfcd5f632ac390ffc5"
+    },
+    {
+      "context_file": "context/sdk/proxyutil/proxy.go/BuildDialer.txt",
+      "path": "sdk/proxyutil/proxy.go",
+      "start_line": 206,
+      "end_line": 236,
+      "blob": "4119baa9507784380f65e9a11043eeda7ba412c1",
+      "commit": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+      "source_sha256": "cd9b515301de15b6132ccee88026a5b445ffdaa3875a8dcfcd5f632ac390ffc5"
+    },
+    {
+      "context_file": "context/sdk/cliproxy/session/identity.go/CallerScope.txt",
       "path": "sdk/cliproxy/session/identity.go",
-      "function": "CallerScope",
-      "lines": [
-        210,
-        219
-      ],
-      "commit": "bc0643405a1d0adf77dd0f109972ac3313d66397",
-      "url": "https://github.com/router-for-me/CLIProxyAPI/blob/bc0643405a1d0adf77dd0f109972ac3313d66397/sdk/cliproxy/session/identity.go#L210"
+      "start_line": 210,
+      "end_line": 219,
+      "blob": "d0dcd91b642055b9d9c2117afe9cd87f4afa90fc",
+      "commit": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+      "source_sha256": "1d17c4ee862870712c79d1d33a7f46ab2ce58de4ec0d97b994e5d7b52eab4a12"
     },
     {
-      "path": "internal/runtime/executor/helps/payload_finalizer.go",
-      "function": "NewPayloadFinalizer",
-      "lines": [
-        15,
-        27
-      ],
-      "commit": "bc0643405a1d0adf77dd0f109972ac3313d66397",
-      "url": "https://github.com/router-for-me/CLIProxyAPI/blob/bc0643405a1d0adf77dd0f109972ac3313d66397/internal/runtime/executor/helps/payload_finalizer.go#L15"
+      "context_file": "context/internal/util/proxy.go/SetProxy.txt",
+      "path": "internal/util/proxy.go",
+      "start_line": 17,
+      "end_line": 30,
+      "blob": "3d95f8d33c0a544baa58ae04c9f197b45cc8c197",
+      "commit": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+      "source_sha256": "ec8722f3e01674d9ac3ad2589c20317062bef5d225af925088c88aa1621d39ae"
     },
     {
-      "path": "internal/runtime/executor/antigravity_reasoning_replay.go",
-      "function": "antigravityReasoningReplayScopeFromRequest",
-      "lines": [
-        101,
-        130
-      ],
-      "commit": "bc0643405a1d0adf77dd0f109972ac3313d66397",
-      "url": "https://github.com/router-for-me/CLIProxyAPI/blob/bc0643405a1d0adf77dd0f109972ac3313d66397/internal/runtime/executor/antigravity_reasoning_replay.go#L101"
+      "context_file": "context/internal/auth/claude/anthropic_auth.go/NewClaudeAuthWithProxyURL.txt",
+      "path": "internal/auth/claude/anthropic_auth.go",
+      "start_line": 193,
+      "end_line": 214,
+      "blob": "b3b2618fd38f55683828bea502658a700b139dab",
+      "commit": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+      "source_sha256": "1cac6b63d7c748cfaeabde13cd179cb75cdc5337f2a7359dc117d13c3989f9bf"
     },
     {
-      "path": "internal/runtime/executor/antigravity_reasoning_replay.go",
-      "function": "Commit",
-      "lines": [
-        2781,
-        2809
-      ],
-      "commit": "bc0643405a1d0adf77dd0f109972ac3313d66397",
-      "url": "https://github.com/router-for-me/CLIProxyAPI/blob/bc0643405a1d0adf77dd0f109972ac3313d66397/internal/runtime/executor/antigravity_reasoning_replay.go#L2781"
+      "context_file": "context/internal/auth/xai/xai.go/NewXAIAuthWithProxyURL.txt",
+      "path": "internal/auth/xai/xai.go",
+      "start_line": 34,
+      "end_line": 47,
+      "blob": "39009d57982dd07cf3ca2e4d9e4136bbd91ca3b3",
+      "commit": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+      "source_sha256": "0d1efc7ef5cf4d47cb3cf1d94a19a712021877f83e58a3843898c71641eaef0d"
     },
     {
-      "path": "internal/store/gitstore.go",
-      "function": "recoverRepositoryContextLocked",
-      "lines": [
-        1210,
-        1362
-      ],
-      "commit": "bc0643405a1d0adf77dd0f109972ac3313d66397",
-      "url": "https://github.com/router-for-me/CLIProxyAPI/blob/bc0643405a1d0adf77dd0f109972ac3313d66397/internal/store/gitstore.go#L1210"
+      "context_file": "context/internal/auth/meta/meta.go/NewMetaAuthWithProxyURL.txt",
+      "path": "internal/auth/meta/meta.go",
+      "start_line": 236,
+      "end_line": 253,
+      "blob": "0788b4c8541335dad53f85cdaf43ee55ab717251",
+      "commit": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+      "source_sha256": "fb04ced1772ae4dd0e64c5ea77abcaf8a5117022ab539b60e77c29e9c59be64d"
     },
     {
-      "path": "internal/store/gitstore.go",
-      "function": "removeWorktreeEntries",
-      "lines": [
-        1499,
-        1514
+      "context_file": "context/internal/api/server_management_v8.go/management-routes.txt",
+      "path": "internal/api/server_management_v8.go",
+      "start_line": 1,
+      "end_line": 58,
+      "blob": "a0cb343695f99eec4f3b35ec0858abae4e5a943c",
+      "commit": "307803510bce87f986fcf7b1a84190f105c7b4aa",
+      "source_sha256": "80048b1c55c558247fdf800ddf8cff1813cc90c3a953ae7c5a4214808799ec29"
+    }
+  ],
+  "module_reviews": [
+    {
+      "module": "OAuth 管理与插件代理",
+      "paths": [
+        "internal/api/handlers/management/",
+        "internal/api/server_management_v8",
+        "internal/pluginhost/"
       ],
-      "commit": "bc0643405a1d0adf77dd0f109972ac3313d66397",
-      "url": "https://github.com/router-for-me/CLIProxyAPI/blob/bc0643405a1d0adf77dd0f109972ac3313d66397/internal/store/gitstore.go#L1499"
+      "basis": "会话代理来自管理 POST JSON；鉴权路由组、URL 校验、配置克隆及传输上下文均已核对。凭据仅按会话保存，插件 HTTP 回调沿用显式代理。未见隐藏目的地、隐蔽执行或认证后门。"
     },
     {
-      "path": "internal/store/gitstore.go",
-      "function": "installRecoveredGitDirectory",
-      "lines": [
-        1528,
-        1543
+      "module": "模型目录与提供商执行器",
+      "paths": [
+        "cmd/fetch_devin_models/",
+        "internal/cmd/vertex_import.go",
+        "internal/registry/",
+        "internal/runtime/executor/"
       ],
-      "commit": "bc0643405a1d0adf77dd0f109972ac3313d66397",
-      "url": "https://github.com/router-for-me/CLIProxyAPI/blob/bc0643405a1d0adf77dd0f109972ac3313d66397/internal/store/gitstore.go#L1528"
+      "basis": "模型目录和 Lightning 命名、SSE 分帧、MCP 别名、工具声明去重、Vertex 默认 Google 全局地址及相应测试完整读取。新增代码为显式请求与响应转换，未见额外外传或资源滥用。"
     },
     {
-      "path": "internal/store/gitstore.go",
-      "function": "rollbackRecoveredGitDirectory",
-      "lines": [
-        1544,
-        1553
+      "module": "协议与 schema",
+      "paths": [
+        "internal/translator/",
+        "internal/util/"
       ],
-      "commit": "bc0643405a1d0adf77dd0f109972ac3313d66397",
-      "url": "https://github.com/router-for-me/CLIProxyAPI/blob/bc0643405a1d0adf77dd0f109972ac3313d66397/internal/store/gitstore.go#L1544"
+      "basis": "JSON schema 和终止响应字段转换均为内存数据处理，未新增外部访问或执行。"
     },
     {
-      "path": "internal/home/client.go",
-      "function": "closeUnderlyingTransport",
-      "lines": [
-        1797,
-        1829
+      "module": "Watcher 与认证生命周期",
+      "paths": [
+        "internal/watcher/",
+        "sdk/cliproxy/auth/",
+        "sdk/cliproxy/service_snapshot_runtime_state_test.go"
       ],
-      "commit": "bc0643405a1d0adf77dd0f109972ac3313d66397",
-      "url": "https://github.com/router-for-me/CLIProxyAPI/blob/bc0643405a1d0adf77dd0f109972ac3313d66397/internal/home/client.go#L1797"
+      "basis": "认证记录版本、快照、凭据刷新与冷却状态差异完整读取；测试文件操作限于临时目录，未见新增秘密获取或未授权破坏。"
+    },
+    {
+      "module": "SDK 路由与 WebSocket",
+      "paths": [
+        "sdk/api/handlers/",
+        "sdk/pluginapi/"
+      ],
+      "basis": "CallerScope 传递、每轮授权、身份变化检查、流终止错误处理及测试完整读取。既有 CallerScope 为加前缀的 SHA-256；未见明文 API key 新外传或授权绕过。"
+    },
+    {
+      "module": "Home 订阅重试",
+      "paths": [
+        "internal/home/",
+        "sdk/cliproxy/service_home",
+        "sdk/cliproxy/service_executionregistry_test.go"
+      ],
+      "basis": "既有订阅链路新增有上限的指数退避与随机等待；无新增目的地、执行入口或未授权资源使用。"
     }
   ],
   "dependencies": {
@@ -1721,189 +2834,52 @@
     "upgraded": [],
     "source_changed": [],
     "changed_manifests": [],
-    "unchanged_manifests": {
-      "examples/plugin/auth/go/go.mod": "f084d0a60a1c3519d8c1955977fc3297169fbf7e",
-      "examples/plugin/auth/rust/Cargo.lock": "2fcbda318b256b906dafc5964682d2c3211402fc",
-      "examples/plugin/auth/rust/Cargo.toml": "4ca835bcfa16d860f3ee9ee24f438b310ad6f98d",
-      "examples/plugin/claude-web-search-router/go/go.mod": "659a184f2d10a17b50ee426c70c5a38f80431b2a",
-      "examples/plugin/claude-web-search-router/go/go.sum": "08317b1acaea7e8bcaa967797bd14162b6943fd7",
-      "examples/plugin/cli/go/go.mod": "d5061d1f68db67c6bcd5b3927ae0c52a36eeed21",
-      "examples/plugin/cli/rust/Cargo.lock": "66405150964f3aec1c856dfeec54ced7f6c32fda",
-      "examples/plugin/cli/rust/Cargo.toml": "d628e854dee03e9766856524e66cfd7b6f9f8c0d",
-      "examples/plugin/codex-service-tier/go/go.mod": "28422bc1a46d9cef87cc29c8cad094f42d5cbac5",
-      "examples/plugin/codex-service-tier/go/go.sum": "9186dfd80295f37441c34b5c4120ebbbf43e4323",
-      "examples/plugin/executor/go/go.mod": "d0c0ce178053358debcad39197b0c4080aa004dc",
-      "examples/plugin/executor/rust/Cargo.lock": "a722d5baddf25ab781db876215b7fc3cf2dc9365",
-      "examples/plugin/executor/rust/Cargo.toml": "b34bd907fc5b908b3c04ec78b5b82c360f9b2a72",
-      "examples/plugin/frontend-auth-exclusive/go/go.mod": "95c25967ce91dfb3fee5967c4fc04fe41e491c37",
-      "examples/plugin/frontend-auth/go/go.mod": "62bbf528ad12e5968bb82f89daafdd2a0e9e5f8c",
-      "examples/plugin/frontend-auth/rust/Cargo.lock": "934e900ea568dbde9bc87826d42efed545aa99f1",
-      "examples/plugin/frontend-auth/rust/Cargo.toml": "d5f9359ca57060062a0d3dcd9a600e5e0a00fb15",
-      "examples/plugin/host-callback-auth-files/go/go.mod": "6b449ddd9547f8aab5ba1c79f8d63507629bc0e6",
-      "examples/plugin/host-callback/go/go.mod": "73c4e0abdcfb2ecb4a6bec71ed32169622cf8954",
-      "examples/plugin/host-callback/rust/Cargo.lock": "9714e2dba47ba8d1734d0bbe9ddb33e884ce5521",
-      "examples/plugin/host-callback/rust/Cargo.toml": "26c2995ad1e42f2f874887ac9c67b829072f1952",
-      "examples/plugin/host-model-callback/go/go.mod": "52e799aa6dbeee8d0fe1b0acb77d4752e65402d4",
-      "examples/plugin/management-api/go/go.mod": "51f802bf93e55e13be2082957739e2927f0d70a2",
-      "examples/plugin/management-api/rust/Cargo.lock": "4dbc81dab139a5f233ce863da31b83010ef7c63b",
-      "examples/plugin/management-api/rust/Cargo.toml": "1e41c3031ecaf849f37bf8c67f3865d6b1e1602b",
-      "examples/plugin/model/go/go.mod": "fb459720e5bd40d9947bdf072971535f996be181",
-      "examples/plugin/model/rust/Cargo.lock": "93f85bc316562978793cfeb11bdee9d17e17dbb9",
-      "examples/plugin/model/rust/Cargo.toml": "f34ad11e389f79210234693bb8cec2b2224387e9",
-      "examples/plugin/protocol-format/go/go.mod": "da2a1db32857a42dc69b1c9f793f583febc0a058",
-      "examples/plugin/protocol-format/rust/Cargo.lock": "ea7ed52da8e28466d19482958f7ad454fdd33510",
-      "examples/plugin/protocol-format/rust/Cargo.toml": "a50dc2bb04b9aa47a51787b9df9e27737a1c1206",
-      "examples/plugin/request-lifecycle/go/go.mod": "fc152e93db9a2bc342aedb7741bf8bb00aab1f0c",
-      "examples/plugin/request-lifecycle/go/go.sum": "a62c313c5b0c799f83215509f742b13aebbe38e4",
-      "examples/plugin/request-normalizer/go/go.mod": "8ccec12186f7aaadeab73c8417802e2b0a9a2a6d",
-      "examples/plugin/request-normalizer/rust/Cargo.lock": "bb5e2bcb6a13a1bc08e375028976b0cc04888ed9",
-      "examples/plugin/request-normalizer/rust/Cargo.toml": "6649a3f0115bd41174801e0a45d0823855b8fd6e",
-      "examples/plugin/request-translator/go/go.mod": "186b756cf0bdaabe65610c50a881c86f3202e8ff",
-      "examples/plugin/request-translator/rust/Cargo.lock": "fb3095e18f79872c509806886aa4eee014a75ec5",
-      "examples/plugin/request-translator/rust/Cargo.toml": "d258c2cd83dff0a46476834c857595bb4306f829",
-      "examples/plugin/response-normalizer/go/go.mod": "cd2602166801e08c2ab9116756b1f3fb5ef0312c",
-      "examples/plugin/response-normalizer/rust/Cargo.lock": "f0ab39a437f3e1f5f930cb6868de1607338d328e",
-      "examples/plugin/response-normalizer/rust/Cargo.toml": "b5663cc450f5fe2b15aac85bc9377602e2a7d49e",
-      "examples/plugin/response-translator/go/go.mod": "5f53fd124375d32cb9511147e92818dd1b3998c6",
-      "examples/plugin/response-translator/rust/Cargo.lock": "67f68a91d2623ead063bdd56e62c8de7f6e8561e",
-      "examples/plugin/response-translator/rust/Cargo.toml": "528f5a160bc9e57a1c7671a49cb32ffb5dcafcba",
-      "examples/plugin/scheduler/go/go.mod": "34f7afc2da2a99152783fd2630042913dcdc8d6b",
-      "examples/plugin/scheduler/go/go.sum": "a62c313c5b0c799f83215509f742b13aebbe38e4",
-      "examples/plugin/simple/go/go.mod": "bcb1dc416c225a13155f4af9b27fa6cb8b7d4f8a",
-      "examples/plugin/simple/rust/Cargo.lock": "79c7ed8e04b4345613163fe2117a963f882038d7",
-      "examples/plugin/simple/rust/Cargo.toml": "ead9d1d791d355c91e772c0bb7ae70e213e7175e",
-      "examples/plugin/thinking/go/go.mod": "940ed3e1825c0ec7f5c3865cbdbf87d947bc705d",
-      "examples/plugin/thinking/rust/Cargo.lock": "0b30df7bb7e37fdaf9d13931dfc093afa0f515a6",
-      "examples/plugin/thinking/rust/Cargo.toml": "0eacb546a6220d3a39f55cb862c0ff3af12451b8",
-      "examples/plugin/usage/go/go.mod": "fb86bf69070d6e25e69dd19ff5d041bffc95552b",
-      "examples/plugin/usage/rust/Cargo.lock": "96ca6d8ace9cc881ccafc9e412a9daf86621fa8b",
-      "examples/plugin/usage/rust/Cargo.toml": "76c1605a58cf6dbe1ef72b5d9426491532fe1e8c",
-      "examples/realtime-openai-go/go.mod": "6de15fc0c39f9575b7c7449be17ed7a9f2239b0d",
-      "examples/realtime-openai-go/go.sum": "8df405b419a1d9608fb19b59c13ab64e89be285e",
-      "go.mod": "7a680aadd4fb7d5b866411ae68bd50234a16ae4f",
-      "go.sum": "50767c7dc1c025f1bac782206bf54ed427cc91ca",
-      "internal/auth/codex/filelock_unix.go": "d9ccce8b29e696ca1e3ede363dd4b4c16cabd7e1",
-      "internal/auth/codex/filelock_windows.go": "bd9ed8f860db94431a6c666ab5f3c02ee363ef19",
-      "internal/pluginhost/testdata/loader_unix_reload_plugin/go.mod": "5c1caeee8b7ac5b7a2589e62369f7b25594f3319",
-      "sdk/cliproxy/auth/conductor_quota_clock_test.go": "2c91318e328262ce48ddf38c8b3766e68f1710e5"
+    "boundary_evidence": "dependency-boundary.json",
+    "go_mod_blob": "7a680aadd4fb7d5b866411ae68bd50234a16ae4f",
+    "go_sum_blob": "50767c7dc1c025f1bac782206bf54ed427cc91ca",
+    "new_imports_already_pinned": {
+      "github.com/gin-gonic/gin": {
+        "module": "github.com/gin-gonic/gin",
+        "version": "v1.10.1",
+        "source": "unchanged approved go.mod/go.sum"
+      },
+      "github.com/gorilla/websocket": {
+        "module": "github.com/gorilla/websocket",
+        "version": "v1.5.3",
+        "source": "unchanged approved go.mod/go.sum"
+      },
+      "github.com/tidwall/sjson": {
+        "module": "github.com/tidwall/sjson",
+        "version": "v1.2.5",
+        "source": "unchanged approved go.mod/go.sum"
+      }
     },
-    "go_mod_sha256": "999888b1ba360604b68e4eebd8f6c14ebd740eed2172a315c149aebe381ff934",
-    "go_sum_sha256": "f6703ae6ffe59571c5beaed93165308ba1b50f67492a5e85487ef27f9241c570",
-    "added_external_imports_already_pinned": [
-      "github.com/gin-gonic/gin v1.10.1",
-      "github.com/tidwall/gjson v1.18.0"
-    ]
+    "baseline_reused": "/root/upstream-release-review/cliproxyapi-v8.0.42/review-result.json"
   },
   "findings": [],
-  "basis": [
-    {
-      "module": "Home connection lifecycle",
-      "files": [
-        "internal/home/client.go",
-        "internal/home/cluster_balance.go",
-        "internal/home/cluster_latency.go"
-      ],
-      "assessment": "Existing configured Redis/Home connections receive cancellation/close wrappers; no new endpoint, command execution or credential export."
-    },
-    {
-      "module": "Request logging",
-      "files": [
-        "internal/logging/request_logger_writer.go"
-      ],
-      "assessment": "Filename sanitization and filename component checks before existing log creation; no new data sink."
-    },
-    {
-      "module": "Plugin request and stream bridge",
-      "files": [
-        "internal/pluginhost/adapters_executors.go",
-        "internal/pluginhost/host_callbacks.go",
-        "internal/pluginhost/http_bridge.go",
-        "internal/pluginhost/rpc_client.go",
-        "internal/pluginhost/stream_bridge.go",
-        "sdk/pluginabi/types.go",
-        "sdk/cliproxy/auth/home_concurrency.go"
-      ],
-      "assessment": "Configured plugin/model thinking and user payload rules, token-count transforms, structured errors and Retry-After; redirect policy strips credential headers on cross-origin chains. No new plugin loading, download or remote execution path."
-    },
-    {
-      "module": "Thinking and response translation",
-      "files": [
-        "internal/thinking/apply.go",
-        "internal/thinking/validate.go",
-        "internal/runtime/executor/helps/model_capabilities.go",
-        "sdk/translator/registry.go",
-        "internal/translator/gemini/openai/chat-completions/gemini_openai_response.go",
-        "internal/translator/antigravity/openai/chat-completions/antigravity_openai_response.go"
-      ],
-      "assessment": "Registry selection and JSON/model metadata transformations. Tool-call names/arguments remain data; not executed by this increment."
-    },
-    {
-      "module": "Response replay",
-      "files": [
-        "internal/runtime/executor/antigravity_executor_request.go",
-        "internal/runtime/executor/antigravity_reasoning_replay.go",
-        "internal/runtime/executor/kimi_thinking_replay.go"
-      ],
-      "assessment": "Clones request bytes; maps K3.1 family; replays thought signatures and completion state. Caller key is read from trusted gin context then hashed by session.CallerScope and again for existing cache namespace. No raw key transmission added."
-    },
-    {
-      "module": "Git store recovery",
-      "files": [
-        "internal/store/gitstore.go"
-      ],
-      "assessment": "Additional missing pack index/file errors enter unchanged configured-remote recovery. Read recovery function and cleanup/rename context; targets remain repository/recovery directories with backup and rollback; no new destructive target or remote."
-    },
-    {
-      "module": "Tests and documentation",
-      "files": [
-        "README.md",
-        "README_CN.md",
-        "README_JA.md",
-        "internal/home/cluster_balance_regression_test.go",
-        "internal/logging/request_logger_traversal_test.go",
-        "internal/pluginhost/adapters_executors_count_tokens_test.go",
-        "internal/pluginhost/adapters_executors_payload_rules_test.go",
-        "internal/pluginhost/adapters_executors_thinking_test.go",
-        "internal/pluginhost/http_bridge_test.go",
-        "internal/pluginhost/rpc_client_error_test.go",
-        "internal/runtime/executor/antigravity_issue6825_test.go",
-        "internal/runtime/executor/kimi_thinking_replay_test.go",
-        "internal/store/gitstore_test.go",
-        "internal/translator/gemini/openai/chat-completions/gemini_openai_response_test.go"
-      ],
-      "assessment": "All changed test/doc hunks read, new test files read in full. Test requests target httptest local servers; filesystem fixtures and registry mocks remain test code. README only removes two community links. No upstream tests executed or assertion-quality audit performed."
-    }
-  ],
   "material_residuals": [],
   "limits": [
-    "通过 means no malicious behavior evidence found in the stated static increment, not vulnerability/correctness/quality certification.",
-    "Unchanged baseline source and dependency toolchains are reused, not freshly reviewed. Upstream development workflows and unexecuted tooling are not recursively recertified.",
-    "Central CI may build only after this approval and is not source-review evidence. Existing workflow sets provenance:false; publication checks CI checkout/build chain and OCI revision/source labels, not cryptographic build attestations.",
-    "No deployment or service restart is authorized or performed.",
-    "All changed files are covered by complete old/new unified diffs; unchanged lines reuse the approved baseline and are explicitly listed, rather than claiming a fresh full repository/source reread.",
-    "No changed binary, LFS pointer, submodule, dependency manifest/source, installation script or central build/runtime boundary. No material in-scope unresolved evidence gap."
+    "结论仅适用于固定 SHA 增量及已锁定中央交付边界，未变部分复用已批准基线。",
+    "未 clone、安装、构建、测试、扫描或执行上游代码与发布产物；不评价漏洞、Bug、正确性或测试质量。",
+    "未递归认证不参与中央交付的未变开发、CI、工具链；静态审查不构成绝对安全保证。",
+    "获准后的 CI 构建仅为发布，不作为源码审查证据；不直接部署或重启。"
   ],
-  "evidence_root": "/root/upstream-release-review/cliproxyapi-v8.0.42",
+  "evidence_root": "/root/upstream-release-review/cliproxyapi-v8.0.43",
   "evidence_sha256": {
-    "locked-review-boundary.json": "5d0e95f55cd26c222c161d77a94450729c6e22e8fe3328ed3ab7a70ba47669f8",
-    "base-release.json": "94411ac8835ea0b16e7b1cc9513d9ed71ee344c3a1553d365115a7f5fedd9789",
-    "base-tag-ref.json": "313fc663168d864c6fbac6855fe66510fbb7790f8ba2e05ce6711475e390c5b4",
-    "base-commit.json": "76249d6040a07634bc4345a875df6e225e811e90c642f007cff1dd7618d03590",
-    "base-tree.json": "8f7f7fd6d4dcaa46b278567ebb83d5fdcae1bc921ecc09142b0b6b55a3536a0b",
-    "candidate-release.json": "51446d55ff020a4305ac214195ea70e80715d2757d25e6ddbec2fde03e025e3c",
-    "candidate-tag-ref.json": "fffae7d6871ebba93f5ea0541153cca3a3279fa1c3bda11f6d7911c4fa9aceaa",
-    "candidate-commit.json": "bf7d27e78e9e222e6d2547e71673fb2ddf8167701c0a4b63e1cda825c4f5cf28",
-    "candidate-tree.json": "e65af9e07c103772d0bd3c492342572f914d9fa9cd62d9c17e69c1f3c2221fd5",
-    "changed-files.json": "0940d3f8e7a03ebab9c7d68d5813fc7e6313ba332d6326d35c1452f82ed38804",
-    "source-manifest.json": "ad9c399117ca8090b705925c986a69e889ff489477a865ad5969e368c1b1cdd0",
-    "compare-supplement.json": "a6964a87356dce8e8a63c405bcf473103eaf2f92d2b8d2a64261801dd3374195",
-    "review-reading-queue.json": "6458b86f97adefb4f71888b42e2fca434f26b7be5d1eb0c2846e37518283c79d",
-    "actual-diff-read-coverage.json": "a91075787f18293f03bcf3385311528753cbc4eb9b64e467e7fd9e8e24f46ab3",
-    "sensitive-source-manifest.json": "cf1f9800b23fbb057e72354e7a123ef6431c2c4fab82ae71705d181612b918a0",
-    "sensitive-context-manifest.json": "3b248616f447e4517ad6c44d5ba7eddf33d90200d50eabf7d9e969e88dafcd8a",
-    "context-reading-queue.json": "2c30514723912ae08e5ddeabeac908a42453b4a546efeb744d6d897f359cda43",
-    "actual-context-read-coverage.json": "1e3cdb0b39abbe6d522031365323465020ff6c33a64482c43d560ffc0eb79521",
-    "latest-official-release-checks.json": "fc0e5cb7bffddb67e7a7eff286bc3bb78f6153c82dccbfeec4ebaf7be3226b68",
-    "review-integrity-verification.json": "f62f22400bdd8f66f327c810e98f196220b35885a53d8082039343f25ce0fc35"
+    "base-release.json": "05389a0796e9899c48d90e4a0efb977c1ce569e3eeba8cf9758649f4f5ed4461",
+    "candidate-release.json": "dd0bef7175bde0374bea0bdb88a47e6cb3c83575cd461f98e7ac670bff00e878",
+    "base-tag-ref.json": "c90fcdd42c2714b51b454c4b7a3615087c1885cdb69cc2f32f57b4263f4aba74",
+    "candidate-tag-ref.json": "4befecc78d74e94dec06e23cb05171919fed6da2d7d08465d6b662e2fa769bb1",
+    "base-commit.json": "068f14648c366cc78dfdfda25e4d26ec5ed07645f80488e949eb2fcc65bfcc54",
+    "candidate-commit.json": "2a9f0b62bdd59440863cafc155ddd1905ac1d1f0bafd165e8ad7a4118f2e67e8",
+    "base-tree.json": "686c9d3de7aa2007d6eebd140b3c558cf57c5a4a5abcbc6a73f1bba63ef4a766",
+    "candidate-tree.json": "746517576c3f3a7602b3ca392910a194388e5d0d1e14565235bd8b9c6024881e",
+    "changed-files.json": "dcdc4f4f9bf5c5eba2f54c3e3411232b30df371e86ff3382bda711417430bcf5",
+    "source-manifest.json": "23f1aa06a1e1bd66c9a316d5991802feb463364ac50f1f39c78611c15682fd55",
+    "sensitive-source-manifest.json": "cd0e16f6d61e690feae2a2005579a356241f4a499a237d3c5f10cab88984bf6a",
+    "actual-diff-read-coverage.json": "8a5766485c3d04e2e49972b003b023f52292fb7b22953b59841279122eec3a90",
+    "actual-context-read-coverage.json": "fc6350d2a3cde0a1e77c35ffe54455820705755b15ff43b2d01e268bfb4c379d",
+    "dependency-boundary.json": "ee45df6f09f373ce32726a21ca5a21692ebb80bd61896b173cf03ae46a5c3443",
+    "locked-review-boundary.json": "c27cf32044819a54a3e388563a50cad29aa31c9d1575601a6ddd052d35a7bcbf"
   }
 }
