@@ -1,5 +1,27 @@
 # 上游固定版本增量审查
 
+## CPA Usage Keeper v2.0.2 增量审查
+
+结论：**通过**。
+
+基线 `5604768d352a1a85dd5c087b4e85bd657a159a02` → 候选 `46fe6278db0c47a5460e882fa1742f15ab49bb14`，官方正式 release/tag 再核验一致。两端完整树分别为 `6e739c05ba59c3152ca881eb6b73d4ebd6c33149`、`2adddf800bc80e1d1f2477608d9c0d1161286feb`，全部嵌套树哈希已重算；137 个变更路径、224 份源码 blob 匹配。compare 的 136 项包含一次重命名，树清单中的删除与新增均单独覆盖。
+
+已实际阅读 137 份完整 diff，共 606651 bytes、667 页，另读 34 页敏感上下文。逐文件不可变 URL、Git blob、SHA256、diff 行范围及已批准基线的未变行映射见 `file-review-coverage.json`；实际阅读页见 `reviewed-pages.json`。未将截断输出计入覆盖；第 214 页已完整重读。不是对整个候选仓库重新认证。
+
+中央边界在源码审查前锁定：中央 Dockerfile 覆盖上游 Dockerfile，node:22-alpine npm ci/build、golang:1.26-alpine 下载模块并 CGO 编译服务、alpine:3.24 入口脚本及 /data。Go/npm 清单与锁文件、入口脚本和生产 Vite 配置保持不变；无新增、升级或来源变化的中央依赖条目。上游 CI 的 action/ref、工具链及镜像参数变更已阅读文件差异，但其未执行实现不在中央交付递归核验范围。
+
+实际代码依据（以下均固定候选 SHA）：
+
+- [路由](https://github.com/Willxup/cpa-usage-keeper/blob/46fe6278db0c47a5460e882fa1742f15ab49bb14/internal/api/router.go#L136)仍将新增候选查询置于 adminProtected；[候选输出](https://github.com/Willxup/cpa-usage-keeper/blob/46fe6278db0c47a5460e882fa1742f15ab49bb14/internal/api/cpa_api_keys.go#L207)仅输出 ID 与 helper 生成的别名/脱敏展示名。
+- [CPA 请求](https://github.com/Willxup/cpa-usage-keeper/blob/46fe6278db0c47a5460e882fa1742f15ab49bb14/internal/cpa/client.go#L77)仍使用配置 baseURL 与管理授权；[配置写入](https://github.com/Willxup/cpa-usage-keeper/blob/46fe6278db0c47a5460e882fa1742f15ab49bb14/internal/cpa/provider_key_config.go#L72)只添加同次读取的 If-Match。协调器仅使旧本地快照失效，批量启停/删除仍由既有管理员入口及指定名字触发。
+- [迁移](https://github.com/Willxup/cpa-usage-keeper/blob/46fe6278db0c47a5460e882fa1742f15ab49bb14/internal/repository/migration/20261023_usage_event_effective_service_tier.go#L10)仅增加 effective_service_tier 列；额度历史与候选键选择为本地查询。未见额外破坏性动作。
+- [token breakdown](https://github.com/Willxup/cpa-usage-keeper/blob/46fe6278db0c47a5460e882fa1742f15ab49bb14/internal/service/tokenprocessor/breakdown.go#L8)为 JSON 数字校验与归一化，没有动态执行或远端下载。
+- [前端候选请求](https://github.com/Willxup/cpa-usage-keeper/blob/46fe6278db0c47a5460e882fa1742f15ab49bb14/web/src/lib/api.ts#L943)沿用现有同源 apiPath/apiFetch；图表、时区、档位、端点别名及测试/fixture 差异未见恶意外传、后门、隐藏执行或资源滥用。
+
+范围内未发现恶意行为证据，无未解决的实质性证据缺口。只作恶意行为静态判断，不作漏洞、Bug、正确性、质量或性能判断；未运行上游代码、安装、构建、测试或扫描。CLIProxyAPI 与 Watchtower pin 保持不变。通过后仅授权中央 CI 镜像发布，不部署、不重启服务。
+
+详细审查记录：[`keeper-review-result.json`](keeper-review-result.json)。完整不可变源码、diff、逐文件范围及阅读记录保存在 `/root/upstream-release-review/keeper-v2.0.2/`。本轮 CLIProxyAPI v8.0.44 与 Watchtower v1.23.2 无新版，保持固定提交。
+
 ## CPA Usage Keeper v2.0.1 增量审查
 
 结论：**通过**。本轮官方正式版核对中，CLIProxyAPI v8.0.40（`d946c4fba6fc9a5cfbca1f3d85184d62ad2fb683`）和 Watchtower v1.23.2（`cd5946be205ea0a60dd31235a11f04ac9851ebf6`，tag 已剥离）均为 **无新版**，不修改其 pin。

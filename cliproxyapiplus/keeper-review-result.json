@@ -1,0 +1,76 @@
+{
+  "status": "通过",
+  "repository": "Willxup/cpa-usage-keeper",
+  "tag": "v2.0.2",
+  "base": "5604768d352a1a85dd5c087b4e85bd657a159a02",
+  "candidate": "46fe6278db0c47a5460e882fa1742f15ab49bb14",
+  "approved_at": "2026-10-27T02:33:58Z",
+  "scope": "Incremental static malicious-behavior review: every changed path full diff plus necessary shared sensitive context; unchanged source ranges reuse the approved immutable baseline. No correctness, vulnerability, quality or performance assessment.",
+  "boundary_record": "locked-central-boundary.json",
+  "base_tree": "6e739c05ba59c3152ca881eb6b73d4ebd6c33149",
+  "candidate_tree": "2adddf800bc80e1d1f2477608d9c0d1161286feb",
+  "coverage": {
+    "changed_paths": 137,
+    "candidate_files": 135,
+    "deleted_files": 2,
+    "verified_source_blobs": 224,
+    "full_diff_bytes": 606651,
+    "actual_read_diff_pages": 667,
+    "actual_read_shared_context_pages": 34,
+    "all_changed_file_diffs_read": true,
+    "unchanged_ranges": "Explicit per-file base/candidate line mapping in file-review-coverage.json; base full tree exactly matches prior approved candidate tree."
+  },
+  "dependencies": {
+    "changed_build_runtime_entries": [],
+    "unchanged_build_inputs": "unchanged-build-inputs.json",
+    "additional_unchanged_build_config": "shared-context-verification.json",
+    "note": "go.mod, go.sum, package.json, package-lock.json identical; no new/changed install lifecycle. chart.js/helpers remains within existing locked chart.js 4.5.1, new usage is color formatting."
+  },
+  "exclusions": [
+    "Upstream CI/action/toolchain implementations not executed by the central build; changed workflow and Dockerfile full diffs reviewed, including dorny/paths-filter ref change to v4, Go/Node setup versions and image args. These implementations are not certified.",
+    "Unchanged approved dependencies and source are not recursively recertified.",
+    "No upstream checkout/clone/install/build/tests/scanners or execution during review; subsequent authorized central publication build is not review evidence."
+  ],
+  "malicious_findings": [],
+  "unresolved_in_scope_gaps": [],
+  "evidence": [
+    "verified-trees-and-refs.json",
+    "changed-paths.json",
+    "coverage-integrity.json",
+    "file-review-coverage.json",
+    "evidence-pages.json",
+    "reviewed-pages.json",
+    "sensitive-context-pages.json",
+    "unchanged-build-inputs.json",
+    "shared-context-verification.json"
+  ],
+  "other_projects": {
+    "CLIProxyAPI": {
+      "status": "无新版",
+      "version": "v8.0.44",
+      "sha": "1f917e77c4562623aa49e9804d999524151a2f96",
+      "pin_preserved": true
+    },
+    "Watchtower": {
+      "status": "无新版",
+      "version": "v1.23.2",
+      "sha": "cd5946be205ea0a60dd31235a11f04ac9851ebf6",
+      "pin_preserved": true
+    }
+  },
+  "execution": {
+    "upstream_executed_during_review": false,
+    "tests": false,
+    "scanners": false,
+    "delegation": false,
+    "deployment": false,
+    "restart": false
+  },
+  "evidence_integrity": {
+    "file-review-coverage.json": "d4bbe8ca1674b002504febab6df182de0789cb912ffaf1d9049df3b8b6f6390d",
+    "reviewed-pages.json": "2cdf9f2272ec177ffb2a4cdb14257260f563dc05738855fa1d222be1233941e7",
+    "coverage-integrity.json": "7f6ecde8b30e03510162cbe470d3c21bffaa0d008c74510e2dbc79bc54e122bd",
+    "verified-trees-and-refs.json": "97318ffe5eba08c87be2d2f3f28e2af51d7df754b925b1390ba84951ce2fcfd1",
+    "locked-central-boundary.json": "6ad535ee3c0c978405d2aad07e2fbd13d2d38596e7b8535091068611f8cbf1ee"
+  }
+}
