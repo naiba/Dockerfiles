@@ -1,19 +1,19 @@
-# CLIProxyAPI v8.0.44 源码审查
+# CLIProxyAPI v8.0.45 源码审查
 
-结论：**通过**。在本次固定 SHA 增量和中央镜像交付边界内，未发现恶意代码或恶意依赖证据。
+结论：**通过**。在固定 SHA 增量和既有中央镜像交付边界内，未发现恶意代码或恶意依赖证据。
 
 - 官方仓库：`router-for-me/CLIProxyAPI`。
-- 基线：`v8.0.43` → `307803510bce87f986fcf7b1a84190f105c7b4aa`。
-- 候选：`v8.0.44` → `1f917e77c4562623aa49e9804d999524151a2f96`。
-- 两端正式 release/tag 均解析到上述完整 commit SHA；完整树逐层重算 Git SHA，与 compare 的 117 项变更一致，未依赖截断 patch。
-- 115 个文本文件的完整差异均已阅读（含文档、测试、配置）；另有 2 个已批准基线 PNG 被删除。每个文件的源 blob、SHA-256、差异行范围和 hunk 范围见 [机器记录](review-result.json)。
+- 已批准基线：`v8.0.44` → `1f917e77c4562623aa49e9804d999524151a2f96`。
+- 正式候选：`v8.0.45` → `ad8bdd3f20bef44f0684b8a6096a216b2c76040d`，官方 tag 直接解析到该完整 commit。
+- 两端完整树逐层重算 Git SHA；123 个变更文件与官方 compare 清单一致，完整 diff 共 1,507,465 bytes，未使用截断 patch。
+- 122 个文件的原始完整 diff 已读。模型目录的完整结构差异和六种独有长字符串差异已读；88 处长字符串按哈希引用共享原文及已批准基线的相同部分，可无损还原原始 diff。未把未逐字显示的重复原始页记为已读。逐文件 blob、SHA-256、hunk 和实际阅读范围见 [机器记录](review-result.json)。
 
-沿用既有 `golang:1.26-alpine`、`go mod download`、`CGO_ENABLED=0 go build ./cmd/server` 和 `alpine:3.22.0` 运行边界。未变化部分复用 v8.0.43 已批准证据；构建脚本、入口、依赖版本和来源没有新增变化。唯一依赖声明变化是 `github.com/miekg/dns v1.1.43` 从间接改为直接依赖；112 项模块版本及 `go.sum` 不变，模块注册表与校验记录吻合，无新增安装脚本。
+源审查前锁定中央构建/运行边界：`golang:1.26-alpine`、`go mod download`、`CGO_ENABLED=0 go build ./cmd/server`、CI 中二进制 `--help`，运行于 `alpine:3.22.0`。本轮全部变化位于 `internal/` 和 `sdk/`；依赖清单、版本、来源、安装行为及构建/配置文件未变，复用 v8.0.44 已批准基线。
 
-按文档、配置、响应压缩、局域网发现、插件协议、上游请求、协议转换、SDK 投递和用量记录分组检查。新增 mDNS 查询使用指定接口和标准组播地址，CLI 只显示候选服务；压缩、重试和转换沿用既有请求目标；插件新增字段传递至既有配置接收方。未发现隐藏下载/执行、凭据外传、后门、破坏或未授权资源滥用。
+按 HTTP/SDK、模型目录、执行与 Home 会话、协议转换/签名/用量四组审查完整差异，含全部新增及变更测试。管理刷新路由沿用管理认证；目录从既有默认或显式配置源读取并解析为 JSON；模型提示仅作数据处理。Devin patch 参数仅包装，Vertex partialArgs 仅组装内存 JSON，图片格式回调只调整响应字段，用量身份快照仍走既有插件/配置 Redis 链。未见隐藏下载/执行、凭据外传、后门、破坏或未授权资源滥用。
 
-三项目检查：CLIProxyAPI 更新至上述 pin；Keeper `v2.0.1`（`5604768d352a1a85dd5c087b4e85bd657a159a02`）及 Watchtower `v1.23.2`（`cd5946be205ea0a60dd31235a11f04ac9851ebf6`）无新版，保留原 pin。
+三项目官方检查：CLIProxyAPI 更新至上述 pin；Keeper `v2.0.2`（`46fe6278db0c47a5460e882fa1742f15ab49bb14`）和 Watchtower `v1.23.2`（`cd5946be205ea0a60dd31235a11f04ac9851ebf6`）均为**无新版**，保留 pin。
 
-审查期间仅静态阅读，未 clone、安装、构建、运行测试、扫描或执行上游代码。不评价漏洞、Bug、正确性或测试质量；不递归认证边界外未变开发/CI/工具链。批准后的 CI 仅用于镜像发布，不作为源码审查证据；不部署或重启服务。
+审查仅静态阅读，未 clone、安装、构建、测试、扫描或执行上游代码。不评价漏洞、Bug、正确性或测试质量；不递归认证未变开发/CI/工具链。未来远程目录内容、用户另行配置的插件及外部服务不在本次认证范围。批准后的 CI 仅作发布证据，不作为源码审查依据；不部署或重启服务。
 
-完整本地证据：`/root/upstream-release-review/cliproxyapi-v8.0.44`，包含 `review-result.json`、`review-result.md`、树及 blob 核验、实际阅读覆盖、共享上下文和依赖来源记录。
+完整证据：`/root/upstream-release-review/cliproxyapi-v8.0.45`，含 `review-result.json/md`、完整树/blob/diff、可还原的模型文本共享证据、实际范围及依赖未变记录。发布终态和公开 GHCR 多架构/来源核验另存 `publication-result.json`。
