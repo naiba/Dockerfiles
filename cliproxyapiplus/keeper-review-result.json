@@ -1,76 +1,3645 @@
 {
   "status": "通过",
   "repository": "Willxup/cpa-usage-keeper",
-  "tag": "v2.0.2",
-  "base": "5604768d352a1a85dd5c087b4e85bd657a159a02",
-  "candidate": "46fe6278db0c47a5460e882fa1742f15ab49bb14",
-  "approved_at": "2026-10-27T02:33:58Z",
-  "scope": "Incremental static malicious-behavior review: every changed path full diff plus necessary shared sensitive context; unchanged source ranges reuse the approved immutable baseline. No correctness, vulnerability, quality or performance assessment.",
-  "boundary_record": "locked-central-boundary.json",
-  "base_tree": "6e739c05ba59c3152ca881eb6b73d4ebd6c33149",
-  "candidate_tree": "2adddf800bc80e1d1f2477608d9c0d1161286feb",
-  "coverage": {
-    "changed_paths": 137,
-    "candidate_files": 135,
-    "deleted_files": 2,
-    "verified_source_blobs": 224,
-    "full_diff_bytes": 606651,
-    "actual_read_diff_pages": 667,
-    "actual_read_shared_context_pages": 34,
-    "all_changed_file_diffs_read": true,
-    "unchanged_ranges": "Explicit per-file base/candidate line mapping in file-review-coverage.json; base full tree exactly matches prior approved candidate tree."
-  },
-  "dependencies": {
-    "changed_build_runtime_entries": [],
-    "unchanged_build_inputs": "unchanged-build-inputs.json",
-    "additional_unchanged_build_config": "shared-context-verification.json",
-    "note": "go.mod, go.sum, package.json, package-lock.json identical; no new/changed install lifecycle. chart.js/helpers remains within existing locked chart.js 4.5.1, new usage is color formatting."
-  },
-  "exclusions": [
-    "Upstream CI/action/toolchain implementations not executed by the central build; changed workflow and Dockerfile full diffs reviewed, including dorny/paths-filter ref change to v4, Go/Node setup versions and image args. These implementations are not certified.",
-    "Unchanged approved dependencies and source are not recursively recertified.",
-    "No upstream checkout/clone/install/build/tests/scanners or execution during review; subsequent authorized central publication build is not review evidence."
-  ],
-  "malicious_findings": [],
-  "unresolved_in_scope_gaps": [],
-  "evidence": [
-    "verified-trees-and-refs.json",
-    "changed-paths.json",
-    "coverage-integrity.json",
-    "file-review-coverage.json",
-    "evidence-pages.json",
-    "reviewed-pages.json",
-    "sensitive-context-pages.json",
-    "unchanged-build-inputs.json",
-    "shared-context-verification.json"
-  ],
-  "other_projects": {
-    "CLIProxyAPI": {
-      "status": "无新版",
-      "version": "v8.0.44",
-      "sha": "1f917e77c4562623aa49e9804d999524151a2f96",
-      "pin_preserved": true
+  "tag": "v2.0.3",
+  "base": "46fe6278db0c47a5460e882fa1742f15ab49bb14",
+  "candidate": "9db74cfc380d11064af80cf1626efd6e3d068217",
+  "approved_at": "2026-10-31T00:45:25Z",
+  "scope": "固定 SHA 增量和预先锁定的中央构建/运行边界；仅静态恶意行为审查。",
+  "boundary": {
+    "locked_at": "2026-10-31T00:31:04.509206+00:00",
+    "central_commit": "c28336b72407e416535cdadc7b67c3224218bcc1",
+    "baseline_review": "/root/upstream-release-review/keeper-v2.0.2/review-result.json",
+    "baseline_review_sha256": "4111b49327b34c2ea6561921edf936897ce4bbf3ef887e5369716e4ea94544c6",
+    "inherited_boundary": {
+      "repository": "Willxup/cpa-usage-keeper",
+      "base": "5604768d352a1a85dd5c087b4e85bd657a159a02",
+      "candidate": "46fe6278db0c47a5460e882fa1742f15ab49bb14",
+      "central_head": "7eee52a81246e211bfa104de6370fee4fd43cb01",
+      "central_files": {
+        ".github/workflows/cliproxyapiplus-keeper.yml": "bdc6b8cedf19fdda6a08b00129ef7f6e0f74996c9ce112f3c10db1aabf55e13b",
+        "cliproxyapiplus/Dockerfile.keeper": "76deae12910b71a988f13ec2f855eebd9ae67fd6180bffe3158081309cb34fe6"
+      },
+      "boundary": "Existing central keeper workflow substitutes cliproxyapiplus/Dockerfile.keeper; node:22-alpine npm ci and npm run build; golang:1.26-alpine go mod download and CGO build cmd/server/main.go with cmd/internal/web static inputs; alpine:3.24 runtime with docker-entrypoint.sh, embedded frontend and /data. Review all changed files including tests/docs; only changed dependency provenance/install behavior and necessary sensitive implementations. Reuse identical baseline inputs.",
+      "exclusions": [
+        "Do not recursively review unchanged approved dependencies or baseline source.",
+        "Upstream CI/dev action/toolchain implementations not executed by central workflow remain outside recursive dependency verification; changed upstream workflow files themselves still require full review.",
+        "No upstream execution/install/build/tests/scanners; no deployment/restart."
+      ],
+      "full_file_review_requirement_unchanged": true,
+      "approved_baseline_review_sha256": "35da9869a038bf2dd930d1de4c9d80f70ccbf59c68cf1c6de0120ca599fb4717"
     },
-    "Watchtower": {
-      "status": "无新版",
-      "version": "v1.23.2",
-      "sha": "cd5946be205ea0a60dd31235a11f04ac9851ebf6",
-      "pin_preserved": true
+    "current_central_files": {
+      "cliproxyapiplus/Dockerfile.keeper": "76deae12910b71a988f13ec2f855eebd9ae67fd6180bffe3158081309cb34fe6",
+      ".github/workflows/cliproxyapiplus-keeper.yml": "5be1c9e7c4d787c17439441a191865e32a4c76a8b00e28f1f3583775236c3c80"
+    },
+    "actual_central_build_note": "Current hashed Dockerfile uses CGO_ENABLED=1 with build-base. Inherited textual CGO description is stale; actual unchanged approved central file is authoritative."
+  },
+  "coverage": {
+    "changed_files": 80,
+    "text_diff_files": 68,
+    "full_diff_bytes": 262688,
+    "actual_read_pages": 248,
+    "verified_changed_blobs": 142,
+    "complete_tree_derived_diff": true,
+    "all_changed_files_read": true,
+    "unique_file_ranges": "file-review-coverage.json",
+    "shared_context": {
+      "internal/api/router.go:88-165": {
+        "read_bytes": 3866,
+        "total_bytes": 3866,
+        "complete": true,
+        "blob_sha": "49ddde0f7a34d20f96ae20e849ef54012f6f1a11",
+        "source_sha256": "edeae907b34adeb9c65c82d9b040afc32384b7d0f54eae4a8ca6230b9d3a1b0c"
+      }
     }
   },
-  "execution": {
-    "upstream_executed_during_review": false,
-    "tests": false,
-    "scanners": false,
-    "delegation": false,
-    "deployment": false,
-    "restart": false
+  "dependencies": {
+    "new_upgraded_source_changed": [],
+    "count": 0,
+    "unchanged_manifests_and_install_inputs": [
+      {
+        "path": "Dockerfile",
+        "unchanged_blob": "a1ea010d73dafa63705d21ba3d5fe1530808e954"
+      },
+      {
+        "path": "docker-entrypoint.sh",
+        "unchanged_blob": "347a9c6b671f5e0ff25b58b1489e7fcb6c9b0119"
+      },
+      {
+        "path": "go.mod",
+        "unchanged_blob": "bac0ce1dba9d7136505b6a5bcbeb3208bbc5200a"
+      },
+      {
+        "path": "go.sum",
+        "unchanged_blob": "a94ee35307a192d20449a233261b84fa1f66f089"
+      },
+      {
+        "path": "web/package-lock.json",
+        "unchanged_blob": "e7108055eee18f1eb507987064889190014138a9"
+      },
+      {
+        "path": "web/package.json",
+        "unchanged_blob": "c2b304a2dd2067d024ac59bbc3cae6c253c46e92"
+      }
+    ],
+    "baseline_reused": true
   },
+  "module_findings": {
+    "plugin_identity_ingestion": "上游 is_native_key/access_provider 元数据仅为统计身份编码；事务提交后通知内存合并队列，并在本地 SQLite 分批登记，不扫描历史、不执行插件、不新增远端目的地。",
+    "storage_migration": "仅定向增列；注册采用参数化查询与冲突不覆盖，既有原生 key 同步限定 native；无批量破坏、隐蔽删除或持久化执行。",
+    "authentication_and_display": "插件身份在 API key 登录和会话恢复入口被拒绝；管理设置路由仍经 adminMiddleware，插件原始 principal 不返回，展示稳定标签和来源。",
+    "frontend": "单卡显隐、用户触发复制、别名编辑及布局/翻译调整，只沿既有 API；无新脚本加载、外传接收方或动态执行。",
+    "docs_workflows_images_tests": "完整阅读文档迁移、上游二进制打包 workflow 仅增加 docs 复制、全部测试和配置；12 PNG 两端仅 IHDR/IDAT/IEND，CRC、zlib 流、像素长度和结束位置均验证，且截图不进入中央 COPY 边界。"
+  },
+  "malicious_findings": [],
+  "unresolved_in_scope_gaps": [],
+  "limits": [
+    "未重新认证未变的已批准基线依赖、开发/CI/action/toolchain 实现及第三方插件；不无限递归。",
+    "静态增量结论不保证无漏洞/无 Bug，不审查正确性、质量或性能。",
+    "审查中未 clone、安装、构建、执行上游代码/产物，也未运行测试或扫描。",
+    "批准后中央 CI 构建发布独立于源审查；来源链不是签名 attestation；不部署或重启。"
+  ],
   "evidence_integrity": {
-    "file-review-coverage.json": "d4bbe8ca1674b002504febab6df182de0789cb912ffaf1d9049df3b8b6f6390d",
-    "reviewed-pages.json": "2cdf9f2272ec177ffb2a4cdb14257260f563dc05738855fa1d222be1233941e7",
-    "coverage-integrity.json": "7f6ecde8b30e03510162cbe470d3c21bffaa0d008c74510e2dbc79bc54e122bd",
-    "verified-trees-and-refs.json": "97318ffe5eba08c87be2d2f3f28e2af51d7df754b925b1390ba84951ce2fcfd1",
-    "locked-central-boundary.json": "6ad535ee3c0c978405d2aad07e2fbd13d2d38596e7b8535091068611f8cbf1ee"
-  }
+    "file-review-coverage.json": "2ffe81b89ba8d5e22db74b74416965a83a947de80bbfcf7f253de923b58c8f5a",
+    "read-coverage.json": "cd03c78e32cd0a59ab2fd773ced65d60abbd288079d51770a4278e42a1306593",
+    "shared-context-coverage.json": "bf39a2b1e5e22ebd2f4a0e66ea66ece782e379952a7a443f54daa5794ab1879f",
+    "source-integrity.json": "5ef30434550daef19d62a242dbfd450353d480a02cd7e0283edc13c6c13e3304",
+    "independent-integrity-verification.json": "714dfde963ee5d72a6b9fd70afe58a362bd8da8fa0ab51dec6730533b1ee78d9",
+    "locked-central-boundary.json": "f513371f1d1851aeaf666948e8d199d11f58693762afab78fb9ac0a9e300bc96"
+  },
+  "file_reviews": [
+    {
+      "path": ".github/workflows/binary-dev-release.yml",
+      "base_blob": {
+        "path": ".github/workflows/binary-dev-release.yml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8843650a14607fe2fbd2098696628d1c1b0044ff",
+        "size": 10322,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/8843650a14607fe2fbd2098696628d1c1b0044ff",
+        "sha256": "383e1c159a2c781f89e5303674833578fa7bef251626b40815f4bdc0cfa32423",
+        "bytes": 10322,
+        "lines": 308
+      },
+      "candidate_blob": {
+        "path": ".github/workflows/binary-dev-release.yml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8995e287ea9397658dd3a643e6f2ec3d4c5537eb",
+        "size": 10439,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/8995e287ea9397658dd3a643e6f2ec3d4c5537eb",
+        "sha256": "a16a3e948be123845ee19d63bf71bb3c64e88c0c3a50be5d2233153399207786",
+        "bytes": 10439,
+        "lines": 311
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/.github/workflows/binary-dev-release.yml",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1845,
+        "total_bytes": 1845,
+        "diff_sha256": "08e277a668ebc5da0bab8e984b3f9a452e39e37566f4b8f0daccd0bd955583c8",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 112,
+          "base_count": 10,
+          "candidate_start": 112,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 177,
+          "base_count": 10,
+          "candidate_start": 178,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 257,
+          "base_count": 10,
+          "candidate_start": 259,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": ".github/workflows/binary-release.yml",
+      "base_blob": {
+        "path": ".github/workflows/binary-release.yml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "01c08be755bb9db66eb93fd5e8f8914189c3c842",
+        "size": 13614,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/01c08be755bb9db66eb93fd5e8f8914189c3c842",
+        "sha256": "c606603839701cae68ec3b6a8ddaebf0014c3348fde13d362e65d60c9f546b52",
+        "bytes": 13614,
+        "lines": 397
+      },
+      "candidate_blob": {
+        "path": ".github/workflows/binary-release.yml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "74b2b1e00f42a4f445a66fa857fa2be3b348a99b",
+        "size": 13731,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/74b2b1e00f42a4f445a66fa857fa2be3b348a99b",
+        "sha256": "1d58f5f43be781ef79a85023a6b4e63200c3bc26ecc04ab4fe4ed08e69ea60a0",
+        "bytes": 13731,
+        "lines": 400
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/.github/workflows/binary-release.yml",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1967,
+        "total_bytes": 1967,
+        "diff_sha256": "4faf26c21b3b3e2784d7b2c712766855905b1aa292cc43699eb4e3948bd30e36",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 72,
+          "base_count": 10,
+          "candidate_start": 72,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 137,
+          "base_count": 10,
+          "candidate_start": 138,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 217,
+          "base_count": 10,
+          "candidate_start": 219,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "README.md",
+      "base_blob": {
+        "path": "README.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e1486f0b15dedc571f0d6e9334ef23e3f06ce3af",
+        "size": 35581,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/e1486f0b15dedc571f0d6e9334ef23e3f06ce3af",
+        "sha256": "c62f0914d334e0abd43d388035cfedd0e550212c3347a78f96168c22d183e39e",
+        "bytes": 35581,
+        "lines": 618
+      },
+      "candidate_blob": {
+        "path": "README.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f274e6d24e2bd80e6535e949f8d3d9ffae7776d9",
+        "size": 24250,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/f274e6d24e2bd80e6535e949f8d3d9ffae7776d9",
+        "sha256": "e581513e7e3d461d8f36646e633a2fcfea8f453734556e3365168c8f13d9ed30",
+        "bytes": 24250,
+        "lines": 512
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/README.md",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 25267,
+        "total_bytes": 25267,
+        "diff_sha256": "02ab4d51658240a9f45a7f8728c762fae1d2cb00f524b50e020c9131c78fb1c6",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 25,
+          "base_count": 11,
+          "candidate_start": 25,
+          "candidate_count": 13
+        },
+        {
+          "base_start": 104,
+          "base_count": 17,
+          "candidate_start": 106,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 127,
+          "base_count": 14,
+          "candidate_start": 126,
+          "candidate_count": 16
+        },
+        {
+          "base_start": 146,
+          "base_count": 22,
+          "candidate_start": 147,
+          "candidate_count": 22
+        },
+        {
+          "base_start": 181,
+          "base_count": 46,
+          "candidate_start": 182,
+          "candidate_count": 27
+        },
+        {
+          "base_start": 257,
+          "base_count": 19,
+          "candidate_start": 239,
+          "candidate_count": 19
+        },
+        {
+          "base_start": 309,
+          "base_count": 17,
+          "candidate_start": 291,
+          "candidate_count": 15
+        },
+        {
+          "base_start": 425,
+          "base_count": 19,
+          "candidate_start": 405,
+          "candidate_count": 15
+        },
+        {
+          "base_start": 454,
+          "base_count": 89,
+          "candidate_start": 430,
+          "candidate_count": 28
+        },
+        {
+          "base_start": 547,
+          "base_count": 42,
+          "candidate_start": 462,
+          "candidate_count": 27
+        },
+        {
+          "base_start": 593,
+          "base_count": 17,
+          "candidate_start": 493,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "README.zh.md",
+      "base_blob": {
+        "path": "README.zh.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "be302b1fe181d08207ee208352304dd9a2ca5bab",
+        "size": 33166,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/be302b1fe181d08207ee208352304dd9a2ca5bab",
+        "sha256": "cfb0d87b856ef9868e4efd6f452ce23f8f007f7c505a043c727d1e91747de5a1",
+        "bytes": 33166,
+        "lines": 618
+      },
+      "candidate_blob": {
+        "path": "README.zh.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6d9cd212552787fe10f99158410bfb75617351e4",
+        "size": 22815,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/6d9cd212552787fe10f99158410bfb75617351e4",
+        "sha256": "d6f8b979f369f21739e32ebd80fd0fee627eadaef65171252387aaffabab4f86",
+        "bytes": 22815,
+        "lines": 512
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/README.zh.md",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 23193,
+        "total_bytes": 23193,
+        "diff_sha256": "d9c3df4a8627f7c1216a5b2da3505380574e92d6891bdff0d6c22be341f4485a",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 25,
+          "base_count": 11,
+          "candidate_start": 25,
+          "candidate_count": 13
+        },
+        {
+          "base_start": 104,
+          "base_count": 17,
+          "candidate_start": 106,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 127,
+          "base_count": 14,
+          "candidate_start": 126,
+          "candidate_count": 16
+        },
+        {
+          "base_start": 146,
+          "base_count": 22,
+          "candidate_start": 147,
+          "candidate_count": 22
+        },
+        {
+          "base_start": 181,
+          "base_count": 46,
+          "candidate_start": 182,
+          "candidate_count": 27
+        },
+        {
+          "base_start": 257,
+          "base_count": 19,
+          "candidate_start": 239,
+          "candidate_count": 19
+        },
+        {
+          "base_start": 309,
+          "base_count": 17,
+          "candidate_start": 291,
+          "candidate_count": 15
+        },
+        {
+          "base_start": 425,
+          "base_count": 19,
+          "candidate_start": 405,
+          "candidate_count": 15
+        },
+        {
+          "base_start": 454,
+          "base_count": 89,
+          "candidate_start": 430,
+          "candidate_count": 28
+        },
+        {
+          "base_start": 547,
+          "base_count": 42,
+          "candidate_start": 462,
+          "candidate_count": 27
+        },
+        {
+          "base_start": 593,
+          "base_count": 17,
+          "candidate_start": 493,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "assets/screenshots/analysis-dark.png",
+      "base_blob": {
+        "path": "assets/screenshots/analysis-dark.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "53b3d839cc5e989d538d6f2f1c27797db7362ca7",
+        "size": 383425,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/53b3d839cc5e989d538d6f2f1c27797db7362ca7",
+        "sha256": "943ac118814513c1acbb22a0d2e5c8f9cb9a681f4d1e47ef89d1d8baa2499ed0",
+        "bytes": 383425,
+        "lines": null
+      },
+      "candidate_blob": {
+        "path": "assets/screenshots/analysis-dark.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f03c0ad80e1ee62be81156b490e90c8c075230b1",
+        "size": 474664,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/f03c0ad80e1ee62be81156b490e90c8c075230b1",
+        "sha256": "ae890a009396da6682982a6bab30ff9a4c2a0469424b150d7f09a7ee672b83dd",
+        "bytes": 474664,
+        "lines": null
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/assets/screenshots/analysis-dark.png",
+      "read_status": "complete",
+      "binary_review": "PNG structure, all chunks CRC, IDAT stream/pixels, no trailing bytes; independent-integrity-verification.json"
+    },
+    {
+      "path": "assets/screenshots/analysis-white.png",
+      "base_blob": {
+        "path": "assets/screenshots/analysis-white.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "78e4cc6aa663741eb2bb53d5ac8add2a4e15dfa2",
+        "size": 363675,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/78e4cc6aa663741eb2bb53d5ac8add2a4e15dfa2",
+        "sha256": "a0b39a113781db81d5e077ae1948662fb2bb1884f062f45f6f673bbef161e370",
+        "bytes": 363675,
+        "lines": null
+      },
+      "candidate_blob": {
+        "path": "assets/screenshots/analysis-white.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7b6357952f55472fddac8ac9ab1a44784b10fd0d",
+        "size": 446228,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/7b6357952f55472fddac8ac9ab1a44784b10fd0d",
+        "sha256": "ba13f1ea4838a19a6b31c34dcefc97d958a1b6b7d0c3292917f8c505323c81f2",
+        "bytes": 446228,
+        "lines": null
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/assets/screenshots/analysis-white.png",
+      "read_status": "complete",
+      "binary_review": "PNG structure, all chunks CRC, IDAT stream/pixels, no trailing bytes; independent-integrity-verification.json"
+    },
+    {
+      "path": "assets/screenshots/credentials-dark.png",
+      "base_blob": {
+        "path": "assets/screenshots/credentials-dark.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7fdfecd95fa0dfdbbca72e0a3dde1f814e9b731f",
+        "size": 310482,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/7fdfecd95fa0dfdbbca72e0a3dde1f814e9b731f",
+        "sha256": "183c0b17d0a94df29aa08416384becdb835e3677ef91952c3e6d5804e95cb542",
+        "bytes": 310482,
+        "lines": null
+      },
+      "candidate_blob": {
+        "path": "assets/screenshots/credentials-dark.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7b25f386ba0840d03bd161a896249cc4a1ff2eef",
+        "size": 521384,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/7b25f386ba0840d03bd161a896249cc4a1ff2eef",
+        "sha256": "caddcc26597db4ad4873c9c9e4982734ceb6b6bd93837aa4ad611056154b2e4a",
+        "bytes": 521384,
+        "lines": null
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/assets/screenshots/credentials-dark.png",
+      "read_status": "complete",
+      "binary_review": "PNG structure, all chunks CRC, IDAT stream/pixels, no trailing bytes; independent-integrity-verification.json"
+    },
+    {
+      "path": "assets/screenshots/credentials-white.png",
+      "base_blob": {
+        "path": "assets/screenshots/credentials-white.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "933ec096eaf13ea53d4c54cf4213e01ddf2d5a9a",
+        "size": 301316,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/933ec096eaf13ea53d4c54cf4213e01ddf2d5a9a",
+        "sha256": "e884adc79fab5c9549bfb82122a1e3bf530081dddf1f9fe4d073e84882fb7df0",
+        "bytes": 301316,
+        "lines": null
+      },
+      "candidate_blob": {
+        "path": "assets/screenshots/credentials-white.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cb6047f6cc088623cde9f55a2dde7163e5dd4c29",
+        "size": 508169,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/cb6047f6cc088623cde9f55a2dde7163e5dd4c29",
+        "sha256": "5696ba5fc9773e9341331fb25c8f847332b42de32b2259637eaa31db26a1b10b",
+        "bytes": 508169,
+        "lines": null
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/assets/screenshots/credentials-white.png",
+      "read_status": "complete",
+      "binary_review": "PNG structure, all chunks CRC, IDAT stream/pixels, no trailing bytes; independent-integrity-verification.json"
+    },
+    {
+      "path": "assets/screenshots/overview-dark.png",
+      "base_blob": {
+        "path": "assets/screenshots/overview-dark.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6dae617105dd183393a79a92b0ade89f96dca891",
+        "size": 815855,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/6dae617105dd183393a79a92b0ade89f96dca891",
+        "sha256": "98f24760f17d30b1b74b8d82d44476d328772a5a3c36a1476c2ae2dedf86d377",
+        "bytes": 815855,
+        "lines": null
+      },
+      "candidate_blob": {
+        "path": "assets/screenshots/overview-dark.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ebd56e7b854716518b26b61292b73f5128931941",
+        "size": 825218,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/ebd56e7b854716518b26b61292b73f5128931941",
+        "sha256": "a7a8ffb774b0d066fbfaa75ad30034c11bf18412411e4125390f4b0061d8923c",
+        "bytes": 825218,
+        "lines": null
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/assets/screenshots/overview-dark.png",
+      "read_status": "complete",
+      "binary_review": "PNG structure, all chunks CRC, IDAT stream/pixels, no trailing bytes; independent-integrity-verification.json"
+    },
+    {
+      "path": "assets/screenshots/overview-white.png",
+      "base_blob": {
+        "path": "assets/screenshots/overview-white.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c73fcf02e1c9682304f45db836574002b187b0e3",
+        "size": 841906,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/c73fcf02e1c9682304f45db836574002b187b0e3",
+        "sha256": "219ae9d5000402ee6b6de8492caae3b4ccc442dbda0858c427d12a932bc472bb",
+        "bytes": 841906,
+        "lines": null
+      },
+      "candidate_blob": {
+        "path": "assets/screenshots/overview-white.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "531590d6de4c083fc8e7524a18b3939f5ee040db",
+        "size": 841370,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/531590d6de4c083fc8e7524a18b3939f5ee040db",
+        "sha256": "33ffd8762deb243c2ad46b474caa1450d40187c73f2e494fb245fbd6aefcc50e",
+        "bytes": 841370,
+        "lines": null
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/assets/screenshots/overview-white.png",
+      "read_status": "complete",
+      "binary_review": "PNG structure, all chunks CRC, IDAT stream/pixels, no trailing bytes; independent-integrity-verification.json"
+    },
+    {
+      "path": "assets/screenshots/quota-history-dark.png",
+      "base_blob": {
+        "path": "assets/screenshots/quota-history-dark.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "58f85b707329efbe01e3b0c9588e0d86e9e62314",
+        "size": 461295,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/58f85b707329efbe01e3b0c9588e0d86e9e62314",
+        "sha256": "440378cf7021142d0f4e58c0b2170967f6044f5c45fef6a0327a5f56dd993b08",
+        "bytes": 461295,
+        "lines": null
+      },
+      "candidate_blob": {
+        "path": "assets/screenshots/quota-history-dark.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1e1079ac3af8999979a0858b550b6400f60b955f",
+        "size": 475047,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/1e1079ac3af8999979a0858b550b6400f60b955f",
+        "sha256": "335a53e5ac62ed938be1274605f1cb5861808efc4fec76aa8443427b96a4f378",
+        "bytes": 475047,
+        "lines": null
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/assets/screenshots/quota-history-dark.png",
+      "read_status": "complete",
+      "binary_review": "PNG structure, all chunks CRC, IDAT stream/pixels, no trailing bytes; independent-integrity-verification.json"
+    },
+    {
+      "path": "assets/screenshots/quota-history-white.png",
+      "base_blob": {
+        "path": "assets/screenshots/quota-history-white.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f5180b2e45666ec0a24667e94706d0f07611382d",
+        "size": 453315,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/f5180b2e45666ec0a24667e94706d0f07611382d",
+        "sha256": "1828add98562b7b8edfddbd9ac27c01a22c2511fc63621fb933b7d5296eab7d3",
+        "bytes": 453315,
+        "lines": null
+      },
+      "candidate_blob": {
+        "path": "assets/screenshots/quota-history-white.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ba4b73eb25b18d53ef93977831158ab8ef60f3ea",
+        "size": 465336,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/ba4b73eb25b18d53ef93977831158ab8ef60f3ea",
+        "sha256": "ad8d7df8371d4e43c26b83f9190d6413b0497e888700086b297e5fabdf46ca4c",
+        "bytes": 465336,
+        "lines": null
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/assets/screenshots/quota-history-white.png",
+      "read_status": "complete",
+      "binary_review": "PNG structure, all chunks CRC, IDAT stream/pixels, no trailing bytes; independent-integrity-verification.json"
+    },
+    {
+      "path": "assets/screenshots/realtime-dark.png",
+      "base_blob": {
+        "path": "assets/screenshots/realtime-dark.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2f8e1f9e69b3731b384fc88f0adf5fba219dcc76",
+        "size": 322713,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/2f8e1f9e69b3731b384fc88f0adf5fba219dcc76",
+        "sha256": "cb3b301f5c15c08a3e3422c7af80deaf4bcef763ba9262a8afdbf62685854033",
+        "bytes": 322713,
+        "lines": null
+      },
+      "candidate_blob": {
+        "path": "assets/screenshots/realtime-dark.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d1dc8467c865ffcd0957bc69db516e5858f9d6cc",
+        "size": 421831,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/d1dc8467c865ffcd0957bc69db516e5858f9d6cc",
+        "sha256": "b7ba4c3cb752ac60468f4009cc4c27c0abfdd2e9860dc2a45fb364759b63ea4d",
+        "bytes": 421831,
+        "lines": null
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/assets/screenshots/realtime-dark.png",
+      "read_status": "complete",
+      "binary_review": "PNG structure, all chunks CRC, IDAT stream/pixels, no trailing bytes; independent-integrity-verification.json"
+    },
+    {
+      "path": "assets/screenshots/realtime-white.png",
+      "base_blob": {
+        "path": "assets/screenshots/realtime-white.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e0fde63192f20bc0cb70aaccc1b020465d0fea8a",
+        "size": 306637,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/e0fde63192f20bc0cb70aaccc1b020465d0fea8a",
+        "sha256": "010e6807d9d27800301018cb7d5a9c524f3265cfa167499981b770753cfb6b0c",
+        "bytes": 306637,
+        "lines": null
+      },
+      "candidate_blob": {
+        "path": "assets/screenshots/realtime-white.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "271c085c3ebc20be613894eb800e045054f0de89",
+        "size": 394274,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/271c085c3ebc20be613894eb800e045054f0de89",
+        "sha256": "4dc54c2884c6aeab1c45a0ffbfc7ab18ec88115352ff9f90d4413acb548a59d7",
+        "bytes": 394274,
+        "lines": null
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/assets/screenshots/realtime-white.png",
+      "read_status": "complete",
+      "binary_review": "PNG structure, all chunks CRC, IDAT stream/pixels, no trailing bytes; independent-integrity-verification.json"
+    },
+    {
+      "path": "assets/screenshots/request-events-dark.png",
+      "base_blob": {
+        "path": "assets/screenshots/request-events-dark.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "5bc77c4a0a1e57cffc54c3d4345c8a0e0df568e4",
+        "size": 472814,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/5bc77c4a0a1e57cffc54c3d4345c8a0e0df568e4",
+        "sha256": "b8523df05329b856f763bfeef73767b9b6d9f529f8b2196c1c8bd1019586f0ce",
+        "bytes": 472814,
+        "lines": null
+      },
+      "candidate_blob": {
+        "path": "assets/screenshots/request-events-dark.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3d955857437ff6048505a3737fe1274ae3056088",
+        "size": 484725,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/3d955857437ff6048505a3737fe1274ae3056088",
+        "sha256": "74d65340533b38560a69367de878c89df582b6e51d6629541969b5518c1737bd",
+        "bytes": 484725,
+        "lines": null
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/assets/screenshots/request-events-dark.png",
+      "read_status": "complete",
+      "binary_review": "PNG structure, all chunks CRC, IDAT stream/pixels, no trailing bytes; independent-integrity-verification.json"
+    },
+    {
+      "path": "assets/screenshots/request-events-white.png",
+      "base_blob": {
+        "path": "assets/screenshots/request-events-white.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2498e5a99b0274ea6ebd437ba364f56855ab1e4a",
+        "size": 468572,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/2498e5a99b0274ea6ebd437ba364f56855ab1e4a",
+        "sha256": "b427aaaffd408107ef6d3bb35c950b471a3a9dbe5ef090fe2e102ce5f18b0798",
+        "bytes": 468572,
+        "lines": null
+      },
+      "candidate_blob": {
+        "path": "assets/screenshots/request-events-white.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b2edadc8f6132278089e5e6f7ac5cf318e6bf73b",
+        "size": 475030,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/b2edadc8f6132278089e5e6f7ac5cf318e6bf73b",
+        "sha256": "28ce8c0a494616e1e7c054dcb8c69a9567d898e9bb0aff857e2ce7f87c7075a8",
+        "bytes": 475030,
+        "lines": null
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/assets/screenshots/request-events-white.png",
+      "read_status": "complete",
+      "binary_review": "PNG structure, all chunks CRC, IDAT stream/pixels, no trailing bytes; independent-integrity-verification.json"
+    },
+    {
+      "path": "docs/configuration.md",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "docs/configuration.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "195b8ddeaedfaae1634736fa11c973493fc8507b",
+        "size": 4742,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/195b8ddeaedfaae1634736fa11c973493fc8507b",
+        "sha256": "739e0373ee5ef7e6032d7ecc5cba51a134ffb510e33c501783213e32a66a6f72",
+        "bytes": 4742,
+        "lines": 73
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/docs/configuration.md",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 4966,
+        "total_bytes": 4966,
+        "diff_sha256": "20761dca6dcb492bee8fff82f2bc2d104707456bc04a738acec239a32443ada9",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 73
+        }
+      ]
+    },
+    {
+      "path": "docs/configuration.zh.md",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "docs/configuration.zh.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6810db26f45e2542f41c7d5714581f899a4b02cd",
+        "size": 4231,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/6810db26f45e2542f41c7d5714581f899a4b02cd",
+        "sha256": "a21e43bd0a0ac6df325cd9c000af9361e9773d43199071ec8325fd1e9428d15e",
+        "bytes": 4231,
+        "lines": 73
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/docs/configuration.zh.md",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 4461,
+        "total_bytes": 4461,
+        "diff_sha256": "51961f4e457cf5998382860b5c8228adbad46e8d126ddfc260b17b5ff3d3426d",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 73
+        }
+      ]
+    },
+    {
+      "path": "docs/development.md",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "docs/development.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a6daf9536a9eeade69bf05855787b654f01149ee",
+        "size": 1850,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/a6daf9536a9eeade69bf05855787b654f01149ee",
+        "sha256": "680c69e8486edad2eaceae0937555d9e96de1cfb08098e158199856b4131efd8",
+        "bytes": 1850,
+        "lines": 41
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/docs/development.md",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 2038,
+        "total_bytes": 2038,
+        "diff_sha256": "fdd2ea286c90635cfced04bb2ec91ee8003828ffe54fab6e3a0473aadb59515e",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 41
+        }
+      ]
+    },
+    {
+      "path": "docs/development.zh.md",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "docs/development.zh.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "08e0ede9366daffafe6d29153bba2bc9f85f393a",
+        "size": 1701,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/08e0ede9366daffafe6d29153bba2bc9f85f393a",
+        "sha256": "ad6b62ab175d08d22f5a1673e43d0b3788e028f3a278aa85fe6d523c51f673f8",
+        "bytes": 1701,
+        "lines": 41
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/docs/development.zh.md",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1895,
+        "total_bytes": 1895,
+        "diff_sha256": "6f788cafd86a180a008f2829f85925241870c7435f26e1626466765011fd8920",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 41
+        }
+      ]
+    },
+    {
+      "path": "docs/oidc.md",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "docs/oidc.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7d79eee2eaf2f8449ed9d9dc3a626257e271b69c",
+        "size": 4283,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/7d79eee2eaf2f8449ed9d9dc3a626257e271b69c",
+        "sha256": "0b2bf6d3937ac7069f92603f4b7b905c696719aa52f5ae502cda9c1ff0b19e40",
+        "bytes": 4283,
+        "lines": 56
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/docs/oidc.md",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 4472,
+        "total_bytes": 4472,
+        "diff_sha256": "38ed9a92fcd45c22378f44ef823ed11eb0854b6c796f0601fd01390813e13bf6",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 56
+        }
+      ]
+    },
+    {
+      "path": "docs/oidc.zh.md",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "docs/oidc.zh.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "839c97cb2d8f62c896d89fda34fe5cb056211df9",
+        "size": 3877,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/839c97cb2d8f62c896d89fda34fe5cb056211df9",
+        "sha256": "969298bc10801e30f30d9d0fbd16083812c81039ed311b4d78c4eac9fcaee1e8",
+        "bytes": 3877,
+        "lines": 56
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/docs/oidc.zh.md",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 4072,
+        "total_bytes": 4072,
+        "diff_sha256": "1dc38387c95aa826dca2697790303ceb309bf9ff09f02b3cf8b4bc3b5949c05d",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 56
+        }
+      ]
+    },
+    {
+      "path": "docs/upgrading.md",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "docs/upgrading.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "478d68d1bf4f76f7e96d363cf2ece074c4240f3a",
+        "size": 1036,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/478d68d1bf4f76f7e96d363cf2ece074c4240f3a",
+        "sha256": "ca1779fa0fa0b9c00e3b3208ab45966dbd95d2bfb8377132cb536a33aac62db2",
+        "bytes": 1036,
+        "lines": 11
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/docs/upgrading.md",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1190,
+        "total_bytes": 1190,
+        "diff_sha256": "49db60d0d4f66234b5755964efcae1be52d92edae062461de7d64941b9c29da8",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "docs/upgrading.zh.md",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "docs/upgrading.zh.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8475ea58e583f7cba247c8d386e30db189d2ced2",
+        "size": 930,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/8475ea58e583f7cba247c8d386e30db189d2ced2",
+        "sha256": "045f4d5da330272cf478826fa18a30b70c123c7d43fab5ecf910b80d58b4aec7",
+        "bytes": 930,
+        "lines": 11
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/docs/upgrading.zh.md",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1090,
+        "total_bytes": 1090,
+        "diff_sha256": "efa81d002c726bffc59fed1ebf8f73700acb6b3ffcd7acba3e10a713a6f71ac2",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "internal/api/auth.go",
+      "base_blob": {
+        "path": "internal/api/auth.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ef12cfda215ad0d132e556462c7afff2df6f4e65",
+        "size": 16795,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/ef12cfda215ad0d132e556462c7afff2df6f4e65",
+        "sha256": "4104dd15e39eec0c8d127d859a2eafb319fb1845fe212db1742d6295eb37c02f",
+        "bytes": 16795,
+        "lines": 544
+      },
+      "candidate_blob": {
+        "path": "internal/api/auth.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1525126483082c9a706e639542909e9c0ac0217a",
+        "size": 16899,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/1525126483082c9a706e639542909e9c0ac0217a",
+        "sha256": "eb93010c22cce019470477fb8d091eac12e3b2b68511b1663d21ab398377ed7c",
+        "bytes": 16899,
+        "lines": 544
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/api/auth.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1106,
+        "total_bytes": 1106,
+        "diff_sha256": "7ec14445831f9763a5b0366c79a40217b17c71f017ee4a33c90ccd81a5beb178",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 350,
+          "base_count": 11,
+          "candidate_start": 350,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 372,
+          "base_count": 11,
+          "candidate_start": 372,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "internal/api/auth_sessions.go",
+      "base_blob": {
+        "path": "internal/api/auth_sessions.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8020994aa0e18da0e86d1773719d8f8efe9c1c6e",
+        "size": 7349,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/8020994aa0e18da0e86d1773719d8f8efe9c1c6e",
+        "sha256": "f88fd29ef14de3507d83551dfbd42c2b689a360e543f84665cab19da3b6fe331",
+        "bytes": 7349,
+        "lines": 234
+      },
+      "candidate_blob": {
+        "path": "internal/api/auth_sessions.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "de500cd063221ffc5490432081e44eae581e8d6f",
+        "size": 7349,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/de500cd063221ffc5490432081e44eae581e8d6f",
+        "sha256": "0b6e86bbfde70998b465eee6b416418077df4ba1864a77660baf93708553c9ea",
+        "bytes": 7349,
+        "lines": 234
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/api/auth_sessions.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 446,
+        "total_bytes": 446,
+        "diff_sha256": "fb75f1506f90c7562ea746e79ef0e2523324a9ac9df2eed0b8f2af3961a0d8f8",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 18,
+          "base_count": 11,
+          "candidate_start": 18,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "internal/api/cpa_api_keys.go",
+      "base_blob": {
+        "path": "internal/api/cpa_api_keys.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b48d88e0c11d9064e976b0d4d7fe04f7d54dfeb9",
+        "size": 6405,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/b48d88e0c11d9064e976b0d4d7fe04f7d54dfeb9",
+        "sha256": "a9595655939f9cea47378900f16bf1a990628fb76b6b2e8cc72b14189f93c7f9",
+        "bytes": 6405,
+        "lines": 225
+      },
+      "candidate_blob": {
+        "path": "internal/api/cpa_api_keys.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e68fdf154cc2313ac47b526ecc257bbe64d574fa",
+        "size": 7095,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/e68fdf154cc2313ac47b526ecc257bbe64d574fa",
+        "sha256": "93f6be62f6ba780418ef66fd855b180f080a457cc6039bfdbf1a73a7c8dded30",
+        "bytes": 7095,
+        "lines": 244
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/api/cpa_api_keys.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 3530,
+        "total_bytes": 3530,
+        "diff_sha256": "2f82665f4ca26793e00f91b9bc44066d8d649919c4cc9d97a8fed7821915deff",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 17,
+          "base_count": 28,
+          "candidate_start": 17,
+          "candidate_count": 32
+        },
+        {
+          "base_start": 177,
+          "base_count": 33,
+          "candidate_start": 181,
+          "candidate_count": 48
+        }
+      ]
+    },
+    {
+      "path": "internal/api/test/auth_test.go",
+      "base_blob": {
+        "path": "internal/api/test/auth_test.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "58d461fb6e9499a47b4a3e6066f21fc47eb5a8ec",
+        "size": 22295,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/58d461fb6e9499a47b4a3e6066f21fc47eb5a8ec",
+        "sha256": "797a9364c06db45aeac86de0f443074f1faec0308b455640f46c183d44e34215",
+        "bytes": 22295,
+        "lines": 522
+      },
+      "candidate_blob": {
+        "path": "internal/api/test/auth_test.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "459b83e258820820c97f3ede1cc37cdbc215b59b",
+        "size": 22295,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/459b83e258820820c97f3ede1cc37cdbc215b59b",
+        "sha256": "cc4c739518b32384f02799719d6135818df64f4d1f86934447a153f50535859d",
+        "bytes": 22295,
+        "lines": 522
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/api/test/auth_test.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 654,
+        "total_bytes": 654,
+        "diff_sha256": "b6b241f1aaff28c2baadc4ca1feda7a11281e909d30da511377344a8c6c6f8fc",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 323,
+          "base_count": 11,
+          "candidate_start": 323,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "internal/api/test/plugin_api_keys_test.go",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "internal/api/test/plugin_api_keys_test.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f9ecc0261fab18f22f3bf31c7a37727dc2e3b2f2",
+        "size": 4470,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/f9ecc0261fab18f22f3bf31c7a37727dc2e3b2f2",
+        "sha256": "abb5839d3a0fc5fad6a5c7172609c0bbd01c19c6b4d131cc2c4d65688a80adb4",
+        "bytes": 4470,
+        "lines": 81
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/api/test/plugin_api_keys_test.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 4742,
+        "total_bytes": 4742,
+        "diff_sha256": "86309900c22e7edb05a4cca9426ac3bd5ce72fdb0badb75579263a4307a30a78",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 81
+        }
+      ]
+    },
+    {
+      "path": "internal/app/app.go",
+      "base_blob": {
+        "path": "internal/app/app.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4f3843a7fd0f126915ce023c586360ddb4a3ec3a",
+        "size": 18510,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/4f3843a7fd0f126915ce023c586360ddb4a3ec3a",
+        "sha256": "eb583dae57f4b6fdebd994a2b44e4e886fe92fe69e3035903974a1c85e3e63b8",
+        "bytes": 18510,
+        "lines": 482
+      },
+      "candidate_blob": {
+        "path": "internal/app/app.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9652ed9497cfb4e9810450d0860e6b701e2506d9",
+        "size": 18977,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/9652ed9497cfb4e9810450d0860e6b701e2506d9",
+        "sha256": "24db6768658adae26731445a3733762cd8170a6915fce05110e95f9d513d036b",
+        "bytes": 18977,
+        "lines": 494
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/app/app.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 3290,
+        "total_bytes": 3290,
+        "diff_sha256": "198955972d5ac70a0e39f528f9c897339d5745ed771af36d2b3eecb34ee2efa2",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 69,
+          "base_count": 10,
+          "candidate_start": 69,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 147,
+          "base_count": 10,
+          "candidate_start": 148,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 162,
+          "base_count": 10,
+          "candidate_start": 164,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 251,
+          "base_count": 10,
+          "candidate_start": 254,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 421,
+          "base_count": 10,
+          "candidate_start": 425,
+          "candidate_count": 18
+        }
+      ]
+    },
+    {
+      "path": "internal/app/startup_pipeline.go",
+      "base_blob": {
+        "path": "internal/app/startup_pipeline.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2a7a421b6ba2fe82f1cc4018d6ca42b4630e1174",
+        "size": 7107,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/2a7a421b6ba2fe82f1cc4018d6ca42b4630e1174",
+        "sha256": "da4d9b42e48dcd579421819da38458658da7c53d519dfa68421045c05b3a7491",
+        "bytes": 7107,
+        "lines": 193
+      },
+      "candidate_blob": {
+        "path": "internal/app/startup_pipeline.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d5caa84c15410e254321f100109f459861d433b2",
+        "size": 7146,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/d5caa84c15410e254321f100109f459861d433b2",
+        "sha256": "0f95b09f0bde24f2d238927d92e848f7dc70c3c9ed0b42addc391730d878d36b",
+        "bytes": 7146,
+        "lines": 194
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/app/startup_pipeline.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 945,
+        "total_bytes": 945,
+        "diff_sha256": "102865261c80a55737727a650d505d5e49db3bf95517dd3be45f4d97496d32a6",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 98,
+          "base_count": 10,
+          "candidate_start": 98,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "internal/benchmark/capacity/dataset.go",
+      "base_blob": {
+        "path": "internal/benchmark/capacity/dataset.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0fbaf3522824a8bd67ddbddbc168aeee476f9d1f",
+        "size": 48133,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/0fbaf3522824a8bd67ddbddbc168aeee476f9d1f",
+        "sha256": "88398ed10fac5cd88574667042ae9d6f68c0e6111d33c85e5b440c452050d9c4",
+        "bytes": 48133,
+        "lines": 1090
+      },
+      "candidate_blob": {
+        "path": "internal/benchmark/capacity/dataset.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1bcda89d0b4be3efdda76f78c343ddace157dfd9",
+        "size": 48241,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/1bcda89d0b4be3efdda76f78c343ddace157dfd9",
+        "sha256": "3f7d8d692af596820ccbf341ce08f20b4c89576ad145c5d9d4eb7afe352096e1",
+        "bytes": 48241,
+        "lines": 1091
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/benchmark/capacity/dataset.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1171,
+        "total_bytes": 1171,
+        "diff_sha256": "074028d2b87326645c8b93d681f6021dfefa09101f4359efbf40788b147a0c17",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 552,
+          "base_count": 11,
+          "candidate_start": 552,
+          "candidate_count": 12
+        }
+      ]
+    },
+    {
+      "path": "internal/entities/cpa_api_key.go",
+      "base_blob": {
+        "path": "internal/entities/cpa_api_key.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2ffcc7c9d3e281ad61c39d47c00c935772af5160",
+        "size": 559,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/2ffcc7c9d3e281ad61c39d47c00c935772af5160",
+        "sha256": "671b3bb325ec8a874ca0f6f7265e0cc10823a4913d21a4b8bc8da61187311ef0",
+        "bytes": 559,
+        "lines": 15
+      },
+      "candidate_blob": {
+        "path": "internal/entities/cpa_api_key.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2555153a521222f11364df18a736ba033c319c0c",
+        "size": 938,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/2555153a521222f11364df18a736ba033c319c0c",
+        "sha256": "9152d99efa825e79db786368dce7267d58302b807c0d26197aa3d8133005db14",
+        "bytes": 938,
+        "lines": 28
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/entities/cpa_api_key.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1649,
+        "total_bytes": 1649,
+        "diff_sha256": "77181fa9800f6968b7182bc6e47550d6cef055f1fc4e7b90eb734db0731fa564",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 1,
+          "base_count": 15,
+          "candidate_start": 1,
+          "candidate_count": 28
+        }
+      ]
+    },
+    {
+      "path": "internal/entities/usage_event.go",
+      "base_blob": {
+        "path": "internal/entities/usage_event.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "765733d976c5c6288362bc3cd6b31a340f2d72c3",
+        "size": 3654,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/765733d976c5c6288362bc3cd6b31a340f2d72c3",
+        "sha256": "9008c98dc354caad9dbeb30b4c87425ff98f53dea4392a5c896f6f6b65063918",
+        "bytes": 3654,
+        "lines": 59
+      },
+      "candidate_blob": {
+        "path": "internal/entities/usage_event.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d065015ce8633ac5cc088f5ecd298ace9eb63957",
+        "size": 3780,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/d065015ce8633ac5cc088f5ecd298ace9eb63957",
+        "sha256": "7338d8a4e7749c063e963a05ae10cd8b6a26a7c004533aaa8c2af158965b9043",
+        "bytes": 3780,
+        "lines": 61
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/entities/usage_event.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1100,
+        "total_bytes": 1100,
+        "diff_sha256": "b4426c003aa42f88892b5eb2a63c38f6a7710f86efd4aa0b6202bc077024dabf",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 8,
+          "base_count": 10,
+          "candidate_start": 8,
+          "candidate_count": 12
+        }
+      ]
+    },
+    {
+      "path": "internal/entities/usage_event_archive.go",
+      "base_blob": {
+        "path": "internal/entities/usage_event_archive.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0c8d6647eb27e6b7693930747615eff32222d2f1",
+        "size": 3574,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/0c8d6647eb27e6b7693930747615eff32222d2f1",
+        "sha256": "a394ff0260a17198c5d03fe93e20089308f859257693a13c419aa2b79ec9d0fb",
+        "bytes": 3574,
+        "lines": 60
+      },
+      "candidate_blob": {
+        "path": "internal/entities/usage_event_archive.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3d394f6a212823266a39d40599a884a631b0fc45",
+        "size": 3728,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/3d394f6a212823266a39d40599a884a631b0fc45",
+        "sha256": "f9651f49f69d6c2dadf21b74b473adab0c5f3eeca791d9667539d103ef614a8e",
+        "bytes": 3728,
+        "lines": 62
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/entities/usage_event_archive.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 2414,
+        "total_bytes": 2414,
+        "diff_sha256": "2ac8cf55c25b458da28d6d19343dbe6626a7e1d36de0bf212d22ad246211524d",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 1,
+          "base_count": 18,
+          "candidate_start": 1,
+          "candidate_count": 20
+        }
+      ]
+    },
+    {
+      "path": "internal/helper/plugin_api_key.go",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "internal/helper/plugin_api_key.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "69eb687f68c12f986309aa98bf80bb203be12c8f",
+        "size": 1148,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/69eb687f68c12f986309aa98bf80bb203be12c8f",
+        "sha256": "351877981d893fdd11933e486a09918f37c005337ba46b4941704541a1a30140",
+        "bytes": 1148,
+        "lines": 29
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/helper/plugin_api_key.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1352,
+        "total_bytes": 1352,
+        "diff_sha256": "43ee3b0a4fad62492b43fa0c30e2f97339c69206796588b7389f4a20209aaba5",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 29
+        }
+      ]
+    },
+    {
+      "path": "internal/helper/redact.go",
+      "base_blob": {
+        "path": "internal/helper/redact.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "97f862fa84085cfab16b1b5375b597b74ec75652",
+        "size": 1209,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/97f862fa84085cfab16b1b5375b597b74ec75652",
+        "sha256": "319a14cf262b8a1f2479a8e4d2edd3f30858ad14862248087e212743e27e8e18",
+        "bytes": 1209,
+        "lines": 38
+      },
+      "candidate_blob": {
+        "path": "internal/helper/redact.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cc5d9053c7752d3430c084152ae7adf3f1faf055",
+        "size": 1402,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/cc5d9053c7752d3430c084152ae7adf3f1faf055",
+        "sha256": "351b1a6e8e381e54fde2471ca29d5b887003a964ed297ab2e6126c720c30b94c",
+        "bytes": 1402,
+        "lines": 45
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/helper/redact.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1263,
+        "total_bytes": 1263,
+        "diff_sha256": "2b9f08d36eaf59dd3909bc105d9335c7ad0fb8f9398e1b668d3ac668506e8dfd",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 1,
+          "base_count": 17,
+          "candidate_start": 1,
+          "candidate_count": 21
+        },
+        {
+          "base_start": 21,
+          "base_count": 10,
+          "candidate_start": 25,
+          "candidate_count": 13
+        }
+      ]
+    },
+    {
+      "path": "internal/helper/test/plugin_api_key_test.go",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "internal/helper/test/plugin_api_key_test.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ecb28fd524eb58d6252bcaf97ff3588c4357697f",
+        "size": 1335,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/ecb28fd524eb58d6252bcaf97ff3588c4357697f",
+        "sha256": "49bc30a62f8f22d0e726cf98220fd725a064c124412fce7ffac8cebf1d259600",
+        "bytes": 1335,
+        "lines": 37
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/helper/test/plugin_api_key_test.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1567,
+        "total_bytes": 1567,
+        "diff_sha256": "416d27052eef2058bfe34bd4b1e623057d972f0cd6581fe9a4ba779d536d99a6",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 37
+        }
+      ]
+    },
+    {
+      "path": "internal/poller/plugin_api_key_runner.go",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "internal/poller/plugin_api_key_runner.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "24507d567e365572108b60456e76aa1c3b9d2af4",
+        "size": 6699,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/24507d567e365572108b60456e76aa1c3b9d2af4",
+        "sha256": "89fd7c9287e58ffa1047f754d475a50d249f429521363e3b8af9c6100477c0b1",
+        "bytes": 6699,
+        "lines": 218
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/poller/plugin_api_key_runner.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 7107,
+        "total_bytes": 7107,
+        "diff_sha256": "d3c701f3145fa8dc81daed30aae24d45fcbe61632bd537a31c1f5c5f0c52732b",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 218
+        }
+      ]
+    },
+    {
+      "path": "internal/poller/test/plugin_api_key_runner_test.go",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "internal/poller/test/plugin_api_key_runner_test.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9c81cc34bab8e338e5ba7c3a2f6f9a68327d7727",
+        "size": 9604,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/9c81cc34bab8e338e5ba7c3a2f6f9a68327d7727",
+        "sha256": "064924bb87116d2afff5e7b584b0c07dd09932350366c770cc92f897f95eb5ba",
+        "bytes": 9604,
+        "lines": 256
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/poller/test/plugin_api_key_runner_test.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 10070,
+        "total_bytes": 10070,
+        "diff_sha256": "c159f4141590dae452e87b1b1df3b80e3d3a62ce080a1d7909881242f26b6b62",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 256
+        }
+      ]
+    },
+    {
+      "path": "internal/repository/cpa_api_key.go",
+      "base_blob": {
+        "path": "internal/repository/cpa_api_key.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b25cfd76babf8f1a9f6585d811e5fab99b925b80",
+        "size": 3747,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/b25cfd76babf8f1a9f6585d811e5fab99b925b80",
+        "sha256": "ce99af4d3dfea297bce9ade82447e464af46a916bae4e607328613334153874d",
+        "bytes": 3747,
+        "lines": 133
+      },
+      "candidate_blob": {
+        "path": "internal/repository/cpa_api_key.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "743544d254d97ea2491d3d8f9dc3b804c927825f",
+        "size": 4264,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/743544d254d97ea2491d3d8f9dc3b804c927825f",
+        "sha256": "e544a717bb5b22cc5bca2e2e02bbc341001fea7652b370dcee6361c5f0402435",
+        "bytes": 4264,
+        "lines": 137
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/repository/cpa_api_key.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 3202,
+        "total_bytes": 3202,
+        "diff_sha256": "d20db50f9b399544c7ba3e2e4ef1d1e919a66fc462af505847c959dbd61d9d19",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 6,
+          "base_count": 10,
+          "candidate_start": 6,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 32,
+          "base_count": 10,
+          "candidate_start": 33,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 66,
+          "base_count": 10,
+          "candidate_start": 68,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 85,
+          "base_count": 23,
+          "candidate_start": 88,
+          "candidate_count": 23
+        },
+        {
+          "base_start": 115,
+          "base_count": 11,
+          "candidate_start": 118,
+          "candidate_count": 12
+        }
+      ]
+    },
+    {
+      "path": "internal/repository/migration/20261028_plugin_api_key_sources.go",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "internal/repository/migration/20261028_plugin_api_key_sources.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4d51222613c87e3c4febd7034062951fd7fc04c1",
+        "size": 876,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/4d51222613c87e3c4febd7034062951fd7fc04c1",
+        "sha256": "43c0f4984a134c6020c5f8453f48853e9343ea784d891a4f2493aa415fa4e1c0",
+        "bytes": 876,
+        "lines": 33
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/repository/migration/20261028_plugin_api_key_sources.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1146,
+        "total_bytes": 1146,
+        "diff_sha256": "77502ee86b82aa6dddfa67561ccd8985afd8891a31a017a8c7b8d0273206c81c",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 33
+        }
+      ]
+    },
+    {
+      "path": "internal/repository/migration/migration.go",
+      "base_blob": {
+        "path": "internal/repository/migration/migration.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "91e425ade73f06ba51349b52cea7029db022865a",
+        "size": 24274,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/91e425ade73f06ba51349b52cea7029db022865a",
+        "sha256": "8d2d407bf7a3d5051685777cdf219ebf32d4a5465c5f7ddcb0da223e43cc08dc",
+        "bytes": 24274,
+        "lines": 397
+      },
+      "candidate_blob": {
+        "path": "internal/repository/migration/migration.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f77a2542ab507bc684f90d5f20743a5ac9045a88",
+        "size": 24438,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/f77a2542ab507bc684f90d5f20743a5ac9045a88",
+        "sha256": "302ddd1e63f00da766eb06d6e8f3b19e91df9779340d2073df6fdc5f09b95e20",
+        "bytes": 24438,
+        "lines": 399
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/repository/migration/migration.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1687,
+        "total_bytes": 1687,
+        "diff_sha256": "59c7d4c0f1b60c8d6e471ca54c3e54ef98266c56091692e0db36eba25213cb8a",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 102,
+          "base_count": 10,
+          "candidate_start": 102,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 318,
+          "base_count": 10,
+          "candidate_start": 319,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "internal/repository/migration/test/migration_test.go",
+      "base_blob": {
+        "path": "internal/repository/migration/test/migration_test.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ffcc7837aa47d4b301e5e2a950e64041cd8d886b",
+        "size": 23380,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/ffcc7837aa47d4b301e5e2a950e64041cd8d886b",
+        "sha256": "d02b141967b80f290ed3dcf1dad54239cd8167c55082aacb5c41acb22fa52cb0",
+        "bytes": 23380,
+        "lines": 564
+      },
+      "candidate_blob": {
+        "path": "internal/repository/migration/test/migration_test.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "58b8b780704176cf9e1cfee92934f7421abe6bf9",
+        "size": 23417,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/58b8b780704176cf9e1cfee92934f7421abe6bf9",
+        "sha256": "540cb870d6014d637081357f4f169f21d187a22aaee64546569334cc9641727f",
+        "bytes": 23417,
+        "lines": 565
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/repository/migration/test/migration_test.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 603,
+        "total_bytes": 603,
+        "diff_sha256": "4ae9c48ae0c30a1696355d9f75efaca6e091f69364a2bd5085442a5cf3a7d475",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 96,
+          "base_count": 10,
+          "candidate_start": 96,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "internal/repository/migration/test/plugin_api_key_sources_test.go",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "internal/repository/migration/test/plugin_api_key_sources_test.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "fd2f09c230cf7086f512830491637d9e2d467477",
+        "size": 3565,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/fd2f09c230cf7086f512830491637d9e2d467477",
+        "sha256": "76e91a02388c201d64f69bbb3a23e250b928c5b89a33ec42c2990c66882d9f34",
+        "bytes": 3565,
+        "lines": 78
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/repository/migration/test/plugin_api_key_sources_test.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 3882,
+        "total_bytes": 3882,
+        "diff_sha256": "f9338dd0819177ad5e981f777efed17b7c72409bab635d4e6403fd034bd44a0d",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 78
+        }
+      ]
+    },
+    {
+      "path": "internal/repository/plugin_api_key.go",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "internal/repository/plugin_api_key.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d144fa46a6c34bec1ae89025edc84791c7d39f59",
+        "size": 3947,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/d144fa46a6c34bec1ae89025edc84791c7d39f59",
+        "sha256": "d9d4dc87a8b7b458937474dd4c61d55221383af393ee263a55fb1ac4ef2afd19",
+        "bytes": 3947,
+        "lines": 107
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/repository/plugin_api_key.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 4238,
+        "total_bytes": 4238,
+        "diff_sha256": "957515cc6c6d138debf69a7b6ad9917b94a70ba70eb32df08e7857312c4f6d8c",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 107
+        }
+      ]
+    },
+    {
+      "path": "internal/repository/test/plugin_api_key_test.go",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "internal/repository/test/plugin_api_key_test.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e447393d33fc190bcbced1cd04a07e8371b07db8",
+        "size": 6966,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/e447393d33fc190bcbced1cd04a07e8371b07db8",
+        "sha256": "60c4ddbb049b8916b700e04081ff0ecad173c2fc98604599c67a208ee091e0b3",
+        "bytes": 6966,
+        "lines": 160
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/repository/test/plugin_api_key_test.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 7330,
+        "total_bytes": 7330,
+        "diff_sha256": "a86a141159b456799a1167cc2cba57d18e4282d86b940df5eb3e0c5bc857ccbb",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 160
+        }
+      ]
+    },
+    {
+      "path": "internal/repository/test/usage_event_archive_test.go",
+      "base_blob": {
+        "path": "internal/repository/test/usage_event_archive_test.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "722ce07fe9a10fa70e369f97bc812c8da872d3a2",
+        "size": 10306,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/722ce07fe9a10fa70e369f97bc812c8da872d3a2",
+        "sha256": "f10651eedc3008dbd500514dd3924a3214282abb1d7a8551846dd754f9e23a9b",
+        "bytes": 10306,
+        "lines": 242
+      },
+      "candidate_blob": {
+        "path": "internal/repository/test/usage_event_archive_test.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "92f348d2df5e8dfdaf1dc6e4c76fbc3f88cc4108",
+        "size": 10432,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/92f348d2df5e8dfdaf1dc6e4c76fbc3f88cc4108",
+        "sha256": "7657ac4432589a22f46a970fc9a7755ac873240d7fcdeb484ce696e74ab6127f",
+        "bytes": 10432,
+        "lines": 245
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/repository/test/usage_event_archive_test.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1587,
+        "total_bytes": 1587,
+        "diff_sha256": "772af86ebaad41f392810ea7bd12da475230fb6049e96586ecce90d013852882",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 66,
+          "base_count": 10,
+          "candidate_start": 66,
+          "candidate_count": 12
+        },
+        {
+          "base_start": 80,
+          "base_count": 10,
+          "candidate_start": 82,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "internal/service/redis_usage.go",
+      "base_blob": {
+        "path": "internal/service/redis_usage.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6a5a88356339d3e5bae67e1d969f4a1548a99295",
+        "size": 10235,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/6a5a88356339d3e5bae67e1d969f4a1548a99295",
+        "sha256": "ac4a21feddc7138c437b564a9012045ad1f4c55c3ba0935857a8a684d9d7ec63",
+        "bytes": 10235,
+        "lines": 269
+      },
+      "candidate_blob": {
+        "path": "internal/service/redis_usage.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "82ffdb7b3bd796de33586956fbf2fc8e0ff10821",
+        "size": 10809,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/82ffdb7b3bd796de33586956fbf2fc8e0ff10821",
+        "sha256": "e7f812161c3c5bcbd82754a103032f3409bf1aecdbf4c7a500ed6a8eede6dd3e",
+        "bytes": 10809,
+        "lines": 279
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/service/redis_usage.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 2478,
+        "total_bytes": 2478,
+        "diff_sha256": "eee7e8195956e9edb383be7f198d1f9e47a6d194a1830f4060f0557bd8f5356f",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 8,
+          "base_count": 10,
+          "candidate_start": 8,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 59,
+          "base_count": 10,
+          "candidate_start": 60,
+          "candidate_count": 12
+        },
+        {
+          "base_start": 133,
+          "base_count": 10,
+          "candidate_start": 136,
+          "candidate_count": 15
+        },
+        {
+          "base_start": 149,
+          "base_count": 10,
+          "candidate_start": 157,
+          "candidate_count": 12
+        }
+      ]
+    },
+    {
+      "path": "internal/service/sync.go",
+      "base_blob": {
+        "path": "internal/service/sync.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c8e1c907a2cf10d7bdc464889e8901f4e39e57e6",
+        "size": 48507,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/c8e1c907a2cf10d7bdc464889e8901f4e39e57e6",
+        "sha256": "3fc04328a73adc5c1eede7f1602a6308f7214e4bd9752787c294a5ec8452817a",
+        "bytes": 48507,
+        "lines": 1019
+      },
+      "candidate_blob": {
+        "path": "internal/service/sync.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "49975158010126ce14565c46ea0ea4bd7a3247aa",
+        "size": 49784,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/49975158010126ce14565c46ea0ea4bd7a3247aa",
+        "sha256": "4cb30024d67be90c5dbf5557229e6e5223afff8e9c659c0e547fddeab6201d36",
+        "bytes": 49784,
+        "lines": 1041
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/service/sync.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 5759,
+        "total_bytes": 5759,
+        "diff_sha256": "a41fdc6c345870eef9c70dc1bf2e5b906caed8030ada1e62a90d2f51f6b9e54c",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 8,
+          "base_count": 10,
+          "candidate_start": 8,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 43,
+          "base_count": 10,
+          "candidate_start": 44,
+          "candidate_count": 15
+        },
+        {
+          "base_start": 71,
+          "base_count": 10,
+          "candidate_start": 77,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 99,
+          "base_count": 10,
+          "candidate_start": 106,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 126,
+          "base_count": 10,
+          "candidate_start": 134,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 327,
+          "base_count": 18,
+          "candidate_start": 336,
+          "candidate_count": 27
+        },
+        {
+          "base_start": 416,
+          "base_count": 10,
+          "candidate_start": 434,
+          "candidate_count": 14
+        }
+      ]
+    },
+    {
+      "path": "internal/service/test/plugin_api_keys_test.go",
+      "base_blob": null,
+      "candidate_blob": {
+        "path": "internal/service/test/plugin_api_keys_test.go",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "75ada9e9267b6a23b254bcc9152cc4236ea4617f",
+        "size": 4485,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/75ada9e9267b6a23b254bcc9152cc4236ea4617f",
+        "sha256": "ec0e91e96d79cd743dbb75fdf46910415667bca7911debd33266bd7147090de6",
+        "bytes": 4485,
+        "lines": 106
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/internal/service/test/plugin_api_keys_test.go",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 4791,
+        "total_bytes": 4791,
+        "diff_sha256": "d43d944a44bfd1882b51979c092a0589d72547847d02c91a909ecbe4a3e77065",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 0,
+          "base_count": 0,
+          "candidate_start": 1,
+          "candidate_count": 106
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/ApiKeySettingsCard.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/ApiKeySettingsCard.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a08490dfe7ba89498959fec4b1ed219bdba02479",
+        "size": 9024,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/a08490dfe7ba89498959fec4b1ed219bdba02479",
+        "sha256": "1d9a7b1101b29f444c289b5ef5197616a77c99c9bb9c57db401d3067b3566570",
+        "bytes": 9024,
+        "lines": 222
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/ApiKeySettingsCard.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "68e2900be07e836fd9e0fc44f26983c6e8f4a317",
+        "size": 11744,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/68e2900be07e836fd9e0fc44f26983c6e8f4a317",
+        "sha256": "33ad5ed25dbf3643811b8c6a6f29d941a3b6904a4d997c2c55421cc9b9082225",
+        "bytes": 11744,
+        "lines": 259
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/ApiKeySettingsCard.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 14844,
+        "total_bytes": 14844,
+        "diff_sha256": "17e92f7cc4b899710fab1fa9eae1720c3aac52f279fa0f89ca4f0c0aa470311a",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 1,
+          "base_count": 11,
+          "candidate_start": 1,
+          "candidate_count": 16
+        },
+        {
+          "base_start": 36,
+          "base_count": 15,
+          "candidate_start": 41,
+          "candidate_count": 15
+        },
+        {
+          "base_start": 93,
+          "base_count": 130,
+          "candidate_start": 98,
+          "candidate_count": 162
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/RequestEventsDetailsCard.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/RequestEventsDetailsCard.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3e4798b531559d722ab09b9d75ea202bd4e67173",
+        "size": 56605,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/3e4798b531559d722ab09b9d75ea202bd4e67173",
+        "sha256": "b0b4d6b61ecdfeeb2d2b72d468293f1f60f3a0fdca7f6c3749785502cd43d405",
+        "bytes": 56605,
+        "lines": 1427
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/RequestEventsDetailsCard.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b2bdebdcc58cb8354d2ff5a8513a85232f11bde0",
+        "size": 56290,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/b2bdebdcc58cb8354d2ff5a8513a85232f11bde0",
+        "sha256": "c3559829077273b34e8ce38e7fcb2105c992af08eae9e3d7901e6107d780ad3e",
+        "bytes": 56290,
+        "lines": 1423
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/RequestEventsDetailsCard.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 2014,
+        "total_bytes": 2014,
+        "diff_sha256": "4d4687ec1a55fc8cc18b3064f87a31701672eeb6f0b6b30c37a509ed695186db",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 24,
+          "base_count": 11,
+          "candidate_start": 24,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 169,
+          "base_count": 11,
+          "candidate_start": 168,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 688,
+          "base_count": 11,
+          "candidate_start": 686,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 978,
+          "base_count": 11,
+          "candidate_start": 975,
+          "candidate_count": 10
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/ServiceHealthCard.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/ServiceHealthCard.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8dfb1ae842bb4aade034502cfef688df901fa56f",
+        "size": 5651,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/8dfb1ae842bb4aade034502cfef688df901fa56f",
+        "sha256": "1ac3de973bd0cd4106d3860fc9b2bfb8b0b5e0941cd503f1238a1bdb2efae2cf",
+        "bytes": 5651,
+        "lines": 117
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/ServiceHealthCard.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "53c23f13a169a6b4edf725e6c2454b45554ca685",
+        "size": 5558,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/53c23f13a169a6b4edf725e6c2454b45554ca685",
+        "sha256": "1638ab99248ebbf59194ea302063487c46c827433c126046e41b5828e8db075a",
+        "bytes": 5558,
+        "lines": 116
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/ServiceHealthCard.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 905,
+        "total_bytes": 905,
+        "diff_sha256": "89f3ea53e59682e7468dc7c2727d21029c8978fa6cc723e0ed5756d061d4a40a",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 59,
+          "base_count": 11,
+          "candidate_start": 59,
+          "candidate_count": 10
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/SessionSettingsCard.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/SessionSettingsCard.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6573d962ec950b8080a4e9470a6e16a3ce4c6188",
+        "size": 14266,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/6573d962ec950b8080a4e9470a6e16a3ce4c6188",
+        "sha256": "80e95aabe0b97ff25675c933318552d59e8535299666f6382aad7ec338c2bf93",
+        "bytes": 14266,
+        "lines": 328
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/SessionSettingsCard.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9d5beebaa9645c62e6903e10813e65265ec9c9a0",
+        "size": 14206,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/9d5beebaa9645c62e6903e10813e65265ec9c9a0",
+        "sha256": "32516d589ab14de7b373f19b9cc4c9df3719c895d9c04a51a37f3525d630024e",
+        "bytes": 14206,
+        "lines": 327
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/SessionSettingsCard.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 670,
+        "total_bytes": 670,
+        "diff_sha256": "722a8688555033d61a9eee5932a4f6de5164f5771d98aff756425aeba0f29285",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 184,
+          "base_count": 11,
+          "candidate_start": 184,
+          "candidate_count": 10
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/TokenActivityCard.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/TokenActivityCard.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b3b2564853111b182f64338b3bdee5563380be37",
+        "size": 6373,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/b3b2564853111b182f64338b3bdee5563380be37",
+        "sha256": "a26eb5f767b51e51a2fadeb84658f8096b4fcd9d752f107d5db96b5ae701b348",
+        "bytes": 6373,
+        "lines": 107
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/TokenActivityCard.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3e8d16bf65a1954183a787fd376d975c1b248530",
+        "size": 6280,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/3e8d16bf65a1954183a787fd376d975c1b248530",
+        "sha256": "3395d1292b5b184b54d1c2f6a7d69dedf27035ad80193bde9ab7a4c13ae447d7",
+        "bytes": 6280,
+        "lines": 106
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/TokenActivityCard.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1061,
+        "total_bytes": 1061,
+        "diff_sha256": "e8e07d27ab0db455ee2d643df9a45d7094b267c2970d1961dce4885267734ad3",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 54,
+          "base_count": 11,
+          "candidate_start": 54,
+          "candidate_count": 10
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/UsageComparisonCharts.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/UsageComparisonCharts.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3f141636f25e360f41c0ec1d953269311b3f70b9",
+        "size": 13801,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/3f141636f25e360f41c0ec1d953269311b3f70b9",
+        "sha256": "64dfcf4762a90d31fbadf3bf4cc137bdf849182a868942093b76064e06446197",
+        "bytes": 13801,
+        "lines": 211
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/UsageComparisonCharts.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0e9841034cc9e08ff168faf2ac1fc45d48700177",
+        "size": 13753,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/0e9841034cc9e08ff168faf2ac1fc45d48700177",
+        "sha256": "4384f92f6b179f4d24c723fe2ef9e6e1fab94c75e8bdd15ea540ddef2f595767",
+        "bytes": 13753,
+        "lines": 211
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/UsageComparisonCharts.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1114,
+        "total_bytes": 1114,
+        "diff_sha256": "6998e67ec12409ae31c207aaca3e0ab31d772de919a96d5528da766ead34f113",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 51,
+          "base_count": 11,
+          "candidate_start": 51,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/analysis/AnalysisPanel.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/analysis/AnalysisPanel.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "86d18a3312a8caa4405bd479f29ec35fff78f39b",
+        "size": 78810,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/86d18a3312a8caa4405bd479f29ec35fff78f39b",
+        "sha256": "4e957a6f2aa7193266e68a2481320c00a8eccd255095cd0986b22b4e60806e81",
+        "bytes": 78810,
+        "lines": 1735
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/analysis/AnalysisPanel.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "88828961b9990ac1428dac0faa5ba99dd930d6da",
+        "size": 78255,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/88828961b9990ac1428dac0faa5ba99dd930d6da",
+        "sha256": "0ff8ad24c26aa7693bc3391360f6e9858567f8bd26bbd30589bc8fcbcb6b6cd2",
+        "bytes": 78255,
+        "lines": 1729
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/analysis/AnalysisPanel.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 5359,
+        "total_bytes": 5359,
+        "diff_sha256": "76f37dee01679d53795e9ded3a9ea181e56f693e0bc8a9fe93ef60a2e31f5b9d",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 785,
+          "base_count": 18,
+          "candidate_start": 785,
+          "candidate_count": 17
+        },
+        {
+          "base_start": 924,
+          "base_count": 11,
+          "candidate_start": 923,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 990,
+          "base_count": 11,
+          "candidate_start": 988,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 1033,
+          "base_count": 11,
+          "candidate_start": 1031,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 1129,
+          "base_count": 11,
+          "candidate_start": 1126,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 1418,
+          "base_count": 11,
+          "candidate_start": 1414,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 1514,
+          "base_count": 11,
+          "candidate_start": 1509,
+          "candidate_count": 10
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/analysis/test/AnalysisPanel.composition-dimensions.test.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/analysis/test/AnalysisPanel.composition-dimensions.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9f9c47fee821b165e3dcbd524bec04cf543522b1",
+        "size": 2570,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/9f9c47fee821b165e3dcbd524bec04cf543522b1",
+        "sha256": "359260c99f767aff6bd23ef86a5373b802883555ecfd825259772f4c32362aa2",
+        "bytes": 2570,
+        "lines": 72
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/analysis/test/AnalysisPanel.composition-dimensions.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2b9f85125310a326df556a534185e67072ce5149",
+        "size": 2478,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/2b9f85125310a326df556a534185e67072ce5149",
+        "sha256": "2f3c21d1d054ab1f889cd60f7bedac13bd2688730e4db16869f82488eddc50ba",
+        "bytes": 2478,
+        "lines": 71
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/analysis/test/AnalysisPanel.composition-dimensions.test.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 681,
+        "total_bytes": 681,
+        "diff_sha256": "aadf0bc252de87e1b4724e03a240c4096ec74d1fbed95672e492899187af48ee",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 65,
+          "base_count": 8,
+          "candidate_start": 65,
+          "candidate_count": 7
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/analysis/test/AnalysisPanel.logic.test.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/analysis/test/AnalysisPanel.logic.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2776b69066ab5ded30e57dec79157a2ac91ec02e",
+        "size": 37618,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/2776b69066ab5ded30e57dec79157a2ac91ec02e",
+        "sha256": "9efe685c139c240e2fce168eb6e769b93a6ac915e693b0d3aced33b91220395f",
+        "bytes": 37618,
+        "lines": 953
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/analysis/test/AnalysisPanel.logic.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1eaf2d9716e91c50d4a468e9fd9d12d1bd094b01",
+        "size": 37509,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/1eaf2d9716e91c50d4a468e9fd9d12d1bd094b01",
+        "sha256": "b43dbf75dbc20ba6a71f56ed74637144e601470d840e3bc7e83f7e27fb4b77e8",
+        "bytes": 37509,
+        "lines": 952
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/analysis/test/AnalysisPanel.logic.test.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1086,
+        "total_bytes": 1086,
+        "diff_sha256": "3b352fe52100f057557d3ccd93e6ef0269e9da3b9a2dd8d6ff2fc3ba01b9035c",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 872,
+          "base_count": 11,
+          "candidate_start": 872,
+          "candidate_count": 10
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/credentials/AiProviderCredentialsSection.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/credentials/AiProviderCredentialsSection.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e3808d6bf22caf17c3352461c268a971243dc7fb",
+        "size": 8800,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/e3808d6bf22caf17c3352461c268a971243dc7fb",
+        "sha256": "921b649dbc2a51eb09a5337e8252b76419883092d5f5dcdbf05ebd285c59add9",
+        "bytes": 8800,
+        "lines": 166
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/credentials/AiProviderCredentialsSection.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3efadb9d60d48793e5848ee1363eb47bea490806",
+        "size": 8728,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/3efadb9d60d48793e5848ee1363eb47bea490806",
+        "sha256": "ab9009db3d7dad66f6ea0df7d44d72051e8de21a0b2e37bbca83ac966d77736b",
+        "bytes": 8728,
+        "lines": 165
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/credentials/AiProviderCredentialsSection.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 915,
+        "total_bytes": 915,
+        "diff_sha256": "14fe99141493ce14a7a89d7bc6c4ac4de58e3e6b4a50d31a450e3cbc8bf493ba",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 39,
+          "base_count": 11,
+          "candidate_start": 39,
+          "candidate_count": 10
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/credentials/CredentialAliasEditor.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/credentials/CredentialAliasEditor.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "190550102aa6f8bad6cd7edd589a5a40ea4973f7",
+        "size": 2007,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/190550102aa6f8bad6cd7edd589a5a40ea4973f7",
+        "sha256": "51f5bcb045f89ae486f5e98850b65e6f3ef809e1313d0ec012efdac90fb98164",
+        "bytes": 2007,
+        "lines": 53
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/credentials/CredentialAliasEditor.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b87124704a1661226c44cde1372bdb30153863a3",
+        "size": 2049,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/b87124704a1661226c44cde1372bdb30153863a3",
+        "sha256": "fbd95962ed387a9d70021875bf96d423dc0af728382526816176eb4d38cca0f6",
+        "bytes": 2049,
+        "lines": 54
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/credentials/CredentialAliasEditor.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 621,
+        "total_bytes": 621,
+        "diff_sha256": "c2d1bcd53521bf41ec9e57b78e41e557381f85acf9b0cf04beb3ae35c4e03048",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 1,
+          "base_count": 12,
+          "candidate_start": 1,
+          "candidate_count": 13
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/credentials/CredentialSectionShell.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/credentials/CredentialSectionShell.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "206743dfbaedb4da828619cac47bfb7ae2a404ba",
+        "size": 9236,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/206743dfbaedb4da828619cac47bfb7ae2a404ba",
+        "sha256": "101f67bff2bbd14543b51d387b92c28098b398a94c2809314fa4137d9c548c24",
+        "bytes": 9236,
+        "lines": 257
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/credentials/CredentialSectionShell.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "11ff7db10036dded9e8cbb35a3e14eddae040917",
+        "size": 9125,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/11ff7db10036dded9e8cbb35a3e14eddae040917",
+        "sha256": "5f937ea2174ef795167b537f2a87df9ea6c19708e91f1f65765d5dc134569578",
+        "bytes": 9125,
+        "lines": 255
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/credentials/CredentialSectionShell.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1602,
+        "total_bytes": 1602,
+        "diff_sha256": "77c3e8357720b697fa98aa88ad5c78d16ec91cb2ea7095246e7352995919ca7d",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 7,
+          "base_count": 11,
+          "candidate_start": 7,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 35,
+          "base_count": 18,
+          "candidate_start": 34,
+          "candidate_count": 17
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/credentials/CredentialSections.module.scss",
+      "base_blob": {
+        "path": "web/src/components/usage/credentials/CredentialSections.module.scss",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7e46fd2598bff7c22d6a834857ed75caa8174f48",
+        "size": 79843,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/7e46fd2598bff7c22d6a834857ed75caa8174f48",
+        "sha256": "7ceea9a308f64c1eef3de0f7ab9dd9664497d25c8f6a46b55715758ad0ab8020",
+        "bytes": 79843,
+        "lines": 3549
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/credentials/CredentialSections.module.scss",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cce576a47f056bbd2c35d2c51b91d6a192384419",
+        "size": 79787,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/cce576a47f056bbd2c35d2c51b91d6a192384419",
+        "sha256": "18ac5ceeb1cfb8a5474bd0dc05f10a1d94976c4b421fedd62af5aa03b47e1eb1",
+        "bytes": 79787,
+        "lines": 3545
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/credentials/CredentialSections.module.scss",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 496,
+        "total_bytes": 496,
+        "diff_sha256": "4d5f73b187dcc91c37d0915f081b639d3a70cf4c6b78910eaa4a6e63df6ce561",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 55,
+          "base_count": 14,
+          "candidate_start": 55,
+          "candidate_count": 10
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/credentials/CredentialsSection.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/credentials/CredentialsSection.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "624ef7e81fafb10b4cf1670c2832d8d1d670898a",
+        "size": 99111,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/624ef7e81fafb10b4cf1670c2832d8d1d670898a",
+        "sha256": "7bc4bb770c1e127bb6705fd1b108781381e458086297986c724cc44636fd50d5",
+        "bytes": 99111,
+        "lines": 2208
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/credentials/CredentialsSection.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "40ca17ec925cadfa1560fc2516b8edcf0d5b47c3",
+        "size": 99037,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/40ca17ec925cadfa1560fc2516b8edcf0d5b47c3",
+        "sha256": "899bbe511caff526e40a6323c926b1423a0929a849d95d75b036de2fda71610e",
+        "bytes": 99037,
+        "lines": 2207
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/credentials/CredentialsSection.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 882,
+        "total_bytes": 882,
+        "diff_sha256": "78ac9e2f9ac48501b47f8ae3edf22726297a8e649c52d57c9d825d91ef3a76a9",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 205,
+          "base_count": 11,
+          "candidate_start": 205,
+          "candidate_count": 10
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/credentials/test/AiProviderCredentialsSection.statusToggle.test.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/credentials/test/AiProviderCredentialsSection.statusToggle.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6bcdf88af9e58a733a32d3700654150fd09e0a7c",
+        "size": 3888,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/6bcdf88af9e58a733a32d3700654150fd09e0a7c",
+        "sha256": "e1150f34cd3f46d9e91033df6a9023f773c4e0a02c4c38fbca6245b0a06c387d",
+        "bytes": 3888,
+        "lines": 103
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/credentials/test/AiProviderCredentialsSection.statusToggle.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d3530492a44e3e6302bcf75de0d384a998ef745f",
+        "size": 3789,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/d3530492a44e3e6302bcf75de0d384a998ef745f",
+        "sha256": "3078031051ed639af4b91ca92ed2f19269ac377b8faed090db9b586ae4e591bb",
+        "bytes": 3789,
+        "lines": 103
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/credentials/test/AiProviderCredentialsSection.statusToggle.test.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 798,
+        "total_bytes": 798,
+        "diff_sha256": "21c60d4b29b5836cb45d0e89c0f2530928dc8b6d18116f9bde6461f2f3431195",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 10,
+          "base_count": 11,
+          "candidate_start": 10,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/credentials/test/AiProviderCredentialsSection.test.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/credentials/test/AiProviderCredentialsSection.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "11605e3855174a1a112bb504c1d060b897ddb7ad",
+        "size": 5475,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/11605e3855174a1a112bb504c1d060b897ddb7ad",
+        "sha256": "f3e071e674c87132d001e648a929e16e2a4400462252633616d3238db88672bb",
+        "bytes": 5475,
+        "lines": 142
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/credentials/test/AiProviderCredentialsSection.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cc85c4648393676f436b15dd8067760fb4e033c5",
+        "size": 5376,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/cc85c4648393676f436b15dd8067760fb4e033c5",
+        "sha256": "1d6ce0683494e45111e9f1b0192e11776397f5163174e71cfddbedad45839eef",
+        "bytes": 5376,
+        "lines": 142
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/credentials/test/AiProviderCredentialsSection.test.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 773,
+        "total_bytes": 773,
+        "diff_sha256": "445350268ca179ffc3b0b873f4d1f358bb2b6f11fe7b78224eb265b83b6b7d39",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 5,
+          "base_count": 11,
+          "candidate_start": 5,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/credentials/test/CredentialDetailTriggers.test.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/credentials/test/CredentialDetailTriggers.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4b21e5850b81e9b79662ba560218bee2a005c39e",
+        "size": 3781,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/4b21e5850b81e9b79662ba560218bee2a005c39e",
+        "sha256": "b5a52821fa2b4ec6a43736152ba5b301f101acde59fba7db7d37241726020717",
+        "bytes": 3781,
+        "lines": 123
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/credentials/test/CredentialDetailTriggers.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "02f467faa7f0c5e258721cfc3e310fd3f8aca405",
+        "size": 3681,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/02f467faa7f0c5e258721cfc3e310fd3f8aca405",
+        "sha256": "3cfdcf5bdbd88592cf89fd511e6ac7bfc5c91a74cc41135845d72f854acd44c4",
+        "bytes": 3681,
+        "lines": 123
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/credentials/test/CredentialDetailTriggers.test.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 842,
+        "total_bytes": 842,
+        "diff_sha256": "99274fd7e66f6784fce9e3d98b97ef2e6d9123a3852395a6b3ed7c5e92fbdbe1",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 7,
+          "base_count": 11,
+          "candidate_start": 7,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/model-speed/AnalysisModelSpeedCard.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/model-speed/AnalysisModelSpeedCard.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f1003efa3abba000d545cb819a7a77913cda068a",
+        "size": 15068,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/f1003efa3abba000d545cb819a7a77913cda068a",
+        "sha256": "130c26883ce9a16e6c04b332a10f1b8fd656ee919f341356c221fcb1f9563685",
+        "bytes": 15068,
+        "lines": 233
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/model-speed/AnalysisModelSpeedCard.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3a0000959a10a748d3f8b1575bd2afe9a72d0338",
+        "size": 14971,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/3a0000959a10a748d3f8b1575bd2afe9a72d0338",
+        "sha256": "3d66b40c541b34d4f65a4be396120c8d390a70cbb0f158adf0c105876ee22271",
+        "bytes": 14971,
+        "lines": 232
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/model-speed/AnalysisModelSpeedCard.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 1432,
+        "total_bytes": 1432,
+        "diff_sha256": "1a5d59c10922b72065e1b5be11af8d74ae4f6400ff9c3e124ae7bd3c6fddb5e9",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 210,
+          "base_count": 12,
+          "candidate_start": 210,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/test/ApiKeySettingsCard.interaction.test.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/test/ApiKeySettingsCard.interaction.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b442f7c3770a3673aa0fc673c90e3b73c4146c3b",
+        "size": 5678,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/b442f7c3770a3673aa0fc673c90e3b73c4146c3b",
+        "sha256": "12f8db1dd2c4ba3b85eb539e3ec8e9c08f6930a7ee13aa0f1eaccf018781a6e5",
+        "bytes": 5678,
+        "lines": 153
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/test/ApiKeySettingsCard.interaction.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6c65775a1ecc68d1803c8a4558228e6b9cef0896",
+        "size": 11146,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/6c65775a1ecc68d1803c8a4558228e6b9cef0896",
+        "sha256": "693ae962d5fe316c31889eb76e06bb12bd623b1e9f9bdda0b50708005197afe2",
+        "bytes": 11146,
+        "lines": 243
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/test/ApiKeySettingsCard.interaction.test.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 11923,
+        "total_bytes": 11923,
+        "diff_sha256": "77dd0753fc8935e6529657a8c45781ad65a358ff6316d9b951aa0eedeb0a2895",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 8,
+          "base_count": 28,
+          "candidate_start": 8,
+          "candidate_count": 37
+        },
+        {
+          "base_start": 65,
+          "base_count": 89,
+          "candidate_start": 74,
+          "candidate_count": 170
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/test/ApiKeySettingsCard.test.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/test/ApiKeySettingsCard.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "098a91d12a8eaf32f74a44dbc1a320497824bc8b",
+        "size": 3534,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/098a91d12a8eaf32f74a44dbc1a320497824bc8b",
+        "sha256": "ff84864f582f813d0e3c7fa3d29e55131766e7618979e543987a0478dd2200b6",
+        "bytes": 3534,
+        "lines": 88
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/test/ApiKeySettingsCard.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "53c058b9c50343e00a36e410a1bf70687a771adf",
+        "size": 4492,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/53c058b9c50343e00a36e410a1bf70687a771adf",
+        "sha256": "6fcdab7c6ff87fbb2a77e53cd72ee258c8433d5511d3bb86f64a7b82f3c7f343",
+        "bytes": 4492,
+        "lines": 105
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/test/ApiKeySettingsCard.test.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 3810,
+        "total_bytes": 3810,
+        "diff_sha256": "b398af39b0c8fede73b68b4975aacf2b7a8239d8c614a35fa57d7acf86d4f9c8",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 4,
+          "base_count": 12,
+          "candidate_start": 4,
+          "candidate_count": 12
+        },
+        {
+          "base_start": 30,
+          "base_count": 20,
+          "candidate_start": 30,
+          "candidate_count": 37
+        },
+        {
+          "base_start": 81,
+          "base_count": 8,
+          "candidate_start": 98,
+          "candidate_count": 8
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/test/RequestEventsDetailsCardServiceTier.test.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/test/RequestEventsDetailsCardServiceTier.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "70350b0a64595f07f16036b08dced2a4f7ef9440",
+        "size": 8375,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/70350b0a64595f07f16036b08dced2a4f7ef9440",
+        "sha256": "888ab403162023ff1742875dab1c77a9604cfbf2aa2f8621097b94acd4e744e6",
+        "bytes": 8375,
+        "lines": 171
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/test/RequestEventsDetailsCardServiceTier.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3905c0b1f6ebcce064778e85f0248e4c2b244204",
+        "size": 6890,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/3905c0b1f6ebcce064778e85f0248e4c2b244204",
+        "sha256": "ec507f963c3823724b8e64589306bf47dabb41415316dc43110a72ea156c20d1",
+        "bytes": 6890,
+        "lines": 144
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/test/RequestEventsDetailsCardServiceTier.test.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 8610,
+        "total_bytes": 8610,
+        "diff_sha256": "da0a757dffe9bc8a61ee1253316c0df7252ed602bfacaa7772da63885ffc8dc3",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 2,
+          "base_count": 11,
+          "candidate_start": 2,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 48,
+          "base_count": 14,
+          "candidate_start": 47,
+          "candidate_count": 12
+        },
+        {
+          "base_start": 68,
+          "base_count": 68,
+          "candidate_start": 65,
+          "candidate_count": 42
+        },
+        {
+          "base_start": 144,
+          "base_count": 28,
+          "candidate_start": 115,
+          "candidate_count": 30
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/test/SessionSettingsCard.test.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/test/SessionSettingsCard.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d4bde4a233ac431f3bdebfa9513432e2636ba558",
+        "size": 5609,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/d4bde4a233ac431f3bdebfa9513432e2636ba558",
+        "sha256": "3bbd84e175efa6211b4cf8aaf6d36a8799c997f46051208019d0ba0d50e521d8",
+        "bytes": 5609,
+        "lines": 153
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/test/SessionSettingsCard.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c3bf768f6d55cef661661378ec4cba97476f2aab",
+        "size": 5518,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/c3bf768f6d55cef661661378ec4cba97476f2aab",
+        "sha256": "2a947d92a9e5fc925564cc6b9c20bc1674ed6c0354fb53b9643be271470fa341",
+        "bytes": 5518,
+        "lines": 150
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/test/SessionSettingsCard.test.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 3943,
+        "total_bytes": 3943,
+        "diff_sha256": "86d5023e1dde3a3f80ffcb953b28e5221a72570b6ba7d260a7664b6161618bdc",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 10,
+          "base_count": 31,
+          "candidate_start": 10,
+          "candidate_count": 31
+        },
+        {
+          "base_start": 60,
+          "base_count": 17,
+          "candidate_start": 60,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 119,
+          "base_count": 33,
+          "candidate_start": 116,
+          "candidate_count": 33
+        }
+      ]
+    },
+    {
+      "path": "web/src/components/usage/test/SessionSettingsCardAlias.test.tsx",
+      "base_blob": {
+        "path": "web/src/components/usage/test/SessionSettingsCardAlias.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "326f5becfd1c04d87e0c226eb16314fdcaff10d1",
+        "size": 7939,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/326f5becfd1c04d87e0c226eb16314fdcaff10d1",
+        "sha256": "eeb3119458364403957484d12d0adaec8b8c03ab7f43972694c93376ff2e1bac",
+        "bytes": 7939,
+        "lines": 200
+      },
+      "candidate_blob": {
+        "path": "web/src/components/usage/test/SessionSettingsCardAlias.test.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cf5fd85b89fe76d769b720aa1ef3af345d2d19aa",
+        "size": 7869,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/cf5fd85b89fe76d769b720aa1ef3af345d2d19aa",
+        "sha256": "6eeceb82cb98bdd0028df42f131b9308f0d56739a26e515a52802564e1292d4c",
+        "bytes": 7869,
+        "lines": 199
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/components/usage/test/SessionSettingsCardAlias.test.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 774,
+        "total_bytes": 774,
+        "diff_sha256": "04b2eecd11cb3aeea1ac00b00b4c42ef6d7aa61f1c0ab7e1fe3b4a5e45b60293",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 8,
+          "base_count": 11,
+          "candidate_start": 8,
+          "candidate_count": 10
+        }
+      ]
+    },
+    {
+      "path": "web/src/i18n/index.ts",
+      "base_blob": {
+        "path": "web/src/i18n/index.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7798a39ab70bfed26dc99c90a9720ec4d7ab46d5",
+        "size": 173783,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/7798a39ab70bfed26dc99c90a9720ec4d7ab46d5",
+        "sha256": "19462d05513f48fa1e8472260d17a1329fd1dc344b5305142fbe5dd6520885f1",
+        "bytes": 173783,
+        "lines": 2921
+      },
+      "candidate_blob": {
+        "path": "web/src/i18n/index.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7189a8abfb88dd9434efc6c2961983fd5ab35f05",
+        "size": 170246,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/7189a8abfb88dd9434efc6c2961983fd5ab35f05",
+        "sha256": "f46c90589cb4717a78dc75e4b57356f503007003ebb5ba369c09d37ed385f169",
+        "bytes": 170246,
+        "lines": 2888
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/i18n/index.ts",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 22953,
+        "total_bytes": 22953,
+        "diff_sha256": "1c0484d380c63efae10dc9323ab54aff91898c20dc8bae5842d5082ecd075a52",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 147,
+          "base_count": 11,
+          "candidate_start": 147,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 264,
+          "base_count": 11,
+          "candidate_start": 263,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 704,
+          "base_count": 26,
+          "candidate_start": 702,
+          "candidate_count": 27
+        },
+        {
+          "base_start": 890,
+          "base_count": 11,
+          "candidate_start": 889,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 902,
+          "base_count": 11,
+          "candidate_start": 900,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 925,
+          "base_count": 16,
+          "candidate_start": 922,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 943,
+          "base_count": 36,
+          "candidate_start": 938,
+          "candidate_count": 30
+        },
+        {
+          "base_start": 1108,
+          "base_count": 11,
+          "candidate_start": 1097,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 1225,
+          "base_count": 11,
+          "candidate_start": 1213,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 1665,
+          "base_count": 26,
+          "candidate_start": 1652,
+          "candidate_count": 27
+        },
+        {
+          "base_start": 1851,
+          "base_count": 11,
+          "candidate_start": 1839,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 1863,
+          "base_count": 11,
+          "candidate_start": 1850,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 1886,
+          "base_count": 16,
+          "candidate_start": 1872,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 1904,
+          "base_count": 36,
+          "candidate_start": 1888,
+          "candidate_count": 30
+        },
+        {
+          "base_start": 2069,
+          "base_count": 11,
+          "candidate_start": 2047,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 2186,
+          "base_count": 11,
+          "candidate_start": 2163,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 2626,
+          "base_count": 26,
+          "candidate_start": 2602,
+          "candidate_count": 27
+        },
+        {
+          "base_start": 2812,
+          "base_count": 11,
+          "candidate_start": 2789,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 2824,
+          "base_count": 11,
+          "candidate_start": 2800,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 2847,
+          "base_count": 16,
+          "candidate_start": 2822,
+          "candidate_count": 14
+        },
+        {
+          "base_start": 2865,
+          "base_count": 36,
+          "candidate_start": 2838,
+          "candidate_count": 30
+        }
+      ]
+    },
+    {
+      "path": "web/src/lib/types.ts",
+      "base_blob": {
+        "path": "web/src/lib/types.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0007c73fb21d1e2db339f5934fd6dcc74f670496",
+        "size": 25872,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/0007c73fb21d1e2db339f5934fd6dcc74f670496",
+        "sha256": "d3a4021a718ebdbae601a993390da1e0eb7642fa36ed5801f262d288da0a96e5",
+        "bytes": 25872,
+        "lines": 1080
+      },
+      "candidate_blob": {
+        "path": "web/src/lib/types.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d53a58d4511985a486cb7cb904750ca5d34b9da8",
+        "size": 25932,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/d53a58d4511985a486cb7cb904750ca5d34b9da8",
+        "sha256": "edb73a2d225301fd51b22e3f46ed5e2cb099a16c1eff1cec220eb0b1d9480643",
+        "bytes": 25932,
+        "lines": 1082
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/lib/types.ts",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 638,
+        "total_bytes": 638,
+        "diff_sha256": "3a159da2e2d5e774df8920e68c92761f9cbe9dde3b9af4750c6483c77da4979c",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 872,
+          "base_count": 19,
+          "candidate_start": 872,
+          "candidate_count": 21
+        }
+      ]
+    },
+    {
+      "path": "web/src/pages/UsagePage.module.scss",
+      "base_blob": {
+        "path": "web/src/pages/UsagePage.module.scss",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6dd1a60b0e15dee9d064907b2505c5962fea7cac",
+        "size": 84722,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/6dd1a60b0e15dee9d064907b2505c5962fea7cac",
+        "sha256": "6e6b813262a1f3b28876bcb1733d13b4eb990330bf037f15ac823e71435a5922",
+        "bytes": 84722,
+        "lines": 4207
+      },
+      "candidate_blob": {
+        "path": "web/src/pages/UsagePage.module.scss",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "99c3e44129ae916109671b45936f77eab55aaf6b",
+        "size": 83282,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/99c3e44129ae916109671b45936f77eab55aaf6b",
+        "sha256": "4c0ff36491dd92b9bb930ce09a52c7c9ceef53c9bc062aa6febab110ffc83df9",
+        "bytes": 83282,
+        "lines": 4127
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/pages/UsagePage.module.scss",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 8328,
+        "total_bytes": 8328,
+        "diff_sha256": "29d60e21d9c7c7b149a069c1d11d4774a54d6ff63e3c8286de81e9e57ae86d4b",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 739,
+          "base_count": 33,
+          "candidate_start": 739,
+          "candidate_count": 10
+        },
+        {
+          "base_start": 1739,
+          "base_count": 14,
+          "candidate_start": 1716,
+          "candidate_count": 12
+        },
+        {
+          "base_start": 1754,
+          "base_count": 54,
+          "candidate_start": 1729,
+          "candidate_count": 94
+        },
+        {
+          "base_start": 1838,
+          "base_count": 71,
+          "candidate_start": 1853,
+          "candidate_count": 37
+        },
+        {
+          "base_start": 1979,
+          "base_count": 20,
+          "candidate_start": 1960,
+          "candidate_count": 20
+        },
+        {
+          "base_start": 2207,
+          "base_count": 10,
+          "candidate_start": 2188,
+          "candidate_count": 15
+        },
+        {
+          "base_start": 2232,
+          "base_count": 72,
+          "candidate_start": 2218,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 2894,
+          "base_count": 15,
+          "candidate_start": 2819,
+          "candidate_count": 10
+        }
+      ]
+    },
+    {
+      "path": "web/src/pages/UsagePage.tsx",
+      "base_blob": {
+        "path": "web/src/pages/UsagePage.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "09fd04158edaeda1f8b8be3e369a6327a96eb5cf",
+        "size": 106292,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/09fd04158edaeda1f8b8be3e369a6327a96eb5cf",
+        "sha256": "27ceeaeae94afd883b144705e83e487669b7116e7d07cf8bbb8520e0ef95a770",
+        "bytes": 106292,
+        "lines": 2474
+      },
+      "candidate_blob": {
+        "path": "web/src/pages/UsagePage.tsx",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4af5276e411c18fc34d6ae34982a4f2743bca90d",
+        "size": 106408,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/4af5276e411c18fc34d6ae34982a4f2743bca90d",
+        "sha256": "49a465e1acc34590c6ce33ef45a82b7d4745b57a4620b2ae2fc75810b836e58b",
+        "bytes": 106408,
+        "lines": 2476
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/pages/UsagePage.tsx",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 3499,
+        "total_bytes": 3499,
+        "diff_sha256": "0d8950e1a31c297ee6d50232b1b1cd3f8a55f7768a3f96ce901a18895fa9435c",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 804,
+          "base_count": 10,
+          "candidate_start": 804,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 1147,
+          "base_count": 14,
+          "candidate_start": 1148,
+          "candidate_count": 15
+        },
+        {
+          "base_start": 1770,
+          "base_count": 15,
+          "candidate_start": 1772,
+          "candidate_count": 15
+        },
+        {
+          "base_start": 1789,
+          "base_count": 11,
+          "candidate_start": 1791,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "web/src/pages/test/UsagePage.styles.test.ts",
+      "base_blob": {
+        "path": "web/src/pages/test/UsagePage.styles.test.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "948765675d3b896ddb4662b4fff3d47ee2d2a9ee",
+        "size": 20568,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/948765675d3b896ddb4662b4fff3d47ee2d2a9ee",
+        "sha256": "60491cfbf0bc2cd163b2cceca0cc2e88233f6c6bcb398de43cedf233a35db079",
+        "bytes": 20568,
+        "lines": 331
+      },
+      "candidate_blob": {
+        "path": "web/src/pages/test/UsagePage.styles.test.ts",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8036f9e070b1bc97ccdabad1a2dd8adf9b4f8c24",
+        "size": 19389,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/8036f9e070b1bc97ccdabad1a2dd8adf9b4f8c24",
+        "sha256": "7a060f30c40ff239bda95665be494ecd17cc99d7c17e863d8e8f3a706e9331cb",
+        "bytes": 19389,
+        "lines": 316
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/pages/test/UsagePage.styles.test.ts",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 5587,
+        "total_bytes": 5587,
+        "diff_sha256": "442806e15ef6c7425c795351cc0b8bc9b8338c0ee0f4a84977d6914fb14bbcb8",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 187,
+          "base_count": 36,
+          "candidate_start": 187,
+          "candidate_count": 21
+        },
+        {
+          "base_start": 230,
+          "base_count": 11,
+          "candidate_start": 215,
+          "candidate_count": 11
+        },
+        {
+          "base_start": 254,
+          "base_count": 11,
+          "candidate_start": 239,
+          "candidate_count": 11
+        }
+      ]
+    },
+    {
+      "path": "web/src/styles/mixins.scss",
+      "base_blob": {
+        "path": "web/src/styles/mixins.scss",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a3504af63f9a5b90f4e03e6895e51c80efb7ece3",
+        "size": 1543,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/a3504af63f9a5b90f4e03e6895e51c80efb7ece3",
+        "sha256": "0e0b5d0fcca3c2f6ae826bca595d71446c933192a721fe5d1bc74f83cf1b8bf1",
+        "bytes": 1543,
+        "lines": 78
+      },
+      "candidate_blob": {
+        "path": "web/src/styles/mixins.scss",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d8aa4e85e3860f814d3e93e2a661af695ad16735",
+        "size": 1560,
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/blobs/d8aa4e85e3860f814d3e93e2a661af695ad16735",
+        "sha256": "662c3b612d7a6cb7d18229d63c61271b6b1c5f2183bbcc85764492ef5be5628e",
+        "bytes": 1560,
+        "lines": 82
+      },
+      "source_url": "https://github.com/Willxup/cpa-usage-keeper/blob/9db74cfc380d11064af80cf1626efd6e3d068217/web/src/styles/mixins.scss",
+      "read_status": "complete",
+      "diff_coverage": {
+        "read_bytes": 963,
+        "total_bytes": 963,
+        "diff_sha256": "f21bd47181c297cfab2978a4d53a9565b0b6a341ad66b8b14d6a52f3ecf22931",
+        "complete": true
+      },
+      "hunks": [
+        {
+          "base_start": 66,
+          "base_count": 13,
+          "candidate_start": 66,
+          "candidate_count": 17
+        }
+      ]
+    }
+  ]
 }
