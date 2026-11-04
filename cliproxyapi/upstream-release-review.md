@@ -1,21 +1,30 @@
-# CLIProxyAPI v8.0.53 静态源码审查
+# CLIProxyAPI v8.0.54 静态源码审查
 
-结论：**通过**。完整固定增量及中央交付边界内未发现恶意代码或恶意依赖证据。
+结论：**通过**。在锁定的中央构建与运行边界内，完整增量未发现恶意代码或恶意依赖证据。本轮由当前会话直接阅读，未使用平台工作流或委派其他模型。
 
-- 已批准基线：v8.0.51 `7cad1cb7df48c6c5ffb7ff0b34ef8198806115bc`。
-- 中间正式版：v8.0.52 `6e6afab99a1939525ecb6bb1f0873c8e7a9df877`。
-- 候选：[v8.0.53 / 01b24f1f95dc9b309765212c52b25b25e005ff01](https://github.com/router-for-me/CLIProxyAPI/commit/01b24f1f95dc9b309765212c52b25b25e005ff01)。三版官方 ref 均解析为完整 commit。
-- 官方完整树推导 **764 个变更路径**，不是 compare 截断的 300 个。1,527 个源码 blob/SHA-256 核验一致；8,487,329 字节完整差异全部语义阅读，逐路径结论与实际范围无缺口。
-- 两段分别涉及 728、73 个路径。37 个重叠路径核验三侧 111 个 blob；第一段 2,142 个编辑块以相同基线位置及相同有序替换内容复用净差异，另 51 个编辑块上下文与全部第二段差异补读，共 186,315 字节。没有仅凭整文件未回退而省略中间态。
+- 已批准基线：v8.0.53 `01b24f1f95dc9b309765212c52b25b25e005ff01`。
+- 候选：[v8.0.54 / 78a9cc9aaa8ae90a66300d9cbddfe7c894307622](https://github.com/router-for-me/CLIProxyAPI/commit/78a9cc9aaa8ae90a66300d9cbddfe7c894307622)。官方 ref、完整树与 compare 来源一致，merge base 为已批准 SHA。
+- 官方正式发布列表中两版相邻，无中间正式版。增量包含 12 个提交、**25 个变更路径、138,795 字节完整差异**。
+- 25/25 文件全部直接阅读，123 个有哈希与精确范围的阅读片段覆盖完整差异；重新计算完整树路径集、逐个验证源码 Git blob/SHA-256，并从两侧源码重新生成差异，均与阅读证据一致。哈希核验仅用于证明覆盖和来源，不代替语义审查。
 
-主要变更是 JSON/base64 库迁移、Doc 请求与响应构造、缓存恢复和协议字段转换。已检查凭据来源、缓存身份、提供方请求、管理接口、shell/apply-patch 工具数据及插件加载调用链：工具文本仅作协议数据；插件预检仅对显式配置的本地插件副本执行本进程探针；刷新保留禁用状态。测试文件实际断言和新增用例已静态阅读，没有以测试执行或 CI 代替源码判断。
+## 语义结论
 
-中央 `./cmd/server` 构建中新增 `github.com/MoeForge/moego v0.1.0-alpha.1` 通过显式 replace 使用 `github.com/router-for-me/moego v0.1.1`，固定来源为 `26980205a70fcda21ad1c3add7ca14f84f21a835`。官方 ref、注册表 origin、module/sumdb 与源码 blob 已核验；54 个生产 Go/汇编文件完整阅读，包括架构实现及 ARM64 原始指令静态解码。未见隐藏网络、执行、下载或安装钩子；有效模块无传递依赖。tidwall 移除及旧 checksum 清理不作为新依赖；x/term 仅补既有版本的 module checksum。
+- 插件用量事件增加有界等待、排空、重放与恢复处理，目标仍是已配置插件；检查了取消和热替换期间的完成回调。中央 Linux 构建仍为 `CGO_ENABLED=0`，原生动态库插件加载仍不可用，没有新增加载权限或接收方。
+- 用量记录新增图像/音频缓存 token 数，传递至既有用量与 Redis 边界；未增加凭据、请求正文收集或未知外发。
+- Codex 输入 ID 与 Claude/Devin effort 变更均为本地请求字段转换。
+- Antigravity 模型目录探测迁入 SDK，仍使用账户配置的 provider endpoint/proxy/token/project；默认 Google endpoint 不变。新增禁止重定向和目录上限，持久化端点去除 userinfo。调用上下文未发现新增凭据接收方。
+- 所有测试文件差异也已直接阅读，包含实际断言；未以占位、跳过或未执行的测试作为安全证明。
 
-复用已批准中央 Dockerfile、运行边界和未变基线。三个嵌套示例使用原 MoeForge alpha，已核验官方 tag 与注册表来源；其实现及未进入中央交付的开发/CI/工具链不作认证，不递归扩展范围。
+## 依赖与来源
 
-逐文件不可变 SHA、blob/SHA-256、完整差异阅读范围、具体语义结论与共享上下文见 [机器记录](review-result.json)。原始分页账本及补充证据：`/root/upstream-release-review/cliproxyapi-v8.0.53`。
+唯一有效依赖升级：`github.com/router-for-me/moego v0.1.1 → v0.1.2`，官方 tag 对应 `d59d7e8c7cd69f2c690f94e6d61975db4313ae72`。7 个变更文件、8,534 字节完整差异、10 个阅读片段全部直接审查。
 
-仅静态恶意行为审查，不作漏洞、Bug、质量或性能结论；未 clone、安装、构建或执行上游代码/产物，未运行测试或扫描。用户配置的第三方插件、提供方及远端内容不在固定源码认证范围。批准后既有 CI 构建不作为审查证据；工作流 `provenance:false`，发布来源链核验不是签名构建证明。无部署或重启。
+唯一生产代码变更是 JSON 根路径解析前的切片长度检查；其余为有断言的测试与文档修订。复用上一轮已批准的 54 个生产源码文件，其中 53 个 blob 原样未变。模块声明未变，也未新增传递依赖；Go registry Origin 与官方 SHA 一致，sumdb 两条记录与候选 go.sum 一致。
 
-Keeper v2.0.3 `9db74cfc380d11064af80cf1626efd6e3d068217`、Watchtower v1.23.2 `cd5946be205ea0a60dd31235a11f04ac9851ebf6` 沿用上轮无新版核对，保留 pin。
+## 边界与证据
+
+继续使用已批准中央 Dockerfile 和现有 GitHub Actions 发布流水线，仅更新固定源码 SHA。没有执行上游代码、安装依赖、构建、测试或扫描来代替审查。审查通过后才允许发布构建。
+
+完整报告：`cliproxyapi/review-result.json`。逐文件语义结论、原始来源、阅读范围、依赖与敏感上下文证据保存在 `/root/upstream-release-review/cliproxyapi-v8.0.54/` 和 `/root/upstream-release-review/moego-v0.1.2/`。
+
+本结论不是漏洞、正确性或性能保证，不扩展认证排除的开发/测试/CI/工具链依赖图。官方源码与 registry 一致不等于签名供应链证明，现有发布流程 `provenance:false` 限制不变。**本次仅授权发布镜像，不部署、不重启服务器。**
