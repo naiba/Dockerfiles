@@ -6,6 +6,8 @@
 
 ## 审查与构建
 
+候选正式版 v1.24.0（`147aa6a534428e68eb1ba4f71918f6f35404624d`）本轮复核结论为**暂缓**，保留 v1.23.2 pin。主项目增量记录已核销，但 Compose 环境/标签文件解析、默认 process collector 与 gRPC/gateway 等依赖的有效调用证据仍有缺口；尚未确认恶意行为。具体边界见 [候选版审查结果](candidate-release-review.json)。
+
 当前 v1.23.2 增量审查仅在既有中央源码白名单与 scratch 交付边界内通过，整版上游及无限制工具链执行仍为暂缓。已读 474 个项目差异、23 个模块升级、1501 个直接输入分片；1381 项上下文请求中 1287 项关闭、94 项按基线排除且仍未核验，中央材料阻断为 0。见 [审查报告](upstream-release-review.md) 和 [增量证据](incremental-review-evidence.json)。首次基线的 711 文件审查及 [基线证据](baseline-review-evidence.json) 原样保留。这是恶意行为来源审查，不是漏洞、功能或兼容性保证。原始阅读记录保存在维护者的 `/root/upstream-release-review/watchtower-v1.23.1/` 与 `/root/upstream-release-review/watchtower-v1.23.2/`，报告中的该路径不是公共下载地址。
 
 中央工作流验证正式 tag 对应的完整 SHA，并校验批准记录中的 Dockerfile/工作流哈希。源码白名单为 `go.mod go.sum main.go cmd/ internal/ pkg/`。使用 Go 1.27.3（linux/amd64 摘要 `sha256:8aa2821993207ae840ce09e4223217efcd14e01f71525db734faf4232bd59999`），在 amd64 runner 交叉编译；不运行上游生成、安装或发布脚本。最终 scratch 镜像仅包含程序及固定 builder 的 CA，时区数据内嵌。

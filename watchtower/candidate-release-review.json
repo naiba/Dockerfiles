@@ -1,0 +1,65 @@
+{
+  "repository": "nicholas-fedor/watchtower",
+  "candidate_version": "v1.24.0",
+  "candidate_commit": "147aa6a534428e68eb1ba4f71918f6f35404624d",
+  "tag_object": "8ff4fafcdee91684e1db0f6e6e05ab3bb28386e7",
+  "approved_version": "v1.23.2",
+  "approved_commit": "cd5946be205ea0a60dd31235a11f04ac9851ebf6",
+  "conclusion": "暂缓",
+  "release_approved": false,
+  "pin_changed": false,
+  "source": "https://github.com/nicholas-fedor/watchtower/releases/tag/v1.24.0",
+  "root_increment": {
+    "changed_paths": 928,
+    "aligned_units": 636,
+    "units_with_scoped_receipt": 636,
+    "metadata_reconciliation": "root-module-delta-selection-reconciliation.json",
+    "receipt_scope_check": "root-scoped-receipt-integrity-check.json",
+    "meaning": "主项目增量阅读回执已核销；不等于依赖或整版通过。未恢复撤销的聚合记录。"
+  },
+  "remaining_material_evidence_gaps": [
+    {
+      "chain": "Compose pre_start environment/label-file resolution",
+      "known": "types/project.go完整增量及主项目LoadProject入口已有阅读证据。",
+      "missing": "WithServicesEnvironmentResolved/WithServicesLabelsResolved在中央调用中的实际选项与触发链尚未由有效既有证据闭合。",
+      "scope_constraint": "不以导入或模块存在推定函数执行；不为补证据扩大通读未改源码。"
+    },
+    {
+      "chain": "Prometheus default process collector / procfs",
+      "known": "client_golang两端同为v1.25.0；procfs netstat.go、proc_limits.go及stat.go增量已有完整独立回执。",
+      "missing": "默认collector适用调用链的完整旧声明已撤销；本轮未找到可替代的有效具体基线记录。",
+      "scope_constraint": "不能将未改库版本或已读局部procfs差异包装成整条collector已核验。"
+    },
+    {
+      "chain": "gRPC/gateway and remaining codec applicability",
+      "known": "选中版本已通过静态模块图确定；独立Connect回执及utils/Fiber边界继续有效。",
+      "missing": "实际中央包/调用适用性及适用敏感增量尚未全部核销；40文件RPC聚合阅读声明撤销状态保持。",
+      "scope_constraint": "部分源码引用搜索不能排除整个传递图；不递归展开无调用证据的xDS、Google凭据、开发工具或全部codec库。"
+    }
+  ],
+  "interpretation": "尚未确认恶意行为；暂缓原因是有效来源/敏感调用证据不足，不能视作通过。模块选中或import不等于函数执行，截断或撤销的记录不能补足语义阅读。",
+  "scope": "只核对已批准SHA至候选SHA增量并复用有效未变基线；未运行上游代码、安装、构建、测试或扫描。",
+  "evidence_directory": "/root/upstream-release-review/watchtower-v1.24.0",
+  "final_recheck": {
+    "baseline_fields_checked": [
+      "watchtower/baseline-review-evidence.json:sensitive_boundary_reconciliation",
+      "watchtower/baseline-review-evidence.json:later_residual_reconciliation",
+      "watchtower/baseline-review-evidence.json:central_build_runtime_G5"
+    ],
+    "approved_increment_ledger": "/root/upstream-release-review/watchtower-v1.23.2/actual-reading-evidence/final-adjudication/complete-1381-request-ledger.json",
+    "result": "指定基线字段包含pre_start执行终端，但没有环境/标签文件解析选项的有效调用证据；上一版1381条ledger中未找到WithServicesEnvironmentResolved、WithServicesLabelsResolved、NewProcessCollector、process_collector或procfs具体记录。gRPC相关记录不能替代当前版本适用性与被撤销的完整增量声明。",
+    "revoked_records_rechecked": [
+      "default-process-metrics-call-chain-verification.json",
+      "default-process-collector-supported-source-review.json",
+      "metrics-rpc-consolidated-delta-verification.json"
+    ],
+    "decision": "不扩大通读未改源码，不恢复已撤销声明；缺口仍在中央交付范围，v1.24.0暂缓。"
+  },
+  "evidence_hashes": {
+    "continuation-review-disposition.json": "9b0a0f8de931984ab25bb25efd505d9fe7bfb07ad6c5a6c94f82746ab661458f",
+    "root-scoped-receipt-integrity-check.json": "af478f9a64eb834eaf272077a685cba95eec2443c96ae1a0ec813560f374bced",
+    "yaml-node-formatting-and-procfs-stat-increment-review.json": "412c6e7e92d78e5b8f0966fb4d84ff60d6a59cef1af4a8c98687e5a3e394b96c",
+    "codec-baseline-and-increment-applicability-reconciliation.json": "e70b8222760c5faff3de48b44f25e2d3549ddfa20cc16aeb28c671c6c699fe74",
+    "final-bounded-evidence-recheck.json": "f1fda8959d88a87e0855644efa39263bb3b9e8d20da70664a9ac1b44e170a9c5"
+  }
+}
