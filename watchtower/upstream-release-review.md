@@ -1,20 +1,24 @@
-# Watchtower v1.23.2 中央交付增量审查
+# Watchtower v1.24.0 中央交付增量审查
 
-**结论：通过，仅限已批准的中央构建与 scratch 运行边界。整版上游及无限制 CI/开发/测试工具链：暂缓。**
+**结论：通过，仅限既有中央构建与 scratch 运行边界。**
 
-基线 `520f95dea6e3c99b3e0e656e4a2950af11d6397b` → `cd5946be205ea0a60dd31235a11f04ac9851ebf6`；官方 annotated tag `v1.23.2` 的对象 `c75ea87a9af863b253cff70e03333f966567663e` 已解析并再次核对到候选完整 SHA。
+基线 `cd5946be205ea0a60dd31235a11f04ac9851ebf6` → 候选 `147aa6a534428e68eb1ba4f71918f6f35404624d`。正式 release v1.24.0 非 draft/prerelease，annotated tag 对象 `8ff4fafcdee91684e1db0f6e6e05ab3bb28386e7` 已解析并再次核对到候选完整 SHA。
 
-复用已完成的增量静态恶意行为审查及最终对账：474 个项目文件差异、23 个模块升级（954 个变化文件）、1501 个直接输入分片全部已读。1381 项上下文请求中 1287 项关闭，94 项按既有基线明确排除但仍未核验；中央材料阻断和未裁定项均为 0。没有将排除项改记为关闭，也没有声称本次应用更新时重新进行全部语义审查。
+主项目 928 个变化路径按 636 个对齐单元完成有效回执核销。复用有来源证明的未变基线及已经完成的敏感增量审查；此前暂缓的三条链现已补齐：
 
-本次应用前核对 688 个候选源码 blob 的 Git SHA 与 SHA256：383 个候选增量、305 个已批准基线复用；增量 after 目录本身不是完整构建上下文。核对两份获批快照与当前文件的完整差异，仅替换版本、源码 pin 与编译器摘要，随后逐字节复制快照。构建门禁继续校验正式 tag 的完整 SHA、批准状态与两个构建文件 SHA256。
+- Compose：从项目加载选项到 `ModelToProject` 的环境、标签文件解析调用，接入已审 `pre_start` 增量；输入来自项目显式配置。
+- Prometheus：默认注册器 → 空参数 process collector → 当前 PID → 已审 Stat/Limits/Netstat 增量，输出到现有 metrics handler。
+- RPC：核对 Compose/BuildKit 父包及 gRPC/gateway 同模块导入边界，独立补读 31 份适用生产增量。请求 metadata、路径解析、既有连接及传输控制未引入隐藏目的地或执行链。xDS、Google 专用凭据、autosharding 不在核对的核心闭包内；CBOR/msgpack 沿用 utils 测试与 Fiber 独立 client 的已批准边界。
 
-构建仅复制 `go.mod go.sum main.go cmd/ internal/ pkg/`，原生 linux/amd64 Go 1.27.3 builder 固定为 `sha256:8aa2821993207ae840ce09e4223217efcd14e01f71525db734faf4232bd59999`，交叉编译 amd64/arm64；保持受约束的 `go build`、scratch、同一 builder 的 CA 和内嵌时区。Dockerfile SHA256 `162d41dcf5bd90cdc09e1c95763a55e4b64c309f331f15931e4fc757b23cd58f`；工作流 SHA256 `7b4f67ec48b8b0ebf7110694aaf1c87c8cf207e2a7718af4beab17ba76d103dd`。
+上述导入元数据核验不等于未改源码的完整语义阅读，也不是整个传递图的全量排除证明。撤销的 40 文件 RPC 聚合声明没有恢复；截断内容经独立完整展示后才记录。限定中央范围内剩余实质证据缺口为 0，未确认恶意行为。
 
-明确排除上游 CI/dev/docs/test/release、安装器及不由中央入口执行的工具。harden-runner 原生 agent、CPython/工具缓存、可变 latest/master、verspec 映射、测试 OCI 层和其他未核验开发工具保持原始缺口；8 条历史补充展示缺口不改记为已读。官方固定摘要编译器与系统层沿用基线信任输入，不声称逐字节语义核验。操作者提供的 hooks、Docker CLI、凭据助手、daemon、镜像及 Git/Compose 项目不属于批准制品。
+构建白名单仍为 `go.mod go.sum main.go cmd/ internal/ pkg/`，使用固定 Go 1.27.3 amd64 builder `sha256:8aa2821993207ae840ce09e4223217efcd14e01f71525db734faf4232bd59999`，CGO=0、readonly 模块、内嵌时区，交叉编译 amd64/arm64；scratch 仅接收程序和同源 CA。本次只更新版本与源码 pin。Dockerfile SHA256 `f3f63afbf0a758fb7745d42d2adf5b291018ab31400a330043f38917730d3d23`；工作流 SHA256 `fd01f897045bc1c876f0ade952ba0d48c84c9dbfac450bba9a04a229b7b15184`。
 
-[机器可读增量证据](incremental-review-evidence.json) 保存源码散列、覆盖、来源、94 项排除及完整对账文件散列；[批准门禁](review-approval.json) 绑定构建文件及增量证据。完整本地证据位于 `/root/upstream-release-review/watchtower-v1.23.2/`，不是公共下载地址。下方基线报告与 [基线证据](baseline-review-evidence.json) 保持历史原文，其中“本轮”“尚未构建”等措辞仅指基线审查当时。
+上游不受限 CI/dev/test/release、可选工具/插件及范围外二进制没有获批。操作者配置的 hooks、Docker CLI、凭据助手、buildx/provider/model、daemon、镜像及 Git/Compose 项目继续作为外部信任边界。固定编译器和系统层复用基线来源信任，不作全库、全工具链语义保证。
 
-用户已另行授权中央 commit/push 与 CI 镜像发布；审查通过不代替 CI 或公开 registry 验证。本地仅做静态 YAML/JSON、散列与精确替换验证，不构建、测试或扫描上游。发布结果另存本地证据目录，并同步 [镜像说明仓库](https://github.com/naiba-forks/watchtower)。不部署或重启服务器；既有自动更新服务可能独立响应 latest。
+[增量证据](incremental-review-evidence.json) 记录结论、缺口关闭依据、精确 SHA 与证据散列；[批准门禁](review-approval.json) 绑定构建文件和增量证据。[上一版增量记录](https://github.com/naiba/Dockerfiles/blob/ea0883262b2c558f0e7c3307830e69ddef30d091/watchtower/incremental-review-evidence.json) 作为历史基线保留。原始本地证据在 `/root/upstream-release-review/watchtower-v1.24.0/`，不是公共下载地址。
+
+本地只进行静态来源、JSON/YAML、散列与 pin 一致性核验，没有运行上游代码、安装、构建、测试或扫描。用户已授权 commit/push 与中央 CI 镜像发布；发布终态以该提交的 [Actions](https://github.com/naiba/Dockerfiles/actions/workflows/watchtower.yml) 为准。不部署或重启服务。下方首次基线报告保持历史原文。
 
 ---
 

@@ -1,14 +1,14 @@
 # Watchtower
 
-固定上游：[`nicholas-fedor/watchtower v1.23.2`](https://github.com/nicholas-fedor/watchtower/tree/cd5946be205ea0a60dd31235a11f04ac9851ebf6)。
+固定上游：[`nicholas-fedor/watchtower v1.24.0`](https://github.com/nicholas-fedor/watchtower/tree/147aa6a534428e68eb1ba4f71918f6f35404624d)。
 
-目标镜像：`ghcr.io/naiba-forks/watchtower`，架构 `linux/amd64`、`linux/arm64`；标签 `v1.23.2-cd5946b`、`v1.23.2`、`latest`。发布状态以 [Actions](https://github.com/naiba/Dockerfiles/actions/workflows/watchtower.yml) 和实际 registry 清单为准。
+目标镜像：`ghcr.io/naiba-forks/watchtower`，架构 `linux/amd64`、`linux/arm64`；标签 `v1.24.0-147aa6a`、`v1.24.0`、`latest`。发布状态以 [Actions](https://github.com/naiba/Dockerfiles/actions/workflows/watchtower.yml) 和实际 registry 清单为准。
 
 ## 审查与构建
 
-候选正式版 v1.24.0（`147aa6a534428e68eb1ba4f71918f6f35404624d`）本轮复核结论为**暂缓**，保留 v1.23.2 pin。主项目增量记录已核销，但 Compose 环境/标签文件解析、默认 process collector 与 gRPC/gateway 等依赖的有效调用证据仍有缺口；尚未确认恶意行为。具体边界见 [候选版审查结果](candidate-release-review.json)。
+v1.23.2 → v1.24.0 的静态恶意行为增量审查**通过**，限既有中央构建与 scratch 交付边界。主项目 928 个变化路径按 636 个对齐单元核销；此前暂缓的 Compose 环境/标签文件、默认 process collector 和 RPC/codec 适用性证据已补齐，31 份适用 RPC 生产增量另有独立回执。没有恢复被撤销的聚合阅读声明。
 
-当前 v1.23.2 增量审查仅在既有中央源码白名单与 scratch 交付边界内通过，整版上游及无限制工具链执行仍为暂缓。已读 474 个项目差异、23 个模块升级、1501 个直接输入分片；1381 项上下文请求中 1287 项关闭、94 项按基线排除且仍未核验，中央材料阻断为 0。见 [审查报告](upstream-release-review.md) 和 [增量证据](incremental-review-evidence.json)。首次基线的 711 文件审查及 [基线证据](baseline-review-evidence.json) 原样保留。这是恶意行为来源审查，不是漏洞、功能或兼容性保证。原始阅读记录保存在维护者的 `/root/upstream-release-review/watchtower-v1.23.1/` 与 `/root/upstream-release-review/watchtower-v1.23.2/`，报告中的该路径不是公共下载地址。
+见 [审查报告](upstream-release-review.md)、[增量证据](incremental-review-evidence.json) 和 [候选版最终结果](candidate-release-review.json)。首次 [基线证据](baseline-review-evidence.json) 保留；历史增量记录可从 Git 历史追溯。原始证据位于维护者的 `/root/upstream-release-review/watchtower-v1.24.0/`，不是公共下载地址。这是恶意行为来源审查，不是漏洞、功能或兼容性保证。
 
 中央工作流验证正式 tag 对应的完整 SHA，并校验批准记录中的 Dockerfile/工作流哈希。源码白名单为 `go.mod go.sum main.go cmd/ internal/ pkg/`。使用 Go 1.27.3（linux/amd64 摘要 `sha256:8aa2821993207ae840ce09e4223217efcd14e01f71525db734faf4232bd59999`），在 amd64 runner 交叉编译；不运行上游生成、安装或发布脚本。最终 scratch 镜像仅包含程序及固定 builder 的 CA，时区数据内嵌。
 

@@ -32,13 +32,13 @@ RUN case "${TARGETARCH}" in amd64|arm64) ;; *) exit 1 ;; esac && \
       -trimpath \
       -buildvcs=false \
       -tags=timetzdata \
-      -ldflags="-s -w -buildid= -X github.com/nicholas-fedor/watchtower/internal/meta.Version=v1.23.2" \
+      -ldflags="-s -w -buildid= -X github.com/nicholas-fedor/watchtower/internal/meta.Version=v1.24.0" \
       -o /output/watchtower .
 
 FROM scratch
 LABEL org.opencontainers.image.source="https://github.com/nicholas-fedor/watchtower" \
-      org.opencontainers.image.revision="cd5946be205ea0a60dd31235a11f04ac9851ebf6" \
-      org.opencontainers.image.version="v1.23.2"
+      org.opencontainers.image.revision="147aa6a534428e68eb1ba4f71918f6f35404624d" \
+      org.opencontainers.image.version="v1.24.0"
 COPY --from=compiler /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=compiler /output/watchtower /watchtower
 ENV TZ=UTC
