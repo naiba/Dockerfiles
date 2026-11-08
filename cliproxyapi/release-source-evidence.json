@@ -1,0 +1,1564 @@
+{
+  "base": "c2f402b45643f0740d70b9010fd7d8d0aab7ef65",
+  "candidate": "91e0dee827abf476f9f86246f68c500a112f7155",
+  "files": [
+    {
+      "path": "cmd/fetch_codex_models/main.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "ba9408f5d170b44ebbee5a58fd6d75946695efe7",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "df5cb4771d4b28eeb790304a314cc4b5afe55583",
+      "diff_sha256": "6d4aa64b1be84a4b4878b34888c8b3df7da4d559718e0606f851873dd0f76549",
+      "diff_lines": 15,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/cmd/fetch_codex_models/main.go",
+      "read_range": [
+        1,
+        15
+      ]
+    },
+    {
+      "path": "config.example.yaml",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "6dc21ffba4f7e7350d2aa995a43433c85a973c01",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "90311aeb89800e097a736b8c4842ab8382371f2d",
+      "diff_sha256": "63ffad499f454eb64d064d6dfcf35f1644091c48b80ea6751b606fe656a7e547",
+      "diff_lines": 11,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/config.example.yaml",
+      "read_range": [
+        16,
+        26
+      ]
+    },
+    {
+      "path": "docs/codex-refresh-recovery.md",
+      "test": false,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "bd84b35196e1f936be892b91ada64a5d9193c7e0",
+      "diff_sha256": "9dd2a4a6bf00d4b242843544a3d6ed42f87534c5e6b35074df5ef691dd80aa88",
+      "diff_lines": 37,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/docs/codex-refresh-recovery.md",
+      "read_range": [
+        27,
+        63
+      ]
+    },
+    {
+      "path": "internal/api/handlers/management/auth_files.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "8305345fe946fa6060615ac8871fce7b564bdc46",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "b8d8d75d498cd6a1dd50cee2325158de83c0396b",
+      "diff_sha256": "72876afd7b5bb246369f117e3bccadda34e545fb32f7f8e810725ffb9ac69f0c",
+      "diff_lines": 42,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/api/handlers/management/auth_files.go",
+      "read_range": [
+        64,
+        105
+      ]
+    },
+    {
+      "path": "internal/api/handlers/management/auth_files_oauth_provider_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "c6dea51994af0f80a1fba47e7cd142d5e2daaddd",
+      "diff_sha256": "980fe67852ef7448457c42841ab8e26cab345b3783d3c049372eae66e58ee395",
+      "diff_lines": 460,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/api/handlers/management/auth_files_oauth_provider_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/api/handlers/management/auth_files_provider_oauth.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "2407079459757f9a463137672056225d1453bdd2",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "0d05798166065c15a5ad775b58167f7832e66e2a",
+      "diff_sha256": "eab256bdea3bb318c72894053e3a19c8455789da7e0fdb97975f6563919934a3",
+      "diff_lines": 74,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/api/handlers/management/auth_files_provider_oauth.go",
+      "read_range": [
+        106,
+        179
+      ]
+    },
+    {
+      "path": "internal/api/handlers/management/oauth_claude_authorize_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "8f4bd2c61d107d094ebb1ad233a176c04459f326",
+      "diff_sha256": "7802bac704aa69557298f072cbe731d4836763c157205156c867d440b1865905",
+      "diff_lines": 145,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/api/handlers/management/oauth_claude_authorize_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/auth/claude/anthropic_auth.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "b3b2618fd38f55683828bea502658a700b139dab",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "c6dd901e0f27e3d2b03aa3157409b334398feb3d",
+      "diff_sha256": "420a4ef49f8231004da9b01bacdbc74ebd170e557519f61fa075ec62da13e824",
+      "diff_lines": 22,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/auth/claude/anthropic_auth.go",
+      "read_range": [
+        180,
+        201
+      ]
+    },
+    {
+      "path": "internal/auth/claude/anthropic_auth_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "aaa8e2ddd7799ef8bf20af948f24bae61124de50",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "90def0d818a241f116edea9565ede73465e400b8",
+      "diff_sha256": "d3013ea65bd8ef40e0b7d35b2906727bd9769382096b214a0a49c136dd0ad116",
+      "diff_lines": 37,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/auth/claude/anthropic_auth_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/auth/claude/oauth_authorize_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "7f213d40b80c0ea1abd60208031d94071a63b0ed",
+      "diff_sha256": "2856f5656ff3bf8187ded54b9df6b9a2333c1a37beaf3c05334f92c75668917c",
+      "diff_lines": 53,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/auth/claude/oauth_authorize_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/auth/claude/pkce.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "e8b11f9a9c979344cec82e3537e654c57adc858f",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "5c71aa22a91ebd5f1080bce779442a0b5f04e445",
+      "diff_sha256": "a8ca4d6bcfa7c4c95770489548389882a6a13f08f0c5faa969b4afbcb46d1571",
+      "diff_lines": 18,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/auth/claude/pkce.go",
+      "read_range": [
+        202,
+        219
+      ]
+    },
+    {
+      "path": "internal/auth/codex/openai_auth.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "d5246acec50be39cacc73a76ae3f4276923a28eb",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "c1d8737de30bf2e92f411ffdfbd39a5e35dde6da",
+      "diff_sha256": "dec43ab17c411a562d6088ec226deb26d0fb37c0f79aa32d00510a226e30239d",
+      "diff_lines": 110,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/auth/codex/openai_auth.go",
+      "read_range": [
+        220,
+        329
+      ]
+    },
+    {
+      "path": "internal/auth/codex/openai_auth_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "aeaeb5e1c704e7da1257502a86a06c411be3172f",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "9689cbef7933ecbc54fda5c422caf5bc3ac14b93",
+      "diff_sha256": "553431da3a2347bee9caf27c922430f7a811f238c9e6bdda2b15d07733d1e1a3",
+      "diff_lines": 25,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/auth/codex/openai_auth_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/auth/codex/refresh_journal.go",
+      "test": false,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "e41cfa9881d8c171038df0d501229dbc2d71acbc",
+      "diff_sha256": "52e1f1482b80decfa451b7f8b2bcb70f699d99e4ea50ba65a1f78c7b39bef877",
+      "diff_lines": 246,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/auth/codex/refresh_journal.go",
+      "read_range": [
+        330,
+        575
+      ]
+    },
+    {
+      "path": "internal/auth/codex/refresh_journal_file.go",
+      "test": false,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "e4d1c1195f8a506f4eab073a8590476a11ca3293",
+      "diff_sha256": "b4326df5319a1d6da58c47c2b487658c473a264a8fcc58aa03ba97e472acd59f",
+      "diff_lines": 144,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/auth/codex/refresh_journal_file.go",
+      "read_range": [
+        576,
+        719
+      ]
+    },
+    {
+      "path": "internal/auth/codex/refresh_journal_file_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "49a71e9bfb19b8061a5f7ade8a9bf582e869db9b",
+      "diff_sha256": "2035012f1bd83ed9bb2bfdd1db604019700c85403bf838f3ff29eaa394e6b606",
+      "diff_lines": 52,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/auth/codex/refresh_journal_file_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/auth/codex/refresh_outcome_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "4af721f16ae90bd632876bc92a4ddd8a88bce4c5",
+      "diff_sha256": "3193afe51b35267906ad8d7558275e3e93dc7ed998a6380a4821bbc8f286a431",
+      "diff_lines": 164,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/auth/codex/refresh_outcome_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/auth/codex/refresh_receipt_expiry_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "a9dcfafa2cb00c55f79fdcf6da0380d2b2b9a74d",
+      "diff_sha256": "517085284c4dc4396e54f5e348c82b9c157de60a106b4f65f516978d4a44fb4b",
+      "diff_lines": 55,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/auth/codex/refresh_receipt_expiry_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/auth/codex/relay_response_loss_qualification_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "906cfee13074191273fb70133aacfb4779d6dd5c",
+      "diff_sha256": "cfa1fcaabdb63bec788f35da07d4940079a5408da99c14a9ae2527a0e0a00156",
+      "diff_lines": 48,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/auth/codex/relay_response_loss_qualification_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/auth/codex/siwc_auth.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "f8587090603042108d73e86288512c5d1eb709c5",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "6f28e3ca27e39d3360c1e5d7bf0fca4527fb08cd",
+      "diff_sha256": "173f459d5b0e98e572c489d0bfe2079e510fad46e661ce8837f167f18a8d3017",
+      "diff_lines": 60,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/auth/codex/siwc_auth.go",
+      "read_range": [
+        720,
+        779
+      ]
+    },
+    {
+      "path": "internal/pluginhost/adapters_executors.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "e0419bb37f6cae7f326d3375520832eb57dd623b",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "48771f958d6c8013db374879c88f5f9786e9054f",
+      "diff_sha256": "cd5f74e463162a64def4b07bf23104e8ddc14c2c8feecea3ecc99ee5db7c44b0",
+      "diff_lines": 19,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/pluginhost/adapters_executors.go",
+      "read_range": [
+        780,
+        798
+      ]
+    },
+    {
+      "path": "internal/pluginhost/auth_provider.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "116e51b81fa392acf45b6a200eb531a86d765ac5",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "49049a18ea931e71dfdd8b6625863f34aaac2d15",
+      "diff_sha256": "adb71be7454c7006febc17684d15a8b1080efeb4b0210d3017d432b3185f60f0",
+      "diff_lines": 202,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/pluginhost/auth_provider.go",
+      "read_range": [
+        799,
+        1000
+      ]
+    },
+    {
+      "path": "internal/pluginhost/auth_provider_oauth_provider_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "aa7401cffa97fe2b1a681c27c09a9e7b9896ea45",
+      "diff_sha256": "891644c54b888281b77b86de6226fb242c10988b9667d1ef0ef397dc16324aee",
+      "diff_lines": 384,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/pluginhost/auth_provider_oauth_provider_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/pluginhost/loader_unix.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "d31f7b778042d07e40505643d9cbf79634c417e9",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "1489bc842405154858260dbb01fe7cd241f63e74",
+      "diff_sha256": "2d2d951bd64abde7d8e2492f3b806f45dd293762e048db655cc3ea7b18be8899",
+      "diff_lines": 107,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/pluginhost/loader_unix.go",
+      "read_range": [
+        1001,
+        1107
+      ]
+    },
+    {
+      "path": "internal/pluginhost/loader_unix_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "e6246587caa29e7c5b6ceaad9f7a321cab4a47a4",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "160636caae80d6acaba3a6f265bbba2a1df21c57",
+      "diff_sha256": "a5c7d1ac23dcf763b2e081cd6d99e958a5a04d7d8a199e1fc23285831c6fab72",
+      "diff_lines": 99,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/pluginhost/loader_unix_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/pluginhost/loader_unsupported.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "303d106c57be7599b2b99f7a041434e8cd21b535",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "442b37039fb8b7bdb31893e6a34aabf8973da709",
+      "diff_sha256": "53c6a4766a1f56f2a236dd597ac499f7feeb7bbf64fe4a00a302b4b06e209f9c",
+      "diff_lines": 8,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/pluginhost/loader_unsupported.go",
+      "read_range": [
+        1108,
+        1115
+      ]
+    },
+    {
+      "path": "internal/pluginhost/loader_windows.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "bfffeed718355da6f0e4f2a4ccb8f079ff632ea1",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "cb6edb299566d2e79570e96bc86261fc46d49b75",
+      "diff_sha256": "ba2f4c3774467db1de30fff33f7356a82fbdd4dbb78094ed88abfdf47b75f059",
+      "diff_lines": 31,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/pluginhost/loader_windows.go",
+      "read_range": [
+        1116,
+        1146
+      ]
+    },
+    {
+      "path": "internal/pluginhost/platform.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "b3bb636e1fcd887e4986f893764710e1fc46a0dd",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "f4c928e6782f5efc21b5dfce2a2215131f9def29",
+      "diff_sha256": "be789818696829dfda3a3b5796c0b4c6ddc804d15411747a19f775839335c857",
+      "diff_lines": 29,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/pluginhost/platform.go",
+      "read_range": [
+        1147,
+        1175
+      ]
+    },
+    {
+      "path": "internal/pluginhost/shadow.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "3884b11e25ea171fb22946d65a5abc2d757e283f",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "2438e3b7cedc3ac9f77a63bf285a5684a242367a",
+      "diff_sha256": "b3e7912ebab3ca4b8ba229923ac32ab3d0add6baec295971d61ff1cfc3ae2c23",
+      "diff_lines": 571,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/pluginhost/shadow.go",
+      "read_range": [
+        1176,
+        1746
+      ]
+    },
+    {
+      "path": "internal/pluginhost/shadow_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "4230194716968b6abcd05aa8093af7f3159bbef6",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "616e7a6ca689c766d711026ff1c57473fad7d0d2",
+      "diff_sha256": "d07683e808f511c2c166b82f2178a2e14303af67238429723a25be68e129dd50",
+      "diff_lines": 597,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/pluginhost/shadow_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/pluginhost/shadow_unix.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "39e626e7464502ad76868d74872688a7af06ef3c",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "c793a6965473bf51e2c0ed1f05274685c9b88344",
+      "diff_sha256": "58575883200c0c92b5a001a859033ee6c62885fa58ada12d6d379cd92f077c49",
+      "diff_lines": 37,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/pluginhost/shadow_unix.go",
+      "read_range": [
+        1747,
+        1783
+      ]
+    },
+    {
+      "path": "internal/pluginhost/shadow_windows.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "5efe995f874c4cc1edd77cc1dc88b43ff1e598f7",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "80958cfe3cbf0a6abc4d4970ef5e3905cd0c9c6d",
+      "diff_sha256": "0913b11adcf214446f9642b49c2460adfd12e65034af8f5623899c3e7d8ca17c",
+      "diff_lines": 38,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/pluginhost/shadow_windows.go",
+      "read_range": [
+        1784,
+        1821
+      ]
+    },
+    {
+      "path": "internal/registry/models/models.json",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "8e1a0205a0f5bd86a575e2b7f79378c35a918e7d",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "d8e576221be5cf34e9cea455af30bec3497f05fa",
+      "diff_sha256": "09692359944cabc11f3bf8a90ae6eeeaff64325b66aee062957e35442cba3d8e",
+      "diff_lines": 170,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/registry/models/models.json",
+      "read_range": [
+        1822,
+        1991
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/claude_executor.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "c20855ab686d8c625d95aae592dbfbd01c8dd2fd",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "a90251d902598a8007605aa724dff5f08e84b763",
+      "diff_sha256": "e50fd59e088e9148a1312881094749f63bdd532f82476adbc9ed768ae7e9656c",
+      "diff_lines": 28,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/claude_executor.go",
+      "read_range": [
+        1992,
+        2019
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/claude_executor_cloaking.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "9bf62699e314d5ef29007e89bcf575dbe625283d",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "8db1f64c3f92fb31e7cb470544ace7e3cf177298",
+      "diff_sha256": "25b43995019f771ad323b51bbe39b9ca3825109b6f136bc637d9fffd252081be",
+      "diff_lines": 56,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/claude_executor_cloaking.go",
+      "read_range": [
+        2020,
+        2075
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/claude_executor_execute.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "51c978f66bde482653f7b1fa1bc0676f3df48ffc",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "ed58582cee2e5468996d2a2da635f0f5e23a764f",
+      "diff_sha256": "9c926b3b1a8bd6349c70756130e00d933b7459b080fbfabda7f49e5919ca9436",
+      "diff_lines": 10,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/claude_executor_execute.go",
+      "read_range": [
+        2076,
+        2085
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/claude_executor_stream.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "171e94ef1ae4c7da93b73b1ffef4caca8d6d27c1",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "382f755e3de292af0021cde86981820833e6e759",
+      "diff_sha256": "b8f1b7996036db2e57f6d5b699af73c08bcf78c518885b2d63ad8304d8a03ef4",
+      "diff_lines": 99,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/claude_executor_stream.go",
+      "read_range": [
+        2086,
+        2184
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/claude_executor_stream_keepalive_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "426aea21f505987458ec6fa7ea92c52feaf4f7cd",
+      "diff_sha256": "8219211af3270685d6e62a361ef8287563a42de4aa181fd85a16212eeb1e9ae1",
+      "diff_lines": 582,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/claude_executor_stream_keepalive_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/runtime/executor/claude_executor_tokens.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "5fd9fd6b969a727dbd5e16c63aa5821fd0f76064",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "0ffa329f5c11597c75d69c1cf35db782785313d6",
+      "diff_sha256": "46b44b8d28e30ca549351430fcdf3e08957e5177e4baafbc79234e546917a995",
+      "diff_lines": 33,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/claude_executor_tokens.go",
+      "read_range": [
+        2185,
+        2217
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/claude_issue7279_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "de912c00c97ea3f84826ad8ea343f80b88f00c05",
+      "diff_sha256": "e5af1aeaf295675f7570629540685dfdf3a1668d8f7140e15de848cf86c909fc",
+      "diff_lines": 76,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/claude_issue7279_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/runtime/executor/claude_responses_system_placement_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "d61ca2a1e9411683c50b8b3ea43f49b9b7368175",
+      "diff_sha256": "e616e8d6e40699b8da0551fd4e2ea09af99aaf8bb2ba1f6452a27c9acffcde41",
+      "diff_lines": 246,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/claude_responses_system_placement_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/runtime/executor/codex_executor_auth.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "6d630e4cb3fd5533d111d0517ea138c47f722155",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "c508e8597a3850556dcb5afc864e28ac365f298b",
+      "diff_sha256": "329f1bfef26777f8864c5bf80b38897b6fa18a1a40abbb24aad5256143d7e2e5",
+      "diff_lines": 39,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/codex_executor_auth.go",
+      "read_range": [
+        2218,
+        2256
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/codex_executor_auth_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "4046cf937d9279b6056284fdd546a9e8f8e63afd",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "187abdaf2381de8b29506be167ba088407b0f49a",
+      "diff_sha256": "080a28d81ee1e587a43e71c0d38fd3052871e3caaf1896bf50911a59b67d9fae",
+      "diff_lines": 20,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/codex_executor_auth_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/runtime/executor/codex_executor_claude_output_budget_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "6afbf4f42084df506ae448e4fd165a47aea2bc5f",
+      "diff_sha256": "87ddbf83478b88b351a0bdf8ba2360445341fbaffd8f3fb22b17f41528a36707",
+      "diff_lines": 190,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/codex_executor_claude_output_budget_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/runtime/executor/codex_executor_execute.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "b97908e20f1e9088a415fa211da20483b09a0a12",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "2750ed4b3ef7f5a081331ddb64ba45b60c7ef02d",
+      "diff_sha256": "85b0bcdd0e743aa23465bf0e2635ec8d4448736db8bcfaa4a4250ed458147343",
+      "diff_lines": 57,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/codex_executor_execute.go",
+      "read_range": [
+        2257,
+        2313
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/codex_executor_imagegen_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "57cc6674f1aa754dd15ddeca645c37ab5ee7938b",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "405a2d158db012da24764090e701f2be5c8ce314",
+      "diff_sha256": "7bccc1a38c7e9b5311f2009b1c8e5a587b19b6da9822cab5405a3036ccf1e994",
+      "diff_lines": 514,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/codex_executor_imagegen_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/runtime/executor/codex_executor_output_budget_issue7304_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "855d0dcdeccdc5b393b51ad31d05d9ea7a8d3b12",
+      "diff_sha256": "50d2b38069114e6c1bf180028a0a4276c8204cf0a45d0e3368f4ea9fd1947750",
+      "diff_lines": 240,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/codex_executor_output_budget_issue7304_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/runtime/executor/codex_executor_request.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "de2d8376eed72b8716d30ebd6d2f739bb446b600",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "17b140cdbabfb473820dd6204edd1aab413b5d25",
+      "diff_sha256": "a7779bc60a9b969f8f805473e78e3a5686dfb7e01be3bfe7adec412e4f3657ab",
+      "diff_lines": 238,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/codex_executor_request.go",
+      "read_range": [
+        2314,
+        2551
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/codex_executor_sse_events_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "200eef69b5810264f98f4529a39bbf08ecd0f7c2",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "7555e5b4b474aa476ee073e673a9d8a2d6da6b31",
+      "diff_sha256": "6ceb3494f679d3a1b930599e51a1121f0e3e8b885fd02a300af6410c734f684c",
+      "diff_lines": 22,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/codex_executor_sse_events_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/runtime/executor/codex_executor_stream.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "fc2a31e7538464278311142f28effa14c86dacc2",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "32244fd7cf92b40a9672248e7b209e6be7de7b4c",
+      "diff_sha256": "4fcd48321186de084a9d438c86e1e3f635a06fee6ad7a1fafcd89726de2997de",
+      "diff_lines": 57,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/codex_executor_stream.go",
+      "read_range": [
+        2552,
+        2608
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/codex_hosted_images_regression_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "b5b70f0dd04faa60ea6b7a5547ea77084a2115ad",
+      "diff_sha256": "90356a27771df53454f5db6fc7c7f137a4d4a0e9382e72a6fd2fa38838d2f367",
+      "diff_lines": 369,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/codex_hosted_images_regression_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/runtime/executor/codex_refresh_explicit_path_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "438d78cf02dfcae4f594c40077451f4f1b9d00ab",
+      "diff_sha256": "d32502ec77de7f5637be28954036fd89f51a7a7317db2931165a2993cbfd545e",
+      "diff_lines": 46,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/codex_refresh_explicit_path_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/runtime/executor/codex_refresh_outcome_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "66d2b3ecc35168b44356dcc0c3959ae71e7b12a5",
+      "diff_sha256": "ba6232bf37fb81b8a006f5d73f626f0f79285e3d10aa59358f59f58b28837127",
+      "diff_lines": 55,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/codex_refresh_outcome_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/runtime/executor/codex_websockets_execute.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "5d1f7a7fea6e853309b3da4b70b581974d615c23",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "f56a5dd4d0ddd14e690b1c18b228d9f540aceea6",
+      "diff_sha256": "1c5a26186e79413feb426f4df990488e9527f873ae0a3d934b4e1a760184a2a8",
+      "diff_lines": 54,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/codex_websockets_execute.go",
+      "read_range": [
+        2609,
+        2662
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/codex_websockets_stream.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "d55bd1108810573fd220e7587834de7dd1ad0536",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "540fb468363ae2e6ddc58667ba893a0018f30c86",
+      "diff_sha256": "9fb049dc3485d5fcc6bd282056fd6f2114e126a7814982d46d171cdbbc32445f",
+      "diff_lines": 43,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/codex_websockets_stream.go",
+      "read_range": [
+        2663,
+        2705
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/devin_executor.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "d42f99c1fbf5f00747f6d5e1d02035f6d73a71dd",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "88209c5458d7114062403926d73e1f1c5830ca62",
+      "diff_sha256": "1e9caefdc77e1b1b3ec75e07ab2b52fc9d750b97936f69e77f4359f9a0804086",
+      "diff_lines": 28,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/devin_executor.go",
+      "read_range": [
+        2706,
+        2733
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/devin_executor_compaction.go",
+      "test": false,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "f1a3c43f9616c546e694dba0226fce2a02cec44a",
+      "diff_sha256": "c88845f288b2a4afc234c616456d652a8a5b31c1c62d3c37456e812288917047",
+      "diff_lines": 75,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/devin_executor_compaction.go",
+      "read_range": [
+        2734,
+        2808
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/devin_executor_compaction_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "a2c4408a726168c0bd6d5c2cf1e789a4107d9f41",
+      "diff_sha256": "71585dc655e7cfc437e3b5451a561ff463a7ae4c40ffcaf406cd2a8b47b57cef",
+      "diff_lines": 432,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/devin_executor_compaction_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/runtime/executor/helps/codex_hosted_images.go",
+      "test": false,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "48318e7d2dd4e9050ac091c12db3d048d637003f",
+      "diff_sha256": "d4e9b7336aabce5a941e13ed8cf2cdfbb74c50f08fbfbdd8c55793d3f26561ac",
+      "diff_lines": 113,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/helps/codex_hosted_images.go",
+      "read_range": [
+        2809,
+        2921
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/helps/codex_hosted_images_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "02c2a15b8cb5a27e1fe5aee9202f1b0b10ebe9cf",
+      "diff_sha256": "3f86a89a61007082459807ffd1444ae5163921aa6119a569c7fdda132be8c7be",
+      "diff_lines": 101,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/helps/codex_hosted_images_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/runtime/executor/helps/detachable_context.go",
+      "test": false,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "cc458b901c5bab34074e42016c781563432a208f",
+      "diff_sha256": "7be5c30455854f6d80378d143b335d595f74cc32bed102f2a3b07a18c355c32e",
+      "diff_lines": 62,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/helps/detachable_context.go",
+      "read_range": [
+        2922,
+        2983
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/helps/detachable_context_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "42fef515a17f29057661621a8d7d040fb523fb13",
+      "diff_sha256": "17e6d51f711c41c1f3c1e308422268a3550220aad0e9cc0286fe5d38842c700b",
+      "diff_lines": 298,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/helps/detachable_context_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/runtime/executor/helps/usage_helpers.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "f9b20565a3a5d522bf366d608288201c7ddae295",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "fbff997aae233f7cb452d7e2b2013374edc495e3",
+      "diff_sha256": "02a35825030719b172354cfd42ed40f60a5281604cc4b365e64e3c46620224bc",
+      "diff_lines": 11,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/helps/usage_helpers.go",
+      "read_range": [
+        2984,
+        2994
+      ]
+    },
+    {
+      "path": "internal/runtime/executor/helps/usage_helpers_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "46a04f617bbeb9a0f1ec944433ca9a715585a7aa",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "386cbe16b4e24a2b27a66a8fdd119202b9248d90",
+      "diff_sha256": "e1722868acecad38a2a1a76676fcb9e2e746b16595e2313e59f1a1d252603b88",
+      "diff_lines": 23,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/helps/usage_helpers_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/runtime/executor/openai_compat_executor_reasoning_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "da3fa8c86eda6deed10ae83044f81c22c4ab17cf",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "d5cda5fc543ec003dffc7a081e41c3ffc8be09e1",
+      "diff_sha256": "cc9f8472f1098045b5f89b580dad9a4a1dd856e329e74824e539141ff01dac47",
+      "diff_lines": 91,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/runtime/executor/openai_compat_executor_reasoning_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/store/git_refresh_alias_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "d319b49397f9d41135fd235594769ae894966856",
+      "diff_sha256": "8e6bf7bb4ba02c44f20d3138cc7c37da5c6b26fe851113f7acbdca903499f18d",
+      "diff_lines": 22,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/store/git_refresh_alias_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/store/git_refresh_journal.go",
+      "test": false,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "c0b9292977d9a3d7d4bc77b6dc89de5fbe0e9763",
+      "diff_sha256": "f0fe7dbde3c01f77150a85e3ab6251c014914fcda51055ea81cdba831ec2b77b",
+      "diff_lines": 186,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/store/git_refresh_journal.go",
+      "read_range": [
+        2995,
+        3180
+      ]
+    },
+    {
+      "path": "internal/store/git_refresh_lock_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "ddb23a488ae510ada6ed701539f70b9fa67c8105",
+      "diff_sha256": "a14ba2d72515532bebc0e266b72de6ea105e39b2b014ef0e294b1fcc75aa809f",
+      "diff_lines": 69,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/store/git_refresh_lock_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/store/object_refresh_journal.go",
+      "test": false,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "02ed032c4ee837008fe73c2c7d36ff3d4c8f00a5",
+      "diff_sha256": "4d3685d145de85bc64f1caa8641624baee6e8d1e329e216f650b8148abb4d30e",
+      "diff_lines": 141,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/store/object_refresh_journal.go",
+      "read_range": [
+        3181,
+        3321
+      ]
+    },
+    {
+      "path": "internal/store/object_refresh_journal_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "88715e63f47cbc67c6ad25fc908a79a561a4c2eb",
+      "diff_sha256": "0bc9df07f3b16e6232b2131f60c274b1dc060c3a24de47d11aaf7ebaa9a0934c",
+      "diff_lines": 137,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/store/object_refresh_journal_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/store/object_refresh_probe_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "337f34d902831c0c5c34761f52295ed3829a8b1a",
+      "diff_sha256": "1615edad940de02d5ec7b90defd3c149c25e906305546e9c787edf4c48d71c48",
+      "diff_lines": 42,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/store/object_refresh_probe_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/store/objectstore.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "39b8b0898256c6df4c37fe36a97fbb04ec5ce746",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "22db97cb6b2bb37ab6c46e19a005048001fba528",
+      "diff_sha256": "168ebc9bfe8152b3d2f7a642b96c31e768de2bad1daf3c4d46151ba40a56d537",
+      "diff_lines": 25,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/store/objectstore.go",
+      "read_range": [
+        3322,
+        3346
+      ]
+    },
+    {
+      "path": "internal/store/postgres_refresh_integration_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "f0c41b0e49886f2df603271d90e392cb1d493f44",
+      "diff_sha256": "325d2e09a4c2b0a9efe308ff11a3689cdd6ab1938733482ab7a833fd7b0016cb",
+      "diff_lines": 106,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/store/postgres_refresh_integration_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/store/postgres_refresh_journal.go",
+      "test": false,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "52d2b8f9f36a9d40f4a5ac37f870697b614300a5",
+      "diff_sha256": "917330f493d846b9dabd49b160dcfaca38cad07838b2f3fcaff62228c9ef76ae",
+      "diff_lines": 98,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/store/postgres_refresh_journal.go",
+      "read_range": [
+        3347,
+        3444
+      ]
+    },
+    {
+      "path": "internal/store/postgres_refresh_journal_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "c9d387a6058e183ec4a16b3d6171f07aaf955556",
+      "diff_sha256": "172ce1508a9ba0e1efbfc39df43f2099d659856192b4b9a1c6b4afed400c1a63",
+      "diff_lines": 168,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/store/postgres_refresh_journal_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/store/postgresstore.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "69bc318bdaa5a75dd64860ec0be5361553f7a4cc",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "1db51c28e7c4e3f34fc64ab058883a9b7ec56171",
+      "diff_sha256": "0504a60f1f1fd109e4db026020026b0bed3e122d8cf03ded9b5e555a83379f3c",
+      "diff_lines": 36,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/store/postgresstore.go",
+      "read_range": [
+        3445,
+        3480
+      ]
+    },
+    {
+      "path": "internal/store/refresh_journal_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "62727286da7e1144801028abeffa108216e99d7c",
+      "diff_sha256": "5d9553816077822e8de81ab8a73442a647142a78038a7b33f3651fe6dae9382e",
+      "diff_lines": 94,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/store/refresh_journal_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/thinking/claude_standalone_effort_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "16ac37e498ab1c8127dfde3245bf3e769ebae552",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "2231dd52f98ffd5d54caa4d0a98e0d15f9eaab1c",
+      "diff_sha256": "1bf08455706703182ae6d44e09fc591276a74e3953442069480d1f090b9f467c",
+      "diff_lines": 72,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/thinking/claude_standalone_effort_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/translator/antigravity/openai/chat-completions/antigravity_openai_response.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "bd4ff2d6f2c09b0faebcdb830610947939b37c3a",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "a0f5559d4ffd6c90468bd53b471b72e93e66d8fe",
+      "diff_sha256": "bf107ff32e0c01dda3c0ab76793855a1cd0c3441ef3c37c70f0bbe4b1d506824",
+      "diff_lines": 55,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/antigravity/openai/chat-completions/antigravity_openai_response.go",
+      "read_range": [
+        3481,
+        3535
+      ]
+    },
+    {
+      "path": "internal/translator/antigravity/openai/chat-completions/antigravity_openai_response_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "9faa86dc3090f5f24fe706baa382604e0beeaab3",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "855b569df0ab59c9d75aac377dc608daa35a7af7",
+      "diff_sha256": "a86e8e5b8f83bf2f5d44db3ceda53bf90488c1dd444fc28eecdc57d897124f2b",
+      "diff_lines": 73,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/antigravity/openai/chat-completions/antigravity_openai_response_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/translator/claude/gemini/claude_gemini_issue7279_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "e3c68e767114004e4cdd27bd2d8bd0f9fbad4acd",
+      "diff_sha256": "0637c5696228fb314a00dfada819236d8bade720c8f8652aafd889be70a2fdb2",
+      "diff_lines": 191,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/claude/gemini/claude_gemini_issue7279_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/translator/claude/gemini/claude_gemini_request.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "c28150ce731a775f639e0ebcfa1c2fe537933c93",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "9d6913591ecd118d3472aac3791377349acacebb",
+      "diff_sha256": "8545cdcc87781b7d2f35da75197b4e40f3f8a770ceaea193a71bebfcfb2888c4",
+      "diff_lines": 120,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/claude/gemini/claude_gemini_request.go",
+      "read_range": [
+        3536,
+        3655
+      ]
+    },
+    {
+      "path": "internal/translator/claude/gemini/claude_gemini_response.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "e33843d9cc30ce1a9978a130d7fa657592e9ceaf",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "111df9d448f22382d83dbd152c0c13bb7d5e0f67",
+      "diff_sha256": "c416a9416ff80ef21c03ac8625335142ff589309d70392045d58c943654436c8",
+      "diff_lines": 92,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/claude/gemini/claude_gemini_response.go",
+      "read_range": [
+        3656,
+        3747
+      ]
+    },
+    {
+      "path": "internal/translator/claude/gemini/claude_gemini_response_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "2162317deb6574c30e2cbf7c4cbcec777342e30e",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "e2b77a52f5b2b776d82a3886837c44a69073d721",
+      "diff_sha256": "023e09774a71babb493a4d93194f2f40bea69d95539d38c47ccb329394e3cec9",
+      "diff_lines": 26,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/claude/gemini/claude_gemini_response_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/translator/claude/openai/responses/claude_openai-responses_request.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "22c94b732928f43210f4acbd3dcde654137c58d5",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "0a3898c12b23c728547e28904b51ef84fa5e87aa",
+      "diff_sha256": "ad9c46e23ed2e75ef8d06ab8a638a5f5c049dd04cb2663a0ed06ca61eec4a698",
+      "diff_lines": 341,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/claude/openai/responses/claude_openai-responses_request.go",
+      "read_range": [
+        3748,
+        4088
+      ]
+    },
+    {
+      "path": "internal/translator/claude/openai/responses/claude_openai-responses_system_placement_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "a645936c9762bea1959c7520b2365c36c31fc12d",
+      "diff_sha256": "82eeda558bcf85bb5aae99d8d7f82b55808d7781a2919b0f33c9b9ac801f5f61",
+      "diff_lines": 274,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/claude/openai/responses/claude_openai-responses_system_placement_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/translator/codex/claude/codex_claude_request.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "00fee4af765afd08ad404c61d6607c6473e6c387",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "8bfed46f6575ae7d9d591667317691a128228801",
+      "diff_sha256": "de968e00105e4cbc780b3d0aef440b98bb8022dc3a5e907111bbe6ac1d74023c",
+      "diff_lines": 484,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/codex/claude/codex_claude_request.go",
+      "read_range": [
+        4089,
+        4572
+      ]
+    },
+    {
+      "path": "internal/translator/codex/claude/codex_claude_request_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "451256f2e84fd0749ad72ca3036c3ac45a1e8b90",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "e4ca4f2a7c8df3543d39bbbf0d298d86f21e6389",
+      "diff_sha256": "ee3a6bce8d15e243ca57d5e5e98a04de38b83a5b86a5aaf6576bd7546c417370",
+      "diff_lines": 524,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/codex/claude/codex_claude_request_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/translator/codex/openai/chat-completions/codex_openai_request.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "389a65fce693ac004dfa25330788e7cdbb5753ba",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "d46c9438904f84a0a22611f6a3bc53fd8a0e3512",
+      "diff_sha256": "51894c84ce4d299172881a4ec1ae62c7f038d1a94b66fd31bfbb64a985c2f04f",
+      "diff_lines": 79,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/codex/openai/chat-completions/codex_openai_request.go",
+      "read_range": [
+        4573,
+        4651
+      ]
+    },
+    {
+      "path": "internal/translator/codex/openai/chat-completions/codex_openai_request_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "96b41fea73f89a2a9de9701a537cce0e90d21fa5",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "09093c18b8a2ff6dd0eae408f0a0a26e9fdad1b8",
+      "diff_sha256": "803d5ad9891a9af1d79fe21010ce19bddc9e56fbba43e748bcb26c5607a30567",
+      "diff_lines": 97,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/codex/openai/chat-completions/codex_openai_request_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/translator/codex/openai/chat-completions/codex_openai_response.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "5938d1fc6c838240eadeeea3be6d7377006754f2",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "f97e4a5bd96dd163ae9fbd305094e198548fe604",
+      "diff_sha256": "19772207142526eb1089a1cf2f20dd4475c55db26ccf7e6e71cd6caf22bc6527",
+      "diff_lines": 49,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/codex/openai/chat-completions/codex_openai_response.go",
+      "read_range": [
+        4652,
+        4700
+      ]
+    },
+    {
+      "path": "internal/translator/codex/openai/chat-completions/codex_openai_response_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "47166e356d7cf5db8845e64646fb29dba559b4ed",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "5f3616cad0794a22e79c5b44c09e08a03adac387",
+      "diff_sha256": "726a6fbefb9fa5aae7ec49edece0ffc43bfa9219040e013b3f159b00727ae573",
+      "diff_lines": 136,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/codex/openai/chat-completions/codex_openai_response_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/translator/codex/openai/chat-completions/tool_cache_perf_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "96a4e78c01fc6dff82fe0b1bfd948cc3e701846e",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "60e13ca75e6410f101eed9dc3ef1783b99445e30",
+      "diff_sha256": "7eb671f16b450aacaddac032ff6e802231cfb39d1d6aa27d4afab507d5962e1d",
+      "diff_lines": 10,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/codex/openai/chat-completions/tool_cache_perf_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/translator/gemini/openai/chat-completions/gemini_openai_response.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "088399b67dbd6bade01464e0ba4e6beca9ae5bae",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "24063d6bdb6aacc3b97750596e862bd6ea1d3a73",
+      "diff_sha256": "bf16fe645731bd102452ba3652b492a13c80082603f07de830ae9736b6f43683",
+      "diff_lines": 82,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/gemini/openai/chat-completions/gemini_openai_response.go",
+      "read_range": [
+        4701,
+        4782
+      ]
+    },
+    {
+      "path": "internal/translator/gemini/openai/chat-completions/gemini_openai_response_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "9bb578da7564d56231182c4a06ffe366e87c876f",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "211f72df3974aed2fc65db2434bc1891e5248e9e",
+      "diff_sha256": "528c8390a27865026b2d17f4464a9b25032158e60b405eb3444df0161d4180f9",
+      "diff_lines": 87,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/gemini/openai/chat-completions/gemini_openai_response_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/translator/openai/claude/openai_claude_request.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "31db99aa49cec79b618a13bdb4e12773f97ad3ea",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "6a9c93c6cf3696157a8de88919028906aa7ae0b2",
+      "diff_sha256": "9907c75e80319bc15d1cdb4dec4caad0a0dcb3a7d60e3b93bbd56bf589179eb5",
+      "diff_lines": 66,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/openai/claude/openai_claude_request.go",
+      "read_range": [
+        4783,
+        4848
+      ]
+    },
+    {
+      "path": "internal/translator/openai/claude/openai_claude_request_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "3112f6ada590356e4afd7b013208c1ba1caae4e1",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "3ffd694893d0392a0116878b6827c17876d67538",
+      "diff_sha256": "ac4dbb34ceee63b40bd47bd89951de55da3b43e21baabf729ae4c0c41857dfc1",
+      "diff_lines": 63,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/openai/claude/openai_claude_request_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/translator/openai/claude/openai_claude_response.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "14e18b7a73d24002fc1fd584d92c71d43c24db5b",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "6f9871c4d1b4cb91a38350ffda1c0e6f9c422180",
+      "diff_sha256": "78e1aa2f7cbe9afd7714f0901dc4bc38c5022036493d551ed6a3580ee9b15e51",
+      "diff_lines": 50,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/openai/claude/openai_claude_response.go",
+      "read_range": [
+        4849,
+        4898
+      ]
+    },
+    {
+      "path": "internal/translator/openai/claude/openai_claude_response_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "457667d16cb3bbd64648915feaaa8df33160b1fd",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "fdb781a8ef75e0efbe292a1ef2f5b302e81762c4",
+      "diff_sha256": "9c223f0fb186bc0e694e1a42526eab5181d3bd28ac6ff07f5b47daa96a8545cc",
+      "diff_lines": 76,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/translator/openai/claude/openai_claude_response_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/util/claude_model.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "656cc5a3ce85b3258883df2cdb70d60534c1eb2b",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "99e9601d61629e8798b59c6349b1f56429dd8cfa",
+      "diff_sha256": "b58b1f529dd1d216cb0ec9054b2bd3c241d755ec9bcfa429979fdaeb6f3d8e65",
+      "diff_lines": 45,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/util/claude_model.go",
+      "read_range": [
+        4899,
+        4943
+      ]
+    },
+    {
+      "path": "internal/util/claude_model_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "7bcd96e4f65ec4cdfea8a6618aae1f9e1b5a3363",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "39a8de8f30b9eda38919ca2b49694ea40951fd0a",
+      "diff_sha256": "2ed3c1c443f38383a5e82ce73b53f1cb0d4192af84e4710bc6263800da145cd3",
+      "diff_lines": 31,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/util/claude_model_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/util/nocopy_invariant_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "153ca6f87f37b5cb0f6518004b6846298e8481cd",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "368e68c6e926ad37939a7965053354a5f50bc1d2",
+      "diff_sha256": "fc7f10f9a59105630637765a29aa094fb1e0151400aaba9ce46a91e01608f85a",
+      "diff_lines": 10,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/util/nocopy_invariant_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "internal/watcher/synthesizer/file.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "1a40f508b70bd7e2c4440214fe39633673c5d324",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "a95b8b1d4f3ec9dda0bd3d7d306d8bf1dbdbf0dd",
+      "diff_sha256": "8f1011d4b6ddb8fd274916d1ce36aa5482137dce09b599b6495b0a5fad940ff9",
+      "diff_lines": 48,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/watcher/synthesizer/file.go",
+      "read_range": [
+        4944,
+        4991
+      ]
+    },
+    {
+      "path": "internal/watcher/synthesizer/file_oauth_provider_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "8d5b95b2ae2f97416379e59964cea7fb6d84e12c",
+      "diff_sha256": "a1e3593f2380f3fa7e1123b1f9445fb9111c1b5dfcef95c856aef796a2cac812",
+      "diff_lines": 91,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/internal/watcher/synthesizer/file_oauth_provider_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "sdk/api/handlers/claude/code_handlers.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "1f862cddf59cbb02b2dfa24416e8adad92755304",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "90c6a3117ebad7347a97fd9755a62646e604b31c",
+      "diff_sha256": "c4bbd0654372aa882814b76b7a515bb538befded0a21dbbd08d09a406329dc0d",
+      "diff_lines": 66,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/api/handlers/claude/code_handlers.go",
+      "read_range": [
+        4992,
+        5057
+      ]
+    },
+    {
+      "path": "sdk/api/handlers/claude/code_handlers_cooldown_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "33c8e6e37f1447c697fd7a6cb75f149c22f8462b",
+      "diff_sha256": "8dbfdd7fc571f27c36a4d56c416367337cf4d501f4154b44a221652e40376eba",
+      "diff_lines": 229,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/api/handlers/claude/code_handlers_cooldown_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "sdk/api/handlers/handlers.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "d365430d7db36375d238dcac3398267edc11a15b",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "2f1b89a507202cd233e5554b2109eb8cd1ada6cb",
+      "diff_sha256": "8308a5ea949b313e19d323e4ce8bd9641ef93d95d7d569c3f7ff9a4d9737c37f",
+      "diff_lines": 75,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/api/handlers/handlers.go",
+      "read_range": [
+        5058,
+        5132
+      ]
+    },
+    {
+      "path": "sdk/api/handlers/openai/openai_images_handlers.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "d70cc841404b522e2c92c322d93d2234fe65ced9",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "7e2dde146ad4332aa0f1ee3ef02cc3fbfe809274",
+      "diff_sha256": "9ec46fde117e23f60c836ba0a0cbb7c8bd19cabf1fd4111e6a6b16b7170db9d3",
+      "diff_lines": 257,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/api/handlers/openai/openai_images_handlers.go",
+      "read_range": [
+        5133,
+        5389
+      ]
+    },
+    {
+      "path": "sdk/api/handlers/openai/openai_images_handlers_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "2dd9859c909a710078a8f8683aa44c139b949f52",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "e4dcbbd57fec773d3f9d1460a0a764d64f7006f7",
+      "diff_sha256": "45e97827f3ee4c2e64e2436a1a2432283fa49544433ac407598d15ae540102ae",
+      "diff_lines": 271,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/api/handlers/openai/openai_images_handlers_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "sdk/api/handlers/openai/openai_responses_websocket_requests.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "f958de90e78df0eb80e3b7c24874a98b6346d8c9",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "ed967bf1de25a257ab19fdbe6d43533422cfc591",
+      "diff_sha256": "e43056f86397839361f86474573fd8d70317f91d919646151f20ac99abb7b4ac",
+      "diff_lines": 29,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/api/handlers/openai/openai_responses_websocket_requests.go",
+      "read_range": [
+        5390,
+        5418
+      ]
+    },
+    {
+      "path": "sdk/api/handlers/openai/openai_responses_websocket_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "ce0cfaca0d6358c9683125a1eefa563c2ea41ead",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "c2f60c9a08595a375435e70d8c6bca150ef65982",
+      "diff_sha256": "f651997a9572bed4e9b64a06ea29cb50738a447f14d22b3003c6f16b6defd20d",
+      "diff_lines": 55,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/api/handlers/openai/openai_responses_websocket_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "sdk/api/handlers/stream_forwarder.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "fb5828fc1688875d099d21ffcd8dc95ec2e8ed74",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "23263b5370d5695ee38f047cd66d44c75be79f2b",
+      "diff_sha256": "b1dc563b13e485f431ca61e288b336eb311819f13ad1e3c9250c1a6123acbae3",
+      "diff_lines": 135,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/api/handlers/stream_forwarder.go",
+      "read_range": [
+        5419,
+        5553
+      ]
+    },
+    {
+      "path": "sdk/api/handlers/stream_forwarder_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "f77475481fe43800f5f5e997082e4fcc6f563b54",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "904e7905a0c14fb5269b66c685ff9997da51b157",
+      "diff_sha256": "0487395cbc9cc0de7429854a43f18ee69bd96e59a3d218fd90e90424b71c93a8",
+      "diff_lines": 56,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/api/handlers/stream_forwarder_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "sdk/auth/claude.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "346a65bc0573878d2ac0bf974d8a94bbbbf28eb0",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "6204b1624fa572e11fe1de6fe0365857030528df",
+      "diff_sha256": "f127e5d474fe1c2b3c140523705e818e30db0b3174cf5e9f45d854fb5330808f",
+      "diff_lines": 11,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/auth/claude.go",
+      "read_range": [
+        5554,
+        5564
+      ]
+    },
+    {
+      "path": "sdk/auth/refresh_journal.go",
+      "test": false,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "2e29d3cc339f4fd015072c9eec7f53ed56aeb2a8",
+      "diff_sha256": "17e72561e5bff337a49559557c94b306f3bd981a023ab67d38b2191e51e563cf",
+      "diff_lines": 41,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/auth/refresh_journal.go",
+      "read_range": [
+        5565,
+        5605
+      ]
+    },
+    {
+      "path": "sdk/cliproxy/auth/codex_refresh_selection.go",
+      "test": false,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "b9fdf4281c1e0d30cf69c807f1fdc6e1abe69391",
+      "diff_sha256": "5021256eb33c627bc508a9b7f94831ef35e4b7aaba57920453026d8c30be5afe",
+      "diff_lines": 55,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/cliproxy/auth/codex_refresh_selection.go",
+      "read_range": [
+        5606,
+        5660
+      ]
+    },
+    {
+      "path": "sdk/cliproxy/auth/codex_refresh_selection_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "fb0ee8df7eea9227a8e446f2d10d54554054aedf",
+      "diff_sha256": "ba55f49de9db32eda9bb4353f22264f1f6aa7e65d5ad7b58b44545c3a94191b8",
+      "diff_lines": 261,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/cliproxy/auth/codex_refresh_selection_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "sdk/cliproxy/auth/conductor_cooldown.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "5ea3862830783471daca5b70998fd562a6e13965",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "ce4d85c56a277d3d96909077dbe9a1a6fcf8bfae",
+      "diff_sha256": "019cddc1221e3a25fe36cd4105b8177dcf1b4d4198fd9cdca4e5b5f714a28637",
+      "diff_lines": 40,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/cliproxy/auth/conductor_cooldown.go",
+      "read_range": [
+        5661,
+        5700
+      ]
+    },
+    {
+      "path": "sdk/cliproxy/auth/conductor_execution.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "adb9b4dd2ecf93cfb06e9ad6289f8b6aaf33f812",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "2a9737fee9d439fd5097bbf76097abc22fc193b0",
+      "diff_sha256": "b919ad857dbd750f86ac733c27d5fbe1d2b052c6384aa3be9bd7154c049a6b2b",
+      "diff_lines": 55,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/cliproxy/auth/conductor_execution.go",
+      "read_range": [
+        5701,
+        5755
+      ]
+    },
+    {
+      "path": "sdk/cliproxy/auth/conductor_lifecycle.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "117c15c0d8f7b69269b0b6b5c483b31c72f74d36",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "fd78b1e667bf0caea5a3e640b99daa6f390c9962",
+      "diff_sha256": "dda20ef85d04871e77e85ce5b76b66e9685156ed67065e7b40c655e293da5111",
+      "diff_lines": 22,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/cliproxy/auth/conductor_lifecycle.go",
+      "read_range": [
+        5756,
+        5777
+      ]
+    },
+    {
+      "path": "sdk/cliproxy/auth/conductor_refresh.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "cf28ed43e7ff06b48dba115f31b2009b9c724372",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "9fedd9420b3e8f243cabb4749b6fdeeab173bc70",
+      "diff_sha256": "f362b39278d88582cd79b8acea49e1a86567db7cde3b770b5b79568236dac096",
+      "diff_lines": 92,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/cliproxy/auth/conductor_refresh.go",
+      "read_range": [
+        5778,
+        5869
+      ]
+    },
+    {
+      "path": "sdk/cliproxy/auth/conductor_refresh_outcome_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "3f7f2c53cac6065b598497444b14ff1c026ac714",
+      "diff_sha256": "a2343e6c0b8e1f28345dcd116aff7149aebb261461c83d0670ae427d47a9f49b",
+      "diff_lines": 40,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/cliproxy/auth/conductor_refresh_outcome_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "sdk/cliproxy/auth/conductor_terminal_response_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "3322c250de03ebdc2e9e84e091aa4e076683c791",
+      "diff_sha256": "7bff6f1675bb641c621ad446b09a9dcf3c170d32dae17230a0d91bd6f6099252",
+      "diff_lines": 217,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/cliproxy/auth/conductor_terminal_response_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "sdk/cliproxy/auth/conductor_unauthorized_refresh_test.go",
+      "test": true,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "9b3272b99f72c6c2f51816886c86690cc80e0b9d",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "98fc9320994138dc9fb40ecd8ece522bcc4cc1ee",
+      "diff_sha256": "6594a5b29fb85263d321d3cd65c87855ce3a2ad5f228a2ec55700f3309e9d8d1",
+      "diff_lines": 22,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/cliproxy/auth/conductor_unauthorized_refresh_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    },
+    {
+      "path": "sdk/cliproxy/auth/selector.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "9d88187de8384ebcbd780e5454f9ac824b8d14bd",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "ff1ff298bfdea2480783b5217c1777c5a9ecd594",
+      "diff_sha256": "1f273a2aa49a5269747bfad24a29cf303ece6a053f852a1be07db0556ec5a30e",
+      "diff_lines": 65,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/cliproxy/auth/selector.go",
+      "read_range": [
+        5870,
+        5934
+      ]
+    },
+    {
+      "path": "sdk/cliproxy/usage/manager.go",
+      "test": false,
+      "c2f402b45643f0740d70b9010fd7d8d0aab7ef65": "8caf7a7d4d1deaaf797d822ba41434ed0c9b25aa",
+      "91e0dee827abf476f9f86246f68c500a112f7155": "9b38c25c007596bad26a7192b09617bb13f60aa0",
+      "diff_sha256": "8848b97d0a266440e1ed001b249db09d3f52c72640a470083a6d4acc220a663f",
+      "diff_lines": 13,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/sdk/cliproxy/usage/manager.go",
+      "read_range": [
+        5935,
+        5947
+      ]
+    },
+    {
+      "path": "test/codex_refresh_recovery_test.go",
+      "test": true,
+      "91e0dee827abf476f9f86246f68c500a112f7155": "508166a3b3ea830722e33b0753ea05b7be5d4d3f",
+      "diff_sha256": "32dfc18f2698607cb2a22761abcabe88d988d603701fb35ae6c9fb7478804014",
+      "diff_lines": 157,
+      "candidate_source": "https://github.com/router-for-me/CLIProxyAPI/blob/91e0dee827abf476f9f86246f68c500a112f7155/test/codex_refresh_recovery_test.go",
+      "scope": "Path and blob verification only; excluded _test.go"
+    }
+  ],
+  "official_releases": {
+    "cliproxyapi-release.json": {
+      "html_url": "https://github.com/router-for-me/CLIProxyAPI/releases/tag/v8.0.60",
+      "id": 437815608,
+      "tag_name": "v8.0.60",
+      "draft": false,
+      "prerelease": false,
+      "published_at": "2026-11-07T20:13:52Z"
+    },
+    "keeper-release.json": {
+      "html_url": "https://github.com/Willxup/cpa-usage-keeper/releases/tag/v2.0.3",
+      "id": 428833693,
+      "tag_name": "v2.0.3",
+      "draft": false,
+      "prerelease": false,
+      "published_at": "2026-10-30T09:13:11Z"
+    },
+    "watchtower-release.json": {
+      "html_url": "https://github.com/nicholas-fedor/watchtower/releases/tag/v1.24.0",
+      "id": 433892408,
+      "tag_name": "v1.24.0",
+      "draft": false,
+      "prerelease": false,
+      "published_at": "2026-11-04T12:30:09Z"
+    }
+  },
+  "official_refs": {
+    "cliproxyapi-ref.json": {
+      "ref": "refs/tags/v8.0.60",
+      "node_id": "REF_kwDOPFM7E7FyZWZzL3RhZ3MvdjguMC42MA",
+      "url": "https://api.github.com/repos/router-for-me/CLIProxyAPI/git/refs/tags/v8.0.60",
+      "object": {
+        "sha": "91e0dee827abf476f9f86246f68c500a112f7155",
+        "type": "commit",
+        "url": "https://api.github.com/repos/router-for-me/CLIProxyAPI/git/commits/91e0dee827abf476f9f86246f68c500a112f7155"
+      }
+    },
+    "keeper-ref.json": {
+      "ref": "refs/tags/v2.0.3",
+      "node_id": "REF_kwDOSFgWK7ByZWZzL3RhZ3MvdjIuMC4z",
+      "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/refs/tags/v2.0.3",
+      "object": {
+        "sha": "9db74cfc380d11064af80cf1626efd6e3d068217",
+        "type": "commit",
+        "url": "https://api.github.com/repos/Willxup/cpa-usage-keeper/git/commits/9db74cfc380d11064af80cf1626efd6e3d068217"
+      }
+    },
+    "watchtower-ref.json": {
+      "ref": "refs/tags/v1.24.0",
+      "node_id": "REF_kwDONradfLFyZWZzL3RhZ3MvdjEuMjQuMA",
+      "url": "https://api.github.com/repos/nicholas-fedor/watchtower/git/refs/tags/v1.24.0",
+      "object": {
+        "sha": "8ff4fafcdee91684e1db0f6e6e05ab3bb28386e7",
+        "type": "tag",
+        "url": "https://api.github.com/repos/nicholas-fedor/watchtower/git/tags/8ff4fafcdee91684e1db0f6e6e05ab3bb28386e7"
+      }
+    },
+    "watchtower-tag.json": {
+      "node_id": "TA_kwDONradfNoAKDhmZjRmYWZjZGVlOTE2ODRlMWRiMGY2ZTZlMDVhYjNiYjI4Mzg2ZTc",
+      "sha": "8ff4fafcdee91684e1db0f6e6e05ab3bb28386e7",
+      "url": "https://api.github.com/repos/nicholas-fedor/watchtower/git/tags/8ff4fafcdee91684e1db0f6e6e05ab3bb28386e7",
+      "tagger": {
+        "name": "Nick Fedor",
+        "email": "nick@nickfedor.com",
+        "date": "2026-11-04T12:07:01Z"
+      },
+      "object": {
+        "sha": "147aa6a534428e68eb1ba4f71918f6f35404624d",
+        "type": "commit",
+        "url": "https://api.github.com/repos/nicholas-fedor/watchtower/git/commits/147aa6a534428e68eb1ba4f71918f6f35404624d"
+      },
+      "tag": "v1.24.0",
+      "message": "Release v1.24.0\n-----BEGIN PGP SIGNATURE-----\n\niHUEABYKAB0WIQQ9kurFMwbhs2IjghhQ4luZQ8ijEwUCausf5QAKCRBQ4luZQ8ij\nE9hzAP0ZGHDfotPljlT4aj+tdV3kPt0A25TwwRmBKkE8RBZ2uAEAqkAMbcXrs5J8\nDYcIhoGIt62mP6U8H0/2lg/joPabgQ0=\n=BX6L\n-----END PGP SIGNATURE-----\n",
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\niHUEABYKAB0WIQQ9kurFMwbhs2IjghhQ4luZQ8ijEwUCausf5QAKCRBQ4luZQ8ij\nE9hzAP0ZGHDfotPljlT4aj+tdV3kPt0A25TwwRmBKkE8RBZ2uAEAqkAMbcXrs5J8\nDYcIhoGIt62mP6U8H0/2lg/joPabgQ0=\n=BX6L\n-----END PGP SIGNATURE-----\n",
+        "payload": "object 147aa6a534428e68eb1ba4f71918f6f35404624d\ntype commit\ntag v1.24.0\ntagger Nick Fedor <nick@nickfedor.com> 1793794021 -0700\n\nRelease v1.24.0\n",
+        "verified_at": "2026-11-04T12:08:10Z"
+      }
+    }
+  },
+  "sha256": {
+    "compare.json": "ad26f93bc2f5254f3a977cf90021b1c6c750ea4c890bed07e25f6718b1e9b2c0",
+    "production.diff": "7c4d8be8b7a7cf951bc895cae70dcd78d4acc59ed35b6dae92aedbcfc9c2d373",
+    "tests.diff": "3118181d757a350e51b8fc834fa896677e9cbe14d92e1a7a2223f2cebc5d862b",
+    "c2f402b45643f0740d70b9010fd7d8d0aab7ef65-tree.json": "6723eee5fae7ef7512a1ee4ba4f4456436edd8adfcc725e2b434fde4f81d3f24",
+    "91e0dee827abf476f9f86246f68c500a112f7155-tree.json": "b8f872aefafd0f3af630ba109911b616df0235e1482983194e7f4e328edf9c48",
+    "minio-api-presigned.go": "edaf600ab6b63c0810c7a3bd8477be3d1c4ff08676e8e649b9fd2f8f70e8e4d8",
+    "minio-api.go": "bf6d5a24a646f649dd7dff053b0860361b5c3d0932d61150c82e1ce56afef266",
+    "codex-filelock-unix.go": "91f094721c1d10349b2a39c65e77a106f5c1148f4e1c911dbb9c87d1f41918ce"
+  },
+  "central_sha256": {
+    "cliproxyapi/Dockerfile": "86e8d7795d5f70d046543bbb6e3bdde0eb0d50dbfa3e7e9b5615739792a5e853",
+    ".github/workflows/cliproxyapi.yml": "c682e7951abcf3a19e3a4bcc2028a60c8703994568863f01c474091bfd528870"
+  },
+  "context_reading": {
+    "internal/store/gitstore.go": [
+      [
+        840,
+        939
+      ]
+    ],
+    "internal/store/objectstore.go": [
+      [
+        1,
+        175
+      ]
+    ],
+    "internal/store/postgresstore.go": [
+      [
+        680,
+        729
+      ]
+    ],
+    "cmd/server/main.go": [
+      [
+        440,
+        584
+      ]
+    ],
+    "internal/auth/codex/filelock_unix.go": [
+      [
+        1,
+        26
+      ]
+    ]
+  },
+  "note": "Hashes prove source identity, not semantic safety; complete non-test diff read and sensitive-chain findings recorded separately in review-result.json."
+}
