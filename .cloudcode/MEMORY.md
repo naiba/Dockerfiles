@@ -6,3 +6,4 @@
 - 按业务调用链合并阅读和证据记录，遵守输出上限但避免大量过细切片、重复对账及重复覆盖统计。已完成工作保持关闭，只补有理由的调用链缺口；保留语义化命名的证据与进度，观察超时不重做。
 - 边界外未核验项明确披露，不冒充通过，也不默默扩大或改变批准范围。中央交付范围内有实质性证据缺口时仍暂缓；工作量大不是停止审查的理由。
 - 审查与发布不授权直接部署或重启服务器。具体静态审查范围、结论及提交规范遵循 AGENTS.md。
+- 仓库的三个固定 SHA 受审上游为 router-for-me/CLIProxyAPI（`.github/workflows/cliproxyapi.yml`，交付 cliproxyapiplus:latest）、Willxup/cpa-usage-keeper（`cliproxyapiplus-keeper.yml`，交付 :keeper）和 nicholas-fedor/watchtower（`watchtower.yml`）；不要把旧的浮动 CLIProxyAPIPlus workflow 误当作这三个固定审查入口。
