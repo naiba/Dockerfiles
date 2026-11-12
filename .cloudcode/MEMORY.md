@@ -7,3 +7,4 @@
 - 边界外未核验项明确披露，不冒充通过，也不默默扩大或改变批准范围。中央交付范围内有实质性证据缺口时仍暂缓；工作量大不是停止审查的理由。
 - 审查与发布不授权直接部署或重启服务器。具体静态审查范围、结论及提交规范遵循 AGENTS.md。
 - 仓库的三个固定 SHA 受审上游为 router-for-me/CLIProxyAPI（`.github/workflows/cliproxyapi.yml`，交付 cliproxyapiplus:latest）、Willxup/cpa-usage-keeper（`cliproxyapiplus-keeper.yml`，交付 :keeper）和 nicholas-fedor/watchtower（`watchtower.yml`）；不要把旧的浮动 CLIProxyAPIPlus workflow 误当作这三个固定审查入口。
+- 当前已批准版本（2025-07 本轮审查后）：CLIProxyAPI v8.0.69 `f7ae8feeb3710319f524730849fbe32fde1751e4`；Keeper v2.1.0 `41b34f12dbef209292765415b860583aad5afc09`；Watchtower v1.24.0 `147aa6a534428e68eb1ba4f71918f6f35404624d`。
