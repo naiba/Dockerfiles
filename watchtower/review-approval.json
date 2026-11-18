@@ -5,11 +5,11 @@
   "scope": "已批准中央源码白名单、固定 Go builder 与 scratch 运行边界内的静态恶意行为增量审查",
   "whole_upstream_release_approved": false,
   "build_files_sha256": {
-    "watchtower/Dockerfile": "ef0d88a316548924ebe98d2f14c30f021a5d9cb4fabd5b01a580359c86bfa64d",
+    "watchtower/Dockerfile": "139777fde98e176a586dce236942936ae69700b469c04e6d72db1dba8d6f0379",
     ".github/workflows/watchtower.yml": "ae8034b0e3e77abc648ac6219a50a9b4558d1139f51f2eb6693e8db77d0a76a2"
   },
   "incremental_evidence": {
     "path": "watchtower/incremental-review-evidence.json",
-    "sha256": "3211f2076a14bab38cce8218759656b38b03d41187c8a6615a868d8e715f8cb7"
+    "sha256": "525e2673e9e26b8323799a6be659d042c67de0fa4d264205986e3e52790cd728"
   }
 }

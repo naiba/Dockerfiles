@@ -22,7 +22,8 @@ WORKDIR /source
 COPY go.mod go.sum main.go ./
 COPY cmd/ ./cmd/
 COPY internal/ ./internal/
-COPY pkg/ ./pkg/
+# v1.24.1 removed the upstream pkg/ tree; a stale COPY pkg/ fails the build.
+# Re-check every COPY source against the pinned tree whenever the pin moves.
 
 # timetzdata embeds the timezone database already shipped in the pinned Go SDK.
 # No APK, go generate, go tool, go install, release, docs or test command runs.

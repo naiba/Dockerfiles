@@ -592,8 +592,7 @@
       "go.sum",
       "main.go",
       "cmd/",
-      "internal/",
-      "pkg/"
+      "internal/"
     ],
     "compiler": {
       "image": "docker.io/library/golang:1.27.4-alpine3.24",
@@ -614,7 +613,8 @@
       "-mod=readonly",
       "-tags=timetzdata",
       "scratch runtime with builder CA bundle"
-    ]
+    ],
+    "copy_whitelist_change": "v1.24.1 deleted the upstream pkg/ tree (20 files in v1.24.0, 0 in v1.24.1); COPY pkg/ removed after first CI run 44324395709 failed with \"/pkg\": not found."
   },
   "retained_unverified_boundaries": [
     "Compiler/OS layers trusted by official fixed digest and registry metadata only.",

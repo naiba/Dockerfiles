@@ -5,7 +5,7 @@
 基线 v1.24.0 `147aa6a534428e68eb1ba4f71918f6f35404624d` → 候选 v1.24.1 `f45081047d683daceb9d3196dc8569bb6b534879`。正式 release 非 draft/prerelease，annotated tag 对象 `c82f7a246b0434b0b966992e2ec63724ec7991bf` 已解引用核对到候选完整 SHA。
 
 - compare 文件列表截断在 300，因此以两端完整 tree 重算：487 个变更路径，非测试 blob 均按 Git blob SHA 拉取并重算校验。
-- 从 `main` 出发做静态 import 可达性分析（linux amd64/arm64、CGO=0、`timetzdata`）：98 个包可达，全部位于 `cmd/ internal/ pkg/` 白名单内；新增的 mocks、testutil 包不可达。可达的变更文件 150 个，27,728 行差异。
+- 从 `main` 出发做静态 import 可达性分析（linux amd64/arm64、CGO=0、`timetzdata`）：98 个包可达，全部位于 `cmd/ internal/` 内（v1.24.1 已删除上游 `pkg/` 目录，中央 Dockerfile 同步去掉 `COPY pkg/`）；新增的 mocks、testutil 包不可达。可达的变更文件 150 个，27,728 行差异。
 - 审查方法：纯 import hunk 机械分离；可达实质差异全量筛查新主机/URL、HTTP client、exec/syscall、环境变量读写、文件写入、embed、linkname、插件加载和编码载荷；网络、凭据、进程、文件、通知链逐段阅读。纯重构行（`types.Container`→`container.Container` 等类型迁移、改名、注释）只做了筛查，没有逐行阅读。
 
 主要结论：除普通设置结构体 `internal/update/params` 外没有新的功能包；模块内硬编码 URL 只剩 swagger 元数据和旧版 Slack webhook 前缀。registry token 只发往 registry/mirror，跨 origin 重定向前清除；hook exec 输出截尾为 2KiB 并在写入日志/通知前脱敏 URL userinfo；配置加载从 viper 改为 pflag+env，只读取运营方的 env 与 secret 文件；Compose apply 会把运营方的 `DOCKER_*` 连接设置导出到进程环境，供 Compose 启动的构建工具使用；通知目标仍由运营方配置的 Shoutrrr URL 决定。
