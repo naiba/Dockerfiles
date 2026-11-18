@@ -1,99 +1,87 @@
 {
   "schema_version": 2,
   "repository": "router-for-me/CLIProxyAPI",
-  "version": "v8.0.69",
-  "commit": "f7ae8feeb3710319f524730849fbe32fde1751e4",
+  "version": "v8.0.77",
+  "commit": "a5e8f69e56309e1ef6d6872e667da81fdfbce2ce",
   "conclusion": "通过",
   "approved_baseline": {
-    "version": "v8.0.61",
-    "commit": "681ce41b6e44c45b15b79378b003909d6ba29e68",
-    "central_repository_commit": "84987a15f7bc62c9c41f99637eae976571eaf45c",
-    "review_result_sha256": null,
-    "reuse": "Reuse committed source-backed approval; central Dockerfile/workflow hashes checked against baseline evidence before editing."
+    "version": "v8.0.69",
+    "commit": "f7ae8feeb3710319f524730849fbe32fde1751e4",
+    "central_repository_commit": "1d2fee82700697cbaea549be8bbe6ea7b5080dd8",
+    "review_result_sha256": "b217ae730051508814f6d96d8d85fdc84547d9e3fd4dd05485982d35a674170b"
   },
   "identity": {
-    "release": "https://github.com/router-for-me/CLIProxyAPI/releases/tag/v8.0.69",
+    "release": "https://github.com/router-for-me/CLIProxyAPI/releases/tag/v8.0.77",
     "ref_type": "commit",
     "draft": false,
     "prerelease": false,
-    "compare": "https://github.com/router-for-me/CLIProxyAPI/compare/681ce41b6e44c45b15b79378b003909d6ba29e68...f7ae8feeb3710319f524730849fbe32fde1751e4"
+    "compare": "https://github.com/router-for-me/CLIProxyAPI/compare/f7ae8feeb3710319f524730849fbe32fde1751e4...a5e8f69e56309e1ef6d6872e667da81fdfbce2ce"
   },
   "central_boundary": {
     "dockerfile": "cliproxyapi/Dockerfile",
     "workflow": ".github/workflows/cliproxyapi.yml",
     "build": "Go 1.26 Alpine; CGO_ENABLED=0; go build ./cmd/server/; linux/amd64 + linux/arm64",
-    "runtime": "Alpine 3.22.0; existing configured auth-dir, provider and storage endpoints",
-    "change": "Only workflow source SHA changes (681ce41 → f7ae8fe); Dockerfile and build parameters unchanged."
+    "change": "Only workflow source SHA changes; Dockerfile and build parameters unchanged."
   },
   "coverage": {
-    "changed_paths": 337,
-    "go_production_files": 176,
-    "production_diff_lines": 25517,
-    "test_files": 147,
-    "non_go_paths": 14,
-    "production_coverage_complete": true,
-    "tests_semantically_read": false,
-    "test_scope": "Path/blob verification only; _test.go and testdata excluded from central build.",
-    "non_go_scope": "Embedded internal/registry/models/models.json and devin_models.json diffed (model metadata only, no URLs added); config.example.yaml (copied into image as example) diffed: comments and new defaulted keys only, no new endpoints. README/docs/assets/.gitignore/testdata outside central build.",
-    "source_integrity": "Change set recomputed from both full trees; complete locally generated Go non-test diff read; go.mod/go.sum blobs unchanged.",
-    "correction": "Earlier commit b2acd65 recorded counts copied from the v8.0.60 round (127/68/59); corrected here."
+    "changed_paths": 725,
+    "compare_files_truncated_at": 300,
+    "non_test_paths": 317,
+    "test_paths": 408,
+    "production_diff_lines": 29314,
+    "import_only_hunks": 299,
+    "substantive_diff_lines": 25847,
+    "method": "Both full trees untruncated; every non-test blob fetched by Git blob SHA and re-hashed; import-only hunks separated mechanically with the complete import delta recorded; substantive diff screened in full for new hosts, HTTP clients/dialers, process/syscall, env reads, file writes, embeds, linkname, encoded payloads; network/credential/file/plugin chains read in full.",
+    "non_go": "Embedded models.json/codex_client_models.json: model metadata only, no new hosts. config.example.yaml comments/defaults. README/AGENTS/assets/examples outside central build."
   },
   "semantic_findings": [
-    "--login-proxy flag stores proxy_url into the credential config for OAuth login flow; does not affect runtime request routing to upstream AI providers.",
-    "DeferredAPICapture middleware: 32MiB request / 512KiB response limits, error-only logging mode; no new external destination.",
-    "/v1/tunnel WebSocket endpoint added (wstunnel.Hub); apiKey-isolated realm, reservation-gated registration, 64MiB data frame limit, 4096-byte control frame limit; all traffic stays within the existing auth boundary.",
-    "ReadMetadataHomeCloak and related helpers read from in-memory metadata maps only; no network calls.",
-    "marshalReasoningReplayRawJSONArray: encoding/json replaced by ojson for replay cache; format-compatible, no new I/O.",
-    "PeekAntigravityReasoningReplayItems*: read-only path, no tombstone creation.",
-    "Home client heartbeat: stricter PONG validation (payload-less only); no new destinations.",
-    "SanitizeAntigravity/SanitizeDevin: in-memory config normalization, no I/O.",
-    "WebSocket keepalive refactored to lastHeartbeat-based absolute deadline; in-memory timing only.",
-    "wstunnel/hub.go: multi-tenant Hub with apiKey-isolated realms; connection requires valid reservation; control queue overflow closes the peer cleanly.",
-    "conductor_cooldown.go: forceCooldownSeeded/forceCooldownUntil/credQuotaForceUntil merge in-memory; no external propagation.",
-    "conductor_persistence.go: mergeRuntimeCooldownSaveDelta writes delta back to existing local KV store; ModelStates Clone prevents shared-reference mutation.",
-    "conductor_selection.go/oauth_model_alias.go: OAuth alias routing uses canonicalModelLookupKey (case-insensitive); publishOAuthModelAliasAndReconcileStates replaces atomic Store; purely in-memory reconciliation.",
-    "cooldown_state.go: CooldownSignals/ForceCooldownUntil persistence fields write to existing local KV store; no new external destinations.",
-    "quota_signals.go: rejectedClaudeSignalsForCooldown filters anthropic-ratelimit-unified-* headers from upstream response; no new HTTP requests.",
-    "scheduler.go: rebuildAuths preserves model shard and mixed cursors across config reloads; claudeCooldownSummaryLocked is read-only in-memory; newModelCooldownErrorForCandidates passes Anthropic header subset to error response.",
-    "scheduler_weighted.go (new, 34 lines): pickWeightedPoolLocked delegates to WeightedRoundRobinSelector.reservePoolScoped; pure in-memory accounting.",
-    "selector.go refactored: WeightedRoundRobinSelector uses weightedPoolState with epoch isolation and pending reservation; SafeResponseHeaders() outputs only Retry-After; Headers() appends Anthropic-Ratelimit-Unified-* headers derived from upstream response subset only; appendClaudeUnifiedHeaders operates on string/HTTP header maps with no I/O.",
-    "selector_weighted.go (new, 922 lines): weightedPoolState/weightedReservation/reservePoolScoped/reserveDynamicPoolLocked/ForgetAuth; pure in-memory weighted round-robin accounting; no network/file/syscall.",
-    "types.go: forceCooldownUntil/credQuotaForceUntil/forceCooldownSeeded fields are json:\"-\" (runtime-only); cooldownSignals/cooldownEvaluated are unexported in-memory fields.",
-    "executor/context.go: localWebsocketTurnTracker is an atomic bool in context value; no I/O.",
-    "service_config.go: newRoutingSelectorWithExisting reuses existing WeightedRoundRobinSelector instance on strategy unchanged; no new network calls.",
-    "service_executors.go: ClaudeExecutor.WithConfig reuses existing executor instance; no new network calls.",
-    "session/claude_thread.go (new, 107 lines): RememberClaudeThreadAuth writes authID string to existing KV store (kvstore.KVSetNXBestEffort, TTL 24h); ClaudeThreadAuth reads from same KV store; key format claude:thread-auth:v1:<hash>:<hash>; no new external destinations.",
-    "usage/home_selection.go (new, 37 lines): HomeSelection is a context value with immutable copy semantics; no I/O.",
-    "usage/manager.go: HomeSelection field attached to existing usage record pipeline; no new external destinations.",
-    "pluginabi/types.go: ErrorCode* constants and CredentialScoped field added; pure constant/struct extension; no network calls."
+    "Import delta: encoding/json→moego/json (189 files), regexp→moego/regexp (26); drop-in replacements, no behaviour-bearing call added in those hunks.",
+    "New /muse-code/{models,config,search,browser_open} behind existing AuthMiddleware; /models generated locally, the others relay to the selected Meta credential origin (base_url or default https://api.meta.ai) with request/response header allowlists, key/auth_token stripped from query, 16MiB limits; uses existing auth manager HTTP path and result marking.",
+    "delegatedInterceptorHost: embedder-provided interceptor host wiring; plugin dispatch stays on existing plugin host. Scheduler continuity/exclude-candidates plugin callbacks: in-process, panic-fused.",
+    "Management auth upload: atomic temp-file write (0600) in auth dir, reconcile/unregister removed sources, persistence through existing operator-configured token stores; management secret bcrypt verification cache keyed by random-HMAC digest, 1h TTL, 64 entries.",
+    "SIWC bind honours per-credential proxy_url after validation; Antigravity TOS appeal URL logged with query/fragment redacted.",
+    "Request capture: local error diagnostics bounded (32) and sanitized for logs only.",
+    "Cloak sensitive-patterns-replace: operator-configured regex replacement in prompts; invalid patterns skipped.",
+    "No new upstream hostnames, HTTP clients, exec/syscall, env reads, go:embed or linkname in the substantive increment."
   ],
   "dependency_review": {
-    "changed_modules": 0,
-    "go_mod_blob": "unchanged (verified identical to v8.0.61 baseline)",
-    "go_sum_blob": "unchanged (verified identical to v8.0.61 baseline)",
-    "unchanged_baseline_reused": true
+    "changed": [
+      {
+        "module": "github.com/MoeForge/moego",
+        "from": "v0.1.0-alpha.1 => replaced by github.com/router-for-me/moego v0.1.2",
+        "to": "v0.1.0-alpha.4 (replace removed)",
+        "provenance": "proxy.golang.org .info Origin github.com/MoeForge/moego refs/tags/v0.1.0-alpha.4 → 7fd853048dbcd529c5e971f84b147b5dc92d398f (annotated tag 6fa7b25 deref verified); zip h1 recomputed = go.sum = sum.golang.org; router-for-me/moego is a GitHub fork of MoeForge/moego.",
+        "used_packages": "json, ojson, regexp, base64 (+ internal/jsonsimd); png/webp/deflate not imported by CLIProxyAPI",
+        "sensitive_review": "Closure imports stdlib only; no net, os/exec, syscall, plugin, env reads. os used only for read of /proc/self/auxv (linux/arm64 AES HWCAP detection). go:linkname limited to runtime allocator/procPin. 19 .s files: SIMD kernels, CPUID/XGETBV only, no SYSCALL/SVC, internal calls only. init() bodies set caches/tables."
+      },
+      {
+        "module": "go.etcd.io/bbolt",
+        "change": "v1.5.0 indirect → direct, same version; importer internal/kvstore/bolt_store.go blob unchanged",
+        "sensitive_review": "No new code."
+      }
+    ],
+    "examples_modules": "examples/* go.mod/go.sum outside central build"
   },
   "other_upstreams": [
     {
       "repository": "Willxup/cpa-usage-keeper",
-      "version": "v2.1.0",
-      "commit": "41b34f12dbef209292765415b860583aad5afc09",
-      "conclusion": "通过（本轮同步审查）"
+      "version": "v2.1.1",
+      "commit": "5c97bee91678e3cd9e75201a8025bfcaadf77681",
+      "conclusion": "通过"
     },
     {
       "repository": "nicholas-fedor/watchtower",
-      "version": "v1.24.0",
-      "tag_object": "8ff4fafcdee91684e1db0f6e6e05ab3bb28386e7",
-      "commit": "147aa6a534428e68eb1ba4f71918f6f35404624d",
-      "conclusion": "无新版"
+      "version": "v1.24.1",
+      "tag_object": "c82f7a246b0434b0b966992e2ec63724ec7991bf",
+      "commit": "f45081047d683daceb9d3196dc8569bb6b534879",
+      "conclusion": "审查中（未更新 pin）"
     }
   ],
-  "evidence": "release-source-evidence.json",
-  "local_evidence_directory": "/root/upstream-release-review/cliproxyapi-v8.0.69/",
+  "local_evidence_directory": "/root/upstream-release-review/cliproxyapi-v8.0.77/",
   "limitations": [
     "Static malicious-code/dependency increment only; no vulnerability/correctness/performance/test assessment.",
-    "No upstream clone/install/build/execution/tests/scanning during review; approved publication CI is separate.",
-    "Native plugins, external Home, upstream binaries and full dependency/toolchain implementations not newly approved; provenance:false unchanged.",
+    "No upstream clone/install/build/execution/tests/scanning during review.",
+    "Native plugins, external Home, moego packages not imported by CLIProxyAPI not newly approved; provenance:false unchanged.",
     "No deployment or service restart."
   ]
 }
