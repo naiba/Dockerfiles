@@ -14,7 +14,7 @@
 3. **Argon 额度组：** `ultra-lite` 套餐与 `ultra` 同样归并到 Gemini 组。
 4. **UI：** 帮助提示、样式与翻译调整。增量中没有新 URL、脚本加载、`eval` 或动态执行。
 
-中央 Dockerfile.keeper 与构建参数不变，仅更新 workflow 的 tag 与 commit。审查中未 clone、安装、构建、执行上游代码，也未运行测试或扫描；不部署或重启。本地证据：`/root/upstream-release-review/keeper-v2.1.1/`。
+随后对齐上游 v2.1.1 Dockerfile：web 构建镜像由 `node:22-alpine` 升到 `node:24-alpine`（上游为 `node:24.22.1-alpine`），健康检查改为上游的 `/readyz` 探测（该路由存在于 `internal/api/health.go`）；lockfile、`npm ci`、Go builder 和 `alpine:3.24` 运行时不变。审查中未 clone、安装、构建、执行上游代码，也未运行测试或扫描；不部署或重启。本地证据：`/root/upstream-release-review/keeper-v2.1.1/`。
 
 ## 历史
 

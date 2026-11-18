@@ -1,9 +1,9 @@
-# 使用精简镜像，升级到 Python 3.12 bookworm
-FROM python:3.12-slim-bookworm
+# 精简镜像，Python 3.12 + Debian trixie；APP_HOME 依赖 python3.12 路径，换 Python 小版本时同步修改
+FROM python:3.12-slim-trixie
 LABEL maintainer="奶爸 <hi@nai.ba>"
 
 # Get version on https://github.com/akfamily/akshare
-ENV AK_VERSION=1.18.20
+ENV AK_VERSION=1.20.65
 
 # Install system dependencies for native extensions
 RUN apt-get update && apt-get install -y --no-install-recommends \

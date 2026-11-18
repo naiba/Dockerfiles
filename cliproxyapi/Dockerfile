@@ -36,7 +36,7 @@ RUN ls -la /build/CLIProxyAPIPlus && /build/CLIProxyAPIPlus --help 2>/dev/null |
 # ===========================
 # Stage 2: 最终 Runner 镜像
 # ===========================
-FROM alpine:3.22.0 AS runner
+FROM alpine:3.24 AS runner
 
 # 安装时区数据和必要工具
 RUN apk add --no-cache tzdata ca-certificates

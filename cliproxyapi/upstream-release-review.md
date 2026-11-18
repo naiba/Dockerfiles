@@ -22,7 +22,7 @@
 - **`github.com/MoeForge/moego`**：从 `router-for-me/moego v0.1.2`（replace）换成上游 `MoeForge/moego v0.1.0-alpha.4`。proxy `.info` 的 Origin 指向 `refs/tags/v0.1.0-alpha.4` → `7fd853048dbc…`（annotated tag 已解引用核对）；zip 的 h1 本地重算，与 go.sum、sum.golang.org 一致；`router-for-me/moego` 是它的 GitHub fork。实际使用 `json/ojson/regexp/base64`（以及 `internal/jsonsimd`）：闭包只引用标准库，没有 net、exec、syscall、plugin 或 env 读取；`os` 只用于 linux/arm64 读取 `/proc/self/auxv` 检测 AES；linkname 只指向 runtime 分配器；19 个汇编文件是 SIMD 内核，只有 CPUID/XGETBV，没有系统调用。png/webp 未被引用。
 - **`go.etcd.io/bbolt`**：同一版本 v1.5.0 由 indirect 变为 direct；导入它的 `internal/kvstore/bolt_store.go` blob 未变。
 
-中央 Dockerfile 与构建参数不变，仅更新 workflow 源码 SHA。审查未 clone、安装、构建、执行上游代码，也未运行测试或扫描；不部署或重启服务；`provenance:false` 保留。机器报告：[review-result.json](review-result.json)；本地证据：`/root/upstream-release-review/cliproxyapi-v8.0.77/`。
+构建参数不变；运行时基础镜像随后由停更的 `alpine:3.22.0`（2025-05）升到 `alpine:3.24`，运行时只安装 `tzdata`、`ca-certificates`，健康检查用 busybox `wget`。审查未 clone、安装、构建、执行上游代码，也未运行测试或扫描；不部署或重启服务；`provenance:false` 保留。机器报告：[review-result.json](review-result.json)；本地证据：`/root/upstream-release-review/cliproxyapi-v8.0.77/`。
 
 ## 其他上游
 

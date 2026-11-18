@@ -60,5 +60,9 @@
       "approved_at": "2026-10-31T00:45:25Z"
     }
   ],
-  "local_evidence_directory": "/root/upstream-release-review/keeper-v2.1.1/"
+  "local_evidence_directory": "/root/upstream-release-review/keeper-v2.1.1/",
+  "central_boundary_update": {
+    "date": "2026-11-18",
+    "change": "web-builder node:22-alpine → node:24-alpine (upstream v2.1.1 Dockerfile uses node:24.22.1-alpine); HEALTHCHECK switched to upstream's trimmed APP_BASE_PATH + /readyz probe (route present in internal/api/health.go at 5c97bee). Dependency lockfile, npm ci/build, Go builder and alpine:3.24 runtime unchanged."
+  }
 }
