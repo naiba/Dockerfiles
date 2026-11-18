@@ -15,9 +15,9 @@ RUN install_packages cronie ImageMagick-devel gcc glibc-devel binutils linux-api
     ARCH=$(uname -m) && \
     cd /tmp && \
     if [ "$ARCH" = "x86_64" ]; then \
-        curl -fsSL -o ioncube.tar.gz http://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz; \
+        curl -fsSL -o ioncube.tar.gz https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz; \
     elif [ "$ARCH" = "aarch64" ]; then \
-        curl -fsSL -o ioncube.tar.gz http://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_aarch64.tar.gz; \
+        curl -fsSL -o ioncube.tar.gz https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_aarch64.tar.gz; \
     fi && \
     if [ -f /tmp/ioncube.tar.gz ]; then \
         tar -xzf ioncube.tar.gz && \
