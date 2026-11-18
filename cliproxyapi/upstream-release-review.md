@@ -5,7 +5,8 @@
 - 基线：v8.0.61 `681ce41b6e44c45b15b79378b003909d6ba29e68`；[已提交批准报告](https://github.com/naiba/Dockerfiles/blob/84987a15f7bc62c9c41f99637eae976571eaf45c/cliproxyapi/review-result.json)。
 - 候选：[v8.0.69 / f7ae8feeb3710319f524730849fbe32fde1751e4](https://github.com/router-for-me/CLIProxyAPI/commit/f7ae8feeb3710319f524730849fbe32fde1751e4)。官方非 draft/prerelease release 的 tag 直接解析到该完整 commit。
 - 核验 `go.mod`/`go.sum` blob SHA 与基线完全一致，无依赖变化。
-- 完整阅读 **68 个非测试文件、25,517 行差异**；另外 59 个 `_test.go` 仅核对路径和来源，不参与中央构建，未展开或执行。
+- 两端完整 tree 重算 **337 个变更路径**：完整阅读 **176 个 Go 非测试文件、25,517 行差异**；147 个测试文件仅核对路径和来源；14 个非 Go 路径中，进入镜像的内嵌 `models.json`/`devin_models.json`（仅模型元数据，无新增 URL）与 `config.example.yaml`（仅注释和默认关闭的新键）已逐项比对，其余为 README/docs/资源/testdata，不进入中央构建。
+- 更正：提交 `b2acd65` 中误写为 127/68/59（沿用了 v8.0.60 轮数字），此处已修正。
 
 ## 按业务链的语义结论
 
