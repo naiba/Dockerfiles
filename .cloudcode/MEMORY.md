@@ -10,3 +10,4 @@
 - 查新版时必须把最新 release 的 tag 解析到完整 commit SHA 再与 pin 比对，不能只比 tag 名或用未认证 curl 的缓存结果。
 - 上游 compare 文件列表上限 300，超过时用两端完整 tree 重算变更清单；可复用 `/root/upstream-release-review/` 下的 collect_fixed_sha_diff.py、split_import_only_hunks.py、go_module_reachable_packages.py、go_cross_module_reachability.py、go_dependency_reachable_diff.py。
 - Watchtower Dockerfile 用 GOTOOLCHAIN=local 固定 builder 摘要；上游 go.mod 的 go 版本升高时必须同步换官方 golang alpine builder 摘要，并重算 review-approval.json 中的构建文件散列。
+- 用户要求“该更新就更新”：审查通过直接更新 pin；中央 Dockerfile 的基础镜像/工具版本过时（如固定到旧补丁版、落后于上游 Dockerfile 的主版本）也直接更新、提交并跟踪 CI，不必先问。`cliproxyapiplus/Dockerfile` 属于未审查的浮动 `ce` 工作流，改动会触发构建并发布第三方未审查代码，不在此列。
