@@ -74,7 +74,7 @@
       "version": "v1.24.1",
       "tag_object": "c82f7a246b0434b0b966992e2ec63724ec7991bf",
       "commit": "f45081047d683daceb9d3196dc8569bb6b534879",
-      "conclusion": "审查中（未更新 pin）"
+      "conclusion": "通过（单独提交，builder 升级到 Go 1.27.4）"
     }
   ],
   "local_evidence_directory": "/root/upstream-release-review/cliproxyapi-v8.0.77/",

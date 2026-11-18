@@ -1,3 +1,23 @@
+# Watchtower v1.24.1 中央交付增量审查
+
+**结论：通过，仅限中央构建白名单、固定 Go builder 与 scratch 运行边界。**
+
+基线 v1.24.0 `147aa6a534428e68eb1ba4f71918f6f35404624d` → 候选 v1.24.1 `f45081047d683daceb9d3196dc8569bb6b534879`。正式 release 非 draft/prerelease，annotated tag 对象 `c82f7a246b0434b0b966992e2ec63724ec7991bf` 已解引用核对到候选完整 SHA。
+
+- compare 文件列表截断在 300，因此以两端完整 tree 重算：487 个变更路径，非测试 blob 均按 Git blob SHA 拉取并重算校验。
+- 从 `main` 出发做静态 import 可达性分析（linux amd64/arm64、CGO=0、`timetzdata`）：98 个包可达，全部位于 `cmd/ internal/ pkg/` 白名单内；新增的 mocks、testutil 包不可达。可达的变更文件 150 个，27,728 行差异。
+- 审查方法：纯 import hunk 机械分离；可达实质差异全量筛查新主机/URL、HTTP client、exec/syscall、环境变量读写、文件写入、embed、linkname、插件加载和编码载荷；网络、凭据、进程、文件、通知链逐段阅读。纯重构行（`types.Container`→`container.Container` 等类型迁移、改名、注释）只做了筛查，没有逐行阅读。
+
+主要结论：除普通设置结构体 `internal/update/params` 外没有新的功能包；模块内硬编码 URL 只剩 swagger 元数据和旧版 Slack webhook 前缀。registry token 只发往 registry/mirror，跨 origin 重定向前清除；hook exec 输出截尾为 2KiB 并在写入日志/通知前脱敏 URL userinfo；配置加载从 viper 改为 pflag+env，只读取运营方的 env 与 secret 文件；Compose apply 会把运营方的 `DOCKER_*` 连接设置导出到进程环境，供 Compose 启动的构建工具使用；通知目标仍由运营方配置的 Shoutrrr URL 决定。
+
+依赖：go.sum 共 93 个模块变化，其中 38 个在中央构建中可达。每个可达模块的新旧版本 zip 都从 proxy.golang.org 下载，重算 h1 后与 go.sum 和 sum.golang.org 一致，并对可达包的非测试源码差异做了敏感筛查。compose v5.8.0 的 buildx bake 调用只是从 `pkg/compose/build_bake.go` 移到了 `internal/build/bake.go`，行为相同；新依赖 `moby/extensions` 是 moby 组织仓库（proxy Origin 与 GitHub commit 一致），只通过 Docker engine 连接走 gRPC，不启动进程；shoutrrr v0.25.0 新增的 `api.atlassian.com` 只在运营方把 Opsgenie host 设为它时才会使用。
+
+**中央边界变更：** 上游 `go.mod` 要求 `go 1.27.4`，而 Dockerfile 保持 `GOTOOLCHAIN=local`，原 1.27.3 builder 无法构建。builder 换成官方 `golang:1.27.4-alpine3.24` 的 linux/amd64 manifest `sha256:ea30e25680a5470bac02b08bb0e0a735fb75bd0ab7d431b9b95ee0abef362586`（index `sha256:70bd7dde…`，config `sha256:3f9f7b68…`，`GOLANG_VERSION=1.27.4`）。其余白名单、CGO=0、readonly、timetzdata、scratch 运行时不变。
+
+[增量证据](incremental-review-evidence.json) 记录方法、依赖逐项 h1 与证据散列；[批准门禁](review-approval.json) 绑定新的 Dockerfile 与工作流散列。本地原始证据在 `/root/upstream-release-review/watchtower-v1.24.1/`。审查中没有运行上游代码、安装、构建、测试或扫描；不部署或重启服务。以下为历史记录。
+
+---
+
 # Watchtower v1.24.0 中央交付增量审查
 
 **结论：通过，仅限既有中央构建与 scratch 运行边界。**

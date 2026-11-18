@@ -27,4 +27,4 @@
 ## 其他上游
 
 - CPA Usage Keeper：**通过**，v2.1.1 `5c97bee91678e3cd9e75201a8025bfcaadf77681`（见 `cliproxyapiplus/upstream-release-review.md`）。
-- Watchtower：v1.24.1（tag 对象 `c82f7a2` → `f45081047d683daceb9d3196dc8569bb6b534879`）单独审查中，pin 保持 v1.24.0。
+- Watchtower：v1.24.1（tag 对象 `c82f7a2` → `f45081047d683daceb9d3196dc8569bb6b534879`）**通过**，单独提交；中央 builder 同步升级到 Go 1.27.4（见 `watchtower/upstream-release-review.md`）。

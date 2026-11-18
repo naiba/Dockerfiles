@@ -7,4 +7,6 @@
 - 边界外未核验项明确披露，不冒充通过，也不默默扩大或改变批准范围。中央交付范围内有实质性证据缺口时仍暂缓；工作量大不是停止审查的理由。
 - 审查与发布不授权直接部署或重启服务器。具体静态审查范围、结论及提交规范遵循 AGENTS.md。
 - 仓库的三个固定 SHA 受审上游为 router-for-me/CLIProxyAPI（`.github/workflows/cliproxyapi.yml`，交付 cliproxyapiplus:latest）、Willxup/cpa-usage-keeper（`cliproxyapiplus-keeper.yml`，交付 :keeper）和 nicholas-fedor/watchtower（`watchtower.yml`）；不要把旧的浮动 CLIProxyAPIPlus workflow 误当作这三个固定审查入口。
-- 当前已批准版本（2025-07 本轮审查后）：CLIProxyAPI v8.0.69 `f7ae8feeb3710319f524730849fbe32fde1751e4`；Keeper v2.1.0 `41b34f12dbef209292765415b860583aad5afc09`；Watchtower v1.24.0 `147aa6a534428e68eb1ba4f71918f6f35404624d`。
+- 查新版时必须把最新 release 的 tag 解析到完整 commit SHA 再与 pin 比对，不能只比 tag 名或用未认证 curl 的缓存结果。
+- 上游 compare 文件列表上限 300，超过时用两端完整 tree 重算变更清单；可复用 `/root/upstream-release-review/` 下的 collect_fixed_sha_diff.py、split_import_only_hunks.py、go_module_reachable_packages.py、go_cross_module_reachability.py、go_dependency_reachable_diff.py。
+- Watchtower Dockerfile 用 GOTOOLCHAIN=local 固定 builder 摘要；上游 go.mod 的 go 版本升高时必须同步换官方 golang alpine builder 摘要，并重算 review-approval.json 中的构建文件散列。

@@ -1,7 +1,7 @@
 # Proposed central build only; not executed during the static review.
 # The build runner is native linux/amd64. No upstream workflow or installer is used.
 ARG SOURCE_DATE_EPOCH=0
-FROM --platform=linux/amd64 docker.io/library/golang@sha256:8aa2821993207ae840ce09e4223217efcd14e01f71525db734faf4232bd59999 AS compiler
+FROM --platform=linux/amd64 docker.io/library/golang@sha256:ea30e25680a5470bac02b08bb0e0a735fb75bd0ab7d431b9b95ee0abef362586 AS compiler
 
 ARG TARGETARCH
 ENV GOTOOLCHAIN=local \
@@ -32,13 +32,13 @@ RUN case "${TARGETARCH}" in amd64|arm64) ;; *) exit 1 ;; esac && \
       -trimpath \
       -buildvcs=false \
       -tags=timetzdata \
-      -ldflags="-s -w -buildid= -X github.com/nicholas-fedor/watchtower/internal/meta.Version=v1.24.0" \
+      -ldflags="-s -w -buildid= -X github.com/nicholas-fedor/watchtower/internal/meta.Version=v1.24.1" \
       -o /output/watchtower .
 
 FROM scratch
 LABEL org.opencontainers.image.source="https://github.com/nicholas-fedor/watchtower" \
-      org.opencontainers.image.revision="147aa6a534428e68eb1ba4f71918f6f35404624d" \
-      org.opencontainers.image.version="v1.24.0"
+      org.opencontainers.image.revision="f45081047d683daceb9d3196dc8569bb6b534879" \
+      org.opencontainers.image.version="v1.24.1"
 COPY --from=compiler /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=compiler /output/watchtower /watchtower
 ENV TZ=UTC
