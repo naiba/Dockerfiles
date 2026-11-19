@@ -1,87 +1,73 @@
 {
   "schema_version": 2,
   "repository": "router-for-me/CLIProxyAPI",
-  "version": "v8.0.77",
-  "commit": "a5e8f69e56309e1ef6d6872e667da81fdfbce2ce",
+  "version": "v8.0.79",
+  "commit": "6faa8d20b2673404cff70a2f2d9537ae0d0e684d",
   "conclusion": "通过",
   "approved_baseline": {
-    "version": "v8.0.69",
-    "commit": "f7ae8feeb3710319f524730849fbe32fde1751e4",
-    "central_repository_commit": "1d2fee82700697cbaea549be8bbe6ea7b5080dd8",
-    "review_result_sha256": "b217ae730051508814f6d96d8d85fdc84547d9e3fd4dd05485982d35a674170b"
+    "version": "v8.0.77",
+    "commit": "a5e8f69e56309e1ef6d6872e667da81fdfbce2ce",
+    "central_repository_commit": "e22c1137a7e796089d8a73dd8a7cb5673888e4bb",
+    "review_result_sha256": "5374ab2ea7242b4066eaf125863a8376fe72d4b56dab338b8efd1309b7f4555c"
   },
   "identity": {
-    "release": "https://github.com/router-for-me/CLIProxyAPI/releases/tag/v8.0.77",
+    "release": "https://github.com/router-for-me/CLIProxyAPI/releases/tag/v8.0.79",
     "ref_type": "commit",
     "draft": false,
     "prerelease": false,
-    "compare": "https://github.com/router-for-me/CLIProxyAPI/compare/f7ae8feeb3710319f524730849fbe32fde1751e4...a5e8f69e56309e1ef6d6872e667da81fdfbce2ce"
+    "compare": "https://github.com/router-for-me/CLIProxyAPI/compare/a5e8f69e56309e1ef6d6872e667da81fdfbce2ce...6faa8d20b2673404cff70a2f2d9537ae0d0e684d"
   },
   "central_boundary": {
     "dockerfile": "cliproxyapi/Dockerfile",
     "workflow": ".github/workflows/cliproxyapi.yml",
-    "build": "Go 1.26 Alpine; CGO_ENABLED=0; go build ./cmd/server/; linux/amd64 + linux/arm64",
-    "change": "Only workflow source SHA changes; Dockerfile and build parameters unchanged."
+    "build": "Go 1.26 Alpine; CGO_ENABLED=0; go build ./cmd/server/; linux/amd64 + linux/arm64; runtime alpine:3.24",
+    "change": "Only workflow source SHA changes."
   },
   "coverage": {
-    "changed_paths": 725,
-    "compare_files_truncated_at": 300,
-    "non_test_paths": 317,
-    "test_paths": 408,
-    "production_diff_lines": 29314,
-    "import_only_hunks": 299,
-    "substantive_diff_lines": 25847,
-    "method": "Both full trees untruncated; every non-test blob fetched by Git blob SHA and re-hashed; import-only hunks separated mechanically with the complete import delta recorded; substantive diff screened in full for new hosts, HTTP clients/dialers, process/syscall, env reads, file writes, embeds, linkname, encoded payloads; network/credential/file/plugin chains read in full.",
-    "non_go": "Embedded models.json/codex_client_models.json: model metadata only, no new hosts. config.example.yaml comments/defaults. README/AGENTS/assets/examples outside central build."
+    "changed_paths": 91,
+    "compare_files": 91,
+    "non_test_paths": 52,
+    "test_paths": 39,
+    "production_diff_lines": 4107,
+    "production_diff_read_in_full": true,
+    "tests_semantically_read": false,
+    "source_integrity": "Both trees untruncated; tree-recomputed change set equals compare (91); non-test blobs fetched by Git blob SHA and re-hashed; go.mod/go.sum/Dockerfile unchanged."
   },
   "semantic_findings": [
-    "Import delta: encoding/json→moego/json (189 files), regexp→moego/regexp (26); drop-in replacements, no behaviour-bearing call added in those hunks.",
-    "New /muse-code/{models,config,search,browser_open} behind existing AuthMiddleware; /models generated locally, the others relay to the selected Meta credential origin (base_url or default https://api.meta.ai) with request/response header allowlists, key/auth_token stripped from query, 16MiB limits; uses existing auth manager HTTP path and result marking.",
-    "delegatedInterceptorHost: embedder-provided interceptor host wiring; plugin dispatch stays on existing plugin host. Scheduler continuity/exclude-candidates plugin callbacks: in-process, panic-fused.",
-    "Management auth upload: atomic temp-file write (0600) in auth dir, reconcile/unregister removed sources, persistence through existing operator-configured token stores; management secret bcrypt verification cache keyed by random-HMAC digest, 1h TTL, 64 entries.",
-    "SIWC bind honours per-credential proxy_url after validation; Antigravity TOS appeal URL logged with query/fragment redacted.",
-    "Request capture: local error diagnostics bounded (32) and sanitized for logs only.",
-    "Cloak sensitive-patterns-replace: operator-configured regex replacement in prompts; invalid patterns skipped.",
-    "No new upstream hostnames, HTTP clients, exec/syscall, env reads, go:embed or linkname in the substantive increment."
+    "Claude OAuth: new oauth-include-create-api-key option (default true) only selects the authorize scope string on the existing Anthropic URL; refresh gains a readiness check that is a no-op off darwin.",
+    "internal/auth/power_darwin.go runs fixed /usr/bin/pmset -g systemstate with a 2s timeout (darwin build tag only); the central Linux build compiles power_other.go no-op. Same pattern as the approved v8.0.61 SIWC check.",
+    "Codex session instructions: opt-in client_metadata marker stores a ≤32KiB baseline per authenticated caller+explicit session ID in the existing KV store (TTL 24h) or a bounded in-memory map; restored text is excluded from upstream request logs; the marker is stripped and outbound frames are validated so it never reaches the provider.",
+    "codex_executor_execute.go: large hunk is difflib realignment of the existing executeCompact/Execute bodies; the chatgpt.com/backend-api/codex default already existed at the baseline.",
+    "Home: scheduler continuity query and scheduler_context (request/trace/session IDs, model) sent over the existing operator-configured Home Redis command channel; capability read from Home config payload.",
+    "Redis usage queue records add base_url, auth_id and selection_id metadata to the existing local queue consumed by Home/Keeper; no credentials added.",
+    "Plugin host: synchronous external usage delivery API with panic fusing; response interceptor gets a Kind field.",
+    "Antigravity model probe transport forced to HTTP/1.1 without ALPN using the existing proxy settings; fallback hub version/changelist table updated.",
+    "Config v8 migration warning ordering, Codex tool-schema uniqueItems stripping, Interactions↔Gemini argument buffering (50MiB cap), models.json entry: no I/O changes.",
+    "No new hosts, exec on Linux, env reads, file writes, embeds or linkname."
   ],
   "dependency_review": {
-    "changed": [
-      {
-        "module": "github.com/MoeForge/moego",
-        "from": "v0.1.0-alpha.1 => replaced by github.com/router-for-me/moego v0.1.2",
-        "to": "v0.1.0-alpha.4 (replace removed)",
-        "provenance": "proxy.golang.org .info Origin github.com/MoeForge/moego refs/tags/v0.1.0-alpha.4 → 7fd853048dbcd529c5e971f84b147b5dc92d398f (annotated tag 6fa7b25 deref verified); zip h1 recomputed = go.sum = sum.golang.org; router-for-me/moego is a GitHub fork of MoeForge/moego.",
-        "used_packages": "json, ojson, regexp, base64 (+ internal/jsonsimd); png/webp/deflate not imported by CLIProxyAPI",
-        "sensitive_review": "Closure imports stdlib only; no net, os/exec, syscall, plugin, env reads. os used only for read of /proc/self/auxv (linux/arm64 AES HWCAP detection). go:linkname limited to runtime allocator/procPin. 19 .s files: SIMD kernels, CPUID/XGETBV only, no SYSCALL/SVC, internal calls only. init() bodies set caches/tables."
-      },
-      {
-        "module": "go.etcd.io/bbolt",
-        "change": "v1.5.0 indirect → direct, same version; importer internal/kvstore/bolt_store.go blob unchanged",
-        "sensitive_review": "No new code."
-      }
-    ],
-    "examples_modules": "examples/* go.mod/go.sum outside central build"
+    "changed_modules": 0,
+    "go_mod_go_sum_unchanged": true
   },
   "other_upstreams": [
     {
       "repository": "Willxup/cpa-usage-keeper",
       "version": "v2.1.1",
       "commit": "5c97bee91678e3cd9e75201a8025bfcaadf77681",
-      "conclusion": "通过"
+      "conclusion": "无新版"
     },
     {
       "repository": "nicholas-fedor/watchtower",
       "version": "v1.24.1",
-      "tag_object": "c82f7a246b0434b0b966992e2ec63724ec7991bf",
       "commit": "f45081047d683daceb9d3196dc8569bb6b534879",
-      "conclusion": "通过（单独提交，builder 升级到 Go 1.27.4）"
+      "conclusion": "无新版"
     }
   ],
-  "local_evidence_directory": "/root/upstream-release-review/cliproxyapi-v8.0.77/",
+  "local_evidence_directory": "/root/upstream-release-review/cliproxyapi-v8.0.79/",
   "limitations": [
     "Static malicious-code/dependency increment only; no vulnerability/correctness/performance/test assessment.",
     "No upstream clone/install/build/execution/tests/scanning during review.",
-    "Native plugins, external Home, moego packages not imported by CLIProxyAPI not newly approved; provenance:false unchanged.",
+    "Native plugins and external Home not newly approved; provenance:false unchanged.",
     "No deployment or service restart."
   ]
 }
