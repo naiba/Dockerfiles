@@ -1,3 +1,20 @@
+# Watchtower v1.24.2 中央交付增量审查
+
+**结论：通过，仅限中央构建白名单、固定 Go builder 与 scratch 运行边界。**
+
+基线 v1.24.1 `f45081047d683daceb9d3196dc8569bb6b534879` → 候选 v1.24.2 `c1b68f690828b7cb0270d74a51db4eefd483d3c9`。正式 release 非 draft/prerelease，annotated tag 对象 `25684c0ede7468fb7393aa6a84e8635fa68a958f` 解引用到候选完整 SHA。
+
+- 159 个变更路径，与 compare 一致；从 `main` 静态可达的变更 Go 文件 53 个，实质差异 9,322 行全量筛查，容器重建、自更新、git 凭据链逐段阅读。
+- **容器重建：** 重新绑定的容器只会把它自己已有的匿名卷重新挂回（nocopy），不新增宿主机路径。
+- **自更新：** 既有的 orchestrator 机制，常量改为导出，新增由 Watchtower 自己写入辅助容器的 `WT_ORCHESTRATOR_NETWORK_CONTAINER`。
+- **Git：** 认证和 tag/API 请求只发往仓库的克隆主机或运营方配置的 API 源。
+- **依赖：** 21 个 require 变化，17 个在构建中可达，新旧 zip 的 h1 均与 go.sum、sum.golang.org 一致。`docker/secrets-engine` 客户端 v0.2.2 → v1.0.0 用自研 protobuf-over-HTTP 替换了 connectrpc，传输层只拨本机 unix socket；shoutrrr v0.25.1 的请求目标仍由运营方通知 URL 决定。
+- `go 1.27.4` 未变，builder 摘要与 COPY 白名单不变，仅更新版本与源码 pin；批准门禁已重算散列。审查后按中央参数本地编译 amd64/arm64 验证。
+
+[增量证据](incremental-review-evidence.json)；[批准门禁](review-approval.json)；本地证据 `/root/upstream-release-review/watchtower-v1.24.2/`。不部署或重启服务。以下为历史记录。
+
+---
+
 # Watchtower v1.24.1 中央交付增量审查
 
 **结论：通过，仅限中央构建白名单、固定 Go builder 与 scratch 运行边界。**

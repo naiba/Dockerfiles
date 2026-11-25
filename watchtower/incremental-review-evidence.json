@@ -1,541 +1,265 @@
 {
   "schema_version": 1,
   "repository": "nicholas-fedor/watchtower",
-  "baseline_commit": "147aa6a534428e68eb1ba4f71918f6f35404624d",
-  "baseline_version": "v1.24.0",
-  "candidate_commit": "f45081047d683daceb9d3196dc8569bb6b534879",
-  "candidate_version": "v1.24.1",
-  "candidate_tag_object": "c82f7a246b0434b0b966992e2ec63724ec7991bf",
+  "baseline_commit": "f45081047d683daceb9d3196dc8569bb6b534879",
+  "baseline_version": "v1.24.1",
+  "candidate_commit": "c1b68f690828b7cb0270d74a51db4eefd483d3c9",
+  "candidate_version": "v1.24.2",
+  "candidate_tag_object": "25684c0ede7468fb7393aa6a84e8635fa68a958f",
   "conclusion": "通过",
   "scope": "已批准中央源码白名单、固定 Go builder 与 scratch 运行边界内的静态恶意行为增量审查",
   "whole_upstream_release_approved": false,
   "previous_approved_increment": {
-    "central_commit": "080eb0af43097507c9ef0c6e87eb318f2e32c4d8",
+    "central_commit": "8f2e6f0cfd0da84b46976871e121d8a9ad752d33",
     "path": "watchtower/incremental-review-evidence.json",
-    "sha256": "9cd7c7a7c830dc51d908fea5f12249abe130f2cbbfa679b6df8740d42b0f1a41"
+    "sha256": "525e2673e9e26b8323799a6be659d042c67de0fa4d264205986e3e52790cd728"
   },
   "identity": {
-    "release": "https://github.com/nicholas-fedor/watchtower/releases/tag/v1.24.1",
+    "release": "https://github.com/nicholas-fedor/watchtower/releases/tag/v1.24.2",
     "draft": false,
     "prerelease": false,
-    "tag_object_type": "tag",
-    "tag_object_dereferenced": "commit f45081047d683daceb9d3196dc8569bb6b534879"
+    "tag_object_dereferenced": "commit c1b68f690828b7cb0270d74a51db4eefd483d3c9"
   },
   "coverage": {
-    "tree_changed_paths": 487,
-    "compare_files_truncated_at": 300,
-    "non_test_changed": 295,
-    "build_reachable_changed_go_files": 150,
-    "build_reachable_diff_lines": 27728,
-    "reachability": "Static in-module import walk from main for linux amd64/arm64, CGO=0, tag timetzdata; 98 packages reachable, all inside cmd/ internal/ pkg/; mocks and testutil packages unreachable.",
-    "method": "All non-test blobs fetched by Git blob SHA and re-hashed. Import-only hunks separated mechanically. Entire build-reachable substantive diff screened for new hosts/URLs, HTTP clients, exec/syscall, env reads/writes, file writes, embeds, linkname, plugin loading, encoded payloads; network, credential, process, filesystem and notification chains read in full. Pure refactor/transform lines (type moves types.Container→container.Container, renames, comments) were screened but not individually line-read.",
-    "outside_build": "docs/, .github/, build/, tools/tplprev, examples/, CHANGELOG, Taskfile, test files: path/blob verified only."
+    "tree_changed_paths": 159,
+    "compare_files": 159,
+    "build_reachable_changed_go_files": 53,
+    "build_reachable_substantive_diff_lines": 9322,
+    "method": "Trees untruncated; change set equals compare; non-test blobs fetched by blob SHA and re-hashed. Static reachability from main (98 packages, all under cmd/ and internal/). Reachable substantive diff screened in full; container recreate, self-update orchestrator and git credential/API chains read."
   },
   "in_module_findings": [
-    "No new functional package except internal/update/params (plain settings struct); new */mocks packages unreachable from main.",
-    "Only hardcoded URL literals in the module remain swagger metadata and the legacy Slack webhook prefix; no new external endpoint.",
-    "Registry digest lookup: bearer token sent only to the registry/mirror endpoint; cross-origin redirects retried without the token; URLs redacted in logs.",
-    "Lifecycle hook exec (existing feature): output now tail-bounded to 2KiB, made printable and URL userinfo redacted before logs/notifications; timeout covers attach.",
-    "Settings loader replaces viper with pflag+env: reads only operator env keys, operator-named secret files, WATCHTOWER_COOLDOWN_PLATFORM_* env.",
-    "Compose apply exports operator DOCKER_* connection settings into the process env for Compose-started build tools; unset when empty.",
-    "Git project checkout (existing): local dirty-file snapshot in temp dir, removed after restore; provider probes target the repository's own host.",
-    "Notifications: Shoutrrr URLs remain operator-configured; legacy settings converted to Shoutrrr URLs with redacted logging."
+    "Recreate of rebound containers re-attaches only the container's own existing anonymous volumes found in inspect Mounts (nocopy); no host paths are added.",
+    "Self-update orchestrator (existing feature): env constants exported and WT_ORCHESTRATOR_NETWORK_CONTAINER added, set by Watchtower itself on its helper container.",
+    "Git auth and provider tag/API calls stay on the repository's clone host or the operator-configured API origin.",
+    "No new URLs, exec, file writes or embeds; only env reads are existing WATCHTOWER_COOLDOWN_PLATFORM_* and orchestrator variables."
   ],
   "dependency_review": {
-    "go_directive": "1.27.3 → 1.27.4",
-    "changed_modules_total": 93,
-    "changed_and_build_reachable": 38,
-    "provenance": "Every changed build-reachable module: old and new zips fetched from proxy.golang.org, h1 recomputed and matched both go.sum and sum.golang.org.",
-    "sensitive_screen": "Reachable-package diffs (non-test .go/.s) screened for exec, syscall, env, file writes, dial/HTTP construction, init, linkname, embed, plugin, base64 decode and new host literals.",
+    "go_directive": "1.27.4 unchanged (builder unchanged)",
+    "changed_requires": 21,
+    "changed_and_build_reachable": 17,
+    "provenance": "Every changed build-reachable module: old and new zips from proxy.golang.org, h1 matched go.sum and sum.golang.org.",
     "findings": [
-      "docker/compose v5.8.0: buildx bake exec moved from pkg/compose/build_bake.go to internal/build/bake.go with the same plugin lookup and environment; remote git/OCI include caches (existing feature) write under the compose cache dir with 0700/0600.",
-      "moby/extensions (new, moby org repo, proxy Origin commit 2b6b3bd matches GitHub): extension-point registry and a gRPC client whose only dialer is the Docker engine connection; no process start.",
-      "shoutrrr v0.25.0: Opsgenie service can target api.atlassian.com only when the operator sets that host; Matrix/Zulip requests built from the operator homeserver URL.",
-      "No other sensitive additions in reachable packages of the remaining modules."
+      "docker/secrets-engine client v0.2.2→v1.0.0 (+secrets v1.0.0): connectrpc replaced by an in-house protobuf-over-HTTP client whose only transport dials the local standalone unix socket; no remote host.",
+      "shoutrrr v0.25.1: Discord/JSON client requests built from operator-configured notification URLs.",
+      "No other sensitive additions in reachable dependency packages."
     ],
     "modules": [
       {
-        "module": "github.com/DefangLabs/secret-detector",
-        "old": [
-          "v0.0.0-20260916192156-3e28d7ed64df"
-        ],
-        "new": "v1.1.0",
-        "old_h1": "h1:ZuLcWrXR2XqJ8Y38IJ5BhJOWtBEa2+OlFJi9E8iRWwA=",
-        "new_h1": "h1:uLwHshx7w7p8u7FMaeZdIqfohfVT/9YU2KX/Y8fyBpA=",
-        "sumdb_verified": true,
-        "reachable_packages": 26,
-        "changed_files": 2,
-        "diff_lines": 78,
-        "diff": "github.com_!defang!labs_secret-detector.diff"
-      },
-      {
-        "module": "github.com/compose-spec/compose-go/v2",
-        "old": [
-          "v2.16.2"
-        ],
-        "new": "v2.17.0",
-        "old_h1": "h1:pTp1DqQwJzFd85GzlWsSszKA1ABrV/ySqsClujIcWA8=",
-        "new_h1": "h1:o4jRHLu3XFLATGiFP7nLb2WPRmVV5Xa3gUrzCTw5ko0=",
-        "sumdb_verified": true,
-        "reachable_packages": 17,
-        "changed_files": 33,
-        "diff_lines": 3533,
-        "diff": "github.com_compose-spec_compose-go_v2.diff"
-      },
-      {
         "module": "github.com/docker/cli",
         "old": [
-          "v29.9.3+incompatible"
+          "v29.10.0+incompatible"
         ],
-        "new": "v29.10.0+incompatible",
-        "old_h1": "h1:SBaMp7ecohadEHMDrUJg22t9I3awqsAVhnJ7GOcWpfE=",
-        "new_h1": "h1:lCL+clBUJnHsmjBCr6TwvfQFkmBidPxi5SkuXCoYxc0=",
+        "new": "v29.10.1+incompatible",
+        "old_h1": "h1:lCL+clBUJnHsmjBCr6TwvfQFkmBidPxi5SkuXCoYxc0=",
+        "new_h1": "h1:0wlyVoe0snmKYUUjJuhoR0HiSqRHQonKVcZzT7LwkVM=",
         "sumdb_verified": true,
         "reachable_packages": 40,
-        "changed_files": 7,
-        "diff_lines": 224,
+        "changed_files": 1,
+        "diff_lines": 36,
         "diff": "github.com_docker_cli.diff"
       },
       {
-        "module": "github.com/docker/compose/v5",
+        "module": "github.com/docker/secrets-engine/client",
         "old": [
-          "v5.7.0"
+          "v0.2.2"
         ],
-        "new": "v5.8.0",
-        "old_h1": "h1:nRBxm4HkCFo8Bgb49o6xdhnJ0nl1eGb1H0FAb/ExldE=",
-        "new_h1": "h1:UA+EN1bHwms7LQHftNyQp0cNN+Jj1z0FBx0IyCSAHms=",
+        "new": "v1.0.0",
+        "old_h1": "h1:aPvmlzsxNA+C+xgp2F+WiiDbCSAXHC591HscFFOvPOE=",
+        "new_h1": "h1:/zMCWoch4OOoMQoCo257H6siYUuUcQiTZBcX081uQm0=",
         "sumdb_verified": true,
-        "reachable_packages": 35,
-        "changed_files": 78,
-        "diff_lines": 20987,
-        "diff": "github.com_docker_compose_v5.diff"
+        "reachable_packages": 13,
+        "changed_files": 20,
+        "diff_lines": 3509,
+        "diff": "github.com_docker_secrets-engine_client.diff"
       },
       {
-        "module": "github.com/docker/docker-credential-helpers",
-        "old": [
-          "v0.9.12"
-        ],
-        "new": "v0.9.13",
-        "old_h1": "h1:hAgjJcMuC17DPf0Kl/HQSZQ7cxVo+wEA8Oo1SzkmqFg=",
-        "new_h1": "h1:yLE5jCyKJraJaBACIGqgpLX0UheWfZUwBkIeCu6WPFU=",
+        "module": "github.com/docker/secrets-engine/secrets",
+        "old": [],
+        "new": "v1.0.0",
+        "old_h1": null,
+        "new_h1": "h1:29fYA7dLYYN6dbyCoDUX7VVu0usZ8bKvpJolCbs8TAw=",
         "sumdb_verified": true,
-        "reachable_packages": 2,
-        "changed_files": 0,
-        "diff_lines": 0,
-        "diff": "github.com_docker_docker-credential-helpers.diff"
+        "reachable_packages": 1,
+        "changed_files": 6,
+        "diff_lines": 837,
+        "diff": "github.com_docker_secrets-engine_secrets.diff"
       },
       {
-        "module": "github.com/go-openapi/jsonpointer",
+        "module": "github.com/docker/secrets-engine/x",
         "old": [
-          "v1.0.2"
+          "v0.8.5"
         ],
-        "new": "v1.0.3",
-        "old_h1": "h1:NbW7xT2b+l7x+JefiPGDsZWsrLk1ogrz4AHK1TTzMt8=",
-        "new_h1": "h1:iEtrz/inxw+0za5lr10whyxplQdwJruNoQAFA6Sogso=",
+        "new": "v0.10.0",
+        "old_h1": "h1:P7D/YESMjpX18S4ratBgoeJkAFIxgsPxe093uFmgiGc=",
+        "new_h1": "h1:8BjTRq4MkvCXNhmyORZ+Q9fJohH5hv7PLQu9qDzbwbA=",
         "sumdb_verified": true,
-        "reachable_packages": 2,
-        "changed_files": 1,
-        "diff_lines": 14,
-        "diff": "github.com_go-openapi_jsonpointer.diff"
+        "reachable_packages": 1,
+        "changed_files": 6,
+        "diff_lines": 350,
+        "diff": "github.com_docker_secrets-engine_x.diff"
+      },
+      {
+        "module": "github.com/eclipse/paho.golang",
+        "old": [
+          "v0.23.0"
+        ],
+        "new": "v0.24.0",
+        "old_h1": "h1:KHgl2wz6EJo7cMBmkuhpt7C576vP+kpPv7jjvSyR6Mk=",
+        "new_h1": "h1:TcqZlyi9nBu1GhHeD9FPI0y8Lu2mSDRm0Wj/maWVVOw=",
+        "sumdb_verified": true,
+        "reachable_packages": 9,
+        "changed_files": 26,
+        "diff_lines": 2206,
+        "diff": "github.com_eclipse_paho.golang.diff"
       },
       {
         "module": "github.com/gofiber/contrib/v3/swaggo",
         "old": [
-          "v1.0.15"
+          "v1.0.17"
         ],
-        "new": "v1.0.17",
-        "old_h1": "h1:bvSlokdsl9fZCylcUlhC9sEbdgeslXcdtQ8FEL2lSJE=",
-        "new_h1": "h1:dKh54NdvpCEr38QoIEOzVEN2RMkSjUny4YyusWOLth4=",
+        "new": "v1.0.18",
+        "old_h1": "h1:dKh54NdvpCEr38QoIEOzVEN2RMkSjUny4YyusWOLth4=",
+        "new_h1": "h1:1LiLyq/5TQS9Sqf7afdFHUFojYkqnSmz4y1pkC7c0Fg=",
         "sumdb_verified": true,
         "reachable_packages": 1,
-        "changed_files": 1,
-        "diff_lines": 86,
+        "changed_files": 0,
+        "diff_lines": 0,
         "diff": "github.com_gofiber_contrib_v3_swaggo.diff"
       },
       {
         "module": "github.com/gofiber/contrib/v3/zerolog",
         "old": [
-          "v1.1.9"
+          "v1.1.11"
         ],
-        "new": "v1.1.11",
-        "old_h1": "h1:jkzp5g384F0QCsCqvPMKOlTCXFCDsw3L3MOvhg9bTmE=",
-        "new_h1": "h1:dKaBeucKVrPQEQ++iaNzjEYZxccVbeVk3Mw5z92KZDA=",
+        "new": "v1.1.12",
+        "old_h1": "h1:dKaBeucKVrPQEQ++iaNzjEYZxccVbeVk3Mw5z92KZDA=",
+        "new_h1": "h1:IRgEJA19hsggIPqjvUQJ5YgMOZ0Bd6UYQE4x+BXG84I=",
         "sumdb_verified": true,
         "reachable_packages": 1,
-        "changed_files": 1,
-        "diff_lines": 73,
+        "changed_files": 2,
+        "diff_lines": 186,
         "diff": "github.com_gofiber_contrib_v3_zerolog.diff"
-      },
-      {
-        "module": "github.com/gofiber/fiber/v3",
-        "old": [
-          "v3.6.1"
-        ],
-        "new": "v3.7.0",
-        "old_h1": "h1:wYjbgqpJm6VErIVLSGzGpX7lLZyTNgElsj8nQ1i+iFo=",
-        "new_h1": "h1:aF+GfB7nP9Dd0wVsv6wmr8675v66OGfjSyoDhPmvKEo=",
-        "sumdb_verified": true,
-        "reachable_packages": 43,
-        "changed_files": 60,
-        "diff_lines": 8258,
-        "diff": "github.com_gofiber_fiber_v3.diff"
       },
       {
         "module": "github.com/gofiber/schema",
         "old": [
-          "v1.9.3"
+          "v1.10.0"
         ],
-        "new": "v1.10.0",
-        "old_h1": "h1:KbKui12hYcvv6Ht0iUCOPrFU4KnrxX4D/h74TeE9Q/E=",
-        "new_h1": "h1:d/2/NpHOVD0f29aNvM3KSPmaEDLJZvxW5edtN4Ymd8U=",
+        "new": "v1.10.2",
+        "old_h1": "h1:d/2/NpHOVD0f29aNvM3KSPmaEDLJZvxW5edtN4Ymd8U=",
+        "new_h1": "h1:mjqtglIvi/+NK3gJTra6wKOaBLZYx+tdNu7xtaCVPOg=",
         "sumdb_verified": true,
         "reachable_packages": 1,
-        "changed_files": 5,
-        "diff_lines": 778,
+        "changed_files": 3,
+        "diff_lines": 584,
         "diff": "github.com_gofiber_schema.diff"
-      },
-      {
-        "module": "github.com/gofiber/utils/v2",
-        "old": [
-          "v2.6.4"
-        ],
-        "new": "v2.6.5",
-        "old_h1": "h1:VsC3hEFZXk2JO6I/+FZ1OdZzMX4COPgwwrFaDAey3+o=",
-        "new_h1": "h1:rU+8ao6LKi3fKOA3sEjfLv1T+2C2IwomeVmEKaqkr4A=",
-        "sumdb_verified": true,
-        "reachable_packages": 7,
-        "changed_files": 6,
-        "diff_lines": 718,
-        "diff": "github.com_gofiber_utils_v2.diff"
-      },
-      {
-        "module": "github.com/gofrs/flock",
-        "old": [
-          "v0.13.1"
-        ],
-        "new": "v0.13.2",
-        "old_h1": "h1:jjREztyBeSKBZYAC+mgc1laB+xsgy4kYMf3FbKF2UBo=",
-        "new_h1": "h1:9o62TArG4T0f8L46kSf8sLtNUGvJEfiCK9md7/ilko0=",
-        "sumdb_verified": true,
-        "reachable_packages": 1,
-        "changed_files": 1,
-        "diff_lines": 18,
-        "diff": "github.com_gofrs_flock.diff"
-      },
-      {
-        "module": "github.com/grpc-ecosystem/grpc-gateway/v2",
-        "old": [
-          "v2.33.0"
-        ],
-        "new": "v2.34.0",
-        "old_h1": "h1:5T5Ns3kMpWr+z3s5ZA0e7ljVyWNVNxK76sHPAxi5D1k=",
-        "new_h1": "h1:vzlTzzi4tHLa/JQdIE5LeXw6SEX5EVVhq/VPqKHnKOk=",
-        "sumdb_verified": true,
-        "reachable_packages": 3,
-        "changed_files": 8,
-        "diff_lines": 485,
-        "diff": "github.com_grpc-ecosystem_grpc-gateway_v2.diff"
       },
       {
         "module": "github.com/klauspost/compress",
         "old": [
-          "v1.20.3"
+          "v1.20.4"
         ],
-        "new": "v1.20.4",
-        "old_h1": "h1:zWNoFqq/lSuYQRim3dUXlXeA0IqwuZGicdG5ZTfY5j4=",
-        "new_h1": "h1:dD0v/bvxtjCBqQu6sx1TNWkalEY5lNTIe+HY9w8TeNI=",
+        "new": "v1.20.5",
+        "old_h1": "h1:dD0v/bvxtjCBqQu6sx1TNWkalEY5lNTIe+HY9w8TeNI=",
+        "new_h1": "h1:rJj5VjH4xQxbnLphg6eqUcDxRFCw1jpMdDY9qXlrwSs=",
         "sumdb_verified": true,
         "reachable_packages": 12,
-        "changed_files": 27,
-        "diff_lines": 1420,
+        "changed_files": 9,
+        "diff_lines": 551,
         "diff": "github.com_klauspost_compress.diff"
-      },
-      {
-        "module": "github.com/mattn/go-shellwords",
-        "old": [
-          "v1.0.16"
-        ],
-        "new": "v1.0.17",
-        "old_h1": "h1:RRxAaRzU1YbzOSCj9NJqg2/VIbSWv0dnPoD3EwE8kxI=",
-        "new_h1": "h1:aaZ6xZkEejIjJLRx2mo9CMpMas4Zz5u8I9Z57vC/rJY=",
-        "sumdb_verified": true,
-        "reachable_packages": 1,
-        "changed_files": 1,
-        "diff_lines": 279,
-        "diff": "github.com_mattn_go-shellwords.diff"
       },
       {
         "module": "github.com/moby/buildkit",
         "old": [
-          "v0.34.2"
+          "v0.35.0"
         ],
-        "new": "v0.35.0",
-        "old_h1": "h1:fXgOe79JW5zJNDumRtwTemOklLX66otQokObUXuiGJo=",
-        "new_h1": "h1:5o3kpuDfg6n6vCV9vEIhZ/6rOV4CGiPjt6N8Q7KX6Qo=",
+        "new": "v0.35.1",
+        "old_h1": "h1:5o3kpuDfg6n6vCV9vEIhZ/6rOV4CGiPjt6N8Q7KX6Qo=",
+        "new_h1": "h1:5eMfbpfMFsznXL18kdc8JgxbnHtZsXptuRjzgTvyk3A=",
         "sumdb_verified": true,
         "reachable_packages": 50,
-        "changed_files": 12,
-        "diff_lines": 848,
+        "changed_files": 2,
+        "diff_lines": 43,
         "diff": "github.com_moby_buildkit.diff"
       },
       {
         "module": "github.com/moby/extensions",
-        "old": [],
-        "new": "v0.0.0-20261026144205-2b6b3bd5fa82",
-        "old_h1": null,
-        "new_h1": "h1:T2DOZjfkTNgfBrhJFWJjt/bUEf/jfTRxiMJkPt3XqSY=",
+        "old": [
+          "v0.0.0-20261026144205-2b6b3bd5fa82"
+        ],
+        "new": "v0.0.0-20261120190433-fb779cf107cd",
+        "old_h1": "h1:T2DOZjfkTNgfBrhJFWJjt/bUEf/jfTRxiMJkPt3XqSY=",
+        "new_h1": "h1:voCyJ2uEbRhz9AAoyaRaqiJJA4CsUioM/H3N6NiZuTc=",
         "sumdb_verified": true,
         "reachable_packages": 4,
-        "changed_files": 5,
-        "diff_lines": 723,
+        "changed_files": 0,
+        "diff_lines": 0,
         "diff": "github.com_moby_extensions.diff"
       },
       {
-        "module": "github.com/moby/moby/api",
+        "module": "github.com/moby/sys/user",
         "old": [
-          "v1.56.1"
+          "v0.5.0"
         ],
-        "new": "v1.57.0",
-        "old_h1": "h1:PpWkvVPB7Fr/No8w+TfyJ/I6rWZ2YPZhT3JorIg+06c=",
-        "new_h1": "h1:K2ykv5UZjwFCtmtL486T+SUEVrQ46w3v7isf214RCcw=",
+        "new": "v0.5.1",
+        "old_h1": "h1:5+S4lyoavGyX1DGs68NW8xpx48T9+a7ogSUc0KjZg8Y=",
+        "new_h1": "h1:IMM/21OvpU2icUZczWBwLMf8iBEx1bOoiCQqcy1eKu0=",
         "sumdb_verified": true,
-        "reachable_packages": 19,
-        "changed_files": 1,
-        "diff_lines": 10,
-        "diff": "github.com_moby_moby_api.diff"
-      },
-      {
-        "module": "github.com/moby/moby/client",
-        "old": [
-          "v0.6.2"
-        ],
-        "new": "v0.6.3",
-        "old_h1": "h1:ekSPlMccrZGcw6Scb8T9D39qE0mB+XupU/yS0zNw9N4=",
-        "new_h1": "h1:XJn2T8YdXBdMgQl7JrOx09NEBuzIpVXcsN2KDHufAKY=",
-        "sumdb_verified": true,
-        "reachable_packages": 10,
-        "changed_files": 7,
-        "diff_lines": 240,
-        "diff": "github.com_moby_moby_client.diff"
+        "reachable_packages": 1,
+        "changed_files": 4,
+        "diff_lines": 609,
+        "diff": "github.com_moby_sys_user.diff"
       },
       {
         "module": "github.com/nicholas-fedor/shoutrrr",
         "old": [
-          "v0.23.0"
+          "v0.25.0"
         ],
-        "new": "v0.25.0",
-        "old_h1": "h1:8SaNzoCpC/0rGQGLd3MYROMdljVehgt0z27n32P7MEA=",
-        "new_h1": "h1:3h6t0GSHi0j+KYXTYf2tXdEhM22R/u0gJKznhcM12k8=",
+        "new": "v0.25.1",
+        "old_h1": "h1:3h6t0GSHi0j+KYXTYf2tXdEhM22R/u0gJKznhcM12k8=",
+        "new_h1": "h1:KoWk009bm2YneyPpowW3L8vXtWGR7e6SxhvoaDChTwY=",
         "sumdb_verified": true,
-        "reachable_packages": 49,
-        "changed_files": 149,
-        "diff_lines": 17358,
+        "reachable_packages": 50,
+        "changed_files": 48,
+        "diff_lines": 4537,
         "diff": "github.com_nicholas-fedor_shoutrrr.diff"
-      },
-      {
-        "module": "github.com/prometheus/common",
-        "old": [
-          "v0.73.1"
-        ],
-        "new": "v0.74.0",
-        "old_h1": "h1:SZWh/j4AvhCdhX8jvYSnxvPxhWlC9QZkjJ+tOrEr7kU=",
-        "new_h1": "h1:6iYW8MsYvmEnXFD9zLGgF0qmReaRhs3OMONu1c/nrLI=",
-        "sumdb_verified": true,
-        "reachable_packages": 2,
-        "changed_files": 6,
-        "diff_lines": 1765,
-        "diff": "github.com_prometheus_common.diff"
-      },
-      {
-        "module": "github.com/sergi/go-diff",
-        "old": [
-          "v1.4.0"
-        ],
-        "new": "v1.4.5",
-        "old_h1": "h1:n/SP9D5ad1fORl+llWyN+D6qoUETXNZARKjyY2/KVCw=",
-        "new_h1": "h1:3LvhZn2aCAWagLwIhga3BZiEZ82j5+oQ0vKDwkhjHCI=",
-        "sumdb_verified": true,
-        "reachable_packages": 1,
-        "changed_files": 5,
-        "diff_lines": 600,
-        "diff": "github.com_sergi_go-diff.diff"
-      },
-      {
-        "module": "github.com/spf13/pflag",
-        "old": [
-          "v1.0.10"
-        ],
-        "new": "v1.1.0",
-        "old_h1": "h1:4EBh2KAYBwaONj6b2Ye1GiHfwjqyROoF4RwYO+vPwFk=",
-        "new_h1": "h1:6W6MbVUrnMb8PEhjkqwsVLY7ryuzRfFHF4mQd7L94ag=",
-        "sumdb_verified": true,
-        "reachable_packages": 1,
-        "changed_files": 32,
-        "diff_lines": 1667,
-        "diff": "github.com_spf13_pflag.diff"
       },
       {
         "module": "github.com/valyala/fasthttp",
         "old": [
-          "v1.77.0"
+          "v1.79.0"
         ],
-        "new": "v1.79.0",
-        "old_h1": "h1:6mxBJdHabRmU4Cmw79Uqhgvjzsp6pjOaQk2t8COflzo=",
-        "new_h1": "h1:32ur91W4kWG+1s6x3oDlP8/KNmjlZZlUzSSC4p9LSWE=",
+        "new": "v1.80.0",
+        "old_h1": "h1:32ur91W4kWG+1s6x3oDlP8/KNmjlZZlUzSSC4p9LSWE=",
+        "new_h1": "h1:10pVr/QLFGbSX8ikDS0i+wOi2AGY2Sy0TACVpoiG+7U=",
         "sumdb_verified": true,
         "reachable_packages": 7,
-        "changed_files": 24,
-        "diff_lines": 2932,
+        "changed_files": 10,
+        "diff_lines": 1446,
         "diff": "github.com_valyala_fasthttp.diff"
       },
       {
-        "module": "go.yaml.in/yaml/v4",
+        "module": "go.opentelemetry.io/auto/sdk",
         "old": [
-          "v4.0.0-rc.9"
+          "v1.2.1"
         ],
-        "new": "v4.0.0",
-        "old_h1": "h1:jW19j/SdSgzIhwAiRWwDpFxbm9dMYoo7oD7jWiQ7F3o=",
-        "new_h1": "h1:/LG1pNO84Z4l603j/xMn69CcS5OYhMQ/f7l2LoQUGuw=",
+        "new": "v1.2.2",
+        "old_h1": "h1:jXsnJ4Lmnqd11kwkBV2LgLoFMZKizbCi5fNZ/ipaZ64=",
+        "new_h1": "h1:ErNn7NW2t1F9CFBLb9iyPMyLRbcEd07l5m/StCe9AEE=",
         "sumdb_verified": true,
-        "reachable_packages": 9,
-        "changed_files": 11,
-        "diff_lines": 506,
-        "diff": "go.yaml.in_yaml_v4.diff"
-      },
-      {
-        "module": "golang.org/x/crypto",
-        "old": [
-          "v0.58.0"
-        ],
-        "new": "v0.59.0",
-        "old_h1": "h1:COkYLr4k7nDI4r6QtMML2AfzeIswWHAJthLS6K/M/54=",
-        "new_h1": "h1:xS2jhqYbzNrpvkWP2YTDf4TJwBy3ykR03i8vFDxEc7c=",
-        "sumdb_verified": true,
-        "reachable_packages": 20,
-        "changed_files": 17,
-        "diff_lines": 1536,
-        "diff": "golang.org_x_crypto.diff"
-      },
-      {
-        "module": "golang.org/x/mod",
-        "old": [
-          "v0.42.0"
-        ],
-        "new": "v0.43.0",
-        "old_h1": "h1:ICeL3t2L30ljSPHHxDnR4fqVcBt/zR2zJAb9juavmQg=",
-        "new_h1": "h1:MFuq5J6s35W9D3IjkwyWc9vHh0nENOrt5K8Iof4ofmg=",
-        "sumdb_verified": true,
-        "reachable_packages": 3,
-        "changed_files": 0,
-        "diff_lines": 0,
-        "diff": "golang.org_x_mod.diff"
-      },
-      {
-        "module": "golang.org/x/net",
-        "old": [
-          "v0.62.0"
-        ],
-        "new": "v0.63.0",
-        "old_h1": "h1:18ELalfM5+XNRwzM2nYqXsZQ9ByS1uhj2O/U7+5jqRY=",
-        "new_h1": "h1:HCoTmNh9EpD1PpK8gBNFY4gcTY4N+KQEO8ylfIKqFJ0=",
-        "sumdb_verified": true,
-        "reachable_packages": 11,
-        "changed_files": 1,
-        "diff_lines": 74,
-        "diff": "golang.org_x_net.diff"
-      },
-      {
-        "module": "golang.org/x/oauth2",
-        "old": [
-          "v0.37.0"
-        ],
-        "new": "v0.38.0",
-        "old_h1": "h1:JUlcxA8oAtauLfiH8FX2/FkAWHAdi0QtGCGc+hofE98=",
-        "new_h1": "h1:uW7XQbcu1eoiQS7uMJvLOjPMl04bTbmY1VeRPxvbspI=",
-        "sumdb_verified": true,
-        "reachable_packages": 3,
-        "changed_files": 1,
-        "diff_lines": 29,
-        "diff": "golang.org_x_oauth2.diff"
-      },
-      {
-        "module": "golang.org/x/sync",
-        "old": [
-          "v0.24.0"
-        ],
-        "new": "v0.25.0",
-        "old_h1": "h1:iqiDrGoDgyuvAKrhLQthUEzU/R378N78gXbBjxed7oA=",
-        "new_h1": "h1:dJnifr0nMV8/SBnBvdo4eSGGnrc3O4FFx6IqvtLcmRs=",
-        "sumdb_verified": true,
-        "reachable_packages": 3,
-        "changed_files": 0,
-        "diff_lines": 0,
-        "diff": "golang.org_x_sync.diff"
-      },
-      {
-        "module": "golang.org/x/sys",
-        "old": [
-          "v0.49.0"
-        ],
-        "new": "v0.50.0",
-        "old_h1": "h1:XbzkgYJHdqh/8m2Uu0W/dQv8nktxx4BFHp1M0gROTXA=",
-        "new_h1": "h1:dkKZEFTEKaLr1sjhs0WiKqoi8Jj5nHbS3Njmx1UoMJs=",
-        "sumdb_verified": true,
-        "reachable_packages": 3,
-        "changed_files": 4,
-        "diff_lines": 64,
-        "diff": "golang.org_x_sys.diff"
-      },
-      {
-        "module": "golang.org/x/term",
-        "old": [
-          "v0.47.0"
-        ],
-        "new": "v0.48.0",
-        "old_h1": "h1:cpyOwQkr2Nzxe2p6KnrTG7Ei2wtzjsuSjhpXXepZ/BM=",
-        "new_h1": "h1:G6UU1eiSB8nl3DzeUGt7Mg+2SctI8tPS6Z5/mBt6cOk=",
-        "sumdb_verified": true,
-        "reachable_packages": 1,
-        "changed_files": 0,
-        "diff_lines": 0,
-        "diff": "golang.org_x_term.diff"
-      },
-      {
-        "module": "golang.org/x/text",
-        "old": [
-          "v0.43.0"
-        ],
-        "new": "v0.44.0",
-        "old_h1": "h1:1QivrlhwAsnMOcqgOdl9my7s9OyZl8O5/UGUTJVXoWc=",
-        "new_h1": "h1:YItdp/mQNGnsmrgpcdA5yQ3bnRxCfo/Tj/iByGW9GGo=",
-        "sumdb_verified": true,
-        "reachable_packages": 20,
-        "changed_files": 1,
-        "diff_lines": 13,
-        "diff": "golang.org_x_text.diff"
-      },
-      {
-        "module": "golang.org/x/tools",
-        "old": [
-          "v0.52.0"
-        ],
-        "new": "v0.53.0",
-        "old_h1": "h1:ryxg4U63oaUYk7uOLTF37n43f4qgtGvqV4Ioit1BaEs=",
-        "new_h1": "h1:T3bIVp3zjHG9/aEiFk6BXxFh5/Vcbk7JA5hRq1cG8IU=",
-        "sumdb_verified": true,
-        "reachable_packages": 14,
-        "changed_files": 0,
-        "diff_lines": 0,
-        "diff": "golang.org_x_tools.diff"
+        "reachable_packages": 2,
+        "changed_files": 3,
+        "diff_lines": 51,
+        "diff": "go.opentelemetry.io_auto_sdk.diff"
       },
       {
         "module": "google.golang.org/genproto/googleapis/api",
         "old": [
-          "v0.0.0-20261026165753-2ffab32bce7e"
+          "v0.0.0-20261116203732-fd2c7689a808"
         ],
-        "new": "v0.0.0-20261116203732-fd2c7689a808",
-        "old_h1": "h1:e789sLZjeTdc02ZCQGTSzHOu0fR73+dwPQVKUp67Z88=",
-        "new_h1": "h1:138uiCpAaz8IK/8xoJcj2MQUWL5MMtaV7ofVoQJpuY8=",
+        "new": "v0.0.0-20261123191846-1e707ab9fbc2",
+        "old_h1": "h1:138uiCpAaz8IK/8xoJcj2MQUWL5MMtaV7ofVoQJpuY8=",
+        "new_h1": "h1:TVEW5ciB4lPlyo3RBDd2JTlUY0vAzMkPlU/qAzC+rqU=",
         "sumdb_verified": true,
         "reachable_packages": 1,
         "changed_files": 0,
@@ -545,44 +269,16 @@
       {
         "module": "google.golang.org/genproto/googleapis/rpc",
         "old": [
-          "v0.0.0-20261026165753-2ffab32bce7e"
+          "v0.0.0-20261116203732-fd2c7689a808"
         ],
-        "new": "v0.0.0-20261116203732-fd2c7689a808",
-        "old_h1": "h1:w3fy/G8OrJHYexn+u5y7hFyc8YRRIr7DCevtIOwAcGY=",
-        "new_h1": "h1:fTdQSdJnh58Hq9AG3truAGfWr7VEZ3tCU3DE5kDnTDE=",
+        "new": "v0.0.0-20261123191846-1e707ab9fbc2",
+        "old_h1": "h1:fTdQSdJnh58Hq9AG3truAGfWr7VEZ3tCU3DE5kDnTDE=",
+        "new_h1": "h1:FCWn4wv5of/ooWpbWDIeOXqI3+h2MGnV7SvvcJ8f+bQ=",
         "sumdb_verified": true,
         "reachable_packages": 2,
         "changed_files": 0,
         "diff_lines": 0,
         "diff": "google.golang.org_genproto_googleapis_rpc.diff"
-      },
-      {
-        "module": "gopkg.in/ini.v1",
-        "old": [
-          "v1.67.3"
-        ],
-        "new": "v1.68.0",
-        "old_h1": "h1:iM9Lhz5MRSGhHVGGwCuzG9KO8PoirCXj/m/qTmOJJQw=",
-        "new_h1": "h1:Ml6Jlmf35dsiLcxJaRSjck7dxkxCOHd9T/E1f6jV9EE=",
-        "sumdb_verified": true,
-        "reachable_packages": 1,
-        "changed_files": 7,
-        "diff_lines": 685,
-        "diff": "gopkg.in_ini.v1.diff"
-      },
-      {
-        "module": "tags.cncf.io/container-device-interface",
-        "old": [
-          "v1.1.1"
-        ],
-        "new": "v1.1.2",
-        "old_h1": "h1:YPwQz4xg8PlQ0yT/baR0BtLpTQROe4l6M1yuRgAu1vc=",
-        "new_h1": "h1:H4rcA/836s+J7JjTbwOj2khB4YP95HHaZrRThT+QAVg=",
-        "sumdb_verified": true,
-        "reachable_packages": 1,
-        "changed_files": 0,
-        "diff_lines": 0,
-        "diff": "tags.cncf.io_container-device-interface.diff"
       }
     ]
   },
@@ -594,45 +290,22 @@
       "cmd/",
       "internal/"
     ],
-    "compiler": {
-      "image": "docker.io/library/golang:1.27.4-alpine3.24",
-      "index_digest": "sha256:70bd7ddea8b6cbe5d6943cde279d6b67feb10cc924fb9100d1d8757c1575b280",
-      "platform_digest": "sha256:ea30e25680a5470bac02b08bb0e0a735fb75bd0ab7d431b9b95ee0abef362586",
-      "config_digest": "sha256:3f9f7b68d2300deb4acba48650f28dec9098ead84cd167a56c0e2bf361f24592",
-      "config_env": [
-        "GOLANG_VERSION=1.27.4",
-        "GOTOOLCHAIN=local"
-      ],
-      "reason": "Upstream go.mod requires go 1.27.4 and the Dockerfile keeps GOTOOLCHAIN=local, so the 1.27.3 builder (sha256:8aa28219…) cannot build it."
-    },
-    "constraints": [
-      "native linux/amd64 builder",
-      "TARGETARCH amd64/arm64",
-      "CGO_ENABLED=0",
-      "GOTOOLCHAIN=local",
-      "-mod=readonly",
-      "-tags=timetzdata",
-      "scratch runtime with builder CA bundle"
-    ],
-    "copy_whitelist_change": "v1.24.1 deleted the upstream pkg/ tree (20 files in v1.24.0, 0 in v1.24.1); COPY pkg/ removed after first CI run 44324395709 failed with \"/pkg\": not found."
+    "compiler_platform_digest": "sha256:ea30e25680a5470bac02b08bb0e0a735fb75bd0ab7d431b9b95ee0abef362586",
+    "change": "Only version, revision label and source pin."
   },
   "retained_unverified_boundaries": [
-    "Compiler/OS layers trusted by official fixed digest and registry metadata only.",
-    "Operator-provided hooks, Docker daemon, credential helpers, buildx, Git/Compose projects, notification endpoints remain external trust boundaries.",
-    "Upstream CI/dev/release tooling and unreachable dependency modules not approved."
+    "Compiler/OS layers trusted by official fixed digest.",
+    "Operator hooks, Docker daemon, credential helpers, secrets-engine daemon, Git/Compose projects and notification endpoints remain external trust boundaries."
   ],
-  "evidence_root": "/root/upstream-release-review/watchtower-v1.24.1/",
+  "evidence_root": "/root/upstream-release-review/watchtower-v1.24.2/",
   "evidence_sha256": {
-    "manifest.json": "c93c04d51de5c09630feb900d24bffa6b58cd96768e7f98791691cb9a2fd5219",
-    "production.diff": "f6ddd192a6047ff7b57c51a3aea9fbef524d215da490a90393f773d8366356f8",
-    "reachable.json": "4d51cfdfbd53bb891a2ea6451ec0a09bb7d7ec12626f769b8bf36f62f91d6913",
-    "reachable_substantive.diff": "ba2cc76ada082e2e947a1c6bad7f8c059fb11d34ca5f86b540153be6c8a5f807",
-    "head_reachability.json": "5b1a71242c218d292d9c21d7b9d8d4e845ff994c336a3e74386dd2c11b3bf222",
-    "dep_changes.json": "45cbc16d28c0964d5ec5ad16cc92eea69b3d4318c172c2e96572d5469c4d3599",
-    "dep_diffs/summary.json": "dfafb6eba0b446bb205bebcae3b16d127e7e2bf08b4dd11d55707ce08082667e",
-    "builder/amd64-manifest.json": "ea30e25680a5470bac02b08bb0e0a735fb75bd0ab7d431b9b95ee0abef362586",
-    "builder/amd64-config.json": "3f9f7b68d2300deb4acba48650f28dec9098ead84cd167a56c0e2bf361f24592",
-    "builder/idx-1.27.4-alpine3.24.json": "70bd7ddea8b6cbe5d6943cde279d6b67feb10cc924fb9100d1d8757c1575b280"
+    "manifest.json": "3783adaba62c52364f9148003985189bec7601a3e29b1ded29784719883d9557",
+    "production.diff": "b0647e8eb3e05440517dadc5d7bf1e722041ca706806821f1c777ba686c09152",
+    "reachable.json": "6611517e2bdb7da9fa6b22080b853624ed5ccc8dd163e6899c43ee8b53a81868",
+    "reachable_substantive.diff": "e4aa6d6f15f08ff668118e5dfaff0271192596f997b34d47266e9c03bf1b9559",
+    "head_reachability.json": "ba0a4aaee2a4c247b9c4cb05ed1ed5cb72828fad4bd09bc67bab559c6a330f72",
+    "dep_changes.json": "7501cf40989aaa87146f7b71af22774cff51a7adfe72403540bfecc0c1ac589f",
+    "dep_diffs/summary.json": "b23b99a285815acd7fa0fa13b2da4906ffa0b5e4e43c279510005a17464279e0"
   },
-  "execution": "No upstream clone/install/build/test/scan during review; only proxy/registry metadata and source archives read."
+  "execution": "No upstream execution during review; local central-flag compile only after review."
 }

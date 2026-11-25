@@ -1,15 +1,15 @@
 {
   "conclusion": "通过",
-  "upstream_commit": "f45081047d683daceb9d3196dc8569bb6b534879",
-  "upstream_version": "v1.24.1",
+  "upstream_commit": "c1b68f690828b7cb0270d74a51db4eefd483d3c9",
+  "upstream_version": "v1.24.2",
   "scope": "已批准中央源码白名单、固定 Go builder 与 scratch 运行边界内的静态恶意行为增量审查",
   "whole_upstream_release_approved": false,
   "build_files_sha256": {
-    "watchtower/Dockerfile": "139777fde98e176a586dce236942936ae69700b469c04e6d72db1dba8d6f0379",
-    ".github/workflows/watchtower.yml": "ae8034b0e3e77abc648ac6219a50a9b4558d1139f51f2eb6693e8db77d0a76a2"
+    "watchtower/Dockerfile": "6f9ee8384f1cdb689b73733efad8fee79ae113309a1b202685fce41d1bdae235",
+    ".github/workflows/watchtower.yml": "5f754ae56c5ea285fdbaae2706e11d7ba39b2a0d60b480c8e5a2ae01aefeded3"
   },
   "incremental_evidence": {
     "path": "watchtower/incremental-review-evidence.json",
-    "sha256": "525e2673e9e26b8323799a6be659d042c67de0fa4d264205986e3e52790cd728"
+    "sha256": "623beb55bab896a383563bf1b88123b1eda136b8b534adbca2417dbe70b66b79"
   }
 }
