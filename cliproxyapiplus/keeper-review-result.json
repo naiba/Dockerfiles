@@ -1,10 +1,10 @@
 {
   "status": "通过",
   "repository": "Willxup/cpa-usage-keeper",
-  "tag": "v2.1.1",
-  "base": "41b34f12dbef209292765415b860583aad5afc09",
-  "candidate": "5c97bee91678e3cd9e75201a8025bfcaadf77681",
-  "approved_at": "2026-11-18",
+  "tag": "v2.1.2",
+  "base": "5c97bee91678e3cd9e75201a8025bfcaadf77681",
+  "candidate": "047ae17d6df33e643af054a47433ac7aec4179aa",
+  "approved_at": "2026-11-25",
   "scope": "固定 SHA 增量和既有中央构建/运行边界；仅静态恶意行为审查。",
   "boundary": {
     "locked_at": "2026-10-31T00:31:04.509206+00:00",
@@ -35,15 +35,30 @@
     },
     "actual_central_build_note": "Current hashed Dockerfile uses CGO_ENABLED=1 with build-base. Inherited textual CGO description is stale; actual unchanged approved central file is authoritative."
   },
-  "coverage": {
-    "changed_paths": 47,
-    "non_test_files_read": 22,
-    "non_test_diff_lines": 838,
-    "test_paths_verified": 25,
-    "binary_outside_build": 4
+  "central_boundary_update": {
+    "date": "2026-11-18",
+    "change": "web-builder node:22-alpine → node:24-alpine (upstream v2.1.1 Dockerfile uses node:24.22.1-alpine); HEALTHCHECK switched to upstream's trimmed APP_BASE_PATH + /readyz probe (route present in internal/api/health.go at 5c97bee). Dependency lockfile, npm ci/build, Go builder and alpine:3.24 runtime unchanged."
   },
+  "coverage": {
+    "changed_paths": 182,
+    "compare_files": 182,
+    "non_test_files": 104,
+    "non_test_diff_lines": 16739,
+    "test_paths_verified": 78,
+    "method": "Blobs verified by SHA; Go changes read in full; web diff screened for network calls, dynamic code, storage and external URLs."
+  },
+  "findings": [
+    "New Meta quota provider: downloads the Meta credential through the existing CPA management credential-download endpoint (same pattern as approved Kimi), extracts the dca: token and calls the official https://api.meta.ai/muse-code/key through CPA's management api-call proxy; token is not stored or logged.",
+    "New /usage/identities/:id/models route registered under the existing admin-protected group; parameterised GORM queries on local SQLite.",
+    "Web: credential cards/list/model-usage UI refactor; only same-origin API calls; localStorage used for list-view preferences; no eval, dynamic script or external URL."
+  ],
   "dependencies_changed": 0,
   "history": [
+    {
+      "tag": "v2.1.1",
+      "commit": "5c97bee91678e3cd9e75201a8025bfcaadf77681",
+      "status": "通过"
+    },
     {
       "tag": "v2.1.0",
       "commit": "41b34f12dbef209292765415b860583aad5afc09",
@@ -60,9 +75,5 @@
       "approved_at": "2026-10-31T00:45:25Z"
     }
   ],
-  "local_evidence_directory": "/root/upstream-release-review/keeper-v2.1.1/",
-  "central_boundary_update": {
-    "date": "2026-11-18",
-    "change": "web-builder node:22-alpine → node:24-alpine (upstream v2.1.1 Dockerfile uses node:24.22.1-alpine); HEALTHCHECK switched to upstream's trimmed APP_BASE_PATH + /readyz probe (route present in internal/api/health.go at 5c97bee). Dependency lockfile, npm ci/build, Go builder and alpine:3.24 runtime unchanged."
-  }
+  "local_evidence_directory": "/root/upstream-release-review/keeper-v2.1.2/"
 }

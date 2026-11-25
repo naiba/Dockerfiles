@@ -1,17 +1,17 @@
 {
   "schema_version": 2,
   "repository": "router-for-me/CLIProxyAPI",
-  "version": "v8.1.2",
-  "commit": "85225381d89915595598ed13766cd79890c03a84",
+  "version": "v8.1.4",
+  "commit": "38fe929502f19f7cce03c69c19aacddf30f1ef5e",
   "conclusion": "通过",
   "approved_baseline": {
-    "version": "v8.1.1",
-    "commit": "6eb8554f0ede597b2aa3e508ffb3f111d3c2b9e6",
-    "central_repository_commit": "fa57d0479f22f77cd931f63e6aacd2374109628c",
-    "review_result_sha256": "cfe7947fed6fa1783f02848f4bb961cae3a2d1f82c1b2962bfd6a3e99f1fb748"
+    "version": "v8.1.2",
+    "commit": "85225381d89915595598ed13766cd79890c03a84",
+    "central_repository_commit": "8d4697a4b8311a89f9dfeca6e312ca1bb17537d2",
+    "review_result_sha256": "a01a00f1c67ac90a993421cdb4acd5a055cd6e9da396baf8fd517d2e314420b6"
   },
   "identity": {
-    "release": "https://github.com/router-for-me/CLIProxyAPI/releases/tag/v8.1.2",
+    "release": "https://github.com/router-for-me/CLIProxyAPI/releases/tag/v8.1.4",
     "ref_type": "commit",
     "draft": false,
     "prerelease": false
@@ -20,38 +20,39 @@
     "change": "Only workflow source SHA changes; Dockerfile unchanged."
   },
   "coverage": {
-    "changed_paths": 130,
-    "compare_files": 130,
-    "non_test_paths": 72,
-    "test_paths": 58,
-    "production_diff_lines": 6925,
-    "method": "Trees untruncated; change set equals compare; non-test blobs fetched by blob SHA and re-hashed. Full diff screened for hosts/URLs, HTTP construction, credential headers, exec/syscall, env, file writes, embed, linkname, unsafe; executor, cache, Home and model-catalog chains read."
+    "changed_paths": 221,
+    "compare_files": 221,
+    "non_test_paths": 117,
+    "test_paths": 104,
+    "production_diff_lines": 11000,
+    "import_only_hunks": 14,
+    "substantive_diff_lines": 10868,
+    "method": "Trees untruncated; change set equals compare; non-test blobs fetched by blob SHA. Substantive diff screened in full; plugin host, Home dispatch, cache and platform power files read. Translator logic screened, not line-read."
   },
   "semantic_findings": [
-    "Antigravity executor refactor (shared prepareAntigravityRequest): bearer token still sent only to the existing Cloud Code endpoints; daily-cloudcode-pa.googleapis.com default existed at baseline.",
-    "Copilot executor split into prepareAuthorizedRequest/doHTTPRequest; request logging added through existing RecordAPIRequest; TrustedAPI host check unchanged.",
-    "Antigravity model catalog/thinking groups cached in the existing KV store keyed by hashed auth ID; scope is a hash of grant/project/endpoint.",
-    "Signature cache gains per-request scope in existing KV; logging helpers add bounded in-memory response capture.",
-    "Thinking/translator/cooldown/Home result changes are payload and state logic only.",
-    "README sponsor link change (10dianai.com) and asset PNG are documentation only; example plugin go.mod outside build."
+    "Windows-only power readiness (power_windows.go, *_power_windows.go) uses Win32 syscalls and compiles only on windows; Linux keeps the !darwin/!windows no-ops. power_windows_state.go has no build tag but imports only fmt/sync/time.",
+    "Home dispatch may name a locally installed plugin executor (executor_plugin), resolved through the existing plugin host; fused/disabled plugins return 503.",
+    "Thinking google extra_body, Gemini/Antigravity/Codex/Claude translator changes, reasoning replay tombstones and request-scoped error rule sanitising: payload/state logic only.",
+    "README sponsor links changed (rapidproxy removed, subrouter.ai added) and an SVG asset: documentation only.",
+    "No new hosts, credential headers, exec on Linux, env reads, file writes or embeds."
   ],
   "dependency_review": {
-    "changed_modules": 0,
-    "note": "root go.mod/go.sum unchanged"
+    "changed_modules": 0
   },
   "other_upstreams": [
     {
       "repository": "Willxup/cpa-usage-keeper",
-      "version": "v2.1.1",
-      "conclusion": "无新版"
+      "version": "v2.1.2",
+      "commit": "047ae17d6df33e643af054a47433ac7aec4179aa",
+      "conclusion": "通过"
     },
     {
       "repository": "nicholas-fedor/watchtower",
-      "version": "v1.24.1",
+      "version": "v1.24.2",
       "conclusion": "无新版"
     }
   ],
-  "local_evidence_directory": "/root/upstream-release-review/cliproxyapi-v8.1.2/",
+  "local_evidence_directory": "/root/upstream-release-review/cliproxyapi-v8.1.4/",
   "limitations": [
     "Static malicious-code increment only.",
     "No upstream execution/tests/scanning.",
