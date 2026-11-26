@@ -14,7 +14,7 @@
 4. README 赞助链接（移除 xcode.best、chenju，新增 apipdx.com）和图片只是文档。
 5. 增量中**没有**新主机、凭据头、进程执行、环境变量读取、文件写入或 embed。
 
-中央 Dockerfile 不变，仅更新 workflow 源码 SHA。审查未执行上游代码、未运行测试或扫描；不部署或重启服务。本地证据：`/root/upstream-release-review/cliproxyapi-v8.1.5/`。
+随后中央构建器由 `golang:1.26-alpine` 升到 `golang:1.27-alpine3.24`（go.mod 要求 1.26.10 仍满足），发布前已用 Go 1.27.4 在本地按 `CGO_ENABLED=0` 编译验证；运行时仍为 `alpine:3.24`。审查未执行上游代码、未运行测试或扫描；不部署或重启服务。本地证据：`/root/upstream-release-review/cliproxyapi-v8.1.5/`。
 
 ## 其他上游
 

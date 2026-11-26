@@ -75,5 +75,6 @@
       "approved_at": "2026-10-31T00:45:25Z"
     }
   ],
-  "local_evidence_directory": "/root/upstream-release-review/keeper-v2.1.2/"
+  "local_evidence_directory": "/root/upstream-release-review/keeper-v2.1.2/",
+  "builder_update_2026_11_26": "web-builder node:24-alpine → node:26-alpine3.24 (Node 26 LTS) and go-builder golang:1.26-alpine → golang:1.27-alpine3.24; reviewed v2.1.2 source verified locally with Node 26 npm ci + vite build and Go 1.27.4 CGO build before publishing. Lockfile, entrypoint and alpine:3.24 runtime unchanged."
 }

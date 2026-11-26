@@ -13,7 +13,7 @@
 2. **新增 `/usage/identities/:id/models`：** 挂在既有管理员认证组下，对本地 SQLite 做参数化查询。
 3. **Web：** 凭据卡片/列表/模型用量界面重构，只调用同源 API；`localStorage` 只保存列表视图偏好；没有 eval、动态脚本或外部 URL。
 
-中央 Dockerfile.keeper 不变，仅更新 workflow 的 tag 与 commit。审查中未执行上游代码、未运行测试或扫描；不部署或重启。本地证据：`/root/upstream-release-review/keeper-v2.1.2/`。
+中央 Dockerfile.keeper 随后升级构建器：web 构建 `node:24-alpine` → `node:26-alpine3.24`（Node 26 LTS），Go 构建 `golang:1.26-alpine` → `golang:1.27-alpine3.24`；发布前已用 Node 26 执行 `npm ci` 与前端构建、用 Go 1.27.4 做 CGO 编译验证，lockfile、入口脚本和 `alpine:3.24` 运行时不变。审查中未执行上游代码、未运行测试或扫描；不部署或重启。本地证据：`/root/upstream-release-review/keeper-v2.1.2/`。
 
 ## 历史
 

@@ -6,7 +6,7 @@
 # ===========================
 # Stage 1: 编译 CLIProxyAPIPlus
 # ===========================
-FROM golang:1.26-alpine AS api-builder
+FROM golang:1.27-alpine3.24 AS api-builder
 
 WORKDIR /build
 

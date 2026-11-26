@@ -17,7 +17,8 @@
     "prerelease": false
   },
   "central_boundary": {
-    "change": "Only workflow source SHA changes; Dockerfile unchanged."
+    "change": "Only workflow source SHA changes; Dockerfile unchanged.",
+    "builder_update_2026_11_26": "golang:1.26-alpine → golang:1.27-alpine3.24 (go.mod requires 1.26.10, satisfied); v8.1.5 source verified locally with Go 1.27.4, CGO_ENABLED=0."
   },
   "coverage": {
     "changed_paths": 163,

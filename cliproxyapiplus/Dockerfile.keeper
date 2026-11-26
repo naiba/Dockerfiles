@@ -2,15 +2,15 @@
 # CPA Usage Keeper Dockerfile
 # Build context is cpa-usage-keeper source pinned by the workflow.
 
-# Node 与上游 v2.1.1 Dockerfile 的 node:24.22.1-alpine 保持同一主版本
-FROM node:24-alpine AS web-builder
+# Node 26 为当前 LTS（上游 Dockerfile 仍为 node:24）；升级前已用 Node 26 本地验证 npm ci 与构建
+FROM node:26-alpine3.24 AS web-builder
 WORKDIR /app/web
 COPY web/package.json web/package-lock.json ./
 RUN npm ci
 COPY web/ ./
 RUN npm run build
 
-FROM golang:1.26-alpine AS go-builder
+FROM golang:1.27-alpine3.24 AS go-builder
 WORKDIR /app
 RUN apk add --no-cache build-base
 COPY go.mod go.sum ./
