@@ -1,41 +1,38 @@
 {
   "schema_version": 2,
   "repository": "router-for-me/CLIProxyAPI",
-  "version": "v8.1.5",
-  "commit": "13d87daf65d1614570bbb59e6a26898bf8fd6cc4",
+  "version": "v8.1.6",
+  "commit": "0aaf6d1c3a9eb28979145d13c831637254319c92",
   "conclusion": "通过",
   "approved_baseline": {
-    "version": "v8.1.4",
-    "commit": "38fe929502f19f7cce03c69c19aacddf30f1ef5e",
-    "central_repository_commit": "029e62674700eb2a33958a727da398b94ca7dff7",
-    "review_result_sha256": "db2920e32ab0106ea779149498abf59e6f8712f6d518c1aac73ecdd736d1276e"
+    "version": "v8.1.5",
+    "commit": "13d87daf65d1614570bbb59e6a26898bf8fd6cc4",
+    "central_repository_commit": "819c8e2758df621498a80b455cff55c673f55a62",
+    "review_result_sha256": "f5a076190bf40e825a013ba057741e023d94eb6cf3ff6b699d5eaec031f79d25"
   },
   "identity": {
-    "release": "https://github.com/router-for-me/CLIProxyAPI/releases/tag/v8.1.5",
+    "release": "https://github.com/router-for-me/CLIProxyAPI/releases/tag/v8.1.6",
     "ref_type": "commit",
     "draft": false,
     "prerelease": false
   },
   "central_boundary": {
-    "change": "Only workflow source SHA changes; Dockerfile unchanged.",
-    "builder_update_2026_11_26": "golang:1.26-alpine → golang:1.27-alpine3.24 (go.mod requires 1.26.10, satisfied); v8.1.5 source verified locally with Go 1.27.4, CGO_ENABLED=0."
+    "builder": "golang:1.27-alpine3.24, runtime alpine:3.24",
+    "change": "Only workflow source SHA changes; Dockerfile unchanged."
   },
   "coverage": {
-    "changed_paths": 163,
-    "compare_files": 163,
-    "non_test_paths": 84,
-    "test_paths": 79,
-    "production_diff_lines": 10111,
-    "import_only_hunks": 13,
-    "substantive_diff_lines": 9997,
-    "method": "Trees untruncated; change set equals compare; non-test blobs fetched by blob SHA. Substantive diff screened in full; executor endpoint construction, video handler and new URL literals checked. Translator/thinking logic screened, not line-read."
+    "changed_paths": 25,
+    "compare_files": 25,
+    "non_test_paths": 18,
+    "test_paths": 7,
+    "production_diff_lines": 1493,
+    "production_diff_read_in_full": true
   },
   "semantic_findings": [
-    "Gemini/Vertex executors: endpoint URLs still built from the existing configured baseURL; Vertex API-version detection helper only parses the base URL path (http://vertex1 etc. are comments).",
-    "OpenAI videos handler parses user-supplied reference_image_urls into the request payload; no server-side fetch added.",
-    "Antigravity credits/attempt/model-enum, Kimi/xAI/OpenAI-compat executors, cooldown and Home changes: payload and state logic on existing endpoints.",
-    "README sponsor links changed (xcode.best/chenju removed, apipdx.com added) and image assets: documentation only.",
-    "No new hosts, credential headers, exec, env reads, file writes or embeds."
+    "Home-authorized local plugin execution for acp/ models: CPA asks the operator's Home over the existing Redis command channel (model, headers, query); Home returns plugin/version/config digest, and CPA only runs an already-loaded local plugin whose version and config digest match and whose model is unchanged.",
+    "Plugin shadow copies get a unique path when the same native image is reloaded; plugin static model catalog read API.",
+    "Codex websocket read deadlines extended via net.Conn while a turn is active; duplex create/steer bookkeeping.",
+    "No new hosts, exec, env reads, file writes or embeds."
   ],
   "dependency_review": {
     "changed_modules": 0
@@ -52,10 +49,11 @@
       "conclusion": "无新版"
     }
   ],
-  "local_evidence_directory": "/root/upstream-release-review/cliproxyapi-v8.1.5/",
+  "local_evidence_directory": "/root/upstream-release-review/cliproxyapi-v8.1.6/",
   "limitations": [
     "Static malicious-code increment only.",
     "No upstream execution/tests/scanning.",
+    "Native plugins and external Home not newly approved.",
     "No deployment or service restart."
   ]
 }
