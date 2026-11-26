@@ -11,3 +11,5 @@
 - 上游 compare 文件列表上限 300，超过时用两端完整 tree 重算变更清单；可复用 `/root/upstream-release-review/` 下的 collect_fixed_sha_diff.py、split_import_only_hunks.py、go_module_reachable_packages.py、go_cross_module_reachability.py、go_dependency_reachable_diff.py。
 - Watchtower Dockerfile 用 GOTOOLCHAIN=local 固定 builder 摘要；上游 go.mod 的 go 版本升高时必须同步换官方 golang alpine builder 摘要，并重算 review-approval.json 中的构建文件散列。
 - 用户要求“该更新就更新”：审查通过直接更新 pin；中央 Dockerfile 的基础镜像/工具版本过时（如固定到旧补丁版、落后于上游 Dockerfile 的主版本）也直接更新、提交并跟踪 CI，不必先问。
+- 用户要求：每次“再来”检查上游更新时，同时检查所有 Dockerfile 的构建器和运行环境能否升级，有就一起升级。检查项：Go 最新稳定小版本（cliproxyapi、keeper、watchtower 摘要；watchtower 还要对齐上游 go.mod）、Node 最新 LTS（keeper web）、Python 最新稳定版（akshare，同步改 APP_HOME 路径）、Alpine 最新小版本、akshare 版本；浮动标签（beanstalkd 的 alpine、php8-fpm 的 bitnami latest）靠每周定时重建。
+- 构建器/运行环境升级的验证方式：Go/Node 先用对应官方工具链在本地按中央 Dockerfile 参数编译已审查的固定源码；Python 先用 pip dry-run 确认 x86_64/aarch64 全部依赖有该版本的预编译 wheel；发布后从 GHCR 镜像层核对关键路径存在。
